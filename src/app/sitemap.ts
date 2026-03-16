@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://shreegauli.com";
   const now = new Date();
 
-  const routes = ["", "/work", "/services", "/about", "/writing", "/contact", "/resume"];
+  const routes = ["", "/work", "/services", "/about", "/writing", "/seo-tools", "/contact"];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,

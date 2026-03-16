@@ -71,14 +71,8 @@ export function Navbar() {
 
           {/* Right side */}
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/resume"
-              className="text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
-            >
-              Resume
-            </Link>
             <GlowButton href="/contact" showArrow={false} className="py-2 px-5 text-xs">
-              Hire Me
+              Get in Touch
             </GlowButton>
           </div>
 
@@ -114,21 +108,14 @@ export function Navbar() {
                     {link.label}
                   </Link>
                 ))}
-                <div className="pt-2 flex gap-3">
-                  <Link
-                    href="/resume"
-                    onClick={() => setMobileOpen(false)}
-                    className="flex-1 text-center py-2.5 text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] border border-white/[0.1] rounded-lg transition-colors"
-                  >
-                    Resume
-                  </Link>
+                <div className="pt-2">
                   <GlowButton
                     href="/contact"
                     showArrow={false}
                     onClick={() => setMobileOpen(false)}
-                    className="flex-1 justify-center py-2.5 text-xs"
+                    className="w-full justify-center py-2.5 text-xs"
                   >
-                    Hire Me
+                    Get in Touch
                   </GlowButton>
                 </div>
               </div>
