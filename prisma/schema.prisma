@@ -1,0 +1,502 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Post {
+  id            Int        @id @default(autoincrement())
+  title         String
+  slug          String     @unique
+  excerpt       String?
+  content       String
+  coverImage    String?
+  coverImageAlt String?
+  seoTitle      String?
+  metaDesc      String?
+  canonical     String?
+  publishedAt   DateTime?
+  updatedAt     DateTime   @updatedAt
+  authorId      Int?
+  comments      Comment[]  @relation("PostComments")
+  author        Author?    @relation(fields: [authorId], references: [id])
+  categories    Category[] @relation("PostCategories")
+  tags          Tag[]      @relation("PostTags")
+}
+
+model Author {
+  id     Int     @id @default(autoincrement())
+  name   String
+  email  String  @unique
+  avatar String?
+  posts  Post[]
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[] @relation("PostCategories")
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[] @relation("PostTags")
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  postId      Int
+  author      String
+  content     String
+  publishedAt DateTime @default(now())
+  approved    Boolean  @default(false)
+  post        Post     @relation("PostComments", fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@index([publishedAt])
+}
+
+// Future enhancement: Add these fields when running migrations
+// userId      String?
+// email       String?
+// status      String   @default("published")
+// updatedAt   DateTime @updatedAt
+// user        User?    @relation("PostComments", fields: [userId], references: [id], onDelete: SetNull)
+
+model NewsArticle {
+  id            Int       @id @default(autoincrement())
+  title         String
+  slug          String    @unique
+  excerpt       String?
+  content       String
+  coverImage    String?
+  coverImageAlt String?
+  publisher     String?   @default("The NextGen Healthcare Marketing")
+  source        String?
+  sourceUrl     String?
+  sourceDate    DateTime?
+  seoTitle      String?
+  metaDesc      String?
+  publishedAt   DateTime?
+  updatedAt     DateTime  @updatedAt
+}
+
+model AnalyticsData {
+  id                   Int      @id @default(autoincrement())
+  userId               String
+  clinicId             String?
+  date                 DateTime @default(now())
+  gscClicks            Int      @default(0)
+  gscImpressions       Int      @default(0)
+  gscCtr               Float    @default(0)
+  gscAvgPosition       Float    @default(0)
+  gmbPhoneCalls        Int      @default(0)
+  gmbWebsiteClicks     Int      @default(0)
+  gmbDirectionRequests Int      @default(0)
+  gmbActions           Int      @default(0)
+  gmbProfileViews      Int      @default(0)
+  gmbReviewCount       Int      @default(0)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([userId])
+  @@index([clinicId])
+  @@index([date])
+}
+
+model ChatSession {
+  id            String        @id @default(cuid())
+  sessionKey    String        @unique
+  visitorId     String?
+  language      String?
+  startedAt     DateTime      @default(now())
+  lastMessageAt DateTime      @updatedAt
+  summary       String?
+  report        String?
+  messages      ChatMessage[]
+
+  @@index([startedAt])
+  @@index([lastMessageAt])
+}
+
+model ChatMessage {
+  id        Int         @id @default(autoincrement())
+  sessionId String
+  role      String
+  content   String
+  createdAt DateTime    @default(now())
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@index([createdAt])
+}
+
+model NewsletterSubscriber {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  subscribedAt DateTime @default(now())
+  active       Boolean  @default(true)
+  source       String?
+
+  @@index([subscribedAt])
+}
+
+model ContactLead {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String
+  phone        String?
+  businessType String?
+  budget       String?
+  message      String?
+  source       String?
+  status       String   @default("new")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([status])
+}
+
+model User {
+  id                   String         @id @default(cuid())
+  email                String         @unique
+  password             String
+  name                 String
+  role                 String
+  avatar               String?
+  plan                 String?
+  planId               String?
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  subscriptionStatus   String?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  clinicAssignments    ClientClinic[]
+  weeklyOngoingTasks   WeeklyOngoingTask[]
+  weeklyOngoingSnapshots WeeklyOngoingSnapshot[]
+
+  @@index([email])
+  @@index([role])
+}
+
+// Future enhancement: Add comment relations
+// postComments         Comment[]      @relation("PostComments")
+// newsComments         NewsComment[]  @relation("NewsComments")
+
+model Clinic {
+  id                String            @id @default(cuid())
+  name              String
+  type              String
+  location          String
+  leads             Int               @default(0)
+  appointments      Int               @default(0)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  clientAssignments ClientClinic[]
+  gmbConnection     GMBConnection?
+  weeklyAnalytics   WeeklyAnalytics[]
+  weeklyOngoingTasks WeeklyOngoingTask[]
+  weeklyOngoingSnapshots WeeklyOngoingSnapshot[]
+
+  @@index([type])
+}
+
+model ClientClinic {
+  id                String   @id @default(cuid())
+  userId            String
+  clinicId          String
+  serviceCategories String[] @default([])
+  assignedAt        DateTime @default(now())
+  clinic            Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, clinicId])
+  @@index([userId])
+  @@index([clinicId])
+}
+
+model WeeklyOngoingTask {
+  id              String   @id @default(cuid())
+  userId          String
+  clinicId        String
+  weekYear        Int
+  weekNumber      Int
+  weekLabel       String
+  serviceCategory String
+  title           String
+  status          String   @default("planned")
+  statusNote      String   @default("")
+  progress        Int      @default(10)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clinic          Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+
+  @@index([userId, clinicId, weekYear, weekNumber])
+  @@index([clinicId, weekYear, weekNumber])
+  @@index([userId, weekYear, weekNumber])
+  @@index([serviceCategory, status])
+}
+
+model WeeklyOngoingSnapshot {
+  id           String   @id @default(cuid())
+  userId       String
+  clinicId     String
+  weekYear     Int
+  weekNumber   Int
+  weekLabel    String
+  servicesHash String
+  items        Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clinic       Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, clinicId, weekYear, weekNumber])
+  @@index([userId, weekYear, weekNumber])
+  @@index([clinicId, weekYear, weekNumber])
+  @@index([servicesHash])
+}
+
+model WeeklyAnalytics {
+  id                      String   @id @default(cuid())
+  clinicId                String
+  weekLabel               String
+  year                    Int
+  month                   Int
+  weekNumber              Int
+  blogsPublished          Int      @default(0)
+  avgRanking              Float    @default(0)
+  totalTraffic            Int      @default(0)
+  callsRequested          Int      @default(0)
+  websiteVisits           Int      @default(0)
+  directionClicks         Int      @default(0)
+  metaImpressions         Int      @default(0)
+  metaClicks              Int      @default(0)
+  metaCTR                 Float    @default(0)
+  metaCPC                 Float    @default(0)
+  metaConversions         Int      @default(0)
+  metaCostPerConversion   Float    @default(0)
+  metaAdSpend             Float    @default(0)
+  googleImpressions       Int      @default(0)
+  googleClicks            Int      @default(0)
+  googleCTR               Float    @default(0)
+  googleCPC               Float    @default(0)
+  googleConversions       Int      @default(0)
+  googleCVR               Float    @default(0)
+  googleCostPerConversion Float    @default(0)
+  googleTotalCost         Float    @default(0)
+  socialPosts             Int      @default(0)
+  socialViews             Int      @default(0)
+  patientCount            Int      @default(0)
+  digitalConversion       Int      @default(0)
+  conversionRate          Float    @default(0)
+  dailyPatientAvg         Float    @default(0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  clinic                  Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+
+  @@unique([clinicId, year, weekNumber])
+  @@index([clinicId])
+  @@index([year, weekNumber])
+}
+
+model GMBConnection {
+  id                 String    @id @default(cuid())
+  clinicId           String    @unique
+  accessToken        String
+  refreshToken       String?
+  tokenExpiry        DateTime?
+  businessAccountId  String?
+  businessLocationId String?
+  businessName       String?
+  locationName       String?
+  locationAddress    String?
+  googleEmail        String?
+  ga4PropertyId      String?
+  searchConsoleSite  String?
+  googleAdsCustomerId String?
+  connectionStatus   String    @default("connected")
+  lastSyncedAt       DateTime?
+  nextSyncAt         DateTime?
+  syncStatus         String    @default("idle")
+  lastSyncError      String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  clinic             Clinic    @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  gmbData            GMBData[]
+  ga4Data            GA4Data[]
+  searchConsoleData  SearchConsoleData[]
+  googleAdsData      GoogleAdsData[]
+
+  @@index([clinicId])
+  @@index([businessAccountId])
+  @@index([lastSyncedAt])
+}
+
+model GMBData {
+  id                String        @id @default(cuid())
+  gmbConnectionId   String
+  date              DateTime
+  views             Int           @default(0)
+  discovery         Int           @default(0)
+  directionRequests Int           @default(0)
+  phoneImpressions  Int           @default(0)
+  phoneCalls        Int           @default(0)
+  websiteClicks     Int           @default(0)
+  messageCount      Int           @default(0)
+  totalReviews      Int           @default(0)
+  averageRating     Float         @default(0)
+  newReviews        Int           @default(0)
+  questions         Int           @default(0)
+  answers           Int           @default(0)
+  totalPosts        Int           @default(0)
+  activePosts       Int           @default(0)
+  isOpenNow         Boolean       @default(false)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  gmbConnection     GMBConnection @relation(fields: [gmbConnectionId], references: [id], onDelete: Cascade)
+
+  @@unique([gmbConnectionId, date])
+  @@index([gmbConnectionId])
+  @@index([date])
+}
+
+model AiHistory {
+  id            String   @id @default(cuid())
+  userId        String
+  generatorType String   // 'text', 'image', 'video'
+  prompt        String   @db.Text
+  settings      Json?    // Store tone, word count, style presets, etc.
+  output        String   @db.Text // Text content or the image/video URL
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
+  @@index([generatorType])
+  @@index([createdAt])
+}
+
+model GA4Data {
+  id                String        @id @default(cuid())
+  gmbConnectionId   String
+  date              DateTime
+  activeUsers       Int           @default(0)
+  newUsers          Int           @default(0)
+  sessions          Int           @default(0)
+  pageViews         Int           @default(0)
+  avgSessionDuration Float        @default(0)
+  bounceRate        Float         @default(0)
+  engagementRate    Float         @default(0)
+  conversions       Int           @default(0)
+  organicSessions   Int           @default(0)
+  paidSessions      Int           @default(0)
+  directSessions    Int           @default(0)
+  referralSessions  Int           @default(0)
+  socialSessions    Int           @default(0)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  gmbConnection     GMBConnection @relation(fields: [gmbConnectionId], references: [id], onDelete: Cascade)
+
+  @@unique([gmbConnectionId, date])
+  @@index([gmbConnectionId])
+  @@index([date])
+}
+
+model SearchConsoleData {
+  id                String        @id @default(cuid())
+  gmbConnectionId   String
+  date              DateTime
+  clicks            Int           @default(0)
+  impressions       Int           @default(0)
+  ctr               Float         @default(0)
+  avgPosition       Float         @default(0)
+  topQueries        Json?
+  topPages          Json?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  gmbConnection     GMBConnection @relation(fields: [gmbConnectionId], references: [id], onDelete: Cascade)
+
+  @@unique([gmbConnectionId, date])
+  @@index([gmbConnectionId])
+  @@index([date])
+}
+
+model GoogleAdsData {
+  id                String        @id @default(cuid())
+  gmbConnectionId   String
+  date              DateTime
+  impressions       Int           @default(0)
+  clicks            Int           @default(0)
+  costMicros        BigInt        @default(0)
+  conversions       Float         @default(0)
+  ctr               Float         @default(0)
+  avgCpc            Float         @default(0)
+  costPerConversion Float         @default(0)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  gmbConnection     GMBConnection @relation(fields: [gmbConnectionId], references: [id], onDelete: Cascade)
+
+  @@unique([gmbConnectionId, date])
+  @@index([gmbConnectionId])
+  @@index([date])
+}
+
+model GoogleApiCache {
+  id           String   @id @default(cuid())
+  cacheKey     String   @unique
+  responseData Json
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([expiresAt])
+}
+
+// ─── RAG Knowledge Base ───
+model SiteKnowledge {
+  id            String   @id @default(cuid())
+  url           String
+  title         String
+  section       String   // e.g. "services", "pricing", "blog", "faq"
+  content       String   // text chunk
+  checksum      String   // md5 of content for dedup
+  lastCrawledAt DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([url])
+  @@index([section])
+  @@index([checksum])
+}
+
+model UnansweredQuestion {
+  id        String   @id @default(cuid())
+  question  String
+  sessionId String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model MonthlyClinicReportEmail {
+  id             String   @id @default(cuid())
+  clinicId       String
+  recipientEmail String
+  reportYear     Int
+  reportMonth    Int
+  status         String   @default("sent")
+  sentAt         DateTime?
+  error          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([clinicId, recipientEmail, reportYear, reportMonth])
+  @@index([reportYear, reportMonth])
+  @@index([status])
+}

@@ -1,0 +1,539 @@
+import prisma from '@/lib/prisma';
+import {
+  getValidToken,
+  googleApiRequestWithRetry,
+  getCachedApiResponse,
+  setCachedApiResponse,
+  clearCachedApiResponse,
+  clearApiErrorCache,
+} from '@/lib/google-api-core';
+
+const GOOGLE_OAUTH_BASE = 'https://accounts.google.com/o/oauth2/v2/auth';
+const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
+
+// Cache TTL: 30 minutes for discovery endpoints (accounts, locations)
+const DISCOVERY_CACHE_TTL_MS = 30 * 60 * 1000;
+
+export async function clearGmbCache(clinicId?: string) {
+  if (clinicId) {
+    await clearCachedApiResponse(`gmb:${clinicId}`);
+  }
+  // Also clear negative API error cache so retries work after fixing config
+  await clearApiErrorCache('gbp');
+}
+
+export const GMB_SCOPES = [
+  'openid',
+  'email',
+  'profile',
+  'https://www.googleapis.com/auth/business.manage',
+  'https://www.googleapis.com/auth/analytics.readonly',
+  'https://www.googleapis.com/auth/webmasters.readonly',
+  'https://www.googleapis.com/auth/adwords',
+];
+
+const DAILY_METRICS = [
+  'WEBSITE_CLICKS',
+  'BUSINESS_DIRECTION_REQUESTS',
+  'CALL_CLICKS',
+  'BUSINESS_IMPRESSIONS_DESKTOP_MAPS',
+  'BUSINESS_IMPRESSIONS_DESKTOP_SEARCH',
+  'BUSINESS_IMPRESSIONS_MOBILE_MAPS',
+  'BUSINESS_IMPRESSIONS_MOBILE_SEARCH',
+];
+
+function normalizeAccountName(name: string) {
+  return name.startsWith('accounts/') ? name : `accounts/${name}`;
+}
+
+function normalizeLocationName(name: string) {
+  return name.startsWith('locations/') ? name : `locations/${name}`;
+}
+
+function toGoogleDateParts(date: Date) {
+  return {
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth() + 1,
+    day: date.getUTCDate(),
+  };
+}
+
+function toUtcMidnight(date: Date) {
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+}
+
+function addDays(date: Date, days: number) {
+  const next = new Date(date);
+  next.setUTCDate(next.getUTCDate() + days);
+  return next;
+}
+
+function getAppUrl() {
+  return process.env.APP_URL || 'http://localhost:3000';
+}
+
+function formatStorefrontAddress(address: any) {
+  if (!address) return null;
+
+  const parts = [
+    ...(address.addressLines || []),
+    address.locality,
+    address.administrativeArea,
+    address.postalCode,
+    address.regionCode,
+  ].filter(Boolean);
+
+  return parts.length ? parts.join(', ') : null;
+}
+
+export function createGmbState(clinicId: string) {
+  const payload = {
+    clinicId,
+    t: Date.now(),
+  };
+
+  return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
+}
+
+export function parseGmbState(state: string) {
+  try {
+    const parsed = JSON.parse(Buffer.from(state, 'base64url').toString('utf8')) as {
+      clinicId?: string;
+      t?: number;
+    };
+
+    if (!parsed.clinicId || !parsed.t) return null;
+
+    const ageMs = Date.now() - parsed.t;
+    if (ageMs > 15 * 60 * 1000) return null;
+
+    return { clinicId: parsed.clinicId };
+  } catch {
+    return null;
+  }
+}
+
+export function getGmbOAuthUrl(clinicId: string) {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  if (!clientId) {
+    throw new Error('GOOGLE_CLIENT_ID is not configured');
+  }
+
+  const redirectUri = `${getAppUrl()}/api/admin/gmb/callback`;
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    response_type: 'code',
+    access_type: 'offline',
+    include_granted_scopes: 'true',
+    prompt: 'consent select_account',
+    scope: GMB_SCOPES.join(' '),
+    state: createGmbState(clinicId),
+  });
+
+  return `${GOOGLE_OAUTH_BASE}?${params.toString()}`;
+}
+
+export async function exchangeCodeForTokens(code: string) {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    throw new Error('Google OAuth credentials are not configured');
+  }
+
+  const redirectUri = `${getAppUrl()}/api/admin/gmb/callback`;
+
+  const response = await fetch(GOOGLE_TOKEN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      code,
+      client_id: clientId,
+      client_secret: clientSecret,
+      redirect_uri: redirectUri,
+      grant_type: 'authorization_code',
+    }),
+  });
+
+  const tokenData = await response.json();
+  if (!response.ok) {
+    throw new Error(tokenData?.error_description || tokenData?.error || 'Failed to exchange OAuth code');
+  }
+
+  return {
+    accessToken: tokenData.access_token as string,
+    refreshToken: tokenData.refresh_token as string | undefined,
+    expiresIn: (tokenData.expires_in as number | undefined) || 3600,
+  };
+}
+
+export async function fetchGoogleEmail(accessToken: string) {
+  const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.error?.message || 'Failed to fetch Google user profile');
+  }
+
+  return (data.email as string | undefined) || null;
+}
+
+// gmbApiRequest now delegates to the core with rate limiting + backoff
+async function gmbApiRequest(connectionId: string, url: string, init: RequestInit = {}) {
+  return googleApiRequestWithRetry({
+    connectionId,
+    url,
+    init,
+    service: 'gbp',
+    backoff: { maxAttempts: 5, baseDelayMs: 2000, maxDelayMs: 64_000, jitterFactor: 0.5 },
+  });
+}
+
+export async function upsertOAuthConnection(params: {
+  clinicId: string;
+  accessToken: string;
+  refreshToken?: string;
+  expiresIn: number;
+  googleEmail: string | null;
+}) {
+  const tokenExpiry = new Date(Date.now() + params.expiresIn * 1000);
+
+  // ── Enforce email uniqueness across clinics ──────────────────────
+  // The same Google account must not be connected to more than one clinic.
+  if (params.googleEmail) {
+    const conflict = await prisma.gMBConnection.findFirst({
+      where: {
+        googleEmail: params.googleEmail,
+        clinicId: { not: params.clinicId },
+      },
+      select: { clinicId: true, clinic: { select: { name: true } } },
+    });
+
+    if (conflict) {
+      throw new Error(
+        `This Google account (${params.googleEmail}) is already connected to "${conflict.clinic?.name || conflict.clinicId}". ` +
+        `Each clinic must use its own Google account. Disconnect the other clinic first or sign in with a different Google account.`
+      );
+    }
+  }
+
+  const existing = await prisma.gMBConnection.findUnique({ where: { clinicId: params.clinicId } });
+
+  if (existing) {
+    return prisma.gMBConnection.update({
+      where: { clinicId: params.clinicId },
+      data: {
+        accessToken: params.accessToken,
+        refreshToken: params.refreshToken || existing.refreshToken,
+        tokenExpiry,
+        googleEmail: params.googleEmail,
+        connectionStatus: existing.businessLocationId ? 'connected' : 'pending_selection',
+        syncStatus: 'idle',
+        lastSyncError: null,
+      },
+    });
+  }
+
+  return prisma.gMBConnection.create({
+    data: {
+      clinicId: params.clinicId,
+      accessToken: params.accessToken,
+      refreshToken: params.refreshToken,
+      tokenExpiry,
+      googleEmail: params.googleEmail,
+      connectionStatus: 'pending_selection',
+      syncStatus: 'idle',
+      businessAccountId: null,
+      businessLocationId: null,
+      businessName: null,
+      locationName: null,
+      locationAddress: null,
+      lastSyncedAt: null,
+      nextSyncAt: null,
+      lastSyncError: null,
+    },
+  });
+}
+
+export async function listGmbAccounts(clinicId: string) {
+  const connection = await prisma.gMBConnection.findUnique({ where: { clinicId } });
+  if (!connection) throw new Error('No Google connection found for this clinic');
+
+  // Check SQL cache first (30-min TTL)
+  const cacheKey = `gmb:${clinicId}:accounts`;
+  const cached = await getCachedApiResponse<any[]>(cacheKey);
+  if (cached) return { connection, accounts: cached };
+
+  const data = await gmbApiRequest(connection.id, 'https://mybusinessaccountmanagement.googleapis.com/v1/accounts');
+  const accounts = (data.accounts || []).map((account: any) => ({
+    name: account.name,
+    accountName: account.accountName,
+    type: account.type,
+  }));
+
+  await setCachedApiResponse(cacheKey, accounts, DISCOVERY_CACHE_TTL_MS);
+  return { connection, accounts };
+}
+
+export async function listGmbLocations(clinicId: string, accountName: string) {
+  const normalizedAccount = normalizeAccountName(accountName);
+  const connection = await prisma.gMBConnection.findUnique({ where: { clinicId } });
+  if (!connection) throw new Error('No Google connection found for this clinic');
+
+  // Check SQL cache first (30-min TTL)
+  const cacheKey = `gmb:${clinicId}:locations:${normalizedAccount}`;
+  const cached = await getCachedApiResponse<any[]>(cacheKey);
+  if (cached) return cached;
+
+  const readMask = [
+    'name',
+    'title',
+    'storefrontAddress',
+  ].join(',');
+
+  const url = `https://mybusinessbusinessinformation.googleapis.com/v1/${normalizedAccount}/locations?readMask=${encodeURIComponent(readMask)}&pageSize=100`;
+  const data = await gmbApiRequest(connection.id, url);
+
+  const locations = (data.locations || []).map((location: any) => ({
+    name: location.name,
+    title: location.title,
+    address: formatStorefrontAddress(location.storefrontAddress),
+  }));
+
+  await setCachedApiResponse(cacheKey, locations, DISCOVERY_CACHE_TTL_MS);
+  return locations;
+}
+
+export async function selectGmbLocation(params: {
+  clinicId: string;
+  accountName: string;
+  locationName: string;
+}) {
+  const normalizedAccount = normalizeAccountName(params.accountName);
+  const normalizedLocation = normalizeLocationName(params.locationName);
+
+  const { accounts } = await listGmbAccounts(params.clinicId);
+  const locations = await listGmbLocations(params.clinicId, normalizedAccount);
+
+  const selectedAccount = accounts.find((account: any) => account.name === normalizedAccount);
+  if (!selectedAccount) {
+    throw new Error('Selected account not found in connected Google account');
+  }
+
+  const selectedLocation = locations.find((location: any) => location.name === normalizedLocation);
+  if (!selectedLocation) {
+    throw new Error('Selected location not found in selected account');
+  }
+
+  const updated = await prisma.gMBConnection.update({
+    where: { clinicId: params.clinicId },
+    data: {
+      businessAccountId: selectedAccount.name,
+      businessName: selectedAccount.accountName || selectedAccount.name,
+      businessLocationId: selectedLocation.name,
+      locationName: selectedLocation.title || selectedLocation.name,
+      locationAddress: selectedLocation.address,
+      connectionStatus: 'connected',
+      syncStatus: 'idle',
+      lastSyncError: null,
+      nextSyncAt: addDays(toUtcMidnight(new Date()), 1),
+    },
+  });
+
+  return updated;
+}
+
+function aggregateMetricSeries(series: any[]) {
+  const byDate = new Map<string, {
+    views: number;
+    directionRequests: number;
+    phoneCalls: number;
+    websiteClicks: number;
+  }>();
+
+  for (const metricSeries of series) {
+    const metricName = metricSeries.dailyMetric;
+    const datedValues = metricSeries.timeSeries?.datedValues || [];
+
+    for (const valueEntry of datedValues) {
+      const date = valueEntry.date;
+      if (!date?.year || !date?.month || !date?.day) continue;
+
+      const dayDate = new Date(Date.UTC(date.year, date.month - 1, date.day));
+      const dateKey = dayDate.toISOString();
+
+      const existing = byDate.get(dateKey) || {
+        views: 0,
+        directionRequests: 0,
+        phoneCalls: 0,
+        websiteClicks: 0,
+      };
+
+      const value = Number(valueEntry.value || 0);
+
+      if (metricName === 'WEBSITE_CLICKS') {
+        existing.websiteClicks += value;
+      } else if (metricName === 'BUSINESS_DIRECTION_REQUESTS') {
+        existing.directionRequests += value;
+      } else if (metricName === 'CALL_CLICKS') {
+        existing.phoneCalls += value;
+      } else if (
+        metricName === 'BUSINESS_IMPRESSIONS_DESKTOP_MAPS' ||
+        metricName === 'BUSINESS_IMPRESSIONS_DESKTOP_SEARCH' ||
+        metricName === 'BUSINESS_IMPRESSIONS_MOBILE_MAPS' ||
+        metricName === 'BUSINESS_IMPRESSIONS_MOBILE_SEARCH'
+      ) {
+        existing.views += value;
+      }
+
+      byDate.set(dateKey, existing);
+    }
+  }
+
+  return byDate;
+}
+
+export async function syncGmbConnection(connectionId: string, nextSyncAt?: Date) {
+  const connection = await prisma.gMBConnection.findUnique({ where: { id: connectionId } });
+  if (!connection) {
+    throw new Error('GMB connection not found');
+  }
+
+  if (!connection.businessLocationId) {
+    throw new Error('No business location selected');
+  }
+
+  // If nextSyncAt not provided, set a short cooldown (5 min) — actual cooldown enforcement is in the API route
+  const scheduledNextSync = nextSyncAt || new Date(Date.now() + 5 * 60_000);
+
+  await prisma.gMBConnection.update({
+    where: { id: connectionId },
+    data: {
+      syncStatus: 'syncing',
+      lastSyncError: null,
+      nextSyncAt: scheduledNextSync,
+    },
+  });
+
+  try {
+    const endDate = toUtcMidnight(new Date());
+    const startDate = connection.lastSyncedAt
+      ? toUtcMidnight(addDays(connection.lastSyncedAt, 1))
+      : toUtcMidnight(addDays(endDate, -30));
+
+    const effectiveStart = startDate > endDate ? endDate : startDate;
+
+    const performanceUrl = `https://businessprofileperformance.googleapis.com/v1/${connection.businessLocationId}:fetchMultiDailyMetricsTimeSeries`;
+
+    const performanceData = await gmbApiRequest(connectionId, performanceUrl, {
+      method: 'POST',
+      body: JSON.stringify({
+        dailyMetrics: DAILY_METRICS,
+        dailyRange: {
+          startDate: toGoogleDateParts(effectiveStart),
+          endDate: toGoogleDateParts(endDate),
+        },
+      }),
+    });
+
+    const dateMap = aggregateMetricSeries(performanceData.multiDailyMetricTimeSeries || []);
+
+    for (const [dateKey, metrics] of dateMap.entries()) {
+      const date = new Date(dateKey);
+
+      await prisma.gMBData.upsert({
+        where: {
+          gmbConnectionId_date: {
+            gmbConnectionId: connectionId,
+            date,
+          },
+        },
+        create: {
+          gmbConnectionId: connectionId,
+          date,
+          views: metrics.views,
+          discovery: metrics.views,
+          directionRequests: metrics.directionRequests,
+          phoneImpressions: 0,
+          phoneCalls: metrics.phoneCalls,
+          websiteClicks: metrics.websiteClicks,
+          messageCount: 0,
+          totalReviews: 0,
+          averageRating: 0,
+          newReviews: 0,
+          questions: 0,
+          answers: 0,
+          totalPosts: 0,
+          activePosts: 0,
+          isOpenNow: false,
+        },
+        update: {
+          views: metrics.views,
+          discovery: metrics.views,
+          directionRequests: metrics.directionRequests,
+          phoneCalls: metrics.phoneCalls,
+          websiteClicks: metrics.websiteClicks,
+        },
+      });
+    }
+
+    await prisma.gMBConnection.update({
+      where: { id: connectionId },
+      data: {
+        syncStatus: 'idle',
+        connectionStatus: 'connected',
+        lastSyncedAt: new Date(),
+        nextSyncAt: addDays(toUtcMidnight(new Date()), 1),
+        lastSyncError: null,
+      },
+    });
+  } catch (error: any) {
+    await prisma.gMBConnection.update({
+      where: { id: connectionId },
+      data: {
+        syncStatus: 'error',
+        lastSyncError: error?.message || 'GMB sync failed',
+      },
+    });
+
+    throw error;
+  }
+}
+
+export async function syncDueGmbConnections() {
+  const dueConnections = await prisma.gMBConnection.findMany({
+    where: {
+      connectionStatus: 'connected',
+      businessLocationId: { not: null },
+      OR: [
+        { nextSyncAt: null },
+        { nextSyncAt: { lte: new Date() } },
+      ],
+    },
+    orderBy: { nextSyncAt: 'asc' },
+    take: 20,
+  });
+
+  for (const connection of dueConnections) {
+    try {
+      await syncGmbConnection(connection.id);
+    } catch (error) {
+      console.error(`[GMB Sync] Failed for clinic ${connection.clinicId}:`, error);
+    }
+  }
+}
+
+export async function getGmbConnectionByClinic(clinicId: string) {
+  return prisma.gMBConnection.findUnique({
+    where: { clinicId },
+    include: {
+      gmbData: {
+        orderBy: { date: 'desc' },
+        take: 14,
+      },
+    },
+  });
+}
