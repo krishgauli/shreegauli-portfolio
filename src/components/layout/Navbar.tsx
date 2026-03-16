@@ -71,6 +71,18 @@ export function Navbar() {
 
           {/* Right side */}
           <div className="hidden md:flex items-center gap-3">
+            <Link
+              href="/login"
+              className="px-3 py-2 text-xs font-semibold text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="px-4 py-2 text-xs font-semibold rounded-lg border border-white/[0.12] text-[#E2E8F0] hover:text-white hover:border-white/[0.2] transition-colors"
+            >
+              Sign Up
+            </Link>
             <GlowButton href="/contact" showArrow={false} className="py-2 px-5 text-xs">
               Get in Touch
             </GlowButton>
@@ -108,7 +120,23 @@ export function Navbar() {
                     {link.label}
                   </Link>
                 ))}
-                <div className="pt-2">
+                <div className="pt-2 space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    <Link
+                      href="/login"
+                      onClick={() => setMobileOpen(false)}
+                      className="inline-flex justify-center rounded-lg border border-white/[0.10] px-3 py-2.5 text-xs font-semibold text-[#CBD5E1] hover:text-white hover:border-white/[0.2] transition-colors"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/signup"
+                      onClick={() => setMobileOpen(false)}
+                      className="inline-flex justify-center rounded-lg border border-[#7C3AED]/35 bg-[#7C3AED]/10 px-3 py-2.5 text-xs font-semibold text-[#C4B5FD] hover:text-white transition-colors"
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
                   <GlowButton
                     href="/contact"
                     showArrow={false}
