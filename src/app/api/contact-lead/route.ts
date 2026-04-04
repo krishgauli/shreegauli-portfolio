@@ -1,21 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
+import { isContactMailerConfigured, sendContactLeadEmails } from '@/lib/contact-mailer';
+
+function getTrimmedValue(value: unknown) {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, businessType, budget, message, source } = body;
+    const name = getTrimmedValue(body.name);
+    const email = getTrimmedValue(body.email).toLowerCase();
+    const phone = getTrimmedValue(body.phone);
+    const businessType = getTrimmedValue(body.businessType);
+    const budget = getTrimmedValue(body.budget);
+    const message = getTrimmedValue(body.message);
+    const source = getTrimmedValue(body.source) || 'unknown';
 
     if (!name || !email) {
       return NextResponse.json({ error: 'Name and email are required' }, { status: 400 });
     }
 
-    if (!email.includes('@')) {
+    if (!isValidEmail(email)) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 });
     }
 
-    // Create new lead
     const lead = await prisma.contactLead.create({
       data: {
         name,
@@ -24,12 +38,40 @@ export async function POST(req: NextRequest) {
         businessType: businessType || null,
         budget: budget || null,
         message: message || null,
-        source: source || 'unknown',
+        source,
         status: 'new',
       },
     });
 
-    return NextResponse.json({ message: 'Lead submitted successfully', lead }, { status: 201 });
+    let emailStatus: 'failed' | 'partial' | 'sent' | 'skipped' = 'skipped';
+
+    if (isContactMailerConfigured()) {
+      try {
+        const result = await sendContactLeadEmails(lead);
+
+        if (result.notificationSent && result.confirmationSent) {
+          emailStatus = 'sent';
+        } else if (result.notificationSent || result.confirmationSent) {
+          emailStatus = 'partial';
+        } else {
+          emailStatus = 'failed';
+        }
+
+        if (result.errors.length > 0) {
+          console.error('Contact lead email delivery issue:', result.errors.join(' | '));
+        }
+      } catch (error) {
+        emailStatus = 'failed';
+        console.error('Contact lead email error:', error);
+      }
+    } else {
+      console.warn('Contact mailer not configured. Lead was saved but emails were skipped.');
+    }
+
+    return NextResponse.json(
+      { message: 'Lead submitted successfully', lead, emailStatus },
+      { status: 201 }
+    );
   } catch (error) {
     console.error('Contact lead error:', error);
     return NextResponse.json({ error: 'Failed to submit lead' }, { status: 500 });

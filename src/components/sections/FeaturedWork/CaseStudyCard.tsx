@@ -24,13 +24,18 @@ export function CaseStudyCard({
       enableHoverLift
       glowColor={index % 2 === 0 ? "violet" : "cyan"}
     >
-      {/* Thumbnail placeholder / gradient */}
+      {/* Thumbnail */}
       <div
         className={cn(
-          "relative shrink-0 md:w-56 h-40 md:h-auto bg-gradient-to-br",
+          "relative shrink-0 md:w-56 h-40 md:h-auto bg-gradient-to-br overflow-hidden",
           gradients[index % gradients.length]
         )}
       >
+        <img
+          src={cs.thumbnail}
+          alt={cs.title}
+          className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal transition-all duration-500"
+        />
         {/* Result badge */}
         <div className="absolute bottom-3 left-3">
           <span className="px-2.5 py-1 rounded-lg bg-[#070B14]/80 backdrop-blur-sm border border-white/[0.1] text-xs font-bold text-[#22D3EE]">

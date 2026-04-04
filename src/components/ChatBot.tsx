@@ -20,10 +20,10 @@ interface Message {
 
 const suggestionChips = [
   { label: 'Services', labelEs: 'Servicios', query: 'What services do you offer?' },
-  { label: 'Pricing', labelEs: 'Precios', query: 'What are your pricing plans?' },
-  { label: 'Dashboard', labelEs: 'Dashboard', query: 'Tell me about the analytics dashboard' },
+  { label: 'SEO', labelEs: 'SEO', query: 'Tell me about your SEO services' },
   { label: 'Results', labelEs: 'Resultados', query: 'What results do your clients get?' },
-  { label: 'Industries', labelEs: 'Industrias', query: 'What healthcare specialties do you serve?' },
+  { label: 'Process', labelEs: 'Proceso', query: 'What does your process look like?' },
+  { label: 'About', labelEs: 'Sobre mí', query: 'Tell me about Shree' },
   { label: 'Book a Call', labelEs: 'Agendar', query: 'How can I book a free consultation?' },
 ];
 
@@ -113,8 +113,8 @@ export default function ChatBot() {
         id: 'greeting',
         role: 'assistant',
         content: language === 'es'
-          ? '¡Hola! 👋 Soy **Nex**, tu asistente de marketing médico. Puedo ayudarte con servicios, precios, nuestro dashboard, resultados y más. ¿Qué te gustaría saber?'
-          : "Hey there! 👋 I'm **Nex**, your healthcare marketing assistant. I can help with services, pricing, our dashboard, results, and more. What would you like to know?",
+          ? '¡Hola! 👋 Soy el asistente virtual de Shree. Puedo ayudarte con servicios, resultados, proceso de trabajo y más. ¿Qué te gustaría saber?'
+          : "Hey there! 👋 I'm Shree's virtual assistant. I can help with services, results, process, and more. What would you like to know?",
         timestamp: new Date(),
       };
       setMessages([greeting]);

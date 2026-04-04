@@ -35,7 +35,7 @@ export default function Home() {
       <Navbar />
 
       {/* Main content — all above z-0 background */}
-      <main>
+      <main id="main-content">
         {/* 1. Hero */}
         <HeroSection />
 

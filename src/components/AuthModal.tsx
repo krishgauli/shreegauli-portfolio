@@ -89,7 +89,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
     setError('');
 
     try {
-      const authRes = await fetch('/api/auth/login', {
+      const authRes = await fetch(mode === 'signup' ? '/api/auth/signup' : '/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -107,8 +107,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
 
       // Success - trigger the callback
       onSuccess();
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -174,7 +174,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
             }
             window.removeEventListener('message', handleMessage);
             onSuccess();
-          } catch (err) {
+          } catch {
             setError('Signed in, but failed to complete action. Please refresh the page.');
             setIsGoogleLoading(false);
           }
@@ -192,8 +192,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
         }
       }, 500);
 
-    } catch (err: any) {
-      setError(err?.message || 'Failed to open Google sign-in.');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to open Google sign-in.');
       setIsGoogleLoading(false);
     }
   };

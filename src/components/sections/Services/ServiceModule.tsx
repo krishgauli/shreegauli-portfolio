@@ -1,4 +1,5 @@
-import { Search, TrendingUp, Users, Zap } from "lucide-react";
+import Link from "next/link";
+import { Search, TrendingUp, Users, Zap, ArrowRight } from "lucide-react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import type { Service } from "@/types";
 import { cn } from "@/lib/utils";
@@ -17,17 +18,26 @@ const colorMap: Record<string, string> = {
   automation: "#34D399",
 };
 
+const hrefMap: Record<string, string> = {
+  seo: "/services/seo",
+  paid: "/services/paid-media",
+  social: "/services/social-media",
+  automation: "/services/automation",
+};
+
 export function ServiceModule({ service }: { service: Service }) {
   const Icon = iconMap[service.icon] ?? Zap;
   const color = colorMap[service.id] ?? "#7C3AED";
+  const href = hrefMap[service.id] ?? "/services";
 
   return (
-    <ModuleShell
-      as="article"
-      className="p-6 flex flex-col gap-5 h-full"
-      enableHoverLift
-      enableTilt
-    >
+    <Link href={href} className="block h-full">
+      <ModuleShell
+        as="article"
+        className="p-6 flex flex-col gap-5 h-full"
+        enableHoverLift
+        enableTilt
+      >
       {/* Icon */}
       <div
         className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
@@ -71,6 +81,12 @@ export function ServiceModule({ service }: { service: Service }) {
           </span>
         ))}
       </div>
+
+      {/* Learn more */}
+      <div className="flex items-center gap-1 text-xs font-semibold" style={{ color }}>
+        Learn more <ArrowRight className="h-3 w-3" />
+      </div>
     </ModuleShell>
+    </Link>
   );
 }

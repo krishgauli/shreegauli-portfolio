@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/dashboard/", "/login", "/signup", "/forgot-password", "/api/"],
       },
     ],
     sitemap: "https://shreegauli.com/sitemap.xml",

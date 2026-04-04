@@ -31,8 +31,15 @@ function LoginContent() {
 
   // Listen for OAuth popup success
   useEffect(() => {
-    function handleMessage(e: MessageEvent) {
+    async function handleMessage(e: MessageEvent) {
       if (e.data?.type === 'OAUTH_AUTH_SUCCESS') {
+        if (e.data?.token) {
+          await fetch('/api/auth/token-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: e.data.token }),
+          });
+        }
         const role = e.data?.user?.role;
         router.push(role === 'admin' || role === 'super_admin' ? '/dashboard/admin' : '/dashboard/client');
       } else if (e.data?.type === 'OAUTH_AUTH_ERROR') {
@@ -86,8 +93,8 @@ function LoginContent() {
 
       const popup = window.open(data.url, 'google-oauth', 'width=500,height=650,scrollbars=yes');
       if (!popup) {
-        setError('Popup was blocked. Please allow popups for this site.');
-        setGoogleLoading(false);
+        window.location.assign(data.url);
+        return;
       }
     } catch {
       setError('Failed to start Google sign-in');

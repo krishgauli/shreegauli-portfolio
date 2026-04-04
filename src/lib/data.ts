@@ -40,13 +40,13 @@ export const caseStudies: CaseStudy[] = [
     problem: "No SEO foundation. Thin content. Zero domain presence.",
     result: "340% increase in organic sessions over 8 months",
     tags: ["SEO", "Content", "Technical Audit"],
-    thumbnail: "/images/work/case-study-1.jpg",
+    thumbnail: "/1.png",
     metrics: [
       { label: "Organic Growth", value: "+340%", positive: true },
       { label: "Keywords Ranked", value: "120+", positive: true },
       { label: "Timeline", value: "8 months" },
     ],
-    href: "#",
+    href: "/work/seo-growth",
   },
   {
     id: "paid-media",
@@ -55,13 +55,13 @@ export const caseStudies: CaseStudy[] = [
     problem: "Ad spend bleeding with no clear attribution or structure.",
     result: "4.8x ROAS on $30K monthly budget",
     tags: ["Meta Ads", "Google Ads", "Attribution"],
-    thumbnail: "/images/work/case-study-2.jpg",
+    thumbnail: "/2.png",
     metrics: [
       { label: "ROAS", value: "4.8x", positive: true },
       { label: "Monthly Budget", value: "$30K" },
       { label: "CAC Reduction", value: "-42%", positive: true },
     ],
-    href: "#",
+    href: "/work/paid-media",
   },
   {
     id: "automation",
@@ -70,13 +70,13 @@ export const caseStudies: CaseStudy[] = [
     problem: "Manual reporting, missed leads, no process consistency.",
     result: "20+ hours saved weekly via n8n automation",
     tags: ["n8n", "CRM", "Automation", "Reporting"],
-    thumbnail: "/images/work/case-study-3.jpg",
+    thumbnail: "/3.png",
     metrics: [
       { label: "Hours Saved / Week", value: "20+", positive: true },
       { label: "Lead Response Time", value: "-85%", positive: true },
       { label: "Pipelines Built", value: "7" },
     ],
-    href: "#",
+    href: "/work/automation",
   },
 ];
 
@@ -187,7 +187,7 @@ export const articles: Article[] = [
       "Most agencies will tell you what you want to hear. Here's how to ask the questions that reveal what they actually know.",
     date: "March 2025",
     readTime: "8 min read",
-    href: "https://shreegauli.com/15-questions-to-ask-before-hiring-a-digital-marketing-agency/",
+    href: "/writing/15-questions-hiring-marketing-agency",
     gradient: "from-violet-900/40 to-purple-900/20",
   },
   {
@@ -198,7 +198,7 @@ export const articles: Article[] = [
       "Building a workflow that runs in dev is easy. Building one that runs reliably in production for 6 months is a different discipline.",
     date: "February 2025",
     readTime: "6 min read",
-    href: "#",
+    href: "/writing/n8n-workflows-production",
     gradient: "from-cyan-900/40 to-teal-900/20",
   },
   {
@@ -209,7 +209,7 @@ export const articles: Article[] = [
       "Your ROAS number is probably wrong. Not because the platform is lying—because attribution models hide more than they reveal.",
     date: "January 2025",
     readTime: "7 min read",
-    href: "#",
+    href: "/writing/attribution-problem-small-business-ads",
     gradient: "from-amber-900/40 to-orange-900/20",
   },
 ];

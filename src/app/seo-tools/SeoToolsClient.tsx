@@ -592,6 +592,32 @@ export default function SeoToolsClient() {
               )}
             </div>
           )}
+
+          {/* Post-audit CTA */}
+          {result && (
+            <div className="mt-10 rounded-2xl border border-[#7C3AED]/30 bg-[#7C3AED]/[0.06] p-6 sm:p-8 text-center">
+              <p className="text-lg font-bold text-[#F8FAFC]">
+                Need help fixing these issues?
+              </p>
+              <p className="text-sm text-[#94A3B8] mt-2 max-w-lg mx-auto">
+                Book a free 15-minute SEO review and I&apos;ll walk you through the highest-impact fixes for your site.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-5">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#7C3AED] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#6D28D9] transition-colors"
+                >
+                  Book a free review
+                </a>
+                <a
+                  href="mailto:hello@shreegauli.com"
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] px-5 py-2.5 text-sm font-semibold text-[#E2E8F0] hover:border-white/[0.2] transition-colors"
+                >
+                  Email me directly
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </PageShell>

@@ -1,27 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import jwt from 'jsonwebtoken';
-import { hashPassword, verifyPassword } from '@/lib/password';
+import { createAppAuthToken, serializeAppUser, setAppAuthCookie } from '@/lib/app-session';
+import { hashPassword, isHashed, verifyPassword } from '@/lib/password';
+import {
+  createSupabaseAuthClient,
+  ensureSupabasePasswordUser,
+  isSupabaseConfigured,
+} from '@/lib/supabase';
+import { syncAppUser } from '@/lib/user-sync';
 
-function getJwtSecret(): string {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) {
-    throw new Error('JWT_SECRET environment variable is not set.');
+async function handleLegacyLogin(email: string, password: string) {
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  if (!user) {
+    return null;
   }
-  return secret;
-}
 
-// Admin emails – add more as needed
-const ADMIN_EMAILS = ['shree@focusyourfinance.com'];
+  const passwordValid = await verifyPassword(password, user.password || '');
+  if (!passwordValid) {
+    return null;
+  }
 
-function isAdminEmail(email: string): boolean {
-  return ADMIN_EMAILS.includes(email.toLowerCase());
+  if (user.password && !isHashed(user.password)) {
+    const upgraded = await hashPassword(password);
+    return syncAppUser({
+      email: user.email,
+      name: user.name,
+      avatar: user.avatar,
+      passwordHash: upgraded,
+    });
+  }
+
+  return user;
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, password } = body;
+    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+    const password = typeof body.password === 'string' ? body.password : '';
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -31,66 +48,75 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Password is required' }, { status: 400 });
     }
 
-    // Try to find user in database — login never creates accounts
-    let user;
-    try {
-      console.log(`[LOGIN] Attempting login for: ${email}`);
-      user = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
+    let appUser = null;
 
-      if (!user) {
-        console.log(`[LOGIN] User not found: ${email}`);
-        return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    if (isSupabaseConfigured()) {
+      const supabase = createSupabaseAuthClient();
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (!error && data.user) {
+        const localUser = await prisma.user.findUnique({ where: { email } });
+        const passwordHash =
+          !localUser || !localUser.password || !isHashed(localUser.password)
+            ? await hashPassword(password)
+            : undefined;
+
+        appUser = await syncAppUser({
+          email,
+          name:
+            localUser?.name ||
+            (typeof data.user.user_metadata?.name === 'string'
+              ? data.user.user_metadata.name
+              : null),
+          avatar:
+            localUser?.avatar ||
+            (typeof data.user.user_metadata?.avatar_url === 'string'
+              ? data.user.user_metadata.avatar_url
+              : null),
+          passwordHash,
+        });
       } else {
-        console.log(`[LOGIN] User found: ${user.id}, verifying password`);
-        // User exists — verify password (supports both bcrypt and legacy plaintext)
-        const passwordValid = await verifyPassword(password, user.password || '');
-        if (!passwordValid) {
-          console.log(`[LOGIN] Invalid password for: ${email}`);
-          return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
-        }
-        console.log(`[LOGIN] Password verified successfully`);
+        const legacyUser = await handleLegacyLogin(email, password);
 
-        // Auto-upgrade legacy plaintext passwords to bcrypt
-        if (user.password && !user.password.startsWith('$2a$') && !user.password.startsWith('$2b$')) {
-          const upgraded = await hashPassword(password);
-          await prisma.user.update({ where: { id: user.id }, data: { password: upgraded } });
-          console.log(`[LOGIN] Password upgraded to bcrypt for: ${email}`);
+        if (legacyUser) {
+          try {
+            await ensureSupabasePasswordUser({
+              email,
+              name: legacyUser.name,
+              password,
+            });
+          } catch (migrationError) {
+            console.error('[LOGIN] Failed to migrate user to Supabase:', migrationError);
+            return NextResponse.json(
+              { error: 'Login succeeded locally, but account migration to Supabase failed.' },
+              { status: 500 }
+            );
+          }
+
+          appUser = legacyUser;
         }
       }
-    } catch (dbError) {
-      console.error('[LOGIN] Database error during login:', dbError);
-      return NextResponse.json({ 
-        error: 'Database connection failed. Please try again later.'
-      }, { status: 500 });
+    } else {
+      appUser = await handleLegacyLogin(email, password);
     }
 
-    const uiRole = user.role === 'super_admin' ? 'admin' : user.role;
+    if (!appUser) {
+      return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    }
 
-    // Create JWT token (works in serverless environments like Vercel)
-    const token = jwt.sign(
-      { id: user.id, email: user.email, name: user.name, role: uiRole },
-      getJwtSecret(),
-      { expiresIn: '7d' }
+    const token = createAppAuthToken(appUser);
+    const response = NextResponse.json(
+      {
+        message: 'Login successful',
+        user: serializeAppUser(appUser),
+      },
+      { status: 200 }
     );
 
-    const response = NextResponse.json({
-      message: 'Login successful',
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: uiRole,
-        avatar: user.avatar,
-      },
-    }, { status: 200 });
-
-    response.cookies.set('auth_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7,
-      path: '/',
-    });
+    setAppAuthCookie(response, token);
 
     return response;
   } catch (error) {

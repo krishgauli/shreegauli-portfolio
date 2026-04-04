@@ -31,11 +31,12 @@ export function AboutPreview() {
           <ScrollReveal direction="left">
             <ModuleShell className="overflow-hidden" enableHoverLift>
               {/* Avatar area */}
-              <div
-                className="h-48 flex items-center justify-center"
-                style={{ background: "var(--gradient-brand)" }}
-              >
-                <span className="text-5xl font-bold text-white">SK</span>
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="/shree-gauli.png"
+                  alt="Shree Krishna Gauli"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               <div className="p-5">
                 <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>

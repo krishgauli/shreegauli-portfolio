@@ -109,7 +109,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
                   transition={{ duration: 0.7 }}
                   className="mb-16"
                 >
-                  <Link href={`/blog/${featured.slug}`}>
+                  <Link href={`/writing/${featured.slug}`}>
                     <div className={`group relative rounded-3xl overflow-hidden border transition-all hover:shadow-2xl ${isDark ? 'bg-slate-900/50 border-slate-800 hover:border-emerald-500/30' : 'bg-white border-slate-200 hover:border-emerald-300'}`}>
                       <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="relative h-64 lg:h-96 overflow-hidden">
@@ -168,7 +168,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
                         custom={idx}
                         className={`group rounded-3xl overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1 ${isDark ? 'bg-slate-900/50 border-slate-800 hover:border-emerald-500/30' : 'bg-white border-slate-200 hover:border-emerald-300'}`}
                       >
-                        <Link href={`/blog/${post.slug}`} className="block">
+                        <Link href={`/writing/${post.slug}`} className="block">
                           <div className="relative h-52 overflow-hidden">
                             <img
                               src={image}

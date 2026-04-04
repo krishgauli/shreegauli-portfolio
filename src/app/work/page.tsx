@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { FeaturedWorkSection } from "@/components/sections/FeaturedWork/FeaturedWorkSection";
-import { ResultsStrip } from "@/components/sections/ResultsStrip/ResultsStrip";
 import { TestimonialsSection } from "@/components/sections/Testimonials/TestimonialsSection";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { createPageMetadata } from "@/lib/seo";
@@ -18,7 +17,6 @@ export default function WorkPage() {
   return (
     <PageShell>
       <FeaturedWorkSection />
-      <ResultsStrip />
       <TestimonialsSection />
       <FinalCTASection />
     </PageShell>

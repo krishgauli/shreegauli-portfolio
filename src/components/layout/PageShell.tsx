@@ -10,7 +10,7 @@ export function PageShell({ children }: PageShellProps) {
   return (
     <>
       <Navbar />
-      <main className="pt-24">{children}</main>
+      <main id="main-content" className="pt-24">{children}</main>
       <Footer />
     </>
   );

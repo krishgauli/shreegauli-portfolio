@@ -21,8 +21,15 @@ export default function SignupPage() {
 
   // Listen for OAuth popup success
   useEffect(() => {
-    function handleMessage(e: MessageEvent) {
+    async function handleMessage(e: MessageEvent) {
       if (e.data?.type === 'OAUTH_AUTH_SUCCESS') {
+        if (e.data?.token) {
+          await fetch('/api/auth/token-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: e.data.token }),
+          });
+        }
         router.push('/dashboard/client');
       } else if (e.data?.type === 'OAUTH_AUTH_ERROR') {
         setGoogleLoading(false);
@@ -79,8 +86,8 @@ export default function SignupPage() {
 
       const popup = window.open(data.url, 'google-oauth', 'width=500,height=650,scrollbars=yes');
       if (!popup) {
-        setError('Popup was blocked. Please allow popups for this site.');
-        setGoogleLoading(false);
+        window.location.assign(data.url);
+        return;
       }
     } catch {
       setError('Failed to start Google sign-in');

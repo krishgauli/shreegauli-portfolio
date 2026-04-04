@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { GlowButton } from "@/components/shared/GlowButton";
 import { GlassButton } from "@/components/shared/GlassButton";
 import { heroStagger, fadeUpVariants } from "@/lib/animations";
-import { Download, BarChart2, Target, Users, Zap, Search } from "lucide-react";
+import { BarChart2, Target, Users, Zap, Search } from "lucide-react";
 
 const proofChips = [
   { icon: Search, label: "SEO" },
@@ -51,9 +51,8 @@ export function HeroText() {
       {/* CTAs */}
       <motion.div variants={fadeUpVariants} className="flex flex-wrap gap-3">
         <GlowButton href="/work">See My Work</GlowButton>
-        <GlassButton href="/resume">
-          <Download className="h-4 w-4 mr-1" />
-          Download CV
+        <GlassButton href="/contact">
+          Get in Touch
         </GlassButton>
       </motion.div>
 

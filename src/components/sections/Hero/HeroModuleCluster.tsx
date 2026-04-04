@@ -10,12 +10,11 @@ function ProfileCard() {
   return (
     <div className="module p-5 flex items-center gap-4">
       {/* Avatar */}
-      <div
-        className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-lg shrink-0"
-        style={{ background: "var(--gradient-brand)" }}
-      >
-        SK
-      </div>
+      <img
+        src="/shree-gauli.png"
+        alt="Shree Krishna Gauli"
+        className="w-14 h-14 rounded-2xl object-cover shrink-0"
+      />
       <div>
         <p className="text-sm font-semibold text-[#F8FAFC]">Shree Krishna Gauli</p>
         <p className="text-xs text-[#94A3B8] mt-0.5">Digital Marketing Specialist</p>
