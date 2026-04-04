@@ -1,17 +1,66 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+import { createClient } from '@supabase/supabase-js';
 
 const prisma = new PrismaClient();
+
+const SALT_ROUNDS = 12;
+
+async function ensureSupabaseUser(email: string, password: string, name: string) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !serviceKey) {
+    console.log('  ⚠️  Supabase not configured, skipping Supabase Auth user creation');
+    return;
+  }
+  const supabase = createClient(url, serviceKey, {
+    auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
+  });
+
+  // Check if user already exists
+  const { data: listData } = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+  const existing = listData?.users?.find((u) => u.email?.toLowerCase() === email.toLowerCase());
+
+  if (existing) {
+    // Update password & metadata
+    await supabase.auth.admin.updateUserById(existing.id, {
+      password,
+      email_confirm: true,
+      user_metadata: { name },
+    });
+    console.log(`  🔄 Supabase Auth user updated: ${email}`);
+    return;
+  }
+
+  const { error } = await supabase.auth.admin.createUser({
+    email,
+    email_confirm: true,
+    password,
+    user_metadata: { name },
+  });
+  if (error) {
+    console.error(`  ❌ Supabase Auth create failed for ${email}:`, error.message);
+  } else {
+    console.log(`  ✅ Supabase Auth user created: ${email}`);
+  }
+}
 
 async function main() {
   console.log('🌱 Seeding users, clinics & sample analytics...\n');
 
+  const adminPassword = 'Hello@123';
+  const adminHash = await bcrypt.hash(adminPassword, SALT_ROUNDS);
+  const clientPassword = 'Hello@123';
+  const clientHash = await bcrypt.hash(clientPassword, SALT_ROUNDS);
+
   // ─── 1. Admin User ───
+  await ensureSupabaseUser('shree@focusyourfinance.com', adminPassword, 'Shree');
   const admin = await prisma.user.upsert({
     where: { email: 'shree@focusyourfinance.com' },
-    update: { password: 'Hello@123', role: 'admin', name: 'Shree' },
+    update: { password: adminHash, role: 'admin', name: 'Shree' },
     create: {
       email: 'shree@focusyourfinance.com',
-      password: 'Hello@123',
+      password: adminHash,
       name: 'Shree',
       role: 'admin',
     },
@@ -19,12 +68,13 @@ async function main() {
   console.log(`✅ Admin created: ${admin.email} (id: ${admin.id})`);
 
   // ─── 2. Client User ───
+  await ensureSupabaseUser('jaya.r.dahal@focusyourfinance.com', clientPassword, 'Jaya R. Dahal');
   const client = await prisma.user.upsert({
     where: { email: 'jaya.r.dahal@focusyourfinance.com' },
-    update: { password: 'Hello@123', role: 'client', name: 'Jaya R. Dahal' },
+    update: { password: clientHash, role: 'client', name: 'Jaya R. Dahal' },
     create: {
       email: 'jaya.r.dahal@focusyourfinance.com',
-      password: 'Hello@123',
+      password: clientHash,
       name: 'Jaya R. Dahal',
       role: 'client',
     },
