@@ -111,6 +111,7 @@ function normalizePlanTier(planId?: string | null): 'starter' | 'growth' | 'prem
     normalized === 'platinum' ||
     normalized === 'scale elite' ||
     normalized === 'scale' ||
+    normalized === 'custom' ||
     normalized === 'enterprise'
   ) {
     return 'premium';

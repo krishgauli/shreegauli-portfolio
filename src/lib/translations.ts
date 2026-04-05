@@ -120,6 +120,7 @@ const esMap: Record<string, string> = {
   'Hourly': 'Por Hora',
   'Growth': 'Crecimiento',
   'Scale': 'Escala',
+  'Custom': 'Personalizado',
   'Starter Care': 'Cuidado Inicial',
   'Growth Pro': 'Crecimiento Pro',
   'Scale Elite': 'Escala Elite',

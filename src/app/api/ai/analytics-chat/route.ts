@@ -310,6 +310,7 @@ export async function POST(req: NextRequest) {
       planId === 'premium' ||
       planId === 'scale elite' ||
       planId === 'scale' ||
+      planId === 'custom' ||
       planId === 'platinum';
 
     if (!isPremium) {
@@ -366,6 +367,7 @@ export async function GET(req: NextRequest) {
       planId === 'premium' ||
       planId === 'scale elite' ||
       planId === 'scale' ||
+      planId === 'custom' ||
       planId === 'platinum';
 
     const clinics = await getUserClinics(user.id);

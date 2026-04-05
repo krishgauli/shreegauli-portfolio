@@ -91,6 +91,25 @@ const plans = [
     cta: "Scale up",
     popular: false,
   },
+  {
+    icon: Sparkles,
+    label: "Custom",
+    price: "Custom",
+    unit: "",
+    tagline: "Tailored to your business needs",
+    description:
+      "For organizations with unique requirements — custom scope, dedicated resources, and bespoke integrations built around your goals.",
+    features: [
+      "Tailored hours and scope",
+      "Dedicated team and resources",
+      "Custom integrations and APIs",
+      "Multi-channel strategy",
+      "Executive reporting and BI dashboards",
+      "Enterprise SLA and support",
+    ],
+    cta: "Contact sales",
+    popular: false,
+  },
 ];
 
 /* ── Service areas ────────────────────────────────────────────── */
@@ -169,7 +188,7 @@ export default function PricingPage() {
           />
 
           {/* ── Plan cards ───────────────────────────────────── */}
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {plans.map((plan, index) => {
               const Icon = plan.icon;
               return (

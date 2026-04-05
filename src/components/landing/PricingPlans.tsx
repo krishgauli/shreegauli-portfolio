@@ -55,6 +55,24 @@ const plans = [
       'Enterprise SLA & Support',
     ],
     cta: 'Get started',
+    variant: 'professional' as const,
+    popular: false,
+  },
+  {
+    name: 'Custom',
+    price: 'Custom',
+    period: '',
+    description: 'Tailored solutions for businesses with unique needs and goals.',
+    features: [
+      'Tailored Hours & Scope',
+      'Dedicated Team & Resources',
+      'Custom Integrations & APIs',
+      'Multi-Channel Strategy',
+      'Executive Reporting & BI',
+      'White-Glove Onboarding',
+      'Enterprise SLA & Support',
+    ],
+    cta: 'Contact Sales',
     variant: 'premium' as const,
     popular: false,
   },
@@ -81,7 +99,7 @@ export default function PricingPlans() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {plans.map((plan, idx) => (
             <PricingCard
               key={plan.name}

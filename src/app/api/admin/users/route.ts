@@ -170,6 +170,10 @@ export async function PATCH(req: NextRequest) {
         updateData.plan = 'Scale';
         updateData.planId = 'scale';
         updateData.subscriptionStatus = 'active';
+      } else if (normalizedMembershipRole === 'custom') {
+        updateData.plan = 'Custom';
+        updateData.planId = 'custom';
+        updateData.subscriptionStatus = 'active';
       }
     }
 

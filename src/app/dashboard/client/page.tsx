@@ -83,8 +83,18 @@ const PLANS = [
     period: '/ Month',
     icon: Zap,
     features: ['50 Hours / Month', 'Custom Software Solutions', 'Multi-Platform Campaigns', 'Advanced Analytics & BI', 'Conversion Rate Optimization', 'White-Glove Onboarding', 'Enterprise SLA & Support'],
-    variant: 'premium' as const,
+    variant: 'professional' as const,
     tier: 3,
+  },
+  {
+    id: 'custom',
+    name: 'Custom',
+    price: 'Custom',
+    period: '',
+    icon: Sparkles,
+    features: ['Tailored Hours & Scope', 'Dedicated Team & Resources', 'Custom Integrations & APIs', 'Multi-Channel Strategy', 'Executive Reporting & BI', 'White-Glove Onboarding', 'Enterprise SLA & Support'],
+    variant: 'premium' as const,
+    tier: 4,
   },
 ];
 
@@ -134,12 +144,14 @@ function ClientDashboard() {
       currentPlanId === 'hourly' ||
       currentPlanId === 'growth' ||
       currentPlanId === 'scale' ||
+      currentPlanId === 'custom' ||
       currentPlanId === 'silver' ||
       currentPlanId === 'gold' ||
       currentPlanId === 'premium' ||
       fallbackPlanId === 'hourly' ||
       fallbackPlanId === 'growth' ||
       fallbackPlanId === 'scale' ||
+      fallbackPlanId === 'custom' ||
       fallbackPlanId === 'silver' ||
       fallbackPlanId === 'gold' ||
       fallbackPlanId === 'premium' ||
@@ -147,6 +159,7 @@ function ClientDashboard() {
       fallbackPlanText.includes('hourly') ||
       fallbackPlanText.includes('growth') ||
       fallbackPlanText.includes('scale') ||
+      fallbackPlanText.includes('custom') ||
       fallbackPlanText.includes('starter care') ||
       fallbackPlanText.includes('growth pro') ||
       fallbackPlanText.includes('scale elite') ||
@@ -405,9 +418,11 @@ function ClientDashboard() {
   const fallbackPlanText = String(user?.plan || '').toLowerCase();
   const hasPaidPlan = hasPaidPlanAccess(currentPlanId, fallbackPlanId, fallbackPlanText);
   const fallbackPlanLabel = (() => {
+    if (fallbackPlanId === 'custom') return 'Custom';
     if (fallbackPlanId === 'scale' || fallbackPlanId === 'premium') return 'Scale';
     if (fallbackPlanId === 'growth' || fallbackPlanId === 'gold') return 'Growth';
     if (fallbackPlanId === 'hourly' || fallbackPlanId === 'silver') return 'Hourly';
+    if (fallbackPlanText.includes('custom')) return 'Custom';
     if (fallbackPlanText.includes('scale') || fallbackPlanText === 'premium') return 'Scale';
     if (fallbackPlanText.includes('growth') || fallbackPlanText === 'gold') return 'Growth';
     if (fallbackPlanText.includes('hourly') || fallbackPlanText === 'silver') return 'Hourly';
@@ -478,6 +493,7 @@ function ClientDashboard() {
             active={activeView === 'membership'}
             onClick={() => setActiveView('membership')}
             badge={currentPlanId ? (
+              currentPlanId === 'custom' ? 'Custom' :
               currentPlanId === 'scale' || currentPlanId === 'premium' ? 'Scale' : 
               currentPlanId === 'growth' || currentPlanId === 'gold' ? 'Growth' : 
               'Hourly'
@@ -858,7 +874,7 @@ function MembershipView({
       {/* Plan Cards */}
       <div>
         <h3 className="text-xl font-bold mb-6">{currentPlanId ? 'Change Plan' : 'Choose a Plan'}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {PLANS.map((plan) => {
             const isCurrentPlan = currentPlanId === plan.id;
             const isDowngrade = plan.tier < currentPlanTier;
@@ -1260,6 +1276,7 @@ function NavItem({ icon: Icon, label, active = false, onClick, badge }: { icon: 
   const getBadgeClasses = (badgeText?: string) => {
     if (!badgeText) return 'bg-slate-200 dark:bg-slate-600 text-slate-900 dark:text-white';
     if (badgeText === 'Coming Soon') return 'bg-slate-200/80 dark:bg-slate-600/80 text-slate-500 dark:text-slate-400';
+    if (badgeText === 'Custom') return 'bg-gradient-to-r from-purple-100 to-violet-100 dark:from-purple-500/20 dark:to-violet-500/20 text-purple-800 dark:text-purple-400';
     if (badgeText === 'Scale') return 'bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 text-amber-800 dark:text-amber-400';
     if (badgeText === 'Growth') return 'bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-500/20 dark:to-indigo-500/20 text-blue-800 dark:text-blue-400';
     if (badgeText === 'Hourly') return 'bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-500/20 dark:to-teal-500/20 text-emerald-800 dark:text-emerald-400';
