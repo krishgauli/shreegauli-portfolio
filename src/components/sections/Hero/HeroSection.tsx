@@ -1,5 +1,6 @@
 import { HeroText } from "./HeroText";
 import { HeroModuleCluster } from "./HeroModuleCluster";
+import { HeroMarketingBackdrop } from "./HeroMarketingBackdrop";
 import AnimatedShaderHero from "@/components/ui/animated-shader-hero";
 
 export function HeroSection() {
@@ -25,6 +26,8 @@ export function HeroSection() {
                 "radial-gradient(ellipse 70% 55% at 20% 35%, rgba(7, 11, 20, 0.62) 0%, transparent 70%)",
             }}
           />
+
+          <HeroMarketingBackdrop />
 
           <div className="max-w-5xl mx-auto w-full">
             <div className="grid lg:grid-cols-[1fr_420px] gap-12 lg:gap-16 items-center">
