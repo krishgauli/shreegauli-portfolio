@@ -3,6 +3,19 @@ export interface NavLink {
   href: string;
 }
 
+export interface ChallengeItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface StrategyItem {
+  icon: string;
+  title: string;
+  description: string;
+  color?: 'violet' | 'cyan' | 'amber';
+}
+
 export interface CaseStudy {
   id: string;
   client: string;
@@ -13,6 +26,16 @@ export interface CaseStudy {
   thumbnail: string;
   metrics: Metric[];
   href: string;
+  /* Rich detail fields (optional) */
+  subtitle?: string;
+  duration?: string;
+  accentColor?: 'violet' | 'cyan' | 'amber';
+  challengeHeading?: string;
+  challengeDescription?: string[];
+  challengeItems?: ChallengeItem[];
+  strategyHeading?: string;
+  strategyItems?: StrategyItem[];
+  quote?: { text: string; author: string };
 }
 
 export interface Metric {
@@ -20,6 +43,8 @@ export interface Metric {
   value: string;
   delta?: string;
   positive?: boolean;
+  icon?: string;
+  description?: string;
 }
 
 export interface Service {
