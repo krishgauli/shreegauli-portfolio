@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { isContactMailerConfigured, sendContactLeadEmails } from '@/lib/contact-mailer';
+import { isEmailVerified } from '@/lib/otp-store';
 
 function getTrimmedValue(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
@@ -28,6 +29,11 @@ export async function POST(req: NextRequest) {
 
     if (!isValidEmail(email)) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 });
+    }
+
+    // Verify email was OTP-confirmed before accepting submission
+    if (!isEmailVerified(email)) {
+      return NextResponse.json({ error: 'Please verify your email first' }, { status: 403 });
     }
 
     const lead = await prisma.contactLead.create({

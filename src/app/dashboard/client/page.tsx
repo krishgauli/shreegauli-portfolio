@@ -110,13 +110,13 @@ function Toast({ type, message, onClose }: { type: 'success' | 'error'; message:
       initial={{ opacity: 0, y: -20, x: '-50%' }}
       animate={{ opacity: 1, y: 0, x: '-50%' }}
       exit={{ opacity: 0, y: -20, x: '-50%' }}
-      className={`fixed top-6 left-1/2 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl shadow-xl border ${
+      className={`fixed top-6 left-1/2 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl shadow-2xl border backdrop-blur-xl ${
         type === 'success'
-          ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
-          : 'bg-red-50 border-red-200 text-red-800'
+          ? 'bg-[#0F172A]/95 border-cyan-400/30 text-[#E0F2FE]'
+          : 'bg-[#0F172A]/95 border-red-500/30 text-[#FEE2E2]'
       }`}
     >
-      {type === 'success' ? <CheckCircle2 className="h-5 w-5 text-emerald-500" /> : <XCircle className="h-5 w-5 text-red-500" />}
+      {type === 'success' ? <CheckCircle2 className="h-5 w-5 text-[#22D3EE]" /> : <XCircle className="h-5 w-5 text-red-400" />}
       <span className="font-semibold text-sm">{message}</span>
       <button onClick={onClose} className="ml-2 opacity-60 hover:opacity-100">
         <X className="h-4 w-4" />
@@ -128,7 +128,7 @@ function Toast({ type, message, onClose }: { type: 'success' | 'error'; message:
 /* ─── Dashboard Component ─── */
 export default function ClientDashboardPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white flex items-center justify-center"><DashboardLoader variant="page" label="Loading dashboard..." className="text-emerald-500" /></div>}>
+    <Suspense fallback={<div className="dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading dashboard..." className="text-[#22D3EE]" /></div>}>
       <ClientDashboard />
     </Suspense>
   );
@@ -409,7 +409,7 @@ function ClientDashboard() {
     }
   };
 
-  if (!user) return <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white flex items-center justify-center"><DashboardLoader variant="page" label="Loading..." className="text-emerald-500" /></div>;
+  if (!user) return <div className="dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
 
   const currentPlanIdRaw = subStatus?.planId || null;
   const currentPlanId = currentPlanIdRaw === 'platinum' ? 'premium' : currentPlanIdRaw;
@@ -428,26 +428,27 @@ function ClientDashboard() {
     if (fallbackPlanText.includes('hourly') || fallbackPlanText === 'silver') return 'Hourly';
     return 'Free';
   })();
+  const accountTierLabel = currentPlanId ? subStatus?.plan ?? fallbackPlanLabel : fallbackPlanLabel;
 
   const dashboardTitle =
     activeView === 'overview'
-      ? 'Your Dashboard'
+      ? 'Growth Command Center'
       : activeView === 'membership'
-        ? 'Membership & Billing'
+        ? 'Plans & Billing'
         : activeView === 'patient-count'
-          ? 'Performance Report'
+          ? 'Performance Snapshot'
           : activeView === 'ai-chat'
             ? 'AI Analytics Assistant'
             : activeView === 'profile'
-              ? 'My Profile'
+              ? 'Profile & Identity'
               : activeView === 'settings'
-                ? 'Account Settings'
-                : 'Performance Analytics';
+                ? 'Preferences & Access'
+                : 'Analytics Workspace';
 
   const dashboardSubtitle =
     activeView === 'overview'
-      ? `Great to see you, ${user.name}. Here’s what’s happening across your clinics today.`
-      : `Welcome back, ${user.name}`;
+      ? `Welcome back, ${user.name}. Keep every account, report, and next move in one branded workspace.`
+      : `Your ${dashboardTitle.toLowerCase()} is ready when you are.`;
 
   const showGlobalLoader =
     authLoading ||
@@ -458,7 +459,7 @@ function ClientDashboard() {
     <>
     <LoadingScreen active={showGlobalLoader} durationMs={1000} />
     <Navbar />
-    <div className="dashboard-scope min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex pt-20">
+    <div className="dashboard-scope dashboard-shell min-h-screen text-slate-100 flex pt-20">
       {/* Toast */}
       <AnimatePresence>
         {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
@@ -474,8 +475,23 @@ function ClientDashboard() {
       />
 
       {/* Sidebar */}
-      <aside className="w-64 border-r border-slate-200/60 dark:border-slate-800/60 hidden px-4 py-6 lg:flex lg:flex-col bg-white/40 dark:bg-slate-900/40 backdrop-blur-sm">
-        <nav className="space-y-1 flex-grow mt-4">
+      <aside className="dashboard-sidebar dashboard-inner hidden w-72 shrink-0 lg:flex lg:flex-col rounded-[2rem] m-4 mr-0 px-4 py-5">
+        <div className="rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/8 via-white/[0.03] to-transparent px-4 py-5 shadow-[0_20px_40px_-30px_rgba(34,211,238,0.45)]">
+          <div className="dashboard-kicker mb-3">Client Portal</div>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h2 className="text-xl font-bold text-white">Growth Control</h2>
+              <p className="mt-2 text-sm text-[#94A3B8]">
+                Track performance, billing, and next steps without leaving the brand system.
+              </p>
+            </div>
+            <span className="dashboard-soft-pill inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold">
+              {accountTierLabel}
+            </span>
+          </div>
+        </div>
+
+        <nav className="space-y-1 flex-grow mt-6">
           <NavItem icon={BarChart3} label="Overview" active={activeView === 'overview'} onClick={() => setActiveView('overview')} />
           <NavItem icon={TrendingUp} label="Analytics" active={activeView === 'analytics'} onClick={() => setActiveView('analytics')} />
           {hasPaidPlan && (
@@ -503,34 +519,41 @@ function ClientDashboard() {
           <NavItem icon={Settings} label="Settings" active={activeView === 'settings'} onClick={() => setActiveView('settings')} />
           <NavItem icon={Users} label="Lead Tracking" badge="Coming Soon" onClick={() => {}} />
         </nav>
+
+        <div className="rounded-[1.5rem] border border-cyan-400/10 bg-cyan-400/5 px-4 py-4">
+          <div className="dashboard-kicker mb-2">Workspace status</div>
+          <p className="text-sm font-semibold text-white">Everything you need is connected.</p>
+          <p className="mt-2 text-sm text-[#94A3B8]">Use the analytics, billing, and performance tabs to move faster from insight to action.</p>
+        </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow p-8 overflow-y-auto">
-        <header className="flex items-center justify-between mb-10">
-          <div>
+      <main className="dashboard-inner flex-grow p-4 lg:p-8 overflow-y-auto">
+        <header className="dashboard-topbar mb-8 flex flex-col gap-5 rounded-[2rem] px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <div className="dashboard-kicker mb-2">Client dashboard</div>
             <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-1">{dashboardTitle}</h1>
             <p className="text-sm text-slate-500 dark:text-slate-400">{dashboardSubtitle}</p>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="relative hidden md:block">
+          <div className="flex items-center gap-3 lg:justify-end">
+            <div className="relative hidden md:block min-w-[16rem]">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input 
                 type="text" 
-                placeholder="Search..." 
-                className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-2xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/10 dark:text-slate-200 transition-all shadow-sm"
+                placeholder="Search your workspace..." 
+                className="dashboard-input w-full rounded-2xl py-2.5 pl-10 pr-4 text-sm"
               />
             </div>
-            <button className="p-2.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 relative hover:shadow-md transition-all">
+            <button className="dashboard-ghost-button relative rounded-2xl p-2.5">
               <Bell className="h-5 w-5 text-slate-600 dark:text-slate-300" />
-              <div className="absolute top-2 right-2 w-2 h-2 bg-emerald-500 rounded-full ring-2 ring-white dark:ring-slate-800" />
+              <div className="absolute top-2 right-2 w-2 h-2 bg-[#22D3EE] rounded-full ring-2 ring-[#0F172A]" />
             </button>
             
             {/* User Menu Dropdown */}
             <div className="relative">
               <button 
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="h-10 w-10 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm uppercase hover:shadow-lg hover:shadow-emerald-500/20 transition-all active:scale-95"
+                className="dashboard-avatar h-10 w-10 rounded-2xl flex items-center justify-center font-bold text-sm uppercase transition-all active:scale-95"
               >
                 {user.name.substring(0, 2)}
               </button>
@@ -542,30 +565,30 @@ function ClientDashboard() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 mt-2 w-56 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden z-50"
+                    className="dashboard-panel absolute right-0 mt-2 w-64 rounded-2xl overflow-hidden z-50"
                   >
-                    <div className="p-3 border-b border-slate-200 dark:border-slate-700">
+                    <div className="p-4 border-b border-white/8 bg-gradient-to-r from-[#7C3AED]/12 to-transparent">
                       <p className="text-sm font-bold text-slate-900 dark:text-slate-100">{user.name}</p>
                       <p className="text-xs text-slate-500 dark:text-slate-400">{user.email}</p>
                     </div>
                     <button
                       onClick={() => { setUserMenuOpen(false); setActiveView('profile'); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                      className="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-white/6 transition-colors"
                     >
                       <User className="h-4 w-4" />
                       Profile
                     </button>
                     <button
                       onClick={() => { setUserMenuOpen(false); setActiveView('settings'); }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                      className="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-white/6 transition-colors"
                     >
                       <Settings className="h-4 w-4" />
                       Settings
                     </button>
-                    <div className="border-t border-slate-200 dark:border-slate-700">
+                    <div className="border-t border-white/8">
                       <button
                         onClick={() => { setUserMenuOpen(false); setShowLogoutConfirm(true); }}
-                        className="w-full flex items-center gap-3 px-4 py-2.5 text-left text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-red-300 hover:bg-red-500/10 transition-colors"
                       >
                         <LogOut className="h-4 w-4" />
                         Logout
@@ -577,6 +600,17 @@ function ClientDashboard() {
             </div>
           </div>
         </header>
+
+        <div className="dashboard-panel mb-6 flex gap-2 overflow-x-auto rounded-[1.5rem] p-2 lg:hidden">
+          <button onClick={() => setActiveView('overview')} className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${activeView === 'overview' ? 'dashboard-primary-button' : 'dashboard-ghost-button'}`}>Overview</button>
+          <button onClick={() => setActiveView('analytics')} className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${activeView === 'analytics' ? 'dashboard-primary-button' : 'dashboard-ghost-button'}`}>Analytics</button>
+          <button onClick={() => setActiveView('patient-count')} className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${activeView === 'patient-count' ? 'dashboard-primary-button' : 'dashboard-ghost-button'}`}>Performance</button>
+          <button onClick={() => setActiveView('membership')} className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${activeView === 'membership' ? 'dashboard-primary-button' : 'dashboard-ghost-button'}`}>Billing</button>
+          {hasPaidPlan && (
+            <button onClick={() => setActiveView('ai-chat')} className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${activeView === 'ai-chat' ? 'dashboard-primary-button' : 'dashboard-ghost-button'}`}>AI</button>
+          )}
+          <button onClick={() => setActiveView('profile')} className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${activeView === 'profile' ? 'dashboard-primary-button' : 'dashboard-ghost-button'}`}>Profile</button>
+        </div>
 
         {/* Logout Confirmation Modal */}
         <AnimatePresence>
@@ -593,11 +627,11 @@ function ClientDashboard() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 z-50"
+                className="dashboard-modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md rounded-[1.75rem] p-6 z-50"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <LogOut className="h-6 w-6 text-red-600 dark:text-red-400" />
+                  <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20">
+                    <LogOut className="h-6 w-6 text-red-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Confirm Logout</h3>
@@ -607,13 +641,13 @@ function ClientDashboard() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowLogoutConfirm(false)}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                    className="dashboard-ghost-button flex-1 px-4 py-2.5 rounded-xl font-semibold"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleLogout}
-                    className="flex-1 px-4 py-2.5 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition-colors"
+                    className="dashboard-danger-button flex-1 px-4 py-2.5 rounded-xl font-semibold transition-colors"
                   >
                     Logout
                   </button>
@@ -826,16 +860,17 @@ function MembershipView({
   return (
     <div className="space-y-8">
       {/* Current Plan Banner */}
-      <div className="rounded-3xl p-8 border border-slate-200 dark:border-slate-700 bg-gradient-to-r from-slate-50 to-emerald-50 dark:from-slate-900 dark:to-emerald-950 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 blur-[80px] rounded-full" />
+      <div className="dashboard-panel rounded-[2rem] p-8 relative overflow-hidden">
+        <div className="absolute inset-y-0 right-0 w-64 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.18),transparent_70%)]" />
+        <div className="absolute -top-12 right-10 h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.24),transparent_68%)] blur-2xl" />
         <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <div className="text-sm text-slate-500 dark:text-slate-400 uppercase tracking-widest font-bold mb-2">Current Plan</div>
+            <div className="dashboard-kicker mb-2">Current Plan</div>
             <h2 className="text-3xl font-black mb-1">
               {loadingSub ? (
-                <span className="flex items-center gap-2 text-slate-400"><DashboardLoader variant="inline" className="text-slate-400" /> Loading...</span>
+                <span className="flex items-center gap-2 text-slate-400"><DashboardLoader variant="inline" className="text-[#22D3EE]" /> Loading...</span>
               ) : currentPlanId ? (
-                <span className="text-emerald-600">{subStatus?.plan}</span>
+                <span className="text-gradient-brand">{subStatus?.plan}</span>
               ) : (
                 <span className="text-slate-400">No Active Plan</span>
               )}
@@ -862,7 +897,7 @@ function MembershipView({
             <button
               onClick={onManage}
               disabled={portalLoading}
-              className="flex items-center gap-2 px-5 py-3 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-slate-800 transition-colors disabled:opacity-50 shrink-0"
+              className="dashboard-primary-button flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm disabled:opacity-50 shrink-0"
             >
               {portalLoading ? <DashboardLoader variant="inline" className="text-white" /> : <ExternalLink className="h-4 w-4" />}
               Manage Billing
@@ -908,12 +943,12 @@ function MembershipView({
 
       {/* Billing Info */}
       {currentPlanId && (
-        <div className="rounded-3xl p-8 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+        <div className="dashboard-panel rounded-[2rem] p-8">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-bold">Billing Details</h3>
             <button
               onClick={onEditBilling}
-              className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl text-sm transition-colors"
+              className="dashboard-ghost-button px-4 py-2 font-semibold rounded-xl text-sm"
             >
               Edit Billing
             </button>
@@ -1085,10 +1120,10 @@ function OverviewView({
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 bg-gradient-to-r from-white to-emerald-50 dark:from-slate-900 dark:to-emerald-950/40 text-slate-900 dark:text-slate-100 flex items-center justify-between"
+          className="dashboard-panel mb-8 rounded-[1.75rem] p-5 text-slate-100 flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <Zap className="h-6 w-6 text-emerald-500" />
+            <Zap className="h-6 w-6 text-[#22D3EE]" />
             <div>
               <span className="font-bold">Unlock premium features</span>
               <span className="text-slate-600 dark:text-slate-300 text-sm ml-2">— Choose a plan to get started with full marketing support</span>
@@ -1096,7 +1131,7 @@ function OverviewView({
           </div>
           <button
             onClick={onUpgradeClick}
-            className="rounded-full bg-emerald-500 px-6 py-2 font-semibold text-black hover:bg-emerald-400 transition-all hover:scale-105 shrink-0"
+            className="dashboard-primary-button rounded-full px-6 py-2 font-semibold transition-all hover:scale-105 shrink-0"
           >
             View Plans
           </button>
@@ -1112,7 +1147,7 @@ function OverviewView({
         </div>
       ) : loadingAnalytics ? (
         <div className="flex items-center justify-center py-24">
-          <DashboardLoader variant="page" label="Loading analytics..." className="text-emerald-500" />
+          <DashboardLoader variant="page" label="Loading analytics..." className="text-[#22D3EE]" />
         </div>
       ) : (
         <>
@@ -1274,28 +1309,28 @@ function OverviewView({
 /* ─── Helper Components ─── */
 function NavItem({ icon: Icon, label, active = false, onClick, badge }: { icon: any; label: string; active?: boolean; onClick?: () => void; badge?: string }) {
   const getBadgeClasses = (badgeText?: string) => {
-    if (!badgeText) return 'bg-slate-200 dark:bg-slate-600 text-slate-900 dark:text-white';
-    if (badgeText === 'Coming Soon') return 'bg-slate-200/80 dark:bg-slate-600/80 text-slate-500 dark:text-slate-400';
-    if (badgeText === 'Custom') return 'bg-gradient-to-r from-purple-100 to-violet-100 dark:from-purple-500/20 dark:to-violet-500/20 text-purple-800 dark:text-purple-400';
-    if (badgeText === 'Scale') return 'bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 text-amber-800 dark:text-amber-400';
-    if (badgeText === 'Growth') return 'bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-500/20 dark:to-indigo-500/20 text-blue-800 dark:text-blue-400';
-    if (badgeText === 'Hourly') return 'bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-500/20 dark:to-teal-500/20 text-emerald-800 dark:text-emerald-400';
-    if (badgeText === 'Premium' || badgeText === 'Premium Only') return 'bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-500/20 dark:to-indigo-500/20 text-purple-800 dark:text-purple-400';
-    return 'bg-slate-200 dark:bg-slate-600 text-slate-900 dark:text-white';
+    if (!badgeText) return 'bg-white/10 text-white';
+    if (badgeText === 'Coming Soon') return 'bg-white/6 text-[#94A3B8] border border-white/8';
+    if (badgeText === 'Custom') return 'bg-gradient-to-r from-purple-500/20 to-cyan-500/20 text-purple-200 border border-purple-400/20';
+    if (badgeText === 'Scale') return 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-200 border border-amber-400/20';
+    if (badgeText === 'Growth') return 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-200 border border-cyan-400/20';
+    if (badgeText === 'Hourly') return 'bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 text-violet-200 border border-violet-400/20';
+    if (badgeText === 'Premium' || badgeText === 'Premium Only') return 'bg-gradient-to-r from-purple-500/20 to-indigo-500/20 text-purple-200 border border-purple-400/20';
+    return 'bg-white/10 text-white';
   };
 
   return (
     <button
       onClick={onClick}
-      className={`group relative w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all text-left ${
+      className={`group relative w-full flex items-center gap-3 px-3 py-3 rounded-2xl transition-all text-left ${
         active
-          ? 'bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm shadow-md shadow-emerald-500/10 border border-slate-200/60 dark:border-slate-700/60 text-slate-900 dark:text-white font-bold'
-          : 'text-slate-500 hover:text-slate-900 hover:bg-white/60 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800/60'
+          ? 'bg-white/10 border border-cyan-400/18 text-white shadow-[0_18px_36px_-24px_rgba(34,211,238,0.6)] font-bold'
+          : 'text-[#94A3B8] hover:text-white hover:bg-white/6 border border-transparent'
       }`}
     >
-      {active && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-gradient-to-b from-emerald-400 to-teal-500" />}
+      {active && <div className="absolute left-0 top-1/2 -translate-y-1/2 h-7 w-1 rounded-r-full bg-gradient-to-b from-[#7C3AED] to-[#22D3EE]" />}
       <div className={`flex items-center justify-center h-8 w-8 rounded-xl transition-colors ${
-        active ? 'bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-sm shadow-emerald-500/20' : 'text-current group-hover:bg-slate-100 dark:group-hover:bg-slate-700/60'
+        active ? 'bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] text-white shadow-[0_12px_24px_-16px_rgba(124,58,237,0.85)]' : 'text-current group-hover:bg-white/6'
       }`}>
         <Icon className="h-4 w-4" />
       </div>
@@ -1309,12 +1344,12 @@ function NavItem({ icon: Icon, label, active = false, onClick, badge }: { icon: 
 
 function StatCard({ label, value, change, negative = false }: { label: string; value: string; change: string; negative?: boolean }) {
   return (
-    <div className="group relative overflow-hidden rounded-3xl p-6 border border-slate-200/60 dark:border-slate-700/60 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:shadow-lg transition-all">
-      <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity ${negative ? 'from-red-500/5 to-rose-500/5' : 'from-emerald-500/5 to-teal-500/5'}`} />
+    <div className="dashboard-panel group relative overflow-hidden rounded-3xl p-6 hover:shadow-lg transition-all">
+      <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity ${negative ? 'from-red-500/8 to-rose-500/8' : 'from-[#7C3AED]/8 to-[#22D3EE]/8'}`} />
       <div className="relative z-10">
         <div className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium mb-2">{label}</div>
         <div className="text-3xl font-black text-slate-900 dark:text-white mb-2">{value}</div>
-        <div className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${negative ? 'text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-500/10' : 'text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-500/10'}`}>
+        <div className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${negative ? 'text-red-300 bg-red-500/10' : 'text-cyan-300 bg-cyan-500/10'}`}>
           {change} <span className="text-slate-500 dark:text-slate-400 font-normal ml-1">vs last month</span>
         </div>
       </div>
@@ -1325,7 +1360,7 @@ function StatCard({ label, value, change, negative = false }: { label: string; v
 function ActivityItem({ title, desc, time }: { title: string; desc: string; time: string }) {
   return (
     <div className="flex gap-4">
-      <div className="h-2 w-2 rounded-full bg-emerald-500 mt-2 shrink-0" />
+      <div className="h-2 w-2 rounded-full bg-[#22D3EE] mt-2 shrink-0 shadow-[0_0_12px_rgba(34,211,238,0.7)]" />
       <div>
         <div className="text-sm font-bold">{title}</div>
         <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">{desc}</div>

@@ -76,13 +76,13 @@ function Modal({ isOpen, onClose, title, children, size = 'default' }: { isOpen:
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 10 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className={`relative bg-white dark:bg-slate-900 rounded-2xl w-full shadow-2xl border border-slate-200 dark:border-slate-700 z-10 flex flex-col ${
+        className={`dashboard-modal relative rounded-[1.75rem] w-full z-10 flex flex-col ${
           size === 'large' ? 'max-w-3xl max-h-[92vh]' : 'max-w-2xl max-h-[90vh]'
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800 shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/8 shrink-0">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white">{title}</h3>
-          <button onClick={onClose} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+          <button onClick={onClose} className="dashboard-ghost-button rounded-xl p-2">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -122,15 +122,15 @@ function ServiceCategoryCheckboxGrid({
               key={category}
               className={`flex cursor-pointer items-start gap-3 rounded-xl border px-3 py-2.5 text-sm transition-colors ${
                 checked
-                  ? 'border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-100'
-                  : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-slate-600'
+                  ? 'border-cyan-400/30 bg-cyan-500/10 text-cyan-100'
+                  : 'border-slate-200 bg-white text-slate-700 hover:border-cyan-400/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-cyan-400/30'
               }`}
             >
               <input
                 type="checkbox"
                 checked={checked}
                 onChange={() => onChange(toggleServiceCategorySelection(selectedCategories, category))}
-                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-emerald-500 focus:ring-emerald-500"
+                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-cyan-400 focus:ring-cyan-400"
               />
               <span className="leading-5">{category}</span>
             </label>
@@ -2052,12 +2052,25 @@ function AdminDashboardContent() {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, [editingClinic?.id]);
 
-  if (!user) return <div className={`min-h-screen flex items-center justify-center ${dark ? 'bg-slate-950 text-white' : 'bg-slate-50 text-slate-900'}`}><DashboardLoader variant="page" label="Loading..." className={dark ? 'text-slate-400' : 'text-slate-500'} /></div>;
+  if (!user) return <div className="dashboard-shell min-h-screen flex items-center justify-center text-white"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
+
+  const sectionSubtitle =
+    section === 'Global Stats'
+      ? 'See the business-wide picture across analytics, content, and active accounts.'
+      : section === 'User Management'
+        ? 'Control access, subscriptions, and account ownership from one operational workspace.'
+        : section === 'Lead Pipeline'
+          ? 'Track where new opportunities are stalling and where follow-up needs to happen next.'
+          : section === 'Platform Health'
+            ? 'Monitor publishing, lead flow, and account activity before issues compound.'
+            : 'Move across clients, content, and systems without leaving the command center.';
+  const sidebarLinkClass =
+    'group w-full text-left flex items-center gap-3 px-3 py-3 rounded-2xl transition-all text-[#94A3B8] hover:text-white hover:bg-white/6 border border-transparent';
 
   return (
     <>
     <Navbar />
-    <div className={`dashboard-scope min-h-screen flex pt-20 ${dark ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+    <div className="dashboard-scope dashboard-shell min-h-screen flex pt-20 text-slate-100">
       {/* Mobile Menu Overlay */}
       {showMobileMenu && (
         <div className="fixed inset-0 z-40 lg:hidden" onClick={() => setShowMobileMenu(false)}>
@@ -2066,24 +2079,32 @@ function AdminDashboardContent() {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:relative inset-y-0 left-0 w-64 border-r flex flex-col p-6 z-50 lg:z-auto transition-transform ${showMobileMenu ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:pt-0 pt-20 ${dark ? 'border-slate-800 bg-slate-900/50' : 'border-slate-100 bg-white'}`}>
+      <aside className={`dashboard-sidebar fixed lg:sticky top-24 left-4 lg:left-auto bottom-4 w-[17rem] flex flex-col overflow-y-auto p-4 z-50 lg:z-auto transition-transform ${showMobileMenu ? 'translate-x-0' : '-translate-x-[120%]'} lg:translate-x-0 lg:self-start m-4 mr-0 rounded-[2rem]`}>
+        <div className="rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/8 via-white/[0.03] to-transparent px-4 py-5 shadow-[0_22px_44px_-28px_rgba(124,58,237,0.75)]">
+          <div className="dashboard-kicker mb-3">Admin console</div>
+          <h2 className="text-xl font-bold text-white">Command Center</h2>
+          <p className="mt-2 text-sm text-[#94A3B8]">
+            Run clients, content, lead flow, and publishing from one branded operations layer.
+          </p>
+        </div>
+
         {/* Back/Forward Navigation */}
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-4 mt-5">
           <button
             onClick={goBack}
             disabled={historyIndex === 0}
-            className={`p-2 rounded-lg transition-all ${historyIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+            className={`dashboard-ghost-button p-2 rounded-xl ${historyIndex === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
           <button
             onClick={goForward}
             disabled={historyIndex >= sectionHistory.length - 1}
-            className={`p-2 rounded-lg transition-all ${historyIndex >= sectionHistory.length - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+            className={`dashboard-ghost-button p-2 rounded-xl ${historyIndex >= sectionHistory.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}`}
           >
             <ArrowRight className="h-5 w-5" />
           </button>
-          <span className="text-xs text-slate-500 ml-2">{section}</span>
+          <span className="text-xs text-slate-500 ml-2 truncate">{section}</span>
         </div>
 
         <nav className="space-y-2 flex-grow">
@@ -2100,43 +2121,50 @@ function AdminDashboardContent() {
           <NavItem icon={Lock} label={t('Settings')} active={section==='Settings'} onClick={() => { navigateToSection('Settings'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={FileText} label={t('Blog Management')} active={section==='Blog Management'} onClick={() => { navigateToSection('Blog Management'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={Newspaper} label={t('Case Studies')} active={section==='Case Studies'} onClick={() => { navigateToSection('Case Studies'); setShowMobileMenu(false); }} dark={dark} />
-          <Link href="/dashboard/admin/ai-creator" className={`w-full text-left flex items-center gap-3 p-3 rounded-xl transition-all ${dark ? 'text-slate-300 hover:text-white hover:bg-slate-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}>
+          <Link href="/dashboard/admin/ai-creator" className={sidebarLinkClass}>
             <Sparkles className="h-5 w-5" />
             <span className="text-sm">{t('AI Creator')}</span>
           </Link>
-          <Link href="/dashboard/admin/chat-reports" className={`w-full text-left flex items-center gap-3 p-3 rounded-xl transition-all ${dark ? 'text-slate-300 hover:text-white hover:bg-slate-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}>
+          <Link href="/dashboard/admin/chat-reports" className={sidebarLinkClass}>
             <MessageSquare className="h-5 w-5" />
             <span className="text-sm">{t('Chat Reports')}</span>
           </Link>
-          <Link href="/dashboard/admin/leads" className={`w-full text-left flex items-center gap-3 p-3 rounded-xl transition-all ${dark ? 'text-slate-300 hover:text-white hover:bg-slate-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}>
+          <Link href="/dashboard/admin/leads" className={sidebarLinkClass}>
             <Users className="h-5 w-5" />
             <span className="text-sm">{t('Contact Leads')}</span>
           </Link>
-          <Link href="/dashboard/admin/subscribers" className={`w-full text-left flex items-center gap-3 p-3 rounded-xl transition-all ${dark ? 'text-slate-300 hover:text-white hover:bg-slate-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}>
+          <Link href="/dashboard/admin/subscribers" className={sidebarLinkClass}>
             <Mail className="h-5 w-5" />
             <span className="text-sm">{t('Newsletter Subscribers')}</span>
           </Link>
         </nav>
 
-        <button onClick={handleLogout} className={`flex items-center gap-3 transition-colors p-3 ${dark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>
+        <button onClick={handleLogout} className="dashboard-ghost-button flex items-center gap-3 p-3 rounded-2xl">
           <LogOut className="h-5 w-5" />
           <span className="text-sm font-bold">{t('Logout')}</span>
         </button>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow p-8 overflow-y-auto flex flex-col">
+      <main className="dashboard-inner flex-grow p-4 lg:p-8 overflow-y-auto flex flex-col">
         {/* Header with Mobile Menu Button and Settings */}
-        <div className="flex items-center justify-end mb-6 lg:mb-8 relative">
+        <div className="dashboard-topbar flex items-center justify-between mb-6 lg:mb-8 relative rounded-[2rem] px-5 py-5">
+          <div className="min-w-0 pr-8">
+            <div className="dashboard-kicker mb-2">Admin dashboard</div>
+            <h1 className="text-2xl font-black text-white">{section}</h1>
+            <p className="mt-1 text-sm text-[#94A3B8]">{sectionSubtitle}</p>
+          </div>
           <button
             onClick={() => setShowMobileMenu(!showMobileMenu)}
-            className="lg:hidden p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 absolute left-0"
+            className="dashboard-ghost-button lg:hidden p-2 rounded-xl absolute left-4"
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <AdminSettings />
+          <div className="ml-auto pl-12 lg:pl-0">
+            <AdminSettings />
+          </div>
         </div>
 
         <div className="flex-grow">
@@ -3465,11 +3493,20 @@ function NavItem({ icon: Icon, label, active = false, onClick, dark = false }: {
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left flex items-center gap-3 p-3 rounded-xl transition-all ${
-        active ? 'bg-emerald-500 text-black font-bold' : dark ? 'text-slate-300 hover:text-white hover:bg-slate-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+      className={`group relative w-full text-left flex items-center gap-3 p-3 rounded-2xl border transition-all ${
+        active
+          ? 'border-cyan-400/20 bg-white/10 text-white font-bold shadow-[0_16px_36px_-24px_rgba(34,211,238,0.7)]'
+          : dark
+            ? 'border-transparent text-slate-300 hover:text-white hover:bg-white/6'
+            : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100'
       }`}
     >
-      <Icon className="h-5 w-5" />
+      {active && <div className="absolute left-0 top-1/2 -translate-y-1/2 h-7 w-1 rounded-r-full bg-gradient-to-b from-[#7C3AED] to-[#22D3EE]" />}
+      <div className={`flex h-9 w-9 items-center justify-center rounded-xl transition-all ${
+        active ? 'bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] text-white shadow-[0_14px_28px_-18px_rgba(124,58,237,0.9)]' : 'text-current group-hover:bg-white/6'
+      }`}>
+        <Icon className="h-5 w-5" />
+      </div>
       <span className="text-sm">{label}</span>
     </button>
   );

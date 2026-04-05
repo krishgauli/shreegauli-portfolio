@@ -11,8 +11,8 @@ export default function AdminNewsPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+    <div className="dashboard-shell min-h-screen flex items-center justify-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-400"></div>
     </div>
   );
 }

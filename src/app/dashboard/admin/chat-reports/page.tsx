@@ -51,7 +51,7 @@ export default function AdminChatReportsPage() {
   }, [sessions]);
 
   return (
-    <div className="dashboard-scope min-h-screen bg-slate-50 dark:bg-slate-950 dark:text-slate-100 p-8">
+    <div className="dashboard-scope dashboard-shell min-h-screen dark:text-slate-100 p-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-wrap justify-between items-center gap-3 mb-8">
           <div>

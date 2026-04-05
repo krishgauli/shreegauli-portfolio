@@ -36,6 +36,11 @@ export default function DashboardLoader({
   className = '',
 }: DashboardLoaderProps) {
   const { dot, gap, wrapper } = sizeMap[variant];
+  const gradients = [
+    'linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)',
+    'linear-gradient(135deg, #8B5CF6 0%, #22D3EE 100%)',
+    'linear-gradient(135deg, #22D3EE 0%, #67E8F9 100%)',
+  ];
 
   return (
     <div
@@ -47,8 +52,8 @@ export default function DashboardLoader({
         {[0, 1, 2].map(i => (
           <motion.span
             key={i}
-            className="rounded-full bg-current opacity-60"
-            style={{ width: dot, height: dot }}
+            className="rounded-full opacity-70 shadow-[0_0_20px_rgba(124,58,237,0.35)]"
+            style={{ width: dot, height: dot, background: gradients[i] }}
             animate={{
               scale: [1, 1.5, 1],
               opacity: [0.4, 1, 0.4],
@@ -63,7 +68,7 @@ export default function DashboardLoader({
         ))}
       </div>
       {label && (variant === 'card' || variant === 'page') && (
-        <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
+        <p className="mt-3 text-sm font-medium text-[#94A3B8]">
           {label}
         </p>
       )}

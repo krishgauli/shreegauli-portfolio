@@ -178,11 +178,11 @@ export default function AiCreatorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="dashboard-scope dashboard-shell min-h-screen">
       {/* Header */}
-      <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-8 py-6">
+      <header className="dashboard-topbar mx-6 mt-6 rounded-[2rem] px-8 py-6">
         <div className="flex items-center gap-3">
-          <Sparkles className="h-8 w-8 text-emerald-500" />
+          <Sparkles className="h-8 w-8 text-[#22D3EE]" />
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
               AI Creator Studio
