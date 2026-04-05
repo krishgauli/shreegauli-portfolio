@@ -96,9 +96,9 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Right side: Auth + CTA */}
+          {/* Right side: user menu + CTA */}
           <div className="hidden md:flex items-center gap-3">
-            {/* User Menu or Login */}
+            {/* User Menu */}
             {user ? (
               <div className="relative" ref={userMenuRef}>
                 <button
@@ -219,24 +219,14 @@ export function Navbar() {
                   )}
                 </AnimatePresence>
               </div>
-            ) : (
-              <Link
-                href="/login"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:border-white/30 bg-white/[0.04] hover:bg-white/[0.08] transition-all"
-              >
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/10">
-                  <User className="h-3.5 w-3.5" />
-                </span>
-                <span className="hidden lg:inline">Login</span>
-              </Link>
-            )}
+            ) : null}
 
-            {/* Book a Demo CTA */}
+            {/* Book a Call CTA */}
             <Link
-              href="/contact"
+              href="/book"
               className="rounded-full bg-gradient-to-r from-[#7C3AED] to-[#22D3EE] px-5 py-2 text-sm font-semibold text-white hover:opacity-90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(124,58,237,0.3)]"
             >
-              Book a Demo
+              Book a Call
             </Link>
           </div>
 
@@ -345,24 +335,19 @@ export function Navbar() {
                       </button>
                     </div>
                   ) : (
-                    <Link
-                      href="/login"
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05] transition-colors"
-                    >
-                      <User className="h-4 w-4" />
-                      Login
-                    </Link>
+                    <p className="px-3 py-2 text-xs uppercase tracking-[0.18em] text-[#64748B]">
+                      Client portal available in the footer
+                    </p>
                   )}
                 </div>
 
                 {/* CTA */}
                 <Link
-                  href="/contact"
+                  href="/book"
                   onClick={() => setMobileOpen(false)}
                   className="mt-2 block rounded-xl bg-gradient-to-r from-[#7C3AED] to-[#22D3EE] px-4 py-3 text-center text-sm font-semibold text-white"
                 >
-                  Book a Demo
+                  Book a Call
                 </Link>
               </div>
             </motion.div>

@@ -10,6 +10,7 @@ import { AboutPreview } from "@/components/sections/About/AboutPreview";
 import { InsightsSection } from "@/components/sections/Insights/InsightsSection";
 import { TestimonialsSection } from "@/components/sections/Testimonials/TestimonialsSection";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
+import { SeoToolPromoSection } from "@/components/sections/SeoToolPromo/SeoToolPromoSection";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -51,16 +52,19 @@ export default function Home() {
         {/* 5. Results Strip */}
         <ResultsStrip />
 
-        {/* 6. About Preview */}
+        {/* 6. SEO Tool Promo */}
+        <SeoToolPromoSection />
+
+        {/* 7. About Preview */}
         <AboutPreview />
 
-        {/* 7. Writing / Insights */}
+        {/* 8. Writing / Insights */}
         <InsightsSection />
 
-        {/* 8. Testimonials */}
+        {/* 9. Testimonials */}
         <TestimonialsSection />
 
-        {/* 9. Final CTA */}
+        {/* 10. Final CTA */}
         <FinalCTASection />
       </main>
 

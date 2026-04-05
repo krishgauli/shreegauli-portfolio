@@ -4,8 +4,9 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { ArticleCard } from "@/components/sections/Insights/ArticleCard";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
+import { NewsletterSignupCard } from "@/components/forms/NewsletterSignupCard";
 import { createPageMetadata } from "@/lib/seo";
-import { articles as staticArticles } from "@/lib/data";
+import { getStaticArticleCards } from "@/lib/writing";
 import prisma from "@/lib/prisma";
 import type { Article } from "@/types";
 
@@ -17,6 +18,7 @@ export const metadata: Metadata = createPageMetadata({
   keywords: ["marketing articles", "SEO blog", "paid media insights", "automation writing"],
 });
 
+const fallbackArticles = getStaticArticleCards();
 const gradients = [
   "from-violet-900/40 to-purple-900/20",
   "from-cyan-900/40 to-teal-900/20",
@@ -29,37 +31,41 @@ const gradients = [
 async function getArticles(): Promise<Article[]> {
   try {
     const posts = await prisma.post.findMany({
-      where: { published: true },
+      where: { publishedAt: { not: null } },
       select: {
         id: true,
         title: true,
         slug: true,
         excerpt: true,
-        createdAt: true,
+        publishedAt: true,
         categories: { select: { name: true } },
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: { publishedAt: "desc" },
       take: 30,
     });
 
-    if (posts.length === 0) return staticArticles;
-
-    return posts.map((post, i) => ({
+    const dbArticles = posts.map((post, i) => ({
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || "",
       href: `/writing/${post.slug}`,
       category: post.categories[0]?.name || "Marketing",
-      date: post.createdAt.toLocaleDateString("en-US", {
+      date: (post.publishedAt || new Date()).toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
       }),
       readTime: `${Math.max(3, Math.ceil((post.excerpt?.length || 100) / 50))} min read`,
       gradient: gradients[i % gradients.length],
     }));
+
+    if (dbArticles.length >= 9) return dbArticles;
+
+    const seen = new Set(dbArticles.map((article) => article.href));
+    const supplemental = fallbackArticles.filter((article) => !seen.has(article.href));
+    return [...dbArticles, ...supplemental].slice(0, 12);
   } catch {
     // Database may not be available — fall back to static data
-    return staticArticles;
+    return fallbackArticles;
   }
 }
 
@@ -75,6 +81,14 @@ export default async function WritingPage() {
             title="What I write about"
             subtitle="Practical takes on SEO, paid media, and marketing systems."
           />
+
+          <div className="mb-10">
+            <NewsletterSignupCard
+              source="writing-index"
+              title="Get new essays and field notes first"
+              subtitle="Useful breakdowns on SEO, paid media, automation, and conversion work without the agency fluff."
+            />
+          </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((article, i) => (

@@ -12,26 +12,23 @@ export const maxDuration = 300;
 
 // ── Internal pages for linking ──────────────────────────────────────
 const INTERNAL_PAGES = [
-  { url: '/services/seo-local-search', label: 'SEO & Local Search services' },
-  { url: '/services/google-ads', label: 'Google Ads management' },
-  { url: '/services/meta-ads', label: 'Meta & Facebook Ads' },
-  { url: '/services/social-media-marketing', label: 'social media marketing' },
-  { url: '/services/google-business-profile', label: 'Google Business Profile optimization' },
-  { url: '/services/website-design-dev', label: 'website design & development' },
-  { url: '/services/content-copywriting', label: 'content & copywriting services' },
-  { url: '/services/email-drip-campaigns', label: 'email drip campaigns' },
-  { url: '/services/analytics-reporting', label: 'analytics & reporting' },
-  { url: '/services/brand-identity-design', label: 'brand identity design' },
-  { url: '/services/strategy-planning', label: 'strategy & planning' },
-  { url: '/industries', label: 'healthcare industry marketing' },
-  { url: '/proven-results', label: 'proven results & case studies' },
-  { url: '/case-studies', label: 'case studies' },
-  { url: '/about', label: 'about our agency' },
-  { url: '/contact', label: 'contact us' },
-  { url: '/pricing', label: 'pricing plans' },
-  { url: '/hipaa', label: 'HIPAA compliance' },
-  { url: '/automation', label: 'healthcare marketing automation' },
-  { url: '/news', label: 'healthcare marketing news' },
+  { url: '/services/seo', label: 'SEO consulting services' },
+  { url: '/services/paid-media', label: 'Google Ads and paid media consulting' },
+  { url: '/services/social-media', label: 'social media strategy services' },
+  { url: '/services/automation', label: 'marketing automation services' },
+  { url: '/work', label: 'case studies and results' },
+  { url: '/work/seo-growth', label: 'SEO growth case study' },
+  { url: '/work/paid-media', label: 'paid media case study' },
+  { url: '/work/automation', label: 'automation case study' },
+  { url: '/about', label: 'about Shree Krishna Gauli' },
+  { url: '/contact', label: 'contact Shree Krishna Gauli' },
+  { url: '/pricing', label: 'pricing and project ranges' },
+  { url: '/working-together', label: 'how engagements work' },
+  { url: '/faq', label: 'frequently asked questions' },
+  { url: '/seo-tools', label: 'free SEO audit tool' },
+  { url: '/writing', label: 'marketing articles and insights' },
+  { url: '/newsletter', label: 'marketing newsletter' },
+  { url: '/testimonials', label: 'client testimonials' },
 ];
 
 const NEWS_SOURCES = [
@@ -79,8 +76,8 @@ async function generateNewsImage(focusKeyword: string, title: string): Promise<s
 }
 
 function countExternalCitations(html: string): number {
-  const allLinks = html.match(/<a[^>]+href=["']https?:\/\/[^"']+["'][^>]*>/gi) || [];
-  return allLinks.filter(link => !link.includes('thenextgenhealth.com')).length;
+  const allLinks: string[] = html.match(/<a[^>]+href=["']https?:\/\/[^"']+["'][^>]*>/gi) ?? [];
+  return allLinks.filter(link => !link.includes('shreegauli.com')).length;
 }
 
 /**
@@ -95,7 +92,7 @@ async function generateOneShotNews(customTopic?: string) {
     throw new Error('OPENAI_API_KEY is not configured');
   }
 
-  const SITE_URL = process.env.APP_URL || 'https://thenextgenhealth.com';
+  const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
 
   // Fetch existing titles for duplicate check
   const existingArticles = await prisma.newsArticle.findMany({
@@ -117,7 +114,7 @@ async function generateOneShotNews(customTopic?: string) {
   // ── Single GPT-4o call: produce everything in one shot ──────────────
   const { text: raw } = await generateText({
     model: openai('gpt-4o'),
-    system: `You are an elite healthcare news editor and SEO specialist for thenextgenhealth.com — a Healthcare Marketing and Custom Software Solutions agency in Texas. You will produce a COMPLETE news article package in a SINGLE output that scores 75+ on a 100-point healthcare news SEO audit.
+    system: `You are an elite marketing news editor and SEO specialist for shreegauli.com — a digital marketing consultant site focused on SEO, paid media, automation, and growth systems. You will produce a COMPLETE news article package in a SINGLE output that scores 75+ on a 100-point news SEO audit.
 
 ────────────────────────────────────────────
 IMPORTANT: Respond with ONLY a JSON object. No markdown fences. No explanation.
@@ -170,7 +167,7 @@ SLUG RULES
 ═══════════════════════════════════════════
 AUTHOR & PUBLISHER
 ═══════════════════════════════════════════
-• publisher: "The NextGen Healthcare Marketing"
+• publisher: "Shree Krishna Gauli"
 • authorName: Must include medical credentials (MD, DO, PhD, RN, BSN, NP, PA-C, PharmD, MPH, or RD).
   Example: "Dr. Sarah Johnson, MD" or "Robert Martinez, MPH"
 
@@ -220,7 +217,7 @@ JSON RESPONSE FORMAT (return exactly this)
   "metaDescription": "140-160 chars with keyword",
   "headline": "journalistic headline with keyword, no clickbait",
   "slug": "short-slug-with-keyword",
-  "publisher": "The NextGen Healthcare Marketing",
+  "publisher": "Shree Krishna Gauli",
   "source": "category (Industry Report, Market Analysis, Regulatory Update, Technology News)",
   "authorName": "name with credentials",
   "htmlContent": "<p>Full HTML news article, 500-900 words...</p>",
@@ -254,7 +251,7 @@ JSON RESPONSE FORMAT (return exactly this)
   }
 
   // Ensure defaults
-  if (!parsed.publisher) parsed.publisher = 'The NextGen Healthcare Marketing';
+  if (!parsed.publisher) parsed.publisher = 'Shree Krishna Gauli';
   if (!parsed.authorName) parsed.authorName = 'Dr. Michael Chen, MD';
 
   // Ensure slug uniqueness

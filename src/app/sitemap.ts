@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
+import { staticWritingPosts } from "@/lib/writing";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600; // revalidate every hour
@@ -21,8 +22,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/writing",
     "/seo-tools",
     "/contact",
+    "/pricing",
+    "/working-together",
+    "/faq",
+    "/newsletter",
+    "/testimonials",
     "/privacy",
     "/terms",
+    "/lp/free-seo-audit",
+    "/lp/book-a-call",
+    "/lp/marketing-services",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
@@ -33,20 +42,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Dynamic blog posts
-  let blogEntries: MetadataRoute.Sitemap = [];
+  let blogEntries: MetadataRoute.Sitemap = staticWritingPosts.map((post) => ({
+    url: `${baseUrl}/writing/${post.slug}`,
+    lastModified: new Date(post.updatedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
   try {
     const posts = await prisma.post.findMany({
-      where: { published: true },
+      where: { publishedAt: { not: null } },
       select: { slug: true, updatedAt: true },
       orderBy: { updatedAt: "desc" },
     });
 
-    blogEntries = posts.map((post) => ({
+    const dynamicEntries = posts.map((post) => ({
       url: `${baseUrl}/writing/${post.slug}`,
       lastModified: post.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));
+
+    const seen = new Set(dynamicEntries.map((entry) => entry.url));
+    blogEntries = [...dynamicEntries, ...blogEntries.filter((entry) => !seen.has(entry.url))];
   } catch {
     // Database may not be available during build — continue with static routes only
   }

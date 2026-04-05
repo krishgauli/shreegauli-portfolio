@@ -34,14 +34,14 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
   }
 
   // Build update data dynamically so partial updates work (e.g. toggle publish)
-  const updateData: Record<string, any> = {};
+  const updateData: Record<string, unknown> = {};
   if (body.title !== undefined) updateData.title = body.title;
   if (body.slug !== undefined) updateData.slug = body.slug;
   if (body.excerpt !== undefined) updateData.excerpt = body.excerpt || null;
   if (body.content !== undefined) updateData.content = body.content;
   if (body.coverImage !== undefined) updateData.coverImage = body.coverImage || null;
   if (body.coverImageAlt !== undefined) updateData.coverImageAlt = body.coverImageAlt || null;
-  if (body.publisher !== undefined) updateData.publisher = body.publisher || 'The NextGen Healthcare Marketing';
+  if (body.publisher !== undefined) updateData.publisher = body.publisher || 'Shree Krishna Gauli';
   if (body.source !== undefined) updateData.source = body.source || null;
   if (body.sourceUrl !== undefined) updateData.sourceUrl = body.sourceUrl || null;
   if (body.sourceDate !== undefined) updateData.sourceDate = body.sourceDate ? new Date(body.sourceDate) : null;

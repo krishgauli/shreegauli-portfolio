@@ -76,7 +76,7 @@ model NewsArticle {
   content       String
   coverImage    String?
   coverImageAlt String?
-  publisher     String?   @default("The NextGen Healthcare Marketing")
+  publisher     String?   @default("Shree Krishna Gauli")
   source        String?
   sourceUrl     String?
   sourceDate    DateTime?

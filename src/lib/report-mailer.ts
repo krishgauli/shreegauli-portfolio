@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const REPORT_EMAIL_FROM = process.env.REPORT_EMAIL_FROM || 'hello@thenextgenhealth.com';
+const REPORT_EMAIL_FROM = process.env.REPORT_EMAIL_FROM || 'info@shreegauli.com';
 const REPORT_GMAIL_USER = process.env.REPORT_GMAIL_USER || '';
 const REPORT_GMAIL_APP_PASSWORD = process.env.REPORT_GMAIL_APP_PASSWORD || '';
 

@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createHash } from 'crypto';
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
+import jwt, { type JwtPayload } from 'jsonwebtoken';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60; // allow up to 60s for crawling
@@ -9,38 +10,53 @@ export const maxDuration = 60; // allow up to 60s for crawling
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 const CRON_SECRET = process.env.CRON_SECRET || '';
 const EMBED_MODEL = 'text-embedding-3-small';
-const BASE_URL = process.env.APP_URL || 'https://thenextgenhealth.com';
+const BASE_URL = process.env.APP_URL || 'https://shreegauli.com';
 const OUTPUT_DIR = join(process.cwd(), 'data');
 const OUTPUT_FILE = join(OUTPUT_DIR, 'knowledge-base.json');
 
+interface CrawlChunk {
+  id: string;
+  url: string;
+  title: string;
+  section: string;
+  content: string;
+  checksum: string;
+  crawledAt: string;
+}
+
+interface EmbeddingItem {
+  index: number;
+  embedding: number[];
+}
+
+interface EmbeddingResponse {
+  data: EmbeddingItem[];
+}
+
 /* ─── Pages to crawl ─── */
 const PAGES = [
-  { path: '/', section: 'home', title: 'Home' },
-  { path: '/about', section: 'about', title: 'About Us' },
-  { path: '/pricing', section: 'pricing', title: 'Pricing' },
-  { path: '/contact', section: 'contact', title: 'Contact / Get Started' },
+  { path: '/', section: 'home', title: 'Homepage' },
+  { path: '/about', section: 'about', title: 'About' },
   { path: '/services', section: 'services', title: 'Services Overview' },
-  { path: '/services/seo-local-search', section: 'services', title: 'SEO & Local Search' },
-  { path: '/services/google-ads', section: 'services', title: 'Google Ads' },
-  { path: '/services/meta-ads', section: 'services', title: 'Meta Ads' },
-  { path: '/services/website-design-dev', section: 'services', title: 'Website Design & Development' },
-  { path: '/services/social-media-marketing', section: 'services', title: 'Social Media Marketing' },
-  { path: '/services/content-copywriting', section: 'services', title: 'Content & Copywriting' },
-  { path: '/services/email-drip-campaigns', section: 'services', title: 'Email Drip Campaigns' },
-  { path: '/services/google-business-profile', section: 'services', title: 'Google Business Profile' },
-  { path: '/services/brand-identity-design', section: 'services', title: 'Brand Identity Design' },
-  { path: '/services/brochure-print-design', section: 'services', title: 'Brochure & Print Design' },
-  { path: '/services/analytics-reporting', section: 'services', title: 'Analytics & Reporting' },
-  { path: '/services/strategy-planning', section: 'services', title: 'Strategy & Planning' },
-  { path: '/automation', section: 'automation', title: 'Marketing Automation' },
-  { path: '/industries', section: 'industries', title: 'Industries We Serve' },
-  { path: '/locations', section: 'locations', title: 'Locations' },
-  { path: '/case-studies', section: 'results', title: 'Case Studies' },
-  { path: '/proven-results', section: 'results', title: 'Proven Results' },
-  { path: '/team', section: 'team', title: 'Our Team' },
-  { path: '/blog', section: 'blog', title: 'Blog' },
-  { path: '/news', section: 'news', title: 'News & Updates' },
-  { path: '/hipaa', section: 'compliance', title: 'HIPAA Compliance' },
+  { path: '/services/seo', section: 'services', title: 'SEO Services' },
+  { path: '/services/paid-media', section: 'services', title: 'Paid Media Services' },
+  { path: '/services/social-media', section: 'services', title: 'Social Media Services' },
+  { path: '/services/automation', section: 'services', title: 'Automation Services' },
+  { path: '/work', section: 'work', title: 'Case Studies' },
+  { path: '/work/seo-growth', section: 'work', title: 'SEO Growth Case Study' },
+  { path: '/work/paid-media', section: 'work', title: 'Paid Media Case Study' },
+  { path: '/work/automation', section: 'work', title: 'Automation Case Study' },
+  { path: '/writing', section: 'writing', title: 'Writing' },
+  { path: '/seo-tools', section: 'tools', title: 'SEO Tools' },
+  { path: '/pricing', section: 'pricing', title: 'Pricing' },
+  { path: '/working-together', section: 'company', title: 'Working Together' },
+  { path: '/faq', section: 'company', title: 'FAQ' },
+  { path: '/newsletter', section: 'company', title: 'Newsletter' },
+  { path: '/testimonials', section: 'company', title: 'Testimonials' },
+  { path: '/contact', section: 'contact', title: 'Contact' },
+  { path: '/lp/free-seo-audit', section: 'landing-pages', title: 'Free SEO Audit Landing Page' },
+  { path: '/lp/book-a-call', section: 'landing-pages', title: 'Book a Call Landing Page' },
+  { path: '/lp/marketing-services', section: 'landing-pages', title: 'Marketing Services Landing Page' },
 ];
 
 /* ─── Auth: admin JWT or CRON_SECRET ─── */
@@ -53,8 +69,7 @@ function isAuthorized(req: NextRequest): boolean {
   const token = req.cookies.get('auth_token')?.value;
   if (token) {
     try {
-      const jwt = require('jsonwebtoken');
-      const decoded = jwt.verify(token, process.env.JWT_SECRET) as any;
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || '') as JwtPayload & { role?: string };
       return decoded.role === 'admin';
     } catch {
       return false;
@@ -123,9 +138,9 @@ async function getEmbeddings(texts: string[]): Promise<number[][]> {
       body: JSON.stringify({ model: EMBED_MODEL, input: batch }),
     });
     if (!res.ok) throw new Error(`Embedding error: ${res.status}`);
-    const data = await res.json();
-    const sorted = data.data.sort((a: any, b: any) => a.index - b.index);
-    all.push(...sorted.map((d: any) => d.embedding));
+    const data = (await res.json()) as EmbeddingResponse;
+    const sorted = data.data.sort((a, b) => a.index - b.index);
+    all.push(...sorted.map((d) => d.embedding));
   }
   return all;
 }
@@ -139,13 +154,13 @@ export async function POST(req: NextRequest) {
   try {
     const results: { page: string; chunks: number }[] = [];
     const errors: string[] = [];
-    const allChunks: any[] = [];
+    const allChunks: CrawlChunk[] = [];
 
     for (const page of PAGES) {
       const url = `${BASE_URL}${page.path}`;
       try {
         const res = await fetch(url, {
-          headers: { 'User-Agent': 'NexHealthBot/1.0', Accept: 'text/html' },
+          headers: { 'User-Agent': 'ShreeGauliCrawler/1.0', Accept: 'text/html' },
           signal: AbortSignal.timeout(10000),
         });
         if (!res.ok) {
@@ -162,7 +177,7 @@ export async function POST(req: NextRequest) {
         for (const chunk of chunks) {
           allChunks.push({
             id: `${page.section}-${createHash('md5').update(chunk).digest('hex').slice(0, 8)}`,
-            url: `https://thenextgenhealth.com${page.path}`,
+            url: `${BASE_URL}${page.path}`,
             title: page.title,
             section: page.section,
             content: chunk,

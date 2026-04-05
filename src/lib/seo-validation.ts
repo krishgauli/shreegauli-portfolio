@@ -192,7 +192,7 @@ export function hasAnaphora(text: string): boolean {
 
 // ─── GENERATORS ─────────────────────────────────────────────────────────
 
-export function generateOptimizedSlug(title: string, focusKeyword: string): string {
+export function generateOptimizedSlug(title: string): string {
   let words = splitWords(title.toLowerCase());
   const filteredWords = words.filter(w => !STOP_WORDS.has(w));
   if (filteredWords.length > 0) words = filteredWords;
@@ -223,7 +223,7 @@ export function generateSocialMeta(params: { title: string; description: string;
     ogDescription: description,
     ogImage: imgUrl,
     ogUrl: url,
-    ogSiteName: 'The NextGen Healthcare Marketing',
+    ogSiteName: 'Shree Krishna Gauli',
     twitterCard: 'summary_large_image',
     twitterTitle: title,
     twitterDescription: description,
@@ -341,8 +341,8 @@ export function runMasterSeoValidation(params: {
   if (flesch > 80) failures.push(`Readability too easy (Flesch ${flesch}, need 50-70)`); // Softened upper bound slightly
   if (avgSentLen > 20) failures.push(`Sentences too long (avg ${avgSentLen} words, max 20)`);
   
-  let minWords = type === 'news' ? 500 : type === 'pillar' ? 1500 : 900;
-  let maxWords = type === 'news' ? 1100 : type === 'pillar' ? 3000 : 1500;
+  const minWords = type === 'news' ? 500 : type === 'pillar' ? 1500 : 900;
+  const maxWords = type === 'news' ? 1100 : type === 'pillar' ? 3000 : 1500;
   if (wc < minWords) failures.push(`Word count too low (${wc} words, need ${minWords}+)`);
   if (wc > maxWords) failures.push(`Word count too high (${wc} words, max ${maxWords})`);
   
@@ -374,7 +374,7 @@ export function runMasterSeoValidation(params: {
   addScore('basic', 10, kwInMetaTitle, 'Inject the focus keyword into the Meta Title.');
   addScore('basic', 10, kwInMetaDesc, 'Inject the focus keyword into the Meta Description.');
   
-  const generatedSlug = generateOptimizedSlug(title, focusKeyword);
+  const generatedSlug = generateOptimizedSlug(title);
   const slugHasKw = generatedSlug.replace(/-/g, ' ').includes(lowerKeyword.replace(/[^a-z0-9\s]/gi, ''));
   addScore('basic', 5, slugHasKw, 'Ensure URL slug contains the focus keyword.');
   addScore('basic', 5, kwInFirst, 'Move the focus keyword into the first paragraph.');
@@ -384,8 +384,8 @@ export function runMasterSeoValidation(params: {
   addScore('depth', 5, density >= 1.0 && density <= 1.5, `Adjust keyword density to be between 1.0% - 1.5%.`);
   addScore('depth', 5, kwInH2, 'Inject the focus keyword into at least one H2 tag.');
   
-  const imgTags = htmlContent.match(/<img[^>]+alt=(['"])(.*?)\1[^>]*>/gi) || [];
-  let altHasKwAndValidLength = imgTags.some(tag => {
+  const imgTags: string[] = htmlContent.match(/<img[^>]+alt=(['"])(.*?)\1[^>]*>/gi) ?? [];
+  const altHasKwAndValidLength = imgTags.some(tag => {
     const m = tag.match(/alt=(['"])(.*?)\1/i);
     return m && m[2] && m[2].toLowerCase().includes(lowerKeyword) && m[2].length < 80;
   });
@@ -393,7 +393,7 @@ export function runMasterSeoValidation(params: {
   addScore('depth', 5, isKeywordUniqueToDomain, 'Use a unique focus keyword not previously targeted on the domain.');
 
   // Links (15 pts)
-  const aTags = htmlContent.match(/<a[^>]+href=(['"])(.*?)\1[^>]*>/gi) || [];
+  const aTags: string[] = htmlContent.match(/<a[^>]+href=(['"])(.*?)\1[^>]*>/gi) ?? [];
   let hasExternalDoFollow = false, hasInternalLink = false;
   aTags.forEach(tag => {
     const hrefM = tag.match(/href=(['"])(.*?)\1/i);
@@ -471,7 +471,7 @@ export function runMasterSeoValidation(params: {
       imageUrl: params.featuredImage || `${siteUrl}/default-og.jpg`,
       datePublished: new Date().toISOString(),
       authorName: params.authorName || 'AI Editor',
-      publisherName: 'The NextGen Healthcare Marketing'
+      publisherName: 'Shree Krishna Gauli'
     })
   };
 }

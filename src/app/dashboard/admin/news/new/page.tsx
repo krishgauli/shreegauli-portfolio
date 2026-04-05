@@ -16,7 +16,7 @@ export default function NewNewsArticle() {
     excerpt: '',
     content: '',
     coverImage: '',
-    publisher: 'The NextGen Healthcare Marketing',
+    publisher: 'Shree Krishna Gauli',
     source: '',
     sourceUrl: '',
     sourceDate: '',
@@ -79,8 +79,8 @@ export default function NewNewsArticle() {
           </div>
 
           <div className="glass rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
-            <h1 className="text-[20px] font-bold mb-1 text-slate-900 dark:text-slate-100">New Case Study</h1>
-            <p className="text-slate-500 dark:text-slate-400 mb-6">Publish a new case study</p>
+            <h1 className="text-[20px] font-bold mb-1 text-slate-900 dark:text-slate-100">New News Article</h1>
+            <p className="text-slate-500 dark:text-slate-400 mb-6">Publish a new news article</p>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Title & Slug */}

@@ -11,26 +11,23 @@ export const maxDuration = 300; // Extra time for SEO validation retry loop
 
 // ── Internal pages for linking ──────────────────────────────────────
 const INTERNAL_PAGES = [
-  { url: '/services/seo-local-search', label: 'SEO & Local Search services' },
-  { url: '/services/google-ads', label: 'Google Ads management' },
-  { url: '/services/meta-ads', label: 'Meta & Facebook Ads' },
-  { url: '/services/social-media-marketing', label: 'social media marketing' },
-  { url: '/services/google-business-profile', label: 'Google Business Profile optimization' },
-  { url: '/services/website-design-dev', label: 'website design & development' },
-  { url: '/services/content-copywriting', label: 'content & copywriting services' },
-  { url: '/services/email-drip-campaigns', label: 'email drip campaigns' },
-  { url: '/services/analytics-reporting', label: 'analytics & reporting' },
-  { url: '/services/brand-identity-design', label: 'brand identity design' },
-  { url: '/services/strategy-planning', label: 'strategy & planning' },
-  { url: '/industries', label: 'healthcare industry marketing' },
-  { url: '/proven-results', label: 'proven results & case studies' },
-  { url: '/case-studies', label: 'case studies' },
-  { url: '/about', label: 'about our agency' },
-  { url: '/contact', label: 'contact us' },
-  { url: '/pricing', label: 'pricing plans' },
-  { url: '/hipaa', label: 'HIPAA compliance' },
-  { url: '/automation', label: 'healthcare marketing automation' },
-  { url: '/blog', label: 'healthcare marketing blog' },
+  { url: '/services/seo', label: 'SEO consulting services' },
+  { url: '/services/paid-media', label: 'Google Ads and paid media consulting' },
+  { url: '/services/social-media', label: 'social media strategy services' },
+  { url: '/services/automation', label: 'marketing automation services' },
+  { url: '/work', label: 'case studies and results' },
+  { url: '/work/seo-growth', label: 'SEO growth case study' },
+  { url: '/work/paid-media', label: 'paid media case study' },
+  { url: '/work/automation', label: 'automation case study' },
+  { url: '/about', label: 'about Shree Krishna Gauli' },
+  { url: '/contact', label: 'contact Shree Krishna Gauli' },
+  { url: '/pricing', label: 'pricing and project ranges' },
+  { url: '/working-together', label: 'how engagements work' },
+  { url: '/faq', label: 'frequently asked questions' },
+  { url: '/seo-tools', label: 'free SEO audit tool' },
+  { url: '/writing', label: 'marketing articles and insights' },
+  { url: '/newsletter', label: 'marketing newsletter' },
+  { url: '/testimonials', label: 'client testimonials' },
 ];
 
 // ── Credible external sources (prefer .gov, .edu, CDC, NIH, CMS, WHO) ──
@@ -64,7 +61,7 @@ async function researchKeywordAndTopic(
 ): Promise<{ topic: string; focusKeyword: string; supportingKeywords: string[] }> {
   const { text: keywordJson } = await generateText({
     model: openai('gpt-4o-mini'),
-    system: `You are an SEO keyword research agent for thenextgenhealth.com. Our niche is Healthcare Marketing and Custom Software Solutions for healthcare businesses.
+    system: `You are an SEO keyword research agent for shreegauli.com. Our niche is digital marketing consulting focused on SEO, paid media, content strategy, and automation.
 
 Your job is to find ONE low-competition, high-intent keyword and a blog topic for it.
 
@@ -162,7 +159,7 @@ async function generateBlogPost(customTopic?: string) {
     throw new Error('OPENAI_API_KEY is not configured');
   }
 
-  const SITE_URL = process.env.APP_URL || 'https://thenextgenhealth.com';
+  const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
 
   // ── STEP 3: Duplicate check — fetch existing titles ─────────────────
   const existingPosts = await prisma.post.findMany({
@@ -185,8 +182,8 @@ async function generateBlogPost(customTopic?: string) {
   // ── STEP 4a: Generate SEO fields with Rank Math rules ───────────────
   const { text: seoJson } = await generateText({
     model: openai('gpt-4o-mini'),
-    system: `You are an expert healthcare SEO specialist for thenextgenhealth.com. Our niche: Healthcare Marketing and Custom Software Solutions for healthcare businesses. Respond ONLY with valid JSON, no markdown.`,
-    prompt: `Generate SEO fields for a healthcare marketing blog post.
+    system: `You are an expert SEO specialist for shreegauli.com. Our niche is digital marketing consulting focused on SEO, paid media, content systems, and automation. Respond ONLY with valid JSON, no markdown.`,
+    prompt: `Generate SEO fields for a digital marketing strategy blog post.
 
 Topic: "${topic}"
 Focus Keyword: "${focusKeyword}"
@@ -229,7 +226,7 @@ STRICT RULES:
   // ── STEP 4b: Generate the blog content (900-1200 words, 100/100 SEO) ──
   const { text: htmlContent } = await generateText({
     model: openai('gpt-4o-mini'),
-    system: `You are an expert SEO content writer for thenextgenhealth.com — a Healthcare Marketing and Custom Software Solutions agency based in Texas. We serve Freestanding Emergency Rooms, Urgent Care centers, Dental clinics, Wellness & Longevity facilities, and other healthcare businesses.
+    system: `You are an expert SEO content writer for shreegauli.com — a digital marketing consultant site focused on SEO, paid media, social strategy, and automation systems.
 
 OUR SERVICES (reference these naturally when relevant):
 - SEO & Local Search optimization for healthcare
@@ -269,7 +266,7 @@ READABILITY RULES (critical for passing SEO validation):
 - Target a Flesch Reading Ease score between 50 and 70. Write clearly and professionally — avoid jargon-heavy or overly academic language.
 
 LINK RULES:
-9. Include at least 2 INTERNAL links to thenextgenhealth.com service pages. Place them naturally in relevant sections.
+9. Include at least 2 INTERNAL links to shreegauli.com service pages. Place them naturally in relevant sections.
 10. Include at least 2 EXTERNAL links to credible sources (.gov, .edu, CDC, NIH, CMS, WHO, or peer-reviewed journals preferred). Use normal links (not nofollow).
 11. Do NOT cluster all links in one paragraph — spread them across the article.
 

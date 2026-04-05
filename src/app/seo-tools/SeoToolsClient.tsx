@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import {
   AlertTriangle,
   BarChart3,
@@ -176,6 +176,14 @@ export default function SeoToolsClient() {
   const [result, setResult] = useState<SeoResult | null>(null);
   const [keywordData, setKeywordData] = useState<KeywordsResponse | null>(null);
   const [gscConnected, setGscConnected] = useState(false);
+  const [leadData, setLeadData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [leadSubmitting, setLeadSubmitting] = useState(false);
+  const [leadState, setLeadState] = useState<'idle' | 'success' | 'error'>('idle');
+  const [leadFeedback, setLeadFeedback] = useState('');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -273,6 +281,61 @@ export default function SeoToolsClient() {
 
   function connectGsc() {
     window.location.href = '/api/seo-tools/auth';
+  }
+
+  async function submitLead(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!result) return;
+
+    setLeadSubmitting(true);
+    setLeadState('idle');
+    setLeadFeedback('');
+
+    try {
+      const auditSummary = [
+        `SEO audit request for ${result.url}`,
+        `Score: ${result.score}/100`,
+        `Failures: ${failCount}`,
+        `Warnings: ${warnCount}`,
+        leadData.message.trim(),
+      ]
+        .filter(Boolean)
+        .join('\n\n');
+
+      const response = await fetch('/api/contact-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: leadData.name.trim(),
+          email: leadData.email.trim(),
+          phone: '',
+          businessType: 'seo-audit-review',
+          budget: '',
+          message: auditSummary,
+          source: 'seo-tools',
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to submit the audit request.');
+      }
+
+      setLeadData({ name: '', email: '', message: '' });
+      setLeadState('success');
+      setLeadFeedback(
+        data.emailStatus === 'sent'
+          ? 'Your audit request is in and a confirmation email is already on its way.'
+          : 'Your audit request is in. I will follow up with the next steps shortly.'
+      );
+    } catch (submitError) {
+      setLeadState('error');
+      setLeadFeedback(
+        submitError instanceof Error ? submitError.message : 'Something went wrong. Please try again.'
+      );
+    } finally {
+      setLeadSubmitting(false);
+    }
   }
 
   const failCount = result ? countByStatus(result.checks, 'fail') : 0;
@@ -595,26 +658,110 @@ export default function SeoToolsClient() {
 
           {/* Post-audit CTA */}
           {result && (
-            <div className="mt-10 rounded-2xl border border-[#7C3AED]/30 bg-[#7C3AED]/[0.06] p-6 sm:p-8 text-center">
-              <p className="text-lg font-bold text-[#F8FAFC]">
-                Need help fixing these issues?
-              </p>
-              <p className="text-sm text-[#94A3B8] mt-2 max-w-lg mx-auto">
-                Book a free 15-minute SEO review and I&apos;ll walk you through the highest-impact fixes for your site.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-5">
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#7C3AED] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#6D28D9] transition-colors"
-                >
-                  Book a free review
-                </a>
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] px-5 py-2.5 text-sm font-semibold text-[#E2E8F0] hover:border-white/[0.2] transition-colors"
-                >
-                  Contact me
-                </a>
+            <div className="mt-10 rounded-[32px] border border-[#7C3AED]/30 bg-[#7C3AED]/[0.06] p-6 sm:p-8">
+              <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C4B5FD]">
+                    Audit Review
+                  </p>
+                  <p className="mt-4 text-2xl font-bold text-[#F8FAFC]">
+                    Need help fixing these issues?
+                  </p>
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-[#CBD5E1]">
+                    This result already tells us where the page is losing momentum.
+                    If you want, send the audit through and I&apos;ll review the
+                    highest-impact fixes before the next call.
+                  </p>
+
+                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                    <div className="rounded-2xl border border-white/[0.10] bg-white/[0.04] p-4">
+                      <p className="text-2xl font-bold text-[#F8FAFC]">{result.score}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#64748B]">Score</p>
+                    </div>
+                    <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-4">
+                      <p className="text-2xl font-bold text-red-400">{failCount}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#64748B]">Failures</p>
+                    </div>
+                    <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4">
+                      <p className="text-2xl font-bold text-amber-400">{warnCount}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#64748B]">Warnings</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <a
+                      href="/book"
+                      className="inline-flex items-center gap-2 rounded-xl bg-[#7C3AED] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#6D28D9] transition-colors"
+                    >
+                      Book a free review
+                    </a>
+                    <a
+                      href="/working-together"
+                      className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] px-5 py-2.5 text-sm font-semibold text-[#E2E8F0] hover:border-white/[0.2] transition-colors"
+                    >
+                      See how I work
+                    </a>
+                  </div>
+                </div>
+
+                <form onSubmit={submitLead} className="grid gap-4 rounded-[28px] border border-white/[0.10] bg-[#020617]/55 p-5">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                      Name
+                      <input
+                        type="text"
+                        value={leadData.name}
+                        onChange={(event) => setLeadData((current) => ({ ...current, name: event.target.value }))}
+                        required
+                        autoComplete="name"
+                        className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                        placeholder="Your name"
+                      />
+                    </label>
+
+                    <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                      Email
+                      <input
+                        type="email"
+                        value={leadData.email}
+                        onChange={(event) => setLeadData((current) => ({ ...current, email: event.target.value }))}
+                        required
+                        autoComplete="email"
+                        className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                        placeholder="you@company.com"
+                      />
+                    </label>
+                  </div>
+
+                  <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                    What should I focus on first?
+                    <textarea
+                      value={leadData.message}
+                      onChange={(event) => setLeadData((current) => ({ ...current, message: event.target.value }))}
+                      rows={4}
+                      className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                      placeholder="Optional: tell me what matters most right now, like local rankings, low-converting service pages, or technical cleanup."
+                    />
+                  </label>
+
+                  <button
+                    type="submit"
+                    disabled={leadSubmitting}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8B5CF6] disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {leadSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+                    {leadSubmitting ? 'Sending audit...' : 'Send this audit for review'}
+                  </button>
+
+                  {leadFeedback && (
+                    <p
+                      aria-live="polite"
+                      className={leadState === 'error' ? 'text-sm text-rose-300' : 'text-sm text-emerald-300'}
+                    >
+                      {leadFeedback}
+                    </p>
+                  )}
+                </form>
               </div>
             </div>
           )}

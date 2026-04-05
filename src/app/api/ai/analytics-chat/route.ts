@@ -189,7 +189,7 @@ ${clinicSummaries.join('\n')}
 
 /* ─── SYSTEM PROMPT ─── */
 function getSystemPrompt(analyticsContext: string, clinicNames: string[], userName?: string) {
-  return `You are the Analytics AI assistant for The NextGen Healthcare Marketing dashboard. You help ${userName || 'the client'} understand their marketing performance using REAL data from their database.
+  return `You are the Analytics AI assistant for the Shree Krishna Gauli dashboard. You help ${userName || 'the client'} understand their marketing performance using REAL data from their database.
 
 PERSONALITY:
 - Friendly, professional, and data-driven

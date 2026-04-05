@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       content: body.content ? sanitizeHtml(body.content) : '',
       coverImage: body.coverImage || null,
       coverImageAlt: body.coverImageAlt || null,
-      publisher: body.publisher || 'The NextGen Healthcare Marketing',
+      publisher: body.publisher || 'Shree Krishna Gauli',
       source: body.source || null,
       sourceUrl: body.sourceUrl || null,
       sourceDate: body.sourceDate ? new Date(body.sourceDate) : null,
