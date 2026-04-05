@@ -86,7 +86,7 @@ function Modal({ isOpen, onClose, title, children, size = 'default' }: { isOpen:
             <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="flex-1 overflow-y-auto px-6 py-5 text-slate-900 dark:text-slate-100">
           {children}
         </div>
       </motion.div>
@@ -122,7 +122,7 @@ function ServiceCategoryCheckboxGrid({
               key={category}
               className={`flex cursor-pointer items-start gap-3 rounded-xl border px-3 py-2.5 text-sm transition-colors ${
                 checked
-                  ? 'border-cyan-400/30 bg-cyan-500/10 text-cyan-100'
+                  ? 'border-cyan-400/30 bg-cyan-500/10 text-cyan-800 dark:text-cyan-100'
                   : 'border-slate-200 bg-white text-slate-700 hover:border-cyan-400/30 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-cyan-400/30'
               }`}
             >
@@ -278,8 +278,8 @@ function StaffManagementSection({
               sectionUsers.map((listedUser) => {
                 const planBadge = normalizePlanBadge(listedUser);
                 return (
-                  <tr key={listedUser.id} className="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                    <td className="px-4 py-4 font-bold">{listedUser.name}</td>
+                  <tr key={listedUser.id} className="hover:bg-white/10 transition-colors">
+                    <td className="px-4 py-4 font-bold text-[#f8fafc]">{listedUser.name}</td>
                     <td className="px-4 py-4 text-sm text-slate-600 dark:text-slate-400">{listedUser.email}</td>
                     <td className="px-4 py-4">
                       <span className={`text-xs px-3 py-1 rounded-full font-bold ${
@@ -485,7 +485,7 @@ function StaffManagementSection({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, email, or role..."
-              className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
             <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
           </div>
@@ -3340,7 +3340,7 @@ function AdminProfileView({ user }: { user: any }) {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:border-emerald-500 dark:text-white"
+                className="w-full px-4 py-3 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -4005,8 +4005,8 @@ function ContentForSection(props: {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                 {users.filter(u => u.role === 'client').map(client => (
-                  <tr key={client.id} className="hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                    <td className="px-4 py-4 font-bold">{client.name}</td>
+                  <tr key={client.id} className="hover:bg-white/10 transition-colors">
+                    <td className="px-4 py-4 font-bold text-[#f8fafc]">{client.name}</td>
                     <td className="px-4 py-4 text-sm text-slate-600 dark:text-slate-400">{client.email}</td>
                     <td className="px-4 py-4"><span className="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full">{client.role}</span></td>
                     <td className="px-4 py-4 text-sm text-slate-600 dark:text-slate-400">{client.createdAt ? new Date(client.createdAt).toLocaleDateString() : 'N/A'}</td>
@@ -4060,12 +4060,12 @@ function ContentForSection(props: {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                 {clinics.map(c => (
-                  <tr key={c.id} className="hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                    <td className="px-4 py-4 font-bold">{c.name}</td>
+                  <tr key={c.id} className="hover:bg-white/10 transition-colors">
+                    <td className="px-4 py-4 font-bold text-[#f8fafc]">{c.name}</td>
                     <td className="px-4 py-4 text-sm text-slate-600 dark:text-slate-400">{c.type}</td>
                     <td className="px-4 py-4 text-sm text-slate-600 dark:text-slate-400">{c.location}</td>
-                    <td className="px-4 py-4">{c.leads}</td>
-                    <td className="px-4 py-4">{c.appointments}</td>
+                    <td className="px-4 py-4 text-[#e2e8f0]">{c.leads}</td>
+                    <td className="px-4 py-4 text-[#e2e8f0]">{c.appointments}</td>
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-2">
                         <button onClick={() => onEditClinic(c)} className="p-2 text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-colors" title="Edit">
@@ -4299,18 +4299,18 @@ function ContentForSection(props: {
                 <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
                   <h3 className="text-lg font-bold mb-4">Recent Blog Posts</h3>
                   <div className="space-y-3">
-                    {(platformHealth.activityFeed || []).filter((a: any) => a.type === 'post').slice(0, 5).map((item: any, i: number) => (
-                      <div key={i} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                    {(platformHealth.content?.blogPosts || []).map((item: any, i: number) => (
+                      <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0" />
-                          <span className="text-sm truncate">{item.title?.replace('Blog: ', '')}</span>
+                          <div className="w-2 h-2 bg-purple-500 rounded-full shrink-0" />
+                          <span className="text-sm text-slate-100 truncate">{item.title}</span>
                         </div>
-                        <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${item.detail === 'published' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700'}`}>
+                        <span className={`text-xs px-2 py-0.5 rounded-full shrink-0 ${item.detail === 'published' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700'}`}>
                           {item.detail}
                         </span>
                       </div>
                     ))}
-                    {(platformHealth.activityFeed || []).filter((a: any) => a.type === 'post').length === 0 && (
+                    {(platformHealth.content?.blogPosts || []).length === 0 && (
                       <p className="text-center text-slate-500 py-4 text-sm">No recent posts</p>
                     )}
                   </div>
@@ -4320,12 +4320,12 @@ function ContentForSection(props: {
                   <h3 className="text-lg font-bold mb-4">Recent Case Studies</h3>
                   <div className="space-y-3">
                     {(platformHealth.activityFeed || []).filter((a: any) => a.type === 'news').slice(0, 5).map((item: any, i: number) => (
-                      <div key={i} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                      <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10">
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-2 h-2 bg-rose-500 rounded-full flex-shrink-0" />
-                          <span className="text-sm truncate">{item.title?.replace('News: ', '')}</span>
+                          <div className="w-2 h-2 bg-rose-500 rounded-full shrink-0" />
+                          <span className="text-sm text-slate-100 truncate">{item.title?.replace('News: ', '')}</span>
                         </div>
-                        <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${item.detail === 'published' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700'}`}>
+                        <span className={`text-xs px-2 py-0.5 rounded-full shrink-0 ${item.detail === 'published' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700'}`}>
                           {item.detail}
                         </span>
                       </div>
@@ -4379,7 +4379,7 @@ function ContentForSection(props: {
                   { label: 'Closed', value: platformHealth.leadPipeline?.closed ?? 0, color: 'bg-slate-500', textColor: 'text-slate-500', bgLight: 'bg-slate-50 dark:bg-slate-800' },
                 ].map((stage, i) => (
                   <div key={i} className={`rounded-xl p-5 border border-slate-200 dark:border-slate-700 ${stage.bgLight}`}>
-                    <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">{stage.label}</p>
+                    <p className="text-xs text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">{stage.label}</p>
                     <p className={`text-3xl font-black ${stage.textColor}`}>{stage.value}</p>
                     <div className="mt-3 w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
                       <div className={`${stage.color} h-1.5 rounded-full transition-all`} style={{ width: `${platformHealth.counts?.leads ? Math.max(5, Math.round((stage.value / platformHealth.counts.leads) * 100)) : 0}%` }} />
@@ -4413,27 +4413,27 @@ function ContentForSection(props: {
                 </div>
                 <div className="divide-y divide-slate-100 dark:divide-slate-700">
                   {(platformHealth.activityFeed || []).filter((a: any) => a.type === 'lead').slice(0, 8).map((item: any, i: number) => (
-                    <div key={i} className="flex items-center justify-between px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                    <div key={i} className="flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                        <div className={`w-2 h-2 rounded-full shrink-0 ${
                           item.status === 'new' ? 'bg-blue-500' :
                           item.status === 'qualified' ? 'bg-emerald-500' :
                           item.status === 'contacted' ? 'bg-yellow-500' :
                           'bg-slate-400'
                         }`} />
                         <div className="min-w-0">
-                          <p className="text-sm font-medium truncate">{item.title?.replace('New lead: ', '')}</p>
-                          <p className="text-xs text-slate-500 truncate">{item.detail}</p>
+                          <p className="text-sm font-medium text-slate-100 truncate">{item.title?.replace('New lead: ', '')}</p>
+                          <p className="text-xs text-slate-300 truncate">{item.detail}</p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
+                      <div className="flex items-center gap-2 shrink-0">
                         <span className={`text-xs px-2 py-0.5 rounded-full ${
                           item.status === 'new' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700' :
                           item.status === 'qualified' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700' :
                           item.status === 'contacted' ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700' :
                           'bg-slate-100 dark:bg-slate-800 text-slate-600'
                         }`}>{item.status}</span>
-                        <span className="text-xs text-slate-400">{new Date(item.timestamp).toLocaleDateString()}</span>
+                        <span className="text-xs text-slate-300">{new Date(item.timestamp).toLocaleDateString()}</span>
                       </div>
                     </div>
                   ))}
@@ -5307,7 +5307,7 @@ function GoogleAnalyticsSection({ clinics, isDark }: { clinics: any[]; isDark: b
         <select
           value={selectedClinicId}
           onChange={(e) => setSelectedClinicId(e.target.value)}
-          className={`w-64 rounded-xl border p-2 ${isDark ? 'border-slate-700 bg-slate-800 text-slate-200' : 'border-slate-200 bg-white'}`}
+          className={`w-64 rounded-xl border p-2 ${isDark ? 'border-slate-700 bg-slate-800 text-slate-200' : 'border-slate-200 bg-white text-[#f8fafc]'}`}
         >
           <option value="">Select a clinic...</option>
           {clinics.map(c => (
@@ -5316,7 +5316,7 @@ function GoogleAnalyticsSection({ clinics, isDark }: { clinics: any[]; isDark: b
         </select>
       </div>
       {selectedClinicId && (
-        <GoogleAnalyticsView clinicId={selectedClinicId} isDark={isDark} />
+        <GoogleAnalyticsView clinicId={selectedClinicId} isDark={true} />
       )}
     </div>
   );

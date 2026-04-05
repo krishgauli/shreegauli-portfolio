@@ -168,6 +168,11 @@ function buildShareUrl(platform: "linkedin" | "copy", url: string, title: string
   return `${url}#copy-${encodeURIComponent(title)}`;
 }
 
+const ctaPanelStyle = {
+  background:
+    "radial-gradient(circle at top left, rgba(124,58,237,0.16), transparent 34%), radial-gradient(circle at bottom right, rgba(34,211,238,0.14), transparent 30%), #0f172a",
+};
+
 export function BlogPostBody({
   post,
   relatedPosts,
@@ -410,7 +415,10 @@ export function BlogPostBody({
                 </div>
               ) : null}
 
-              <div className="mt-5 rounded-[28px] border border-[#7C3AED]/10 bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.14),transparent_30%),#0f172a] p-5 text-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]">
+              <div
+                className="mt-5 rounded-[28px] border border-[#7C3AED]/10 p-5 text-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]"
+                style={ctaPanelStyle}
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/85">
                   Need help with this?
                 </p>
@@ -430,7 +438,7 @@ export function BlogPostBody({
                   </Link>
                   <Link
                     href="/lp/book-a-call"
-                    className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                    className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
                   >
                     Book a strategy call
                   </Link>
@@ -490,7 +498,10 @@ export function BlogPostBody({
                   </div>
                 </div>
 
-                <div className="rounded-[24px] border border-[#7C3AED]/10 bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.14),transparent_30%),#0f172a] px-5 py-4 text-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]">
+                <div
+                  className="rounded-[24px] border border-[#7C3AED]/10 px-5 py-4 text-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]"
+                  style={ctaPanelStyle}
+                >
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/85">
                     Need help with this?
                   </p>
@@ -506,7 +517,7 @@ export function BlogPostBody({
                     </Link>
                     <Link
                       href="/lp/book-a-call"
-                      className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                      className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
                     >
                       Book a strategy call
                     </Link>
@@ -540,7 +551,10 @@ export function BlogPostBody({
                     dangerouslySetInnerHTML={{ __html: articleHtml }}
                   />
 
-                  <div className="mt-14 rounded-[28px] border border-[#7C3AED]/10 bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.12),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.12),transparent_34%),#0f172a] p-6 text-white sm:p-8">
+                  <div
+                    className="mt-14 rounded-[28px] border border-[#7C3AED]/10 p-6 text-white sm:p-8"
+                    style={ctaPanelStyle}
+                  >
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">
                       Need help with this?
                     </p>
@@ -554,14 +568,14 @@ export function BlogPostBody({
                     </p>
                     <div className="mt-6 flex flex-wrap gap-3">
                       <Link
-                        href="/book"
+                        href="/lp/book-a-call"
                         className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#7C3AED,#22D3EE)] px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_rgba(124,58,237,0.8)] transition hover:opacity-95"
                       >
                         Book a strategy call
                       </Link>
                       <Link
                         href="/seo-tools"
-                        className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                        className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
                       >
                         Run a free SEO audit
                       </Link>

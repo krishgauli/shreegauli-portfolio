@@ -851,7 +851,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
         )}
 
         <div className="rounded-2xl p-6 border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/50 dark:to-teal-950/50">
-          <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
+          <h3 className="text-lg font-bold mb-2 flex items-center gap-2 text-[#f8fafc]">
             <span>📍 Account & Week Selection</span>
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">Select an account and week to view or enter analytics data</p>
@@ -867,7 +867,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                 <select
                   value={selectedClinicId}
                   onChange={(e) => setSelectedClinicId(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 dark:text-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
+                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#f8fafc] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
                   required
                 >
                   <option value="">Select an account...</option>
@@ -901,7 +901,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                     setSelectedYear(Number(e.target.value));
                     setSelectedWeekKey('');
                   }}
-                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 dark:text-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
+                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#f8fafc] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
                 >
                   {yearOptions.map((year) => (
                     <option key={year} value={year}>{year}</option>
@@ -925,7 +925,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                 <select
                   value={selectedWeekKey}
                   onChange={(e) => setSelectedWeekKey(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 dark:text-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
+                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#f8fafc] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
                 >
                   {weeks.map((week) => (
                     <option key={week.key} value={week.key}>{week.weekLabel}</option>

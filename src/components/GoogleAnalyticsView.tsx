@@ -326,6 +326,7 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
     backgroundColor: isDark ? '#1e293b' : '#ffffff',
     border: `1px solid ${isDark ? '#475569' : '#e2e8f0'}`,
     borderRadius: '12px',
+    color: isDark ? '#f8fafc' : '#1e293b',
   };
 
   return (

@@ -47,7 +47,13 @@ export async function POST(req: NextRequest) {
 
     if (isContactMailerConfigured()) {
       try {
+        console.log('[contact-lead] Sending emails for lead:', lead.id, lead.email);
         const result = await sendContactLeadEmails(lead);
+        console.log('[contact-lead] Email result:', {
+          notificationSent: result.notificationSent,
+          confirmationSent: result.confirmationSent,
+          errors: result.errors,
+        });
 
         if (result.notificationSent && result.confirmationSent) {
           emailStatus = 'sent';
@@ -58,14 +64,14 @@ export async function POST(req: NextRequest) {
         }
 
         if (result.errors.length > 0) {
-          console.error('Contact lead email delivery issue:', result.errors.join(' | '));
+          console.error('[contact-lead] Email delivery issue:', result.errors.join(' | '));
         }
       } catch (error) {
         emailStatus = 'failed';
-        console.error('Contact lead email error:', error);
+        console.error('[contact-lead] Email error:', error instanceof Error ? error.message : error);
       }
     } else {
-      console.warn('Contact mailer not configured. Lead was saved but emails were skipped.');
+      console.warn('[contact-lead] Mailer not configured — missing CONTACT_SMTP_HOST, CONTACT_SMTP_USER, or CONTACT_SMTP_PASSWORD. Emails skipped.');
     }
 
     return NextResponse.json(

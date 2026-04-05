@@ -8,7 +8,11 @@ import { NewsletterSignupCard } from "@/components/forms/NewsletterSignupCard";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
-import { getStaticArticleCards } from "@/lib/blogs";
+import {
+  getStaticArticleCards,
+  resolveBlogImage,
+  resolveBlogImageAlt,
+} from "@/lib/blogs";
 import prisma from "@/lib/prisma";
 import type { Article } from "@/types";
 
@@ -60,8 +64,8 @@ async function getArticles(): Promise<Article[]> {
       }),
       readTime: `${Math.max(3, Math.ceil((post.excerpt?.length || 100) / 50))} min read`,
       gradient: gradients[i % gradients.length],
-      image: post.coverImage,
-      imageAlt: post.coverImageAlt || post.title,
+      image: resolveBlogImage(post.coverImage, post.slug),
+      imageAlt: resolveBlogImageAlt(post.coverImageAlt, post.title),
     }));
 
     if (dbArticles.length >= 9) return dbArticles;

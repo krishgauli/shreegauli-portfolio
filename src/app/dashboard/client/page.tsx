@@ -766,8 +766,8 @@ function ClientDashboard() {
                       <Sparkles className="h-6 w-6 text-violet-500" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2">Premium AI Analytics is available on Scale</h3>
-                      <p className="text-slate-600 dark:text-slate-300 mb-6 max-w-3xl">
+                      <h3 className="text-2xl font-bold mb-2 text-[#f8fafc]">Premium AI Analytics is available on Scale</h3>
+                      <p className="text-[#94a3b8] mb-6 max-w-3xl">
                         Get an AI assistant that uses your real dashboard data to answer performance questions, compare accounts, and recommend next actions.
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -878,10 +878,10 @@ function MembershipView({
             {subStatus?.subscriptionStatus && (
               <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${
                 subStatus.subscriptionStatus === 'active'
-                  ? 'bg-emerald-100 text-emerald-700'
+                  ? 'bg-emerald-500/15 text-emerald-300'
                   : subStatus.subscriptionStatus === 'past_due'
-                  ? 'bg-yellow-100 text-yellow-700'
-                  : 'bg-red-100 text-red-700'
+                  ? 'bg-yellow-500/15 text-yellow-300'
+                  : 'bg-red-500/15 text-red-300'
               }`}>
                 <div className={`h-1.5 w-1.5 rounded-full ${
                   subStatus.subscriptionStatus === 'active' ? 'bg-emerald-500' : subStatus.subscriptionStatus === 'past_due' ? 'bg-yellow-500' : 'bg-red-500'
@@ -1228,19 +1228,19 @@ function OverviewView({
                 <p className="text-xs text-slate-400 dark:text-slate-500 -mt-4 mb-4">{lastMonthLabel}</p>
                 <ResponsiveContainer width="100%" height={280}>
                   <BarChart data={patientBarData} layout={patientBarData.length > 3 ? 'vertical' : 'horizontal'}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.15)" />
                     {patientBarData.length > 3 ? (
                       <>
-                        <XAxis type="number" fontSize={12} />
-                        <YAxis type="category" dataKey="name" fontSize={11} width={130} />
+                        <XAxis type="number" fontSize={12} tick={{ fill: '#94a3b8' }} />
+                        <YAxis type="category" dataKey="name" fontSize={11} width={130} tick={{ fill: '#94a3b8' }} />
                       </>
                     ) : (
                       <>
-                        <XAxis dataKey="name" fontSize={12} />
-                        <YAxis fontSize={12} />
+                        <XAxis dataKey="name" fontSize={12} tick={{ fill: '#94a3b8' }} />
+                        <YAxis fontSize={12} tick={{ fill: '#94a3b8' }} />
                       </>
                     )}
-                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #e5e7eb' }} />
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#f8fafc' }} />
                     <Legend />
                     <Bar dataKey="patients" fill="#10b981" name="Lead Count" radius={[4, 4, 4, 4]} />
                     <Bar dataKey="traffic" fill="#3b82f6" name="Traffic" radius={[4, 4, 4, 4]} />
@@ -1270,7 +1270,7 @@ function OverviewView({
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #e5e7eb' }} />
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#f8fafc' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -1284,11 +1284,11 @@ function OverviewView({
               <p className="text-xs text-slate-400 dark:text-slate-500 mb-6">{prevMonthLabel} → {lastMonthLabel} (% change)</p>
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={growthBarData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                  <XAxis dataKey="name" fontSize={11} />
-                  <YAxis fontSize={12} tickFormatter={(v: number) => `${v}%`} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.15)" />
+                  <XAxis dataKey="name" fontSize={11} tick={{ fill: '#94a3b8' }} />
+                  <YAxis fontSize={12} tickFormatter={(v: number) => `${v}%`} tick={{ fill: '#94a3b8' }} />
                   <Tooltip
-                    contentStyle={{ borderRadius: '12px', border: '1px solid #e5e7eb' }}
+                    contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#f8fafc' }}
                     formatter={(value: any, name: any) => {
                       if (name === 'Growth %') return [`${value}%`, name];
                       return [value, name];
@@ -1658,7 +1658,7 @@ function SettingsView({ role, setToast }: { role: 'client' | 'admin'; setToast: 
                 type={showCurrentPassword ? 'text' : 'password'}
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#f8fafc] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 required
               />
               <button
@@ -1678,7 +1678,7 @@ function SettingsView({ role, setToast }: { role: 'client' | 'admin'; setToast: 
                 type={showNewPassword ? 'text' : 'password'}
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#f8fafc] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 minLength={6}
                 required
               />
@@ -1699,7 +1699,7 @@ function SettingsView({ role, setToast }: { role: 'client' | 'admin'; setToast: 
                 type={showConfirmPassword ? 'text' : 'password'}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#f8fafc] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 minLength={6}
                 required
               />

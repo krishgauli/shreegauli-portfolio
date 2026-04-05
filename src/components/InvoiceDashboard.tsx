@@ -377,7 +377,7 @@ export default function InvoiceDashboard() {
             className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 ${
               tab === t
                 ? 'bg-violet-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white'
+                : 'text-slate-600 hover:bg-white/10 hover:text-[#f8fafc] dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white'
             }`}
           >
             {t === 'create' ? 'Create New' : t}
@@ -409,7 +409,7 @@ export default function InvoiceDashboard() {
                 </tr>
               ) : (
                 invoices.map((inv) => (
-                  <tr key={inv.id} className="border-b border-slate-100 hover:bg-slate-50 dark:border-white/5 dark:hover:bg-white/5">
+                  <tr key={inv.id} className="border-b border-slate-100 hover:bg-white/10 dark:border-white/5 transition-colors">
                     <td className="px-4 py-3 font-mono text-violet-400">{inv.invoiceNumber}</td>
                     <td className="px-4 py-3">
                       <div className="text-slate-900 dark:text-white">{inv.client.name}</div>
@@ -491,7 +491,7 @@ export default function InvoiceDashboard() {
                 </tr>
               ) : (
                 clients.map((cl) => (
-                  <tr key={cl.id} className="border-b border-slate-100 hover:bg-slate-50 dark:border-white/5 dark:hover:bg-white/5">
+                  <tr key={cl.id} className="border-b border-slate-100 hover:bg-white/10 dark:border-white/5 transition-colors">
                     <td className="px-4 py-3 text-slate-900 dark:text-white font-medium">{cl.name}</td>
                     <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{cl.email}</td>
                     <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{cl.company || '—'}</td>

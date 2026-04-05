@@ -396,7 +396,7 @@ export default function RichTextEditor({
         suppressContentEditableWarning
         onInput={handleInput}
         onKeyDown={handleKeyDown}
-        className="editor-shell p-4 focus:outline-none prose dark:prose-invert max-w-none"
+        className="editor-shell p-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none prose dark:prose-invert max-w-none"
         style={{ minHeight }}
         data-placeholder={placeholder}
       />
@@ -647,6 +647,10 @@ export default function RichTextEditor({
       )}
 
       <style jsx>{`
+        [contenteditable] {
+          color: #0f172a;
+          caret-color: #0f172a;
+        }
         [contenteditable]:empty:before {
           content: attr(data-placeholder);
           color: #94a3b8;
@@ -722,6 +726,11 @@ export default function RichTextEditor({
         :global(.dark) [contenteditable] a,
         :global(.theme-dark) [contenteditable] a {
           color: #60a5fa;
+        }
+        :global(.dark) [contenteditable],
+        :global(.theme-dark) [contenteditable] {
+          color: #e2e8f0;
+          caret-color: #e2e8f0;
         }
         :global(.dark) [contenteditable] a:hover,
         :global(.theme-dark) [contenteditable] a:hover {

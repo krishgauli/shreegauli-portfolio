@@ -1,5 +1,9 @@
 import prisma from "@/lib/prisma";
-import { featuredArticleCards } from "@/lib/blogs";
+import {
+  featuredArticleCards,
+  resolveBlogImage,
+  resolveBlogImageAlt,
+} from "@/lib/blogs";
 import { ArticleCard } from "./ArticleCard";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -30,7 +34,7 @@ async function getFeaturedArticles() {
 
     if (posts.length === 0) return featuredArticleCards;
 
-    return posts.map((post, index) => ({
+    const dbArticles = posts.map((post, index) => ({
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || "",
@@ -42,9 +46,15 @@ async function getFeaturedArticles() {
       }),
       readTime: `${Math.max(3, Math.ceil((post.excerpt?.length || 100) / 50))} min read`,
       gradient: gradients[index % gradients.length],
-      image: post.coverImage,
-      imageAlt: post.coverImageAlt || post.title,
+      image: resolveBlogImage(post.coverImage, post.slug),
+      imageAlt: resolveBlogImageAlt(post.coverImageAlt, post.title),
     }));
+
+    if (dbArticles.length >= 3) return dbArticles;
+
+    const seen = new Set(dbArticles.map((article) => article.href));
+    const supplemental = featuredArticleCards.filter((article) => !seen.has(article.href));
+    return [...dbArticles, ...supplemental].slice(0, 3);
   } catch {
     return featuredArticleCards;
   }

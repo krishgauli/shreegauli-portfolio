@@ -1,9 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
-import { Calendar, ArrowUpRight, BookOpen } from 'lucide-react';
+import { Calendar, ArrowUpRight } from 'lucide-react';
 import { useSitePreferences } from '@/components/SitePreferencesProvider';
+import { getFallbackBlogImage, resolveBlogImage } from '@/lib/blogs';
 
 interface BlogPost {
   title: string;
@@ -22,8 +24,6 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
   const isDark = theme === 'dark';
   const [brokenImages, setBrokenImages] = useState<Record<string, boolean>>({});
   const dateLocale = language === 'es' ? 'es-US' : 'en-US';
-  const fallbackImages = ['/1.png', '/2.png', '/3.png'];
-
   const formatDate = (dateString: string | null) => {
     if (!dateString) return '';
     try {
@@ -68,28 +68,26 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
                 className={`group relative rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
                   isDark ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-slate-100'
                 }`}
-              >
-                {/* Image Container */}
+            >
+              {/* Image Container */}
                 <div className="relative h-56 overflow-hidden bg-slate-200">
-                  {p.coverImage && !brokenImages[p.slug] ? (
-                    <img
-                      src={p.coverImage}
+                  {!brokenImages[p.slug] ? (
+                    <Image
+                      src={resolveBlogImage(p.coverImage, p.slug)}
                       alt={p.title}
-                      loading="lazy"
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
                       onError={() => setBrokenImages(prev => ({ ...prev, [p.slug]: true }))}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
-                  ) : p.coverImage || brokenImages[p.slug] ? (
-                    <img
-                      src={fallbackImages[idx % fallbackImages.length]}
+                  ) : (
+                    <Image
+                      src={getFallbackBlogImage(p.slug)}
                       alt={p.title}
-                      loading="lazy"
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
-                  ) : (
-                    <div className={`w-full h-full flex items-center justify-center ${isDark ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                      <BookOpen className={`h-10 w-10 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
-                    </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>

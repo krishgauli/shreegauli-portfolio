@@ -29,6 +29,7 @@ export async function GET(req: NextRequest) {
       connectedClinics,
       activeSessions7d,
       recentActivity,
+      allBlogPosts,
     ] = await Promise.all([
       prisma.user.count(),
       prisma.clinic.count(),
@@ -56,9 +57,9 @@ export async function GET(req: NextRequest) {
           select: { id: true, name: true, email: true, role: true, createdAt: true },
         }),
         prisma.post.findMany({
-          orderBy: { publishedAt: 'desc' },
-          take: 5,
-          select: { id: true, title: true, publishedAt: true },
+          orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+          take: 50,
+          select: { id: true, title: true, slug: true, publishedAt: true, createdAt: true },
         }),
         prisma.chatSession.findMany({
           orderBy: { startedAt: 'desc' },
@@ -77,6 +78,16 @@ export async function GET(req: NextRequest) {
           select: { id: true, email: true, source: true, subscribedAt: true },
         }),
       ]),
+      prisma.post.findMany({
+        orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          publishedAt: true,
+          createdAt: true,
+        },
+      }),
     ]);
 
     const [recentLeadsFeed, recentUsersFeed, recentPostsFeed, recentChatsFeed, recentNewsFeed, recentSubsFeed] = recentActivity;
@@ -105,7 +116,7 @@ export async function GET(req: NextRequest) {
         title: `Blog: ${p.title?.slice(0, 50)}`,
         detail: p.publishedAt ? 'published' : 'draft',
         status: p.publishedAt ? 'published' : 'draft',
-        timestamp: p.publishedAt || new Date(),
+        timestamp: p.publishedAt || p.createdAt,
       })),
       ...recentChatsFeed.map(c => ({
         type: 'chat' as const,
@@ -170,6 +181,14 @@ export async function GET(req: NextRequest) {
         publishedPosts,
         draftPosts,
         publishedNews,
+        blogPosts: allBlogPosts.map((post) => ({
+          id: post.id,
+          title: post.title,
+          slug: post.slug,
+          detail: post.publishedAt ? 'published' : 'draft',
+          status: post.publishedAt ? 'published' : 'draft',
+          timestamp: post.publishedAt || post.createdAt,
+        })),
       },
       leadPipeline: {
         new: newLeads,

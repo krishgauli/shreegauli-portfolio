@@ -25,7 +25,8 @@ const gradients = [
   "from-blue-900/40 to-indigo-900/20",
 ];
 
-const staticCoverImages = [
+const fallbackBlogImages = [
+  "/1.png",
   "/2.png",
   "/3.png",
   "/4.png",
@@ -38,15 +39,38 @@ const staticCoverImages = [
   "/11.png",
 ];
 
-function getStaticCoverImage(index: number) {
-  return staticCoverImages[index % staticCoverImages.length];
+export function getFallbackBlogImage(seed: string | number) {
+  if (typeof seed === "number") {
+    return fallbackBlogImages[Math.abs(seed) % fallbackBlogImages.length];
+  }
+
+  let hash = 0;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash = (hash * 31 + seed.charCodeAt(index)) >>> 0;
+  }
+
+  return fallbackBlogImages[hash % fallbackBlogImages.length];
+}
+
+export function resolveBlogImage(
+  image: string | null | undefined,
+  seed: string | number,
+) {
+  return image || getFallbackBlogImage(seed);
+}
+
+export function resolveBlogImageAlt(
+  imageAlt: string | null | undefined,
+  title: string,
+) {
+  return imageAlt || `${title} cover image`;
 }
 
 function withStaticCoverImage(post: StaticWritingPost, index: number): StaticWritingPost {
   return {
     ...post,
-    coverImage: post.coverImage ?? getStaticCoverImage(index),
-    coverImageAlt: post.coverImageAlt ?? post.title,
+    coverImage: resolveBlogImage(post.coverImage, index),
+    coverImageAlt: resolveBlogImageAlt(post.coverImageAlt, post.title),
   };
 }
 

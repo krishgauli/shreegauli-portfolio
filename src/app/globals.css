@@ -379,8 +379,55 @@
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
   }
+  /* Prevent hover variants from showing light backgrounds in the dark dashboard */
+  .dashboard-scope .hover\:bg-slate-50:hover,
+  .dashboard-scope .hover\:bg-slate-100:hover,
+  .dashboard-scope .hover\:bg-white:hover,
+  .dashboard-scope .dark\:hover\:bg-slate-800:hover,
+  .dashboard-scope .dark\:hover\:bg-slate-700:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  /* Override bg-gradient-to-br from the analytics form to keep it dark-friendly */
+  .dashboard-scope .bg-gradient-to-br.from-emerald-50 {
+    background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.12), rgba(20, 184, 166, 0.08));
+  }
+  /* Override bg-gradient-to-r from AI upsell card */
+  .dashboard-scope .bg-gradient-to-r.from-slate-50 {
+    background: linear-gradient(to right, rgba(15, 23, 42, 0.76), rgba(76, 29, 149, 0.15));
+  }
+  /* Override light blue info cards */
+  .dashboard-scope .bg-blue-50 {
+    background-color: rgba(59, 130, 246, 0.08);
+  }
+  .dashboard-scope .bg-blue-100 {
+    background-color: rgba(59, 130, 246, 0.15);
+  }
+  /* Override bg-slate-200 (disabled buttons etc.) */
+  .dashboard-scope .bg-slate-200 {
+    background-color: rgba(148, 163, 184, 0.18);
+  }
+  /* Override colored-50 stat row backgrounds */
+  .dashboard-scope .bg-blue-50 {
+    background-color: rgba(59, 130, 246, 0.08);
+  }
+  .dashboard-scope .bg-emerald-50 {
+    background-color: rgba(16, 185, 129, 0.08);
+  }
+  .dashboard-scope .bg-purple-50 {
+    background-color: rgba(139, 92, 246, 0.08);
+  }
+  .dashboard-scope .bg-amber-50 {
+    background-color: rgba(245, 158, 11, 0.08);
+  }
+  .dashboard-scope .bg-red-50 {
+    background-color: rgba(239, 68, 68, 0.08);
+  }
+  .dashboard-scope .bg-yellow-50 {
+    background-color: rgba(234, 179, 8, 0.08);
+  }
   .dashboard-scope .bg-white\/80,
   .dashboard-scope .bg-white\/70,
+  .dashboard-scope .bg-white\/50,
   .dashboard-scope .bg-slate-800\/80,
   .dashboard-scope .bg-slate-900\/50,
   .dashboard-scope .bg-slate-900\/40 {

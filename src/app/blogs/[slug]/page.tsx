@@ -8,6 +8,8 @@ import { breadcrumbSchema } from "@/lib/schema";
 import {
   getStaticArticleCards,
   getStaticWritingPostBySlug,
+  resolveBlogImage,
+  resolveBlogImageAlt,
   staticWritingPosts,
 } from "@/lib/blogs";
 import { BlogPostBody } from "./BlogPostBody";
@@ -166,7 +168,7 @@ export default async function BlogPostPage({
         excerpt: dbPost.excerpt,
         createdAt: dbPost.publishedAt || dbPost.updatedAt,
         updatedAt: dbPost.updatedAt,
-        featuredImage: dbPost.coverImage,
+        featuredImage: resolveBlogImage(dbPost.coverImage, dbPost.slug),
         author: dbPost.author ? { name: dbPost.author.name } : null,
       };
 
@@ -175,8 +177,8 @@ export default async function BlogPostPage({
         title: dbPost.title,
         content: dbPost.content,
         excerpt: dbPost.excerpt,
-        coverImage: dbPost.coverImage,
-        coverImageAlt: dbPost.coverImageAlt,
+        coverImage: resolveBlogImage(dbPost.coverImage, dbPost.slug),
+        coverImageAlt: resolveBlogImageAlt(dbPost.coverImageAlt, dbPost.title),
         publishedAt: dbPost.publishedAt,
         updatedAt: dbPost.updatedAt,
         author: dbPost.author
@@ -265,8 +267,8 @@ export default async function BlogPostPage({
       }),
       readTime: `${Math.max(3, Math.ceil((relatedPost.excerpt?.length || 120) / 50))} min read`,
       gradient: gradients[index % gradients.length],
-      image: relatedPost.coverImage,
-      imageAlt: relatedPost.coverImageAlt || relatedPost.title,
+      image: resolveBlogImage(relatedPost.coverImage, relatedPost.slug),
+      imageAlt: resolveBlogImageAlt(relatedPost.coverImageAlt, relatedPost.title),
     }));
 
     if (dynamicRelated.length > 0) {

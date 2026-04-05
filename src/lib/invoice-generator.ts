@@ -73,34 +73,40 @@ export function generateInvoiceHtml(data: InvoiceData): string {
 
     <!-- Header -->
     <div style="background:linear-gradient(135deg,#7c3aed,#4f46e5);padding:32px 40px;color:#fff;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-        <div>
-          <h1 style="margin:0;font-size:28px;font-weight:700;">INVOICE</h1>
-          <p style="margin:4px 0 0;opacity:0.85;font-size:14px;">${data.invoiceNumber}</p>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:20px;font-weight:700;">${data.businessName}</div>
-          <div style="font-size:13px;opacity:0.85;margin-top:4px;">${data.businessEmail}</div>
-          ${data.businessPhone ? `<div style="font-size:13px;opacity:0.85;">${data.businessPhone}</div>` : ''}
-        </div>
-      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr>
+          <td style="vertical-align:top;">
+            <h1 style="margin:0;font-size:28px;font-weight:700;color:#fff;">INVOICE</h1>
+            <p style="margin:4px 0 0;opacity:0.85;font-size:14px;color:#fff;">${data.invoiceNumber}</p>
+          </td>
+          <td style="vertical-align:top;text-align:right;">
+            <div style="font-size:20px;font-weight:700;color:#fff;">${data.businessName}</div>
+            <div style="font-size:13px;opacity:0.85;margin-top:4px;color:#fff;">${data.businessEmail}</div>
+            ${data.businessPhone ? `<div style="font-size:13px;opacity:0.85;color:#fff;">${data.businessPhone}</div>` : ''}
+          </td>
+        </tr>
+      </table>
     </div>
 
     <!-- Status Badge + Dates -->
-    <div style="padding:24px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e7eb;">
-      <div>
-        <span style="display:inline-block;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;${
-          isPaid
-            ? 'background:#d1fae5;color:#065f46;'
-            : data.status === 'overdue'
-            ? 'background:#fee2e2;color:#991b1b;'
-            : 'background:#fef3c7;color:#92400e;'
-        }">${data.status}</span>
-      </div>
-      <div style="text-align:right;font-size:14px;color:#6b7280;">
-        <div><strong>Issued:</strong> ${data.issueDate}</div>
-        <div><strong>Due:</strong> ${data.dueDate}</div>
-      </div>
+    <div style="padding:24px 40px;border-bottom:1px solid #e5e7eb;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr>
+          <td style="vertical-align:middle;">
+            <span style="display:inline-block;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;${
+              isPaid
+                ? 'background:#d1fae5;color:#065f46;'
+                : data.status === 'overdue'
+                ? 'background:#fee2e2;color:#991b1b;'
+                : 'background:#fef3c7;color:#92400e;'
+            }">${data.status}</span>
+          </td>
+          <td style="vertical-align:middle;text-align:right;font-size:14px;color:#6b7280;">
+            <div><strong>Issued:</strong> ${data.issueDate}</div>
+            <div><strong>Due:</strong> ${data.dueDate}</div>
+          </td>
+        </tr>
+      </table>
     </div>
 
     <!-- Bill To -->
@@ -129,23 +135,31 @@ export function generateInvoiceHtml(data: InvoiceData): string {
       </table>
 
       <!-- Totals -->
-      <div style="margin-top:20px;display:flex;justify-content:flex-end;">
-        <div style="width:260px;">
-          <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:14px;color:#6b7280;">
-            <span>Subtotal</span><span>${fmt(data.subtotal)}</span>
-          </div>
-          ${
-            data.taxRate > 0
-              ? `<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:14px;color:#6b7280;">
-                  <span>Tax (${data.taxRate}%)</span><span>${fmt(data.taxAmount)}</span>
-                </div>`
-              : ''
-          }
-          <div style="display:flex;justify-content:space-between;padding:12px 0;font-size:18px;font-weight:700;border-top:2px solid #1f2937;margin-top:8px;">
-            <span>Total</span><span>${fmt(data.total)}</span>
-          </div>
-        </div>
-      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:20px;">
+        <tr>
+          <td>&nbsp;</td>
+          <td style="width:260px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+              <tr>
+                <td style="padding:6px 0;font-size:14px;color:#6b7280;">Subtotal</td>
+                <td style="padding:6px 0;font-size:14px;color:#6b7280;text-align:right;">${fmt(data.subtotal)}</td>
+              </tr>
+              ${
+                data.taxRate > 0
+                  ? `<tr>
+                      <td style="padding:6px 0;font-size:14px;color:#6b7280;">Tax (${data.taxRate}%)</td>
+                      <td style="padding:6px 0;font-size:14px;color:#6b7280;text-align:right;">${fmt(data.taxAmount)}</td>
+                    </tr>`
+                  : ''
+              }
+              <tr>
+                <td style="padding:12px 0;font-size:18px;font-weight:700;border-top:2px solid #1f2937;">Total</td>
+                <td style="padding:12px 0;font-size:18px;font-weight:700;border-top:2px solid #1f2937;text-align:right;">${fmt(data.total)}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
     </div>
 
     <!-- Payment Button -->
