@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { Calendar, Linkedin, Github, Send } from "lucide-react";
+import { Calendar, Linkedin, Github, Send, CheckCircle2, X } from "lucide-react";
 import Link from "next/link";
 
 const serviceOptions = [
@@ -83,6 +83,31 @@ export function ContactForm() {
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+      {/* ── Success Popup Overlay ── */}
+      {submitState === "success" && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0F172A] p-8 text-center shadow-2xl">
+            <button
+              onClick={() => setSubmitState("idle")}
+              className="absolute right-4 top-4 text-[#94A3B8] hover:text-white transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
+              <CheckCircle2 className="h-8 w-8 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-[#F8FAFC] mb-2">Message sent!</h3>
+            <p className="text-sm text-[#94A3B8] leading-relaxed">{feedbackMessage}</p>
+            <button
+              onClick={() => setSubmitState("idle")}
+              className="mt-6 inline-flex items-center justify-center rounded-2xl bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8B5CF6]"
+            >
+              Got it
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Left column — form */}
       <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
         <form onSubmit={handleSubmit} className="grid gap-4">
@@ -183,14 +208,10 @@ export function ContactForm() {
               {isSubmitting ? "Sending..." : "Send message"}
             </button>
 
-            {feedbackMessage && (
+            {feedbackMessage && submitState === "error" && (
               <p
                 aria-live="polite"
-                className={
-                  submitState === "error"
-                    ? "text-sm text-rose-300"
-                    : "text-sm text-emerald-300"
-                }
+                className="text-sm text-rose-300"
               >
                 {feedbackMessage}
               </p>
@@ -235,7 +256,7 @@ export function ContactForm() {
               Book a call
             </Link>
             <Link
-              href="https://linkedin.com/in/shreegauli"
+              href="https://www.linkedin.com/in/gauli/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#94A3B8] hover:text-[#F8FAFC] hover:border-white/20 transition-colors"

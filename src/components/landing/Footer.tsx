@@ -31,7 +31,7 @@ export default function LandingFooter() {
           <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>(214) 555-0123</p>
           <div className="flex gap-3">
             <a href="#" className={`transition-colors ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>Twitter</a>
-            <a href="#" className={`transition-colors ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>LinkedIn</a>
+            <a href="https://www.linkedin.com/in/gauli/" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>LinkedIn</a>
           </div>
         </div>
       </div>

@@ -133,7 +133,7 @@ export function Footer() {
               <Mail className="h-4 w-4" />
             </Link>
             <Link
-              href="https://linkedin.com/in/shreegauli"
+              href="https://www.linkedin.com/in/gauli/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors"

@@ -49,17 +49,15 @@ export const OTP_EMAIL_FROM =
   process.env.CONTACT_EMAIL_FROM || `Shree Gauli <${SMTP_USER}>`;
 
 export async function getOtpTransporter() {
-  const GMAIL_IPS = ['142.251.163.108', '142.251.163.109', '173.194.76.108', '173.194.76.109'];
+  const GMAIL_FALLBACK_IPS = ['192.178.211.108', '142.251.163.108', '142.251.163.109', '173.194.76.108', '173.194.76.109'];
   let host = SMTP_HOST;
 
-  if (SMTP_HOST === 'smtp.gmail.com') {
-    host = GMAIL_IPS[Math.floor(Math.random() * GMAIL_IPS.length)];
-  } else {
-    try {
-      const ips = await resolve4(SMTP_HOST);
-      if (ips.length > 0) host = ips[0];
-    } catch {
-      // Fall back to hostname
+  try {
+    const ips = await resolve4(SMTP_HOST);
+    if (ips.length > 0) host = ips[0];
+  } catch {
+    if (SMTP_HOST === 'smtp.gmail.com') {
+      host = GMAIL_FALLBACK_IPS[Math.floor(Math.random() * GMAIL_FALLBACK_IPS.length)];
     }
   }
 

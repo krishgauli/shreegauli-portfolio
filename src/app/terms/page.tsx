@@ -69,7 +69,8 @@ export default function TermsPage() {
 
           <h2>8. Contact</h2>
           <p>
-            Questions about these terms? Visit the{" "}
+            Questions about these terms? Email{" "}
+            <a href="mailto:shreegauli1@gmail.com">shreegauli1@gmail.com</a> or visit the{" "}
             <a href="/contact">contact page</a>.
           </p>
         </div>

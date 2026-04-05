@@ -70,21 +70,20 @@ async function getTransporter() {
     );
   }
 
-  // Vercel serverless blocks DNS lookups for SMTP hostnames (getaddrinfo EBUSY).
-  // Pre-resolve to IP and set tls.servername for certificate validation.
-  const GMAIL_IPS = ['142.251.163.108', '142.251.163.109', '173.194.76.108', '173.194.76.109'];
+  // Vercel serverless can block DNS lookups (getaddrinfo EBUSY).
+  // Try DNS first, fall back to known Gmail IPs if resolution fails.
+  const GMAIL_FALLBACK_IPS = ['192.178.211.108', '142.251.163.108', '142.251.163.109', '173.194.76.108', '173.194.76.109'];
   let host = CONTACT_SMTP_HOST;
 
-  if (CONTACT_SMTP_HOST === 'smtp.gmail.com') {
-    // Use a known Gmail SMTP IP to skip DNS entirely
-    host = GMAIL_IPS[Math.floor(Math.random() * GMAIL_IPS.length)];
-  } else {
-    try {
-      const ips = await resolve4(CONTACT_SMTP_HOST);
-      if (ips.length > 0) host = ips[0];
-    } catch {
-      // Fall back to hostname
+  try {
+    const ips = await resolve4(CONTACT_SMTP_HOST);
+    if (ips.length > 0) host = ips[0];
+  } catch {
+    // DNS failed — use known Gmail IPs as fallback
+    if (CONTACT_SMTP_HOST === 'smtp.gmail.com') {
+      host = GMAIL_FALLBACK_IPS[Math.floor(Math.random() * GMAIL_FALLBACK_IPS.length)];
     }
+    // For non-Gmail hosts, fall back to hostname and let nodemailer resolve
   }
 
   return nodemailer.createTransport({

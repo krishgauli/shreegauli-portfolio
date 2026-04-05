@@ -44,7 +44,7 @@ export function AboutPreview() {
                 <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Working globally</p>
                 <div className="flex gap-3 mt-4">
                   <Link
-                    href="https://linkedin.com/in/shreegauli"
+                    href="https://www.linkedin.com/in/gauli/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors"

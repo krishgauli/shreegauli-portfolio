@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Target,
   XCircle,
+  X,
 } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { SectionHeader } from '@/components/shared/SectionHeader';
@@ -753,15 +754,40 @@ export default function SeoToolsClient() {
                     {leadSubmitting ? 'Sending audit...' : 'Send this audit for review'}
                   </button>
 
-                  {leadFeedback && (
+                  {leadFeedback && leadState === 'error' && (
                     <p
                       aria-live="polite"
-                      className={leadState === 'error' ? 'text-sm text-rose-300' : 'text-sm text-emerald-300'}
+                      className="text-sm text-rose-300"
                     >
                       {leadFeedback}
                     </p>
                   )}
                 </form>
+
+                {/* Success Popup */}
+                {leadState === 'success' && (
+                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+                    <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0F172A] p-8 text-center shadow-2xl">
+                      <button
+                        onClick={() => setLeadState('idle')}
+                        className="absolute right-4 top-4 text-[#94A3B8] hover:text-white transition-colors"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
+                        <CheckCircle2 className="h-8 w-8 text-emerald-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-[#F8FAFC] mb-2">Audit request sent!</h3>
+                      <p className="text-sm text-[#94A3B8] leading-relaxed">{leadFeedback}</p>
+                      <button
+                        onClick={() => setLeadState('idle')}
+                        className="mt-6 inline-flex items-center justify-center rounded-2xl bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8B5CF6]"
+                      >
+                        Got it
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

@@ -10,7 +10,6 @@ export default function PersonSchema() {
     description:
       'Digital marketing specialist focusing on SEO, paid media, social media, and marketing automation. Based in Dallas, TX.',
     url: SITE_URL,
-    email: 'hello@shreegauli.com',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Dallas',
@@ -29,7 +28,7 @@ export default function PersonSchema() {
       'Content Strategy',
     ],
     sameAs: [
-      'https://linkedin.com/in/shreegauli',
+      'https://www.linkedin.com/in/gauli/',
       'https://github.com/shreegauli',
     ],
   };

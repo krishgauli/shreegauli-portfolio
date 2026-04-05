@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { MapPin, Mail, Linkedin, Instagram, Facebook } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -80,7 +79,7 @@ export default function Footer() {
 
             <div className="flex gap-4">
               <Link href="https://instagram.com" aria-label="Instagram" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-200 hover:bg-slate-300'}`}><Instagram className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
-              <Link href="https://linkedin.com" aria-label="LinkedIn" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-200 hover:bg-slate-300'}`}><Linkedin className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
+              <Link href="https://www.linkedin.com/in/gauli/" aria-label="LinkedIn" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-200 hover:bg-slate-300'}`}><Linkedin className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
               <Link href="https://facebook.com" aria-label="Facebook" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-200 hover:bg-slate-300'}`}><Facebook className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
             </div>
           </div>
@@ -115,7 +114,7 @@ export default function Footer() {
 
               <li className={`flex items-center gap-3 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                 <Mail className="h-5 w-5 text-emerald-500 shrink-0" />
-                <span>info@shreegauli.com</span>
+                <Link href="/contact" className="hover:text-emerald-500 transition-colors">Use the contact page</Link>
               </li>
 
               <li className={`flex items-center gap-3 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
