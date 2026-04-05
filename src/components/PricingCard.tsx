@@ -27,15 +27,15 @@ interface PricingCardProps {
 const SPOTLIGHT_CONTENT = {
   basic: {
     title: 'Best for',
-    text: 'Clinics getting started with dependable growth.',
+    text: 'Businesses getting started with digital growth.',
   },
   professional: {
     title: 'Best for',
-    text: 'Clinics ready to scale acquisition fast.',
+    text: 'Businesses ready to scale and grow fast.',
   },
   premium: {
     title: 'Best for',
-    text: 'Multi-location teams needing advanced automation.',
+    text: 'Teams needing advanced solutions and automation.',
   },
 } as const;
 

@@ -518,7 +518,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
       } catch (err: any) {
         if (err?.name !== 'AbortError') {
           console.error('Failed to load selected week analytics:', err);
-          setError('Unable to load saved data for selected clinic/week');
+          setError('Unable to load saved data for selected account/week');
         }
       } finally {
         setIsLoadingWeekData(false);
@@ -550,7 +550,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
     setSubmitted(false);
 
     if (!selectedClinicId || !selectedWeek) {
-      setError('Please select a clinic and a week');
+      setError('Please select an account and a week');
       return;
     }
 
@@ -731,7 +731,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
       <div className="mb-8">
         <h1 className="text-4xl font-black mb-3 text-slate-900 dark:text-white">Weekly Analytics Entry</h1>
         <p className="text-slate-600 dark:text-slate-400 text-lg">
-          Select a clinic and a week (Monday to Sunday). The form will load saved data. You can save partial updates. Click Edit on any saved week to modify it.
+          Select an account and a week (Monday to Sunday). The form will load saved data. You can save partial updates. Click Edit on any saved week to modify it.
         </p>
       </div>
 
@@ -852,16 +852,16 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
 
         <div className="rounded-2xl p-6 border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/50 dark:to-teal-950/50">
           <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
-            <span>📍 Clinic & Week Selection</span>
+            <span>📍 Account & Week Selection</span>
           </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">Select a clinic and week to view or enter analytics data</p>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">Select an account and week to view or enter analytics data</p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Clinic Dropdown */}
+            {/* Account Dropdown */}
             <div>
               <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-2">
-                <span className="text-lg">🏥</span>
-                <span>Clinic <span className="text-red-500">*</span></span>
+                <span className="text-lg">🏢</span>
+                <span>Account <span className="text-red-500">*</span></span>
               </label>
               <div className="relative">
                 <select
@@ -870,7 +870,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                   className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 dark:text-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
                   required
                 >
-                  <option value="">Select a clinic...</option>
+                  <option value="">Select an account...</option>
                   {clinics.map((clinic) => (
                     <option key={clinic.id} value={clinic.id}>
                       {clinic.name}

@@ -56,33 +56,33 @@ import WeeklyOngoingWork from '@/components/WeeklyOngoingWork';
 /* ─── Plan Definitions ─── */
 const PLANS = [
   {
-    id: 'silver',
-    name: 'Starter Care',
-    price: '$5,000',
-    period: '/ Month',
+    id: 'hourly',
+    name: 'Hourly',
+    price: '$50',
+    period: '/ Hour',
     icon: Shield,
-    features: ['Advanced SEO & Local Search', 'Google My Business Management', 'Targeted Ads (Google & Meta)', 'AI Chatbot & Call Tracking', 'Monthly Reports & Strategy', 'Content & Social Media'],
+    features: ['Website Design & Development', 'SEO & Local Search', 'Google Ads Management', 'Social Media Management', 'Monthly Strategy Calls', 'Performance Reporting'],
     variant: 'professional' as const,
     tier: 1,
   },
   {
-    id: 'gold',
-    name: 'Growth Pro',
-    price: '$10,000',
+    id: 'growth',
+    name: 'Growth',
+    price: '$1,499',
     period: '/ Month',
     icon: Rocket,
-    features: ['High-Budget Google Ads', 'Advanced AI Call Handling', 'Insurance Verification Bots', 'Priority Support & Rapid SLA', 'Multi-Location Campaigns', '24/7 Performance Monitoring', 'Dedicated Account Manager'],
+    features: ['30 Hours / Month', 'Full-Stack Development', 'Advanced SEO & Analytics', 'Google & Meta Ads', 'Dedicated Project Manager', 'Priority Support & SLA', 'Weekly Strategy Reports'],
     variant: 'professional' as const,
     popular: true,
     tier: 2,
   },
   {
-    id: 'premium',
-    name: 'Scale Elite',
-    price: 'Custom',
-    period: '',
+    id: 'scale',
+    name: 'Scale',
+    price: '$2,500',
+    period: '/ Month',
     icon: Zap,
-    features: ['Custom Software Development', 'HIPAA-Compliant Integrations', 'Multi-State Networks', 'Advanced Analytics & BI', 'Custom Automation Workflows', 'White-Glove Onboarding', 'Enterprise SLA & Support'],
+    features: ['50 Hours / Month', 'Custom Software Solutions', 'Multi-Platform Campaigns', 'Advanced Analytics & BI', 'Conversion Rate Optimization', 'White-Glove Onboarding', 'Enterprise SLA & Support'],
     variant: 'premium' as const,
     tier: 3,
   },
@@ -131,13 +131,22 @@ function ClientDashboard() {
     fallbackPlanText: string,
   ) => {
     return (
+      currentPlanId === 'hourly' ||
+      currentPlanId === 'growth' ||
+      currentPlanId === 'scale' ||
       currentPlanId === 'silver' ||
       currentPlanId === 'gold' ||
       currentPlanId === 'premium' ||
+      fallbackPlanId === 'hourly' ||
+      fallbackPlanId === 'growth' ||
+      fallbackPlanId === 'scale' ||
       fallbackPlanId === 'silver' ||
       fallbackPlanId === 'gold' ||
       fallbackPlanId === 'premium' ||
       fallbackPlanId === 'platinum' ||
+      fallbackPlanText.includes('hourly') ||
+      fallbackPlanText.includes('growth') ||
+      fallbackPlanText.includes('scale') ||
       fallbackPlanText.includes('starter care') ||
       fallbackPlanText.includes('growth pro') ||
       fallbackPlanText.includes('scale elite') ||
@@ -396,22 +405,22 @@ function ClientDashboard() {
   const fallbackPlanText = String(user?.plan || '').toLowerCase();
   const hasPaidPlan = hasPaidPlanAccess(currentPlanId, fallbackPlanId, fallbackPlanText);
   const fallbackPlanLabel = (() => {
-    if (fallbackPlanId === 'premium') return 'Scale Elite';
-    if (fallbackPlanId === 'gold') return 'Growth Pro';
-    if (fallbackPlanId === 'silver') return 'Starter Care';
-    if (fallbackPlanText.includes('scale elite') || fallbackPlanText === 'premium') return 'Scale Elite';
-    if (fallbackPlanText.includes('growth pro') || fallbackPlanText === 'gold') return 'Growth Pro';
-    if (fallbackPlanText.includes('starter care') || fallbackPlanText === 'silver') return 'Starter Care';
+    if (fallbackPlanId === 'scale' || fallbackPlanId === 'premium') return 'Scale';
+    if (fallbackPlanId === 'growth' || fallbackPlanId === 'gold') return 'Growth';
+    if (fallbackPlanId === 'hourly' || fallbackPlanId === 'silver') return 'Hourly';
+    if (fallbackPlanText.includes('scale') || fallbackPlanText === 'premium') return 'Scale';
+    if (fallbackPlanText.includes('growth') || fallbackPlanText === 'gold') return 'Growth';
+    if (fallbackPlanText.includes('hourly') || fallbackPlanText === 'silver') return 'Hourly';
     return 'Free';
   })();
 
   const dashboardTitle =
     activeView === 'overview'
-      ? 'Your Clinic Snapshot'
+      ? 'Your Dashboard'
       : activeView === 'membership'
         ? 'Membership & Billing'
         : activeView === 'patient-count'
-          ? 'Patient Count Report'
+          ? 'Performance Report'
           : activeView === 'ai-chat'
             ? 'AI Analytics Assistant'
             : activeView === 'profile'
@@ -462,21 +471,21 @@ function ClientDashboard() {
               onClick={() => setActiveView('ai-chat')}
             />
           )}
-          <NavItem icon={Calendar} label="Patient Count" active={activeView === 'patient-count'} onClick={() => setActiveView('patient-count')} />
+          <NavItem icon={Calendar} label="Performance" active={activeView === 'patient-count'} onClick={() => setActiveView('patient-count')} />
           <NavItem
             icon={CreditCard}
             label="Membership"
             active={activeView === 'membership'}
             onClick={() => setActiveView('membership')}
             badge={currentPlanId ? (
-              currentPlanId === 'premium' ? 'Scale Elite' : 
-              currentPlanId === 'gold' ? 'Growth Pro' : 
-              'Starter Care'
+              currentPlanId === 'scale' || currentPlanId === 'premium' ? 'Scale' : 
+              currentPlanId === 'growth' || currentPlanId === 'gold' ? 'Growth' : 
+              'Hourly'
             ) : fallbackPlanLabel}
           />
           <NavItem icon={User} label="Profile" active={activeView === 'profile'} onClick={() => setActiveView('profile')} />
           <NavItem icon={Settings} label="Settings" active={activeView === 'settings'} onClick={() => setActiveView('settings')} />
-          <NavItem icon={Users} label="Patient Leads" badge="Coming Soon" onClick={() => {}} />
+          <NavItem icon={Users} label="Lead Tracking" badge="Coming Soon" onClick={() => {}} />
         </nav>
       </aside>
 
@@ -492,7 +501,7 @@ function ClientDashboard() {
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input 
                 type="text" 
-                placeholder="Search patients..." 
+                placeholder="Search..." 
                 className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-2xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/10 dark:text-slate-200 transition-all shadow-sm"
               />
             </div>
@@ -648,7 +657,7 @@ function ClientDashboard() {
               {myClinics.length > 1 && (
                 <div className="mb-6">
                   <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider mb-2.5 text-slate-500 dark:text-slate-400">
-                    <Building2 className="h-3.5 w-3.5" /> Select Clinic
+                    <Building2 className="h-3.5 w-3.5" /> Select Account
                   </label>
                   <div className="relative max-w-sm">
                     <select
@@ -673,8 +682,8 @@ function ClientDashboard() {
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-purple-500/20">
                     <Globe className="h-8 w-8 text-white" />
                   </div>
-                  <p className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">No Clinics Found</p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">You need to be assigned to a clinic to view Search Console data.</p>
+                  <p className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">No Accounts Found</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">You need to be assigned to an account to view Search Console data.</p>
                 </div>
               ) : null}
             </motion.div>
@@ -707,9 +716,9 @@ function ClientDashboard() {
                       <Sparkles className="h-6 w-6 text-violet-500" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2">Premium AI Analytics is available on Scale Elite</h3>
+                      <h3 className="text-2xl font-bold mb-2">Premium AI Analytics is available on Scale</h3>
                       <p className="text-slate-600 dark:text-slate-300 mb-6 max-w-3xl">
-                        Get an AI assistant that uses your real dashboard data to answer performance questions, compare clinics, and recommend next actions.
+                        Get an AI assistant that uses your real dashboard data to answer performance questions, compare accounts, and recommend next actions.
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         <div className="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">
@@ -717,8 +726,8 @@ function ClientDashboard() {
                           <div className="text-sm text-slate-600 dark:text-slate-400">Uses your actual weekly analytics records.</div>
                         </div>
                         <div className="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">
-                          <div className="font-semibold mb-1">Clinic-Level Insights</div>
-                          <div className="text-sm text-slate-600 dark:text-slate-400">Compare all clinics or drill into one location.</div>
+                          <div className="font-semibold mb-1">Account-Level Insights</div>
+                          <div className="text-sm text-slate-600 dark:text-slate-400">Compare all accounts or drill into one location.</div>
                         </div>
                         <div className="p-4 rounded-2xl bg-white/70 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">
                           <div className="font-semibold mb-1">Actionable Next Steps</div>
@@ -729,7 +738,7 @@ function ClientDashboard() {
                         onClick={() => setActiveView('membership')}
                         className="rounded-xl bg-violet-500 px-5 py-3 text-white font-semibold hover:bg-violet-600 transition-colors"
                       >
-                        Upgrade to Scale Elite
+                        Upgrade to Scale
                       </button>
                     </div>
                   </div>
@@ -1081,9 +1090,9 @@ function OverviewView({
       {myClinics.length === 0 ? (
         <div className="glass rounded-[2.5rem] p-12 border border-slate-200 dark:border-slate-700 text-center">
           <Building2 className="h-16 w-16 mx-auto mb-4 text-slate-300 dark:text-slate-600" />
-          <h2 className="text-2xl font-bold mb-4">No Clinics Assigned</h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-2">Please contact your administrator to assign clinics to your dashboard.</p>
-          <p className="text-sm text-slate-400 dark:text-slate-500">Once assigned, you&apos;ll see live patient counts and analytics for each location.</p>
+          <h2 className="text-2xl font-bold mb-4">No Accounts Assigned</h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-2">Please contact your administrator to assign accounts to your dashboard.</p>
+          <p className="text-sm text-slate-400 dark:text-slate-500">Once assigned, you&apos;ll see live analytics and insights for each account.</p>
         </div>
       ) : loadingAnalytics ? (
         <div className="flex items-center justify-center py-24">
@@ -1098,7 +1107,7 @@ function OverviewView({
 
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <StatCard label="Patient Count" value={totalPatients.toLocaleString()} change={fmtChange(totalPatients, totalPrevPatients)} negative={totalPatients < totalPrevPatients} />
+            <StatCard label="Lead Count" value={totalPatients.toLocaleString()} change={fmtChange(totalPatients, totalPrevPatients)} negative={totalPatients < totalPrevPatients} />
             <StatCard label="Total Traffic" value={totalTraffic.toLocaleString()} change={fmtChange(totalTraffic, totalPrevTraffic)} negative={totalTraffic < totalPrevTraffic} />
             <StatCard label="GMB Calls" value={totalCalls.toLocaleString()} change={fmtChange(totalCalls, totalPrevCalls)} negative={totalCalls < totalPrevCalls} />
             <StatCard label="Active Locations" value={myClinics.length.toString()} change="" />
@@ -1111,7 +1120,7 @@ function OverviewView({
           {/* Assigned Clinics Cards */}
           <div className="glass rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-700 mb-12">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold">Your Assigned Facilities</h3>
+              <h3 className="text-xl font-bold">Your Assigned Accounts</h3>
               <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">{lastMonthLabel} data</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1140,7 +1149,7 @@ function OverviewView({
                   </div>
                   <div className="flex justify-between items-center text-sm mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
                     <div>
-                      <span className="text-slate-500 dark:text-slate-400 block text-xs">Patient Count</span>
+                      <span className="text-slate-500 dark:text-slate-400 block text-xs">Lead Count</span>
                       <span className="font-bold text-emerald-500 text-2xl">{clinic.lastPatients}</span>
                     </div>
                     <div>
@@ -1164,7 +1173,7 @@ function OverviewView({
             {/* Patient Count by Location */}
             {patientBarData.length > 0 && (
               <div className="glass rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold mb-6">Patient Count by Location</h3>
+                <h3 className="text-xl font-bold mb-6">Lead Count by Location</h3>
                 <p className="text-xs text-slate-400 dark:text-slate-500 -mt-4 mb-4">{lastMonthLabel}</p>
                 <ResponsiveContainer width="100%" height={280}>
                   <BarChart data={patientBarData} layout={patientBarData.length > 3 ? 'vertical' : 'horizontal'}>
@@ -1182,7 +1191,7 @@ function OverviewView({
                     )}
                     <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid #e5e7eb' }} />
                     <Legend />
-                    <Bar dataKey="patients" fill="#10b981" name="Patient Count" radius={[4, 4, 4, 4]} />
+                    <Bar dataKey="patients" fill="#10b981" name="Lead Count" radius={[4, 4, 4, 4]} />
                     <Bar dataKey="traffic" fill="#3b82f6" name="Traffic" radius={[4, 4, 4, 4]} />
                   </BarChart>
                 </ResponsiveContainer>
@@ -1192,7 +1201,7 @@ function OverviewView({
             {/* Patient Share Pie Chart */}
             {patientShareData.length > 0 && (
               <div className="glass rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold mb-6">Patient Share by Location</h3>
+                <h3 className="text-xl font-bold mb-6">Lead Share by Location</h3>
                 <p className="text-xs text-slate-400 dark:text-slate-500 -mt-4 mb-4">{lastMonthLabel}</p>
                 <ResponsiveContainer width="100%" height={280}>
                   <PieChart>
@@ -1220,7 +1229,7 @@ function OverviewView({
           {/* Patient Growth by Location */}
           {growthBarData.length > 0 && (
             <div className="glass rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-700 mb-12">
-              <h3 className="text-xl font-bold mb-2">Patient Growth by Location</h3>
+              <h3 className="text-xl font-bold mb-2">Lead Growth by Location</h3>
               <p className="text-xs text-slate-400 dark:text-slate-500 mb-6">{prevMonthLabel} → {lastMonthLabel} (% change)</p>
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={growthBarData}>
@@ -1251,9 +1260,9 @@ function NavItem({ icon: Icon, label, active = false, onClick, badge }: { icon: 
   const getBadgeClasses = (badgeText?: string) => {
     if (!badgeText) return 'bg-slate-200 dark:bg-slate-600 text-slate-900 dark:text-white';
     if (badgeText === 'Coming Soon') return 'bg-slate-200/80 dark:bg-slate-600/80 text-slate-500 dark:text-slate-400';
-    if (badgeText === 'Scale Elite') return 'bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 text-amber-800 dark:text-amber-400';
-    if (badgeText === 'Growth Pro') return 'bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-500/20 dark:to-indigo-500/20 text-blue-800 dark:text-blue-400';
-    if (badgeText === 'Starter Care') return 'bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-500/20 dark:to-teal-500/20 text-emerald-800 dark:text-emerald-400';
+    if (badgeText === 'Scale') return 'bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 text-amber-800 dark:text-amber-400';
+    if (badgeText === 'Growth') return 'bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-500/20 dark:to-indigo-500/20 text-blue-800 dark:text-blue-400';
+    if (badgeText === 'Hourly') return 'bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-500/20 dark:to-teal-500/20 text-emerald-800 dark:text-emerald-400';
     if (badgeText === 'Premium' || badgeText === 'Premium Only') return 'bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-500/20 dark:to-indigo-500/20 text-purple-800 dark:text-purple-400';
     return 'bg-slate-200 dark:bg-slate-600 text-slate-900 dark:text-white';
   };
@@ -1668,7 +1677,7 @@ function SettingsView({ role, setToast }: { role: 'client' | 'admin'; setToast: 
         <p className="text-sm text-slate-600 dark:text-slate-400">
           {role === 'admin'
             ? 'Manage administrative account credentials and secure platform access.'
-            : 'Manage your clinic account credentials and keep your login secure.'}
+            : 'Manage your account credentials and keep your login secure.'}
         </p>
       </div>
     </div>

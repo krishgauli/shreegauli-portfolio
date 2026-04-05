@@ -37,12 +37,12 @@ const promptTemplates: PromptTemplate[] = [
   },
   {
     label: 'Social Caption',
-    prompt: 'Write an engaging social media caption for a healthcare clinic',
+    prompt: 'Write an engaging social media caption for a digital marketing agency',
     mode: 'text',
   },
   {
     label: 'Promo Image',
-    prompt: 'A professional healthcare clinic promotional image with modern design',
+    prompt: 'A professional business promotional image with modern design',
     mode: 'image',
   },
   {

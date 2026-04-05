@@ -53,7 +53,7 @@ async function savePaymentToDB(
     const updatedUser = await prisma.user.update({
       where: { id: userId },
       data: {
-        plan: planId === 'silver' ? 'Starter Care' : planId === 'gold' ? 'Growth Pro' : 'Scale Elite',
+        plan: planId === 'hourly' || planId === 'silver' ? 'Hourly' : planId === 'growth' || planId === 'gold' ? 'Growth' : 'Scale',
         planId: planId,
         subscriptionStatus: 'active',
         updatedAt: new Date(),
@@ -102,9 +102,12 @@ export async function POST(req: NextRequest) {
     }
 
     const planMap: Record<string, string> = {
-      'silver': 'Starter Care - $5,000/month',
-      'gold': 'Growth Pro - $10,000/month',
-      'premium': 'Scale Elite - Custom pricing',
+      'hourly': 'Hourly - $50/hour',
+      'growth': 'Growth - $1,499/month',
+      'scale': 'Scale - $2,500/month',
+      'silver': 'Hourly - $50/hour',
+      'gold': 'Growth - $1,499/month',
+      'premium': 'Scale - $2,500/month',
     };
 
     // Demo mode for testing

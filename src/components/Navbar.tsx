@@ -282,7 +282,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                                   ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
                                   : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                             }`}>
-                              {user.plan === 'premium' ? 'Scale Elite' : user.plan === 'gold' ? 'Growth Pro' : 'Starter Care'}
+                              {user.plan === 'premium' ? 'Scale' : user.plan === 'gold' ? 'Growth' : 'Hourly'}
                             </span>
                           )}
                         </div>

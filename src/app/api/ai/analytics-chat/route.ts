@@ -309,11 +309,12 @@ export async function POST(req: NextRequest) {
     const isPremium =
       planId === 'premium' ||
       planId === 'scale elite' ||
+      planId === 'scale' ||
       planId === 'platinum';
 
     if (!isPremium) {
       return NextResponse.json(
-        { error: 'This feature is available exclusively for Scale Elite (Premium) plan members.' },
+        { error: 'This feature is available exclusively for Scale (Premium) plan members.' },
         { status: 403 },
       );
     }
@@ -328,7 +329,7 @@ export async function POST(req: NextRequest) {
     const clinics = await getUserClinics(user.id);
     if (clinics.length === 0) {
       return NextResponse.json({
-        reply: 'You don\'t have any clinics assigned yet. Please contact your account manager to get started.',
+        reply: 'You don\'t have any accounts assigned yet. Please contact your account manager to get started.',
       });
     }
 
@@ -352,7 +353,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-/* ─── GET handler — returns clinic list for the authenticated user ─── */
+/* ─── GET handler — returns account list for the authenticated user ─── */
 export async function GET(req: NextRequest) {
   try {
     const user = await getAuthUser(req);
@@ -364,6 +365,7 @@ export async function GET(req: NextRequest) {
     const isPremium =
       planId === 'premium' ||
       planId === 'scale elite' ||
+      planId === 'scale' ||
       planId === 'platinum';
 
     const clinics = await getUserClinics(user.id);

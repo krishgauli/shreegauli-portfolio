@@ -260,7 +260,7 @@ export default function PremiumAnalyticsChat({
           {
             id: `err-${Date.now()}`,
             role: 'assistant',
-            content: data.error || 'This feature requires a Premium (Scale Elite) plan.',
+            content: data.error || 'This feature requires a Premium (Scale) plan.',
             timestamp: new Date(),
           },
         ]);

@@ -159,16 +159,16 @@ export async function PATCH(req: NextRequest) {
         updateData.planId = null;
         updateData.subscriptionStatus = null;
       } else if (normalizedMembershipRole === 'starter-care') {
-        updateData.plan = 'Starter Care';
-        updateData.planId = 'silver';
+        updateData.plan = 'Hourly';
+        updateData.planId = 'hourly';
         updateData.subscriptionStatus = 'active';
       } else if (normalizedMembershipRole === 'growth-pro') {
-        updateData.plan = 'Growth Pro';
-        updateData.planId = 'gold';
+        updateData.plan = 'Growth';
+        updateData.planId = 'growth';
         updateData.subscriptionStatus = 'active';
       } else if (normalizedMembershipRole === 'scale-elite') {
-        updateData.plan = 'Scale Elite';
-        updateData.planId = 'premium';
+        updateData.plan = 'Scale';
+        updateData.planId = 'scale';
         updateData.subscriptionStatus = 'active';
       }
     }
