@@ -1767,7 +1767,7 @@ function AdminDashboardContent() {
     setDeleteModal({
       isOpen: true,
       title: 'Disconnect Google Account',
-      description: `This will revoke access, remove all synced Google data (Business Profile, Analytics, Search Console), and stop future syncs for this clinic. This action cannot be undone.`,
+      description: `This will revoke access and remove synced Search Console data for this clinic. This action cannot be undone.`,
       itemName: connectedEmail,
       isLoading: false,
       onConfirm: async () => {
@@ -1824,7 +1824,7 @@ function AdminDashboardContent() {
       setGmbState(prev => ({
         ...prev,
         connecting: false,
-        message: success ? (message || 'Google Business Profile connected successfully!') : '',
+        message: success ? (message || 'Google Search Console connected successfully!') : '',
         error: success ? '' : (message || 'Failed to connect Google account'),
       }));
       // Always re-fetch with forceRefresh after OAuth
@@ -1912,11 +1912,11 @@ function AdminDashboardContent() {
         }
       }, 5 * 60 * 1000);
     } catch (error: any) {
-      console.error('Error starting GMB connection:', error);
+      console.error('Error starting Search Console connection:', error);
       setGmbState(prev => ({
         ...prev,
         connecting: false,
-        error: error?.message || 'Failed to start GMB connection. Check configuration.',
+        error: error?.message || 'Failed to start Search Console connection. Check configuration.',
       }));
     }
   };
@@ -2501,8 +2501,8 @@ function AdminDashboardContent() {
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white">Google Integrations</h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Business Profile · Analytics · Search Console</p>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">Google Search Console</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Search Console only for this clinic</p>
                 </div>
               </div>
               {/* Status badge — shows nuanced state */}
@@ -2512,11 +2512,9 @@ function AdminDashboardContent() {
                     <span className="h-2 w-2 rounded-full bg-slate-400" /> Not Connected
                   </span>
                 );
-                const hasGBP = !!gmbState.connection.businessLocationId;
-                const hasGA4 = !!gmbState.selectedGA4Property;
                 const hasSC = !!gmbState.selectedSCSite;
-                const allConfigured = hasGBP && hasGA4 && hasSC;
-                const anyConfigured = hasGBP || hasGA4 || hasSC;
+                const allConfigured = hasSC;
+                const anyConfigured = hasSC;
                 if (gmbState.syncing || gmbState.confirmSyncing) return (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400">
                     <DashboardLoader variant="inline" className="text-blue-500" /> Syncing
@@ -2554,9 +2552,9 @@ function AdminDashboardContent() {
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 flex items-center justify-center mx-auto mb-5 shadow-sm">
                     <Link2 className="h-8 w-8 text-blue-500" />
                   </div>
-                  <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">Connect your Google Account</h4>
+                  <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">Connect Google Search Console</h4>
                   <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 max-w-sm mx-auto leading-relaxed">
-                    Link a Google account to enable Business Profile, Google Analytics, and Search Console for this clinic.
+                    Link a Google account to enable Search Console for this clinic.
                   </p>
                   <button
                     onClick={handleGmbConnect}
@@ -2566,7 +2564,7 @@ function AdminDashboardContent() {
                     {gmbState.connecting ? (
                       <><DashboardLoader variant="inline" className="text-white" /> Connecting...</>
                     ) : (
-                      <><Link2 className="h-4 w-4" /> Connect Google Account</>
+                      <><Link2 className="h-4 w-4" /> Connect Search Console</>
                     )}
                   </button>
                 </div>
@@ -2621,7 +2619,7 @@ function AdminDashboardContent() {
                     </div>
 
                     {/* STEP 1: Google Business Profile */}
-                    <div className="rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden bg-white/70 dark:bg-slate-800/30 backdrop-blur-sm">
+                    <div className="hidden rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden bg-white/70 dark:bg-slate-800/30 backdrop-blur-sm">
                       <div className="flex items-center gap-3 px-5 py-4 bg-white/80 dark:bg-slate-800/60 border-b border-slate-100 dark:border-slate-700/50">
                         <span className="h-7 w-7 rounded-lg bg-blue-500 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
                         <div className="flex-1 min-w-0">
@@ -2702,7 +2700,7 @@ function AdminDashboardContent() {
                     </div>
 
                     {/* STEP 2: Google Analytics GA4 */}
-                    <div className="rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden bg-white/70 dark:bg-slate-800/30 backdrop-blur-sm">
+                    <div className="hidden rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden bg-white/70 dark:bg-slate-800/30 backdrop-blur-sm">
                       <div className="flex items-center gap-3 px-5 py-4 bg-white/80 dark:bg-slate-800/60 border-b border-slate-100 dark:border-slate-700/50">
                         <span className="h-7 w-7 rounded-lg bg-orange-500 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
                         <div className="flex-1 min-w-0">
@@ -2757,7 +2755,7 @@ function AdminDashboardContent() {
                     {/* STEP 3: Search Console */}
                     <div className="rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden bg-white/70 dark:bg-slate-800/30 backdrop-blur-sm">
                       <div className="flex items-center gap-3 px-5 py-4 bg-white/80 dark:bg-slate-800/60 border-b border-slate-100 dark:border-slate-700/50">
-                        <span className="h-7 w-7 rounded-lg bg-purple-500 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
+                        <span className="h-7 w-7 rounded-lg bg-purple-500 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-bold text-slate-800 dark:text-slate-200">Search Console</p>
                           <p className="text-[11px] text-slate-400 dark:text-slate-500">Select your Search Console property for SEO data</p>
@@ -2808,7 +2806,7 @@ function AdminDashboardContent() {
                     </div>
 
                     {/* STEP 4: Google Ads */}
-                    <div className="rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden bg-white/70 dark:bg-slate-800/30 backdrop-blur-sm">
+                    <div className="hidden rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden bg-white/70 dark:bg-slate-800/30 backdrop-blur-sm">
                       <div className="flex items-center gap-3 px-5 py-4 bg-white/80 dark:bg-slate-800/60 border-b border-slate-100 dark:border-slate-700/50">
                         <span className="h-7 w-7 rounded-lg bg-green-500 text-white text-xs font-bold flex items-center justify-center shrink-0">4</span>
                         <div className="flex-1 min-w-0">
@@ -2868,10 +2866,7 @@ function AdminDashboardContent() {
                     {/* Integration summary chips */}
                     <div className="flex items-center gap-2 flex-wrap">
                       {[
-                        { key: 'GBP', active: !!gmbState.connection.businessLocationId, label: gmbState.connection.locationName || 'Business Profile' },
-                        { key: 'GA4', active: !!gmbState.selectedGA4Property, label: gmbState.ga4Properties.find(p => p.propertyId === gmbState.selectedGA4Property)?.displayName || 'Analytics' },
                         { key: 'SC', active: !!gmbState.selectedSCSite, label: gmbState.selectedSCSite || 'Search Console' },
-                        { key: 'Ads', active: !!gmbState.selectedAdsCustomerId, label: gmbState.adsAccounts.find(a => a.customerId === gmbState.selectedAdsCustomerId)?.descriptiveName || 'Google Ads' },
                       ].map(item => (
                         <span key={item.key} className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full border ${
                           item.active
@@ -2890,55 +2885,19 @@ function AdminDashboardContent() {
                         if (!editingClinic?.id) return;
                         setGmbState(prev => ({ ...prev, analyticsSaving: true, error: '', message: '', showProgress: true, syncProgress: 0, syncProgressLabel: 'Saving Configuration...' }));
                         try {
-                          // Save GBP selection if changed
-                          if (gmbState.selectedAccount && gmbState.selectedLocation) {
-                            setGmbState(prev => ({ ...prev, syncProgress: 20, syncProgressLabel: 'Saving Business Profile selection...' }));
-                            const gbpRes = await fetch('/api/admin/gmb/select-location', {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({
-                                clinicId: editingClinic.id,
-                                accountName: gmbState.selectedAccount,
-                                locationName: gmbState.selectedLocation,
-                              }),
-                            });
-                            if (!gbpRes.ok) {
-                              const err = await gbpRes.json();
-                              throw new Error(err.error || 'Failed to save Business Profile selection');
-                            }
-                          }
-                          setGmbState(prev => ({ ...prev, syncProgress: 50, syncProgressLabel: 'Saving analytics settings...' }));
-                          // Save GA4 + SC selections
-                          if (gmbState.selectedGA4Property || gmbState.selectedSCSite) {
-                            const analyticsRes = await fetch('/api/admin/gmb/select-analytics', {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({
-                                clinicId: editingClinic.id,
-                                ga4PropertyId: gmbState.selectedGA4Property,
-                                searchConsoleSite: gmbState.selectedSCSite,
-                              }),
-                            });
-                            if (!analyticsRes.ok) {
-                              const err = await analyticsRes.json();
-                              throw new Error(err.error || 'Failed to save analytics configuration');
-                            }
-                          }
-                          // Save Google Ads selection
-                          if (gmbState.selectedAdsCustomerId) {
-                            setGmbState(prev => ({ ...prev, syncProgress: 65, syncProgressLabel: 'Saving Google Ads selection...' }));
-                            const adsRes = await fetch('/api/admin/gmb/select-ads', {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({
-                                clinicId: editingClinic.id,
-                                googleAdsCustomerId: gmbState.selectedAdsCustomerId,
-                              }),
-                            });
-                            if (!adsRes.ok) {
-                              const err = await adsRes.json();
-                              throw new Error(err.error || 'Failed to save Google Ads configuration');
-                            }
+                          setGmbState(prev => ({ ...prev, syncProgress: 50, syncProgressLabel: 'Saving Search Console selection...' }));
+                          const analyticsRes = await fetch('/api/admin/gmb/select-analytics', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              clinicId: editingClinic.id,
+                              ga4PropertyId: '',
+                              searchConsoleSite: gmbState.selectedSCSite,
+                            }),
+                          });
+                          if (!analyticsRes.ok) {
+                            const err = await analyticsRes.json();
+                            throw new Error(err.error || 'Failed to save Search Console configuration');
                           }
                           setGmbState(prev => ({ ...prev, syncProgress: 80, syncProgressLabel: 'Refreshing connection data...' }));
                           await fetchGmbConnection(editingClinic.id, true);
@@ -2949,7 +2908,7 @@ function AdminDashboardContent() {
                             analyticsSaving: false,
                             showProgress: false,
                             syncProgress: 0,
-                            message: 'Configuration saved successfully. You can now sync data.',
+                            message: 'Search Console configuration saved successfully. You can now sync data.',
                           }));
                         } catch (err: any) {
                           setGmbState(prev => ({
@@ -2961,7 +2920,7 @@ function AdminDashboardContent() {
                           }));
                         }
                       }}
-                      disabled={gmbState.analyticsSaving || (!gmbState.selectedAccount && !gmbState.selectedGA4Property && !gmbState.selectedSCSite && !gmbState.selectedAdsCustomerId)}
+                      disabled={gmbState.analyticsSaving || !gmbState.selectedSCSite}
                       className={`w-full px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 ${
                         gmbState.analyticsSaving
                           ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 cursor-wait'
@@ -2986,51 +2945,24 @@ function AdminDashboardContent() {
                         // Run sync async — popup tracks progress; closing popup does NOT abort sync
                         (async () => {
                           try {
-                            let step = 0;
-                            const hasGbp = !!gmbState.connection.businessLocationId;
-                            const hasAnalytics = !!(gmbState.selectedGA4Property || gmbState.selectedSCSite || gmbState.selectedAdsCustomerId);
-                            const totalSteps = (hasGbp ? 1 : 0) + (hasAnalytics ? 1 : 0);
-                            if (totalSteps === 0) throw new Error('No integrations configured to sync');
+                            if (!gmbState.selectedSCSite) throw new Error('No Search Console site selected to sync');
 
-                            if (gmbState.connection.businessLocationId) {
-                              step++;
-                              updateSyncPopup({ progress: Math.round((step / (totalSteps + 1)) * 70), label: 'Syncing Business Profile data...' });
-                              const r = await fetch('/api/admin/gmb/sync', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ clinicId: editingClinic.id }),
-                              });
-                              if (r.status === 429) {
-                                const data = await r.json();
-                                if (data.secondsUntilNext) startSyncCooldown(data.secondsUntilNext);
-                                throw new Error(data.error || 'Sync cooldown active. Please wait before retrying.');
-                              }
-                              if (!r.ok) throw new Error('GBP sync failed');
+                            updateSyncPopup({ progress: 35, label: 'Syncing Search Console data...' });
+                            const r = await fetch('/api/admin/gmb/sync-analytics', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ clinicId: editingClinic.id }),
+                            });
+                            const syncResult = await r.json().catch(() => ({}));
+                            if (r.status === 429) {
+                              if (syncResult.secondsUntilNext) startSyncCooldown(syncResult.secondsUntilNext);
+                              throw new Error(syncResult.error || 'Search Console sync is on cooldown. Please wait before retrying.');
                             }
-
-                            if (gmbState.selectedGA4Property || gmbState.selectedSCSite || gmbState.selectedAdsCustomerId) {
-                              step++;
-                              const syncingParts: string[] = [];
-                              if (gmbState.selectedGA4Property) syncingParts.push('Analytics');
-                              if (gmbState.selectedSCSite) syncingParts.push('Organic Traffic');
-                              if (gmbState.selectedAdsCustomerId) syncingParts.push('Google Ads');
-                              updateSyncPopup({ progress: Math.round((step / (totalSteps + 1)) * 70), label: `Syncing ${syncingParts.join(' & ')}...` });
-                              const r = await fetch('/api/admin/gmb/sync-analytics', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ clinicId: editingClinic.id }),
-                              });
-                              const syncResult = await r.json().catch(() => ({}));
-                              if (r.status === 429) {
-                                if (syncResult.secondsUntilNext) startSyncCooldown(syncResult.secondsUntilNext);
-                                throw new Error(syncResult.error || 'Analytics sync is on cooldown. Please wait before retrying.');
-                              }
-                              if (!r.ok) {
-                                throw new Error(syncResult.error || 'Analytics sync failed');
-                              }
-                              if (syncResult.partial && syncResult.errors) {
-                                console.warn('Partial sync success:', syncResult.errors);
-                              }
+                            if (!r.ok) {
+                              throw new Error(syncResult.error || 'Search Console sync failed');
+                            }
+                            if (syncResult.partial && syncResult.errors) {
+                              console.warn('Partial sync success:', syncResult.errors);
                             }
 
                             updateSyncPopup({ progress: 85, label: 'Refreshing connection status...' });
@@ -3046,7 +2978,7 @@ function AdminDashboardContent() {
                           }
                         })();
                       }}
-                      disabled={gmbState.confirmSyncing || syncPopup.status === 'syncing' || gmbState.syncCooldownSeconds > 0 || (!gmbState.connection.businessLocationId && !gmbState.selectedGA4Property && !gmbState.selectedSCSite && !gmbState.selectedAdsCustomerId)}
+                      disabled={gmbState.confirmSyncing || syncPopup.status === 'syncing' || gmbState.syncCooldownSeconds > 0 || !gmbState.selectedSCSite}
                       className={`w-full px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border ${
                         gmbState.confirmSyncing || syncPopup.status === 'syncing'
                           ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800/40 text-blue-600 dark:text-blue-400 cursor-wait'

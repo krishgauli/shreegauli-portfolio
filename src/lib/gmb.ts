@@ -26,10 +26,7 @@ export const GMB_SCOPES = [
   'openid',
   'email',
   'profile',
-  'https://www.googleapis.com/auth/business.manage',
-  'https://www.googleapis.com/auth/analytics.readonly',
   'https://www.googleapis.com/auth/webmasters.readonly',
-  'https://www.googleapis.com/auth/adwords',
 ];
 
 const DAILY_METRICS = [
@@ -114,9 +111,9 @@ export function parseGmbState(state: string) {
 }
 
 export function getGmbOAuthUrl(clinicId: string) {
-  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
   if (!clientId) {
-    throw new Error('GOOGLE_CLIENT_ID is not configured');
+    throw new Error('GOOGLE_CLIENT_ID is not configured (or NEXT_PUBLIC_GOOGLE_CLIENT_ID fallback)');
   }
 
   const redirectUri = `${getAppUrl()}/api/admin/gmb/callback`;

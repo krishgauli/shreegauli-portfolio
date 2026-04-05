@@ -20,7 +20,7 @@ function popupHtml(success: boolean, message: string, clinicId?: string) {
 <!doctype html>
 <html>
   <head>
-    <title>Connecting Google Business Profile...</title>
+    <title>Connecting Google Search Console...</title>
   </head>
   <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto Oxide', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #f5f5f5;">
     <div style="text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 400px;">
@@ -120,7 +120,7 @@ export async function GET(req: NextRequest) {
     // Clear cached API responses so fresh data is fetched
     await clearGmbCache(parsedState.clinicId);
 
-    return new NextResponse(popupHtml(true, 'Google Business Profile connected. Select account and location to finish setup.', parsedState.clinicId), {
+    return new NextResponse(popupHtml(true, 'Google Search Console connected. Select your Search Console site to finish setup.', parsedState.clinicId), {
       status: 200,
       headers: { 'Content-Type': 'text/html' },
     });

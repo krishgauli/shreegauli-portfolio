@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/auth';
 
 /**
- * Endpoint to generate GMB OAuth URL without redirecting.
+ * Endpoint to generate Google Search Console OAuth URL without redirecting.
  * Returns JSON with auth URL that can be opened in a popup window.
  * Useful for client-side OAuth flow handling.
  */
@@ -35,10 +35,10 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (error: any) {
-    console.error('[GMB Auth URL] Error:', error);
+    console.error('[Search Console Auth URL] Error:', error);
     return NextResponse.json(
       {
-        error: 'Failed to generate GMB auth URL',
+        error: 'Failed to generate Google Search Console auth URL',
       },
       { status: 500 }
     );
