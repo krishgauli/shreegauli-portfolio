@@ -1,22 +1,40 @@
 import { Star } from "lucide-react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import type { Testimonial } from "@/types";
+import { cn } from "@/lib/utils";
 
-export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+export function TestimonialCard({
+  testimonial,
+  className,
+}: {
+  testimonial: Testimonial;
+  className?: string;
+}) {
   return (
-    <ModuleShell className="p-8 flex flex-col gap-6" enableHoverLift glowColor="violet">
+    <ModuleShell
+      className={cn("h-full p-8 flex flex-col gap-6", className)}
+      enableHoverLift
+      glowColor="violet"
+    >
       {/* Stars */}
-      <div className="flex gap-1">
-        {Array.from({ length: testimonial.stars }).map((_, i) => (
-          <Star
-            key={i}
-            className="h-4 w-4 fill-[#F59E0B] text-[#F59E0B]"
-          />
-        ))}
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex gap-1">
+          {Array.from({ length: testimonial.stars }).map((_, i) => (
+            <Star
+              key={i}
+              className="h-4 w-4 fill-[#F59E0B] text-[#F59E0B]"
+            />
+          ))}
+        </div>
+        {testimonial.result && (
+          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]">
+            {testimonial.result}
+          </span>
+        )}
       </div>
 
       {/* Quote */}
-      <blockquote className="text-[#F8FAFC] text-sm md:text-base leading-relaxed">
+      <blockquote className="text-[#F8FAFC] text-base md:text-[1.05rem] leading-[1.8]">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
 

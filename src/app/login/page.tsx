@@ -34,14 +34,20 @@ function LoginContent() {
     async function handleMessage(e: MessageEvent) {
       if (e.data?.type === 'OAUTH_AUTH_SUCCESS') {
         if (e.data?.token) {
-          await fetch('/api/auth/token-login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: e.data.token }),
-          });
+          try {
+            await fetch('/api/auth/token-login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token: e.data.token }),
+            });
+          } catch (err) {
+            console.error('Token login error:', err);
+          }
         }
         const role = e.data?.user?.role;
-        router.push(role === 'admin' || role === 'super_admin' ? '/dashboard/admin' : '/dashboard/client');
+        const target = role === 'admin' || role === 'super_admin' ? '/dashboard/admin' : '/dashboard/client';
+        // Use window.location for reliable full-page redirect after auth
+        window.location.href = target;
       } else if (e.data?.type === 'OAUTH_AUTH_ERROR') {
         setGoogleLoading(false);
         setError(e.data?.error || 'Google sign-in failed');

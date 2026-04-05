@@ -17,6 +17,7 @@ import { mobileMenuVariants, navbarEntrance } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
 import { useAuth } from "@/components/AuthProvider";
+import { useRouter } from "next/navigation";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,6 +25,7 @@ export function Navbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { user, logout } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -56,6 +58,7 @@ export function Navbar() {
   const handleLogout = async () => {
     await logout();
     setUserMenuOpen(false);
+    router.push('/login');
   };
 
   return (

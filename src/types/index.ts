@@ -73,6 +73,7 @@ export interface Testimonial {
   avatarInitials: string;
   avatarColor: string;
   stars: number;
+  result?: string;
 }
 
 export interface Article {

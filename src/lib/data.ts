@@ -213,6 +213,7 @@ export const testimonials: Testimonial[] = [
     avatarInitials: "SM",
     avatarColor: "#7C3AED",
     stars: 5,
+    result: "+185% qualified organic traffic",
   },
   {
     id: "t2",
@@ -224,6 +225,7 @@ export const testimonials: Testimonial[] = [
     avatarInitials: "DR",
     avatarColor: "#22D3EE",
     stars: 5,
+    result: "2.1x ROAS in 30 days",
   },
   {
     id: "t3",
@@ -235,6 +237,43 @@ export const testimonials: Testimonial[] = [
     avatarInitials: "PK",
     avatarColor: "#F59E0B",
     stars: 5,
+    result: "20+ hours saved weekly",
+  },
+  {
+    id: "t4",
+    quote:
+      "Our reporting used to be a mess of screenshots and guesses. Shree turned it into one clean dashboard tied to real business outcomes, and suddenly our weekly decisions got much easier.",
+    name: "Maria L.",
+    role: "Marketing Director",
+    company: "Multi-Location Clinic",
+    avatarInitials: "ML",
+    avatarColor: "#38BDF8",
+    stars: 5,
+    result: "Weekly reporting time cut by 80%",
+  },
+  {
+    id: "t5",
+    quote:
+      "The best part was not just traffic growth. Shree fixed the offer positioning, tightened the funnel, and helped us generate leads that were actually qualified enough for sales to close.",
+    name: "Omar T.",
+    role: "Co-Founder",
+    company: "B2B Services Firm",
+    avatarInitials: "OT",
+    avatarColor: "#A855F7",
+    stars: 5,
+    result: "3.4x more qualified demo requests",
+  },
+  {
+    id: "t6",
+    quote:
+      "We brought Shree in for Google Ads, but the real value was the strategic clarity. He found the leaks across tracking, landing pages, and follow-up, then fixed all three fast.",
+    name: "Jenna P.",
+    role: "Growth Lead",
+    company: "DTC Wellness Brand",
+    avatarInitials: "JP",
+    avatarColor: "#F97316",
+    stars: 5,
+    result: "CPL down 37% after rebuild",
   },
 ];
 

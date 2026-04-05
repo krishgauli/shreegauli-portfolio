@@ -61,6 +61,14 @@ function htmlResponse(
               try {
                 window.opener.postMessage(parsed, ${JSON.stringify(targetOrigin)});
                 updateStatus('Connected! You can close this window...');
+                // Fallback: if the window didn't close after 2s, redirect directly
+                setTimeout(function() {
+                  if (!window.closed) {
+                    var role2 = (parsed.user && parsed.user.role) ? parsed.user.role : 'client';
+                    var dp2 = role2 === 'admin' || role2 === 'super_admin' ? '/dashboard/admin' : '/dashboard/client';
+                    window.location.replace(${JSON.stringify(targetOrigin)} + dp2);
+                  }
+                }, 2000);
                 setTimeout(function() {
                   attemptClose();
                 }, 500);
@@ -69,13 +77,23 @@ function htmlResponse(
                   window.opener.postMessage(parsed, '*');
                   updateStatus('Connected! You can close this window...');
                   setTimeout(function() {
+                    if (!window.closed) {
+                      var role3 = (parsed.user && parsed.user.role) ? parsed.user.role : 'client';
+                      var dp3 = role3 === 'admin' || role3 === 'super_admin' ? '/dashboard/admin' : '/dashboard/client';
+                      window.location.replace(${JSON.stringify(targetOrigin)} + dp3);
+                    }
+                  }, 2000);
+                  setTimeout(function() {
                     attemptClose();
                   }, 500);
                 } catch (err2) {
                   updateStatus('Authentication complete. Please close this window.');
+                  // Fallback: redirect directly to dashboard
+                  var role4 = (parsed.user && parsed.user.role) ? parsed.user.role : 'client';
+                  var dp4 = role4 === 'admin' || role4 === 'super_admin' ? '/dashboard/admin' : '/dashboard/client';
                   setTimeout(function() {
-                    attemptClose();
-                  }, 1000);
+                    window.location.replace(${JSON.stringify(targetOrigin)} + dp4);
+                  }, 1500);
                 }
               }
             } else {

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { TrendingUp, Users, Zap, CheckCircle2 } from "lucide-react";
 import { floatAnimation, fadeInVariants, staggerContainer } from "@/lib/animations";
@@ -10,11 +11,15 @@ function ProfileCard() {
   return (
     <div className="module p-5 flex items-center gap-4">
       {/* Avatar */}
-      <img
-        src="/shree-gauli.png"
-        alt="Shree Krishna Gauli"
-        className="w-14 h-14 rounded-2xl object-cover shrink-0"
-      />
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-[1.35rem] border border-white/10 bg-[linear-gradient(180deg,#B3873F_0%,#A97B31_100%)]">
+        <Image
+          src="/shree-gauli.png"
+          alt="Shree Krishna Gauli"
+          fill
+          sizes="64px"
+          className="object-cover object-[center_12%] scale-[1.06]"
+        />
+      </div>
       <div>
         <p className="text-sm font-semibold text-[#F8FAFC]">Shree Krishna Gauli</p>
         <p className="text-xs text-[#94A3B8] mt-0.5">Digital Marketing Specialist</p>

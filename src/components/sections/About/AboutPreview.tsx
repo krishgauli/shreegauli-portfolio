@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Github, Linkedin } from "lucide-react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -26,16 +27,19 @@ export function AboutPreview() {
           className="mb-10"
         />
 
-        <div className="grid md:grid-cols-[280px_1fr] gap-8 items-start">
+        <div className="grid md:grid-cols-[320px_1fr] gap-8 items-start">
           {/* Portrait card */}
           <ScrollReveal direction="left">
             <ModuleShell className="overflow-hidden" enableHoverLift>
               {/* Avatar area */}
-              <div className="h-48 overflow-hidden">
-                <img
+              <div className="relative aspect-square overflow-hidden bg-[linear-gradient(180deg,#B3873F_0%,#A97B31_100%)]">
+                <Image
                   src="/shree-gauli.png"
                   alt="Shree Krishna Gauli"
-                  className="w-full h-full object-cover object-top"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 320px, 100vw"
+                  className="object-contain object-bottom scale-[1.02]"
                 />
               </div>
               <div className="p-5">
