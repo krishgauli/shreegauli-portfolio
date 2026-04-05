@@ -66,7 +66,9 @@ function addDays(date: Date, days: number) {
 }
 
 function getAppUrl() {
-  return process.env.APP_URL || 'http://localhost:3000';
+  if (process.env.APP_URL) return process.env.APP_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return 'http://localhost:3000';
 }
 
 function formatStorefrontAddress(address: any) {

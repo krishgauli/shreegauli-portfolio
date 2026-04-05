@@ -36,9 +36,10 @@ export async function GET(req: NextRequest) {
     });
   } catch (error: any) {
     console.error('[Search Console Auth URL] Error:', error);
+    const detail = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
       {
-        error: 'Failed to generate Google Search Console auth URL',
+        error: `Failed to generate Google Search Console auth URL: ${detail}`,
       },
       { status: 500 }
     );
