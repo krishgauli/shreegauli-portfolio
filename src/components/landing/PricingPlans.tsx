@@ -1,6 +1,5 @@
 'use client';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { useSitePreferences } from '@/components/SitePreferencesProvider';
 import PricingCard from '@/components/PricingCard';
 
@@ -99,7 +98,7 @@ export default function PricingPlans() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 max-w-7xl mx-auto">
           {plans.map((plan, idx) => (
             <PricingCard
               key={plan.name}

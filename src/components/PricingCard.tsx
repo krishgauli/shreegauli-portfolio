@@ -80,6 +80,7 @@ function PricingCardContent({
         return {
           background: isDark ? 'bg-slate-900/90' : 'bg-white',
           border: isDark ? 'border-slate-700' : 'border-slate-200',
+          dividerBorder: isDark ? 'border-slate-700/80' : 'border-slate-200',
           textPrimary: isDark ? 'text-slate-100' : 'text-slate-900',
           textSecondary: isDark ? 'text-slate-300' : 'text-slate-600',
           textMuted: isDark ? 'text-slate-400' : 'text-slate-500',
@@ -96,6 +97,7 @@ function PricingCardContent({
         return {
           background: isDark ? 'bg-gradient-to-br from-amber-900 via-yellow-900 to-amber-950' : 'bg-gradient-to-br from-amber-700 via-amber-600 to-yellow-700',
           border: isDark ? 'border-amber-700' : 'border-amber-500',
+          dividerBorder: isDark ? 'border-amber-700/35' : 'border-white/18',
           textPrimary: 'text-white',
           textSecondary: isDark ? 'text-amber-50' : 'text-amber-100',
           textMuted: isDark ? 'text-amber-100' : 'text-amber-50',
@@ -112,6 +114,7 @@ function PricingCardContent({
         return {
           background: isDark ? 'bg-gradient-to-br from-violet-950 via-purple-950 to-fuchsia-950' : 'bg-gradient-to-br from-violet-50 via-purple-50 to-violet-100',
           border: isDark ? 'border-purple-700' : 'border-purple-200',
+          dividerBorder: isDark ? 'border-violet-300/20' : 'border-violet-200',
           textPrimary: isDark ? 'text-violet-100' : 'text-slate-900',
           textSecondary: isDark ? 'text-violet-200/90' : 'text-slate-700',
           textMuted: isDark ? 'text-violet-300/80' : 'text-slate-600',
@@ -128,6 +131,7 @@ function PricingCardContent({
         return {
           background: isDark ? 'bg-slate-900/90' : 'bg-white',
           border: isDark ? 'border-slate-700' : 'border-slate-200',
+          dividerBorder: isDark ? 'border-slate-700/80' : 'border-slate-200',
           textPrimary: isDark ? 'text-slate-100' : 'text-slate-900',
           textSecondary: isDark ? 'text-slate-300' : 'text-slate-600',
           textMuted: isDark ? 'text-slate-400' : 'text-slate-500',
@@ -145,6 +149,8 @@ function PricingCardContent({
   
   return getCardStyles();
   }, [isDark, variant]);
+  const showPeriod = Boolean(period && price !== 'Free' && price !== 'Custom');
+  const periodLabel = showPeriod ? period.replace(/^\s*\/\s*/, '').trim() : '';
 
   const cardContent = (
     <motion.div
@@ -152,7 +158,7 @@ function PricingCardContent({
       transition={{ delay }}
       whileHover={{ y: disabled ? 0 : -4 }}
       className={`
-        relative rounded-3xl p-8 border-2 transition-all duration-300
+        relative flex h-full flex-col overflow-hidden rounded-[2rem] p-6 sm:p-7 border-2 transition-all duration-300
         ${styles.background} ${styles.border}
         ${isActive ? 'ring-4 ring-emerald-500 ring-offset-2' : ''}
         ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer shadow-lg hover:shadow-2xl'}
@@ -161,8 +167,8 @@ function PricingCardContent({
     >
       {/* Popular Badge */}
       {popular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-          <div className="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+          <div className="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[0.22em] shadow-lg whitespace-nowrap">
             {t('Popular')}
           </div>
         </div>
@@ -170,32 +176,32 @@ function PricingCardContent({
 
       {/* Active Badge */}
       {isActive && (
-        <div className="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-md">
+        <div className="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-md whitespace-nowrap">
           <Check className="h-3 w-3" /> {t('Current')}
         </div>
       )}
 
       {/* Icon if provided */}
       {Icon && (
-        <div className={`mb-4 ${styles.textPrimary} opacity-80`}>
-          <Icon className="h-10 w-10" />
+        <div className={`mb-5 ${styles.textPrimary} opacity-80`}>
+          <Icon className="h-9 w-9" />
         </div>
       )}
 
       {/* Plan Name */}
-      <h3 className={`text-2xl font-bold mb-3 ${styles.textPrimary}`}>
+      <h3 className={`text-2xl sm:text-[2rem] leading-tight font-bold mb-4 ${styles.textPrimary}`}>
         {t(name)}
       </h3>
 
       {/* Price */}
-      <div className="mb-4">
-        <div className="flex items-baseline gap-1">
-          <span className={`text-5xl font-black tracking-tight ${styles.textPrimary}`}>
+      <div className="mb-6">
+        <div className="space-y-2">
+          <span className={`block text-[clamp(2.85rem,6vw,4.6rem)] leading-none font-black tracking-[-0.05em] ${styles.textPrimary}`}>
             {price}
           </span>
-          {period && price !== 'Free' && price !== 'Custom' && (
-            <span className={`text-base font-medium ${styles.textMuted}`}>
-              {period}
+          {showPeriod && (
+            <span className={`block text-sm font-semibold uppercase tracking-[0.22em] ${styles.textMuted}`}>
+              {t(periodLabel)}
             </span>
           )}
         </div>
@@ -203,14 +209,14 @@ function PricingCardContent({
 
       {/* Description */}
       {description && (
-        <p className={`mb-6 text-sm leading-relaxed ${styles.textSecondary}`}>
+        <p className={`mb-6 min-h-[3rem] text-sm leading-relaxed ${styles.textSecondary}`}>
           {t(description)}
         </p>
       )}
 
       <motion.div
         {...ANIMATION_CONFIG.spotlight}
-        className={`mb-6 rounded-2xl p-4 relative overflow-hidden will-change-opacity ${styles.spotlightWrap}`}
+        className={`mb-8 min-h-[118px] rounded-[1.75rem] p-5 relative overflow-hidden will-change-opacity ${styles.spotlightWrap}`}
       >
         <motion.div
           {...ANIMATION_CONFIG.shimmer}
@@ -223,12 +229,12 @@ function PricingCardContent({
 
       {/* CTA Button (appears before features in the image) */}
       {cta && (
-        <div className="mb-6">
+        <div className="mb-8">
           {ctaHref ? (
             <a
               href={ctaHref}
               className={`
-                block w-full text-center py-3.5 rounded-xl font-semibold text-base
+                block w-full text-center py-3.5 rounded-2xl font-semibold text-base
                 transition-all duration-200 border-2
                 ${styles.buttonBg} ${styles.buttonText} ${styles.buttonBorder}
                 ${disabled ? 'cursor-not-allowed' : styles.buttonHover + ' hover:scale-[1.02] active:scale-[0.98]'}
@@ -253,7 +259,7 @@ function PricingCardContent({
               onClick={onCtaClick}
               disabled={disabled || loading || isActive}
               className={`
-                w-full py-3.5 rounded-xl font-semibold text-base
+                w-full py-3.5 rounded-2xl font-semibold text-base
                 transition-all duration-200 border-2
                 ${isActive 
                   ? 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 border-slate-300 dark:border-slate-600 cursor-not-allowed opacity-75' 
@@ -280,16 +286,16 @@ function PricingCardContent({
       )}
 
       {/* Package includes label */}
-      <div className={`text-xs font-bold uppercase tracking-wider mb-3 ${styles.textMuted}`}>
+      <div className={`mt-auto pt-6 border-t text-xs font-bold uppercase tracking-[0.22em] mb-4 ${styles.textMuted} ${styles.dividerBorder}`}>
         {t('Package includes:')}
       </div>
 
       {/* Features */}
-      <ul className="space-y-3">
+      <ul className="space-y-4">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <Check className={`h-5 w-5 flex-shrink-0 mt-0.5 ${styles.checkColor}`} />
-            <span className={`text-sm leading-relaxed ${styles.textSecondary}`}>
+            <span className={`text-[15px] leading-relaxed ${styles.textSecondary}`}>
               {t(feature)}
             </span>
           </li>
@@ -298,7 +304,7 @@ function PricingCardContent({
 
       {/* Not included section if needed */}
       {variant === 'basic' && (
-        <div className="mt-6 pt-6 border-t border-slate-200">
+        <div className={`mt-6 pt-6 border-t ${styles.dividerBorder}`}>
           <div className={`text-xs font-bold uppercase tracking-wider mb-3 ${styles.textMuted}`}>
             {t('Not included:')}
           </div>
@@ -320,7 +326,7 @@ function PricingCardContent({
       )}
 
       {variant === 'professional' && (
-        <div className="mt-6 pt-6 border-t border-amber-700/30">
+        <div className={`mt-6 pt-6 border-t ${styles.dividerBorder}`}>
           <div className={`text-xs font-bold uppercase tracking-wider mb-3 ${styles.textMuted}`}>
             {t('Not included:')}
           </div>

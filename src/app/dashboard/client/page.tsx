@@ -909,7 +909,7 @@ function MembershipView({
       {/* Plan Cards */}
       <div>
         <h3 className="text-xl font-bold mb-6">{currentPlanId ? 'Change Plan' : 'Choose a Plan'}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
           {PLANS.map((plan) => {
             const isCurrentPlan = currentPlanId === plan.id;
             const isDowngrade = plan.tier < currentPlanTier;
