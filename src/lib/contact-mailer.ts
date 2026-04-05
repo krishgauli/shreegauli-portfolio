@@ -78,13 +78,23 @@ function getTransporter() {
 }
 
 function getLeadNotificationHtml(lead: ContactLead) {
+  const isBooking = lead.source === 'booking-page';
+  const tagColor = isBooking ? '#22d3ee' : '#7c3aed';
+  const tagText = isBooking ? 'New Booking Request' : 'New Lead';
+  const heading = isBooking
+    ? `${escapeHtml(lead.name)} wants to book a call`
+    : `${escapeHtml(lead.name)} just submitted the site form`;
+
   return `
     <div style="font-family: Arial, sans-serif; background: #f8fafc; padding: 32px;">
       <div style="max-width: 640px; margin: 0 auto; background: #ffffff; border-radius: 20px; padding: 32px; border: 1px solid #e2e8f0;">
-        <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #7c3aed; font-weight: 700;">New Lead</p>
-        <h1 style="margin: 0 0 12px; font-size: 28px; color: #0f172a;">${escapeHtml(lead.name)} just submitted the site form</h1>
+        <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: ${tagColor}; font-weight: 700;">${tagText}</p>
+        <h1 style="margin: 0 0 12px; font-size: 28px; color: #0f172a;">${heading}</h1>
         <p style="margin: 0 0 24px; color: #475569; line-height: 1.6;">
-          A new inquiry came in from <strong>${escapeHtml(lead.email)}</strong>. You can reply directly to this email to continue the conversation.
+          ${isBooking
+            ? `A booking request came in from <strong>${escapeHtml(lead.email)}</strong>. Review the details below and send a calendar invite.`
+            : `A new inquiry came in from <strong>${escapeHtml(lead.email)}</strong>. You can reply directly to this email to continue the conversation.`
+          }
         </p>
 
         <table style="width: 100%; border-collapse: collapse;">
@@ -94,8 +104,14 @@ function getLeadNotificationHtml(lead: ContactLead) {
           ${formatLeadField('Business / Brand', lead.businessType)}
           ${formatLeadField('Budget', lead.budget)}
           ${formatLeadField('Source', lead.source)}
-          ${formatLeadField('Message', lead.message)}
+          ${formatLeadField(isBooking ? 'Booking Details' : 'Message', lead.message)}
         </table>
+
+        ${isBooking ? `
+        <div style="margin-top: 24px; padding: 16px; border-radius: 12px; background: #f0fdfa; border: 1px solid #99f6e4;">
+          <p style="margin: 0; color: #0d9488; font-weight: 600; font-size: 14px;">Action needed: Send a Google Meet / Zoom calendar invite to ${escapeHtml(lead.email)}</p>
+        </div>
+        ` : ''}
       </div>
     </div>
   `;
@@ -158,6 +174,76 @@ function getLeadConfirmationText(lead: ContactLead) {
 
 export function isContactMailerConfigured() {
   return Boolean(CONTACT_SMTP_HOST && CONTACT_SMTP_USER && CONTACT_SMTP_PASSWORD);
+}
+
+/* ─── Newsletter subscription notification ─── */
+export async function sendNewsletterNotification(email: string, source: string): Promise<boolean> {
+  if (!isContactMailerConfigured()) return false;
+
+  const transporter = getTransporter();
+
+  const adminHtml = `
+    <div style="font-family: Arial, sans-serif; background: #f8fafc; padding: 32px;">
+      <div style="max-width: 640px; margin: 0 auto; background: #ffffff; border-radius: 20px; padding: 32px; border: 1px solid #e2e8f0;">
+        <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #22d3ee; font-weight: 700;">New Subscriber</p>
+        <h1 style="margin: 0 0 12px; font-size: 24px; color: #0f172a;">Someone just subscribed to the newsletter</h1>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+          <tr>
+            <td style="padding: 10px 0; color: #64748b; font-weight: 600; width: 120px;">Email</td>
+            <td style="padding: 10px 0; color: #0f172a;">${escapeHtml(email)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; color: #64748b; font-weight: 600;">Source</td>
+            <td style="padding: 10px 0; color: #0f172a;">${escapeHtml(source)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; color: #64748b; font-weight: 600;">Time</td>
+            <td style="padding: 10px 0; color: #0f172a;">${formatDate(new Date())}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  `;
+
+  const subscriberHtml = `
+    <div style="font-family: Arial, sans-serif; background: #f8fafc; padding: 32px;">
+      <div style="max-width: 640px; margin: 0 auto; background: #ffffff; border-radius: 20px; padding: 32px; border: 1px solid #e2e8f0;">
+        <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #7c3aed; font-weight: 700;">Welcome</p>
+        <h1 style="margin: 0 0 12px; font-size: 24px; color: #0f172a;">You&rsquo;re on the list!</h1>
+        <p style="margin: 0 0 16px; color: #475569; line-height: 1.7;">
+          Thanks for subscribing to Shree Gauli&rsquo;s newsletter. You&rsquo;ll receive occasional updates on digital marketing insights, SEO tips, and more.
+        </p>
+        <p style="margin: 0; color: #475569; line-height: 1.7;">
+          If you ever want to unsubscribe, just reply to any email and let me know.
+        </p>
+      </div>
+    </div>
+  `;
+
+  try {
+    await Promise.allSettled([
+      transporter.sendMail({
+        from: CONTACT_EMAIL_FROM,
+        to: CONTACT_NOTIFICATION_RECIPIENTS,
+        replyTo: email,
+        subject: `New newsletter subscriber: ${email}`,
+        html: adminHtml,
+        text: `New newsletter subscriber: ${email}\nSource: ${source}\nTime: ${formatDate(new Date())}`,
+      }),
+      transporter.sendMail({
+        from: CONTACT_EMAIL_FROM,
+        to: email,
+        replyTo: CONTACT_REPLY_TO,
+        subject: "You're subscribed — welcome!",
+        html: subscriberHtml,
+        text: "Thanks for subscribing to Shree Gauli's newsletter! You'll receive occasional updates on digital marketing insights, SEO tips, and more.",
+      }),
+    ]);
+    return true;
+  } catch (error) {
+    console.error('Newsletter email notification error:', error);
+    return false;
+  }
 }
 
 export async function sendContactLeadEmails(lead: ContactLead): Promise<ContactEmailStatus> {

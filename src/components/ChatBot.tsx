@@ -24,7 +24,7 @@ const suggestionChips = [
   { label: 'Results', labelEs: 'Resultados', query: 'What results do your clients get?' },
   { label: 'Process', labelEs: 'Proceso', query: 'What does your process look like?' },
   { label: 'About', labelEs: 'Sobre mí', query: 'Tell me about Shree' },
-  { label: 'Book a Call', labelEs: 'Agendar', query: 'How can I book a free consultation?' },
+  { label: 'Book a Call', labelEs: 'Agendar', query: 'I want to book a consultation call. How can I do that?' },
 ];
 
 /* ─── Minimal Markdown Renderer ─── */
@@ -205,8 +205,8 @@ export default function ChatBot() {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
           content: language === 'es'
-            ? 'Lo siento, no pude conectarme. Por favor contáctenos en https://thenextgenhealth.com/contact'
-            : "Sorry, I couldn't connect. Please reach out at https://thenextgenhealth.com/contact",
+            ? 'Lo siento, no pude conectarme. Por favor contáctenos en https://shreegauli.com/contact'
+            : "Sorry, I couldn't connect. Please reach out at https://shreegauli.com/contact",
           timestamp: new Date(),
         },
       ]);

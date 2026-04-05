@@ -610,10 +610,10 @@ export default function SeoToolsClient() {
                   Book a free review
                 </a>
                 <a
-                  href="mailto:hello@shreegauli.com"
+                  href="/contact"
                   className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] px-5 py-2.5 text-sm font-semibold text-[#E2E8F0] hover:border-white/[0.2] transition-colors"
                 >
-                  Email me directly
+                  Contact me
                 </a>
               </div>
             </div>

@@ -120,9 +120,9 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.06]">
           <div className="flex items-center gap-4">
             <Link
-              href="mailto:hello@shreegauli.com"
+              href="/contact"
               className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors"
-              aria-label="Email"
+              aria-label="Contact"
             >
               <Mail className="h-4 w-4" />
             </Link>

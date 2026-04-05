@@ -19,7 +19,7 @@ function buildSystemPrompt(retrievedContext: string, language: 'en' | 'es' = 'en
       ? '\nIMPORTANT: Respond in Spanish. The user is speaking Spanish.'
       : '';
 
-  return `You are Nex, a friendly and knowledgeable AI assistant for The NextGen Healthcare Marketing (thenextgenhealth.com). You help visitors learn about our healthcare marketing services, pricing, dashboard, and approach.
+  return `You are a friendly and knowledgeable AI assistant for Shree Krishna Gauli (shreegauli.com), a digital marketing specialist based in Dallas, TX. You help visitors learn about Shree's services, approach, and work.
 
 PERSONALITY:
 - Warm, conversational, and genuinely helpful — not robotic
@@ -32,24 +32,24 @@ ${langInstructions}
 KNOWLEDGE RULES:
 1. Answer ONLY from the RETRIEVED WEBSITE CONTENT below. Do NOT make up information.
 2. If the retrieved content contains the answer, give a clear, helpful response and cite the source page URL.
-3. If the retrieved content does NOT contain the answer, say: "I'm not fully sure from our site content yet, but I can guide you to the right page. Try visiting https://thenextgenhealth.com/contact or ask me something else!"
+3. If the retrieved content does NOT contain the answer, say: "I'm not fully sure about that, but I can help! Try visiting https://shreegauli.com/contact or ask me something else."
 4. Never fabricate pricing, service details, features, or statistics.
-5. When mentioning pages from our site, include the full URL (e.g., https://thenextgenhealth.com/pricing).
+5. When mentioning pages from the site, include the full URL (e.g., https://shreegauli.com/services).
 
 LEAD HANDLING:
-- When users ask about pricing, services, setup, or demos → guide them to:
-  • Book a free strategy call: https://thenextgenhealth.com/contact
-  • View pricing: https://thenextgenhealth.com/pricing
-  • Learn about services: https://thenextgenhealth.com/services
-- When users ask about the dashboard → explain it simply: "Our dashboard puts all your marketing data — Google Ads, SEO, social, patient metrics — in one place so you can see what's working without juggling tools."
-- When users mention competitors or tools they use → acknowledge and pivot to our strengths
+- When users ask about services or projects → guide them to:
+  • Book a free strategy call: https://shreegauli.com/book
+  • Get in touch: https://shreegauli.com/contact
+  • Learn about services: https://shreegauli.com/services
+  • Try the free SEO tool: https://shreegauli.com/seo-tools
+- Shree specializes in SEO, paid media (Google Ads, Meta Ads), social media management, and marketing automation
 
 OFF-TOPIC HANDLING:
-- If the question is completely unrelated to our business, politely redirect: "Great question! That's outside my area though. I'm here to help with healthcare marketing — things like SEO, ads, social media, and analytics. What can I help you with on that front?"
+- If the question is completely unrelated, politely redirect: "Great question! That's outside my area though. I'm here to help with digital marketing — things like SEO, paid ads, social media, and automation. What can I help you with?"
 
 FORMAT:
 - Keep it natural and conversational
-- When mentioning our pages, use markdown links: [Page Name](url)
+- When mentioning pages, use markdown links: [Page Name](url)
 - Use bullet points for lists
 - Bold key terms with **term**
 
@@ -95,7 +95,7 @@ function detectFallbackIntent(text: string): FallbackIntent | null {
   if (/(dashboard|analytics|reporting|data|roi|métricas|metricas|anal[ií]tica)/.test(q)) return 'dashboard';
   if (/(urgent care|er\b|medspa|clinic|dental|specialt|industry|industria|cl[ií]nica|clinica)/.test(q)) return 'industries';
   if (/(result|patient|growth|performance|outcome|inquiries?|leads?|resultado|paciente|crecimiento|rendimiento)/.test(q)) return 'results';
-  if (/(next\s?gen|thenextgenhealth|about|who are you|your company|company|agencia|empresa|quienes|quiénes|acerca de)/.test(q)) return 'about-company';
+  if (/(shree|gauli|about|who are you|your company|company|agencia|empresa|quienes|quiénes|acerca de)/.test(q)) return 'about-company';
 
   return null;
 }
@@ -106,7 +106,7 @@ function buildFallbackQuery(input: string, recentUserMessages: string[]): string
 
   const wordCount = normalizedInput.split(/\s+/).length;
   const lower = normalizedInput.toLowerCase();
-  const vaguePattern = /^(this|that|it|more|details|info|field marketing|marketing|next gen|about|tell me more)$/;
+  const vaguePattern = /^(this|that|it|more|details|info|field marketing|marketing|shree|about|tell me more)$/;
   const isVagueFollowUp = wordCount <= 3 || vaguePattern.test(lower);
 
   if (!isVagueFollowUp || recentUserMessages.length < 2) {
@@ -134,8 +134,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Nuestros planes comienzan en $5,000/mes (Starter Care) y $10,000/mes (Growth Pro), con opciones Enterprise personalizadas. ¿Te gustaría ver el desglose completo? 👉 https://thenextgenhealth.com/pricing'
-        : "We offer two core plans: **Starter Care** starting at $5,000/mo and **Growth Pro** at $10,000/mo, plus custom Enterprise options. Check out the full breakdown here: https://thenextgenhealth.com/pricing — or tell me what kind of practice you have and I'll suggest the best fit!",
+        ? 'Los precios dependen del alcance del proyecto. Por favor agenda una llamada para discutir tus necesidades 👉 https://shreegauli.com/book'
+        : "Pricing depends on the scope of work. Let's hop on a quick call so I can understand your needs and give you a clear quote: https://shreegauli.com/book",
     };
   }
 
@@ -143,8 +143,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Ofrecemos SEO local, Google/Meta Ads, diseño web HIPAA, redes sociales, contenido, email marketing, automatización con IA y un dashboard unificado. Todo especializado en healthcare. Más detalles en https://thenextgenhealth.com/services'
-        : "We handle **SEO**, **Google & Meta Ads**, **website design**, **social media**, **content**, **email campaigns**, **automation**, and more — all specialized in healthcare. See the full list: https://thenextgenhealth.com/services. What's your biggest marketing challenge right now?",
+        ? 'Shree ofrece SEO, Google & Meta Ads, gestión de redes sociales y automatización de marketing. Más detalles en https://shreegauli.com/services'
+        : "Shree specializes in **SEO**, **Google & Meta Ads**, **social media management**, and **marketing automation**. See the full list: https://shreegauli.com/services. What's your biggest marketing challenge right now?",
     };
   }
 
@@ -152,8 +152,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Puedes agendar una consulta estratégica gratuita aquí 👉 https://thenextgenhealth.com/contact. ¡Estaremos felices de ayudarte!'
-        : "You can book a **free strategy call** right here: https://thenextgenhealth.com/contact. We'd love to learn about your practice and show you how we can help!",
+        ? 'Puedes agendar una consulta estratégica gratuita aquí 👉 https://shreegauli.com/book. ¡Será un placer ayudarte!'
+        : "You can book a **free 30-minute strategy call** right here: https://shreegauli.com/book. Available Mon, Thu, Fri, Sat & Sun mornings (9 AM – 1 PM CT).",
     };
   }
 
@@ -161,8 +161,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Nuestro dashboard unificado te muestra datos reales de Google Ads, Meta, SEO y pacientes en un solo lugar. ¡Pide una demo! https://thenextgenhealth.com/contact'
-        : "Our **unified dashboard** puts all your marketing data in one place — Google Ads, Meta, SEO, patient metrics. No more juggling tools! Want to see it in action? Book a demo: https://thenextgenhealth.com/contact",
+        ? 'El dashboard unificado pone todos los datos de marketing en un solo lugar — Google Ads, SEO, redes sociales. Agenda una demo: https://shreegauli.com/book'
+        : "The **unified analytics dashboard** puts all your marketing data in one place — Google Ads, Meta, SEO, social metrics. Want to see it? Book a call: https://shreegauli.com/book",
     };
   }
 
@@ -170,8 +170,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Sí, trabajamos con urgent cares, ERs, MedSpas, consultorios dentales y clínicas de bienestar. Adaptamos todo por especialidad. Más info: https://thenextgenhealth.com/industries'
-        : 'Absolutely! We specialize in **urgent care, ERs, MedSpas, dental offices, and wellness clinics**. Each strategy is tailored to your specialty. Learn more: https://thenextgenhealth.com/industries',
+        ? 'Shree trabaja con empresas de diversos sectores, especialmente en salud, servicios profesionales y e-commerce. Más info: https://shreegauli.com/services'
+        : "Shree works with businesses across various industries including **healthcare, professional services, and e-commerce**. Each strategy is tailored to your niche. Learn more: https://shreegauli.com/services",
     };
   }
 
@@ -179,8 +179,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Nuestros clientes ven un aumento promedio del 340%+ en consultas de pacientes. Mira nuestros resultados: https://thenextgenhealth.com/proven-results'
-        : 'Our clients see an average **340%+ increase** in patient inquiries. Check out our proven results: https://thenextgenhealth.com/proven-results. What growth goals do you have in mind?',
+        ? 'Puedes ver casos de éxito y resultados en https://shreegauli.com/work. ¿Qué objetivos de crecimiento tienes en mente?'
+        : "Check out the case studies and proven results at https://shreegauli.com/work. What growth goals do you have in mind?",
     };
   }
 
@@ -188,16 +188,16 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'The NextGen Healthcare Marketing es una agencia enfocada 100% en marketing para clínicas y marcas de salud. Ayudamos con SEO, anuncios, contenido y analítica en un dashboard unificado para crecer más rápido. Conócenos: https://thenextgenhealth.com/about y servicios: https://thenextgenhealth.com/services'
-        : 'The NextGen Healthcare Marketing is a healthcare-specialized growth agency. We help practices with SEO, ads, content, and analytics through one unified approach and dashboard. Learn more at https://thenextgenhealth.com/about and explore services at https://thenextgenhealth.com/services',
+        ? 'Shree Krishna Gauli es un especialista en marketing digital con sede en Dallas, TX. Se enfoca en SEO, publicidad digital, redes sociales y automatización. Conócelo en https://shreegauli.com/about'
+        : "Shree Krishna Gauli is a **digital marketing specialist** based in Dallas, TX. He focuses on SEO, paid media, social media, and marketing automation. Learn more at https://shreegauli.com/about",
     };
   }
 
   return {
     matchedIntent: false,
     reply: isEs
-      ? 'Soy Nex, tu asistente de marketing médico. Puedo ayudarte con servicios, precios, nuestro dashboard y más. ¿Qué te gustaría saber? 😊'
-      : "I'm Nex, your healthcare marketing assistant! I can help with services, pricing, our dashboard, and more. What would you like to know? 😊",
+      ? 'Soy el asistente de Shree. Puedo ayudarte con información sobre servicios, procesos y más. ¿Qué te gustaría saber? 😊'
+      : "I'm Shree's AI assistant! I can help with info about services, process, results, and more. What would you like to know? 😊",
   };
 }
 
@@ -313,7 +313,7 @@ export async function POST(req: NextRequest) {
     // Build Gemini conversation contents with RAG context
     const contents = [
       { role: 'user', parts: [{ text: systemPrompt }] },
-      { role: 'model', parts: [{ text: 'Understood. I\'m Nex, The NextGen Healthcare Marketing assistant. I\'ll answer using the retrieved website content and follow all guidelines.' }] },
+      { role: 'model', parts: [{ text: 'Understood. I\'m Shree\'s AI assistant on shreegauli.com. I\'ll answer using the retrieved website content and follow all guidelines.' }] },
       ...recentMessages.map((m) => ({
         role: m.role === 'user' ? 'user' : 'model',
         parts: [{ text: m.content }],
@@ -429,6 +429,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ reply, sources, fallback: usedFallback, unanswered: isUnanswered });
   } catch (error) {
     console.error('Chat API error:', error);
-    return NextResponse.json({ reply: "Oops, I hit a small snag! Please try again, or reach out to us at https://thenextgenhealth.com/contact. I'm Nex, and I'm here whenever you're ready! 😊", sources: [], fallback: true, unanswered: false });
+    return NextResponse.json({ reply: "Oops, I hit a small snag! Please try again, or reach out at https://shreegauli.com/contact. 😊", sources: [], fallback: true, unanswered: false });
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Calendar } from "lucide-react";
+import { MessageSquare, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { useMemo, useState, type ChangeEvent, type FormEvent } from "react";
 import { GlowButton } from "@/components/shared/GlowButton";
@@ -170,11 +170,11 @@ export function FinalCTASection() {
 
         <ScrollReveal delay={0.3}>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <GlowButton href="mailto:hello@shreegauli.com" external className="gap-2">
-              <Mail className="h-4 w-4" />
-              Email Me
+            <GlowButton href="/contact" className="gap-2">
+              <MessageSquare className="h-4 w-4" />
+              Get in Touch
             </GlowButton>
-            <GlassButton href="https://calendly.com/shreegauli" external className="gap-2">
+            <GlassButton href="/book" className="gap-2">
               <Calendar className="h-4 w-4" />
               Book a Call
             </GlassButton>
@@ -285,7 +285,7 @@ export function FinalCTASection() {
 
         <ScrollReveal delay={0.5}>
           <p className="mt-8 text-center text-xs text-[#94A3B8]/60">
-            Prefer email or calendar? The direct links above still work too.
+            Not sure yet? Fill out the form above and I&apos;ll follow up personally.
           </p>
         </ScrollReveal>
       </div>

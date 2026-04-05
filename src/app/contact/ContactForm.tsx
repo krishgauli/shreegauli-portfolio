@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { Mail, Calendar, Linkedin, Github, Send } from "lucide-react";
+import { Calendar, Linkedin, Github, Send } from "lucide-react";
 import Link from "next/link";
 
 const serviceOptions = [
@@ -231,20 +231,11 @@ export function ContactForm() {
           </h3>
           <div className="grid gap-3">
             <Link
-              href="mailto:hello@shreegauli.com"
-              className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#94A3B8] hover:text-[#F8FAFC] hover:border-white/20 transition-colors"
-            >
-              <Mail className="h-4 w-4 text-[#22D3EE]" />
-              hello@shreegauli.com
-            </Link>
-            <Link
-              href="https://calendly.com/shreegauli"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/book"
               className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#94A3B8] hover:text-[#F8FAFC] hover:border-white/20 transition-colors"
             >
               <Calendar className="h-4 w-4 text-[#22D3EE]" />
-              Book a call on Calendly
+              Book a call
             </Link>
             <Link
               href="https://linkedin.com/in/shreegauli"

@@ -82,8 +82,7 @@ export default function PrivacyPage() {
           <p>
             Contact form submissions and account data are retained for as long
             as necessary to provide services. You may request deletion at any
-            time by emailing{" "}
-            <a href="mailto:hello@shreegauli.com">hello@shreegauli.com</a>.
+            time by visiting the <a href="/contact">contact page</a>.
           </p>
 
           <h2>6. Your Rights</h2>
@@ -95,14 +94,14 @@ export default function PrivacyPage() {
             <li>Opt out of marketing communications</li>
           </ul>
           <p>
-            To exercise any of these rights, email{" "}
-            <a href="mailto:hello@shreegauli.com">hello@shreegauli.com</a>.
+            To exercise any of these rights, visit the{" "}
+            <a href="/contact">contact page</a>.
           </p>
 
           <h2>7. Contact</h2>
           <p>
-            If you have questions about this privacy policy, contact me at{" "}
-            <a href="mailto:hello@shreegauli.com">hello@shreegauli.com</a>.
+            If you have questions about this privacy policy, reach out via the{" "}
+            <a href="/contact">contact page</a>.
           </p>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
+import { sendNewsletterNotification } from '@/lib/contact-mailer';
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,6 +26,8 @@ export async function POST(req: NextRequest) {
           where: { email },
           data: { active: true },
         });
+        // Send reactivation notification
+        sendNewsletterNotification(email, source || 'reactivation').catch(console.error);
         return NextResponse.json({ message: 'Subscription reactivated' }, { status: 200 });
       }
     }
@@ -36,6 +39,9 @@ export async function POST(req: NextRequest) {
         source: source || 'footer',
       },
     });
+
+    // Send email notifications (admin + welcome email to subscriber)
+    sendNewsletterNotification(email, source || 'footer').catch(console.error);
 
     return NextResponse.json({ message: 'Successfully subscribed', subscriber }, { status: 201 });
   } catch (error) {
