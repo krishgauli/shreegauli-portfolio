@@ -449,20 +449,6 @@ model GoogleAdsData {
   @@index([date])
 }
 
-model AiHistory {
-  id            String   @id @default(cuid())
-  userId        String
-  generatorType String // 'text', 'image', 'blog', 'news'
-  prompt        String   @db.Text
-  settings      Json? // Store tone, word count, style presets, etc.
-  output        String   @db.Text // Text content or the image/video URL
-  createdAt     DateTime @default(now())
-
-  @@index([userId])
-  @@index([generatorType])
-  @@index([createdAt])
-}
-
 model GoogleApiCache {
   id           String   @id @default(cuid())
   cacheKey     String   @unique
