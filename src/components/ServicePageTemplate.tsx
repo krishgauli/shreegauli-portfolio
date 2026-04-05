@@ -268,7 +268,7 @@ export default function ServicePageTemplate({
               <Link href="/contact" className="inline-block px-8 py-4 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors text-center">
                 {t('Schedule Consultation')}
               </Link>
-              <Link href="/case-studies" className="inline-block px-8 py-4 border-2 border-emerald-500 text-emerald-500 font-semibold rounded-lg hover:bg-emerald-50 transition-colors text-center">
+              <Link href="/work" className="inline-block px-8 py-4 border-2 border-emerald-500 text-emerald-500 font-semibold rounded-lg hover:bg-emerald-50 transition-colors text-center">
                 {t('View Case Studies')}
               </Link>
             </div>

@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Image as ImageIcon, LayoutDashboard, Upload } from 'lucide-react';
 import RichTextEditor from '@/components/RichTextEditor';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 
 export default function NewNewsArticle() {
   const router = useRouter();
@@ -79,8 +79,8 @@ export default function NewNewsArticle() {
           </div>
 
           <div className="glass rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
-            <h1 className="text-[20px] font-bold mb-1 text-slate-900 dark:text-slate-100">New Healthcare News Article</h1>
-            <p className="text-slate-500 dark:text-slate-400 mb-6">Publish a new healthcare industry news article</p>
+            <h1 className="text-[20px] font-bold mb-1 text-slate-900 dark:text-slate-100">New Case Study</h1>
+            <p className="text-slate-500 dark:text-slate-400 mb-6">Publish a new case study</p>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Title & Slug */}
@@ -230,7 +230,7 @@ export default function NewNewsArticle() {
                 <RichTextEditor
                   value={form.content}
                   onChange={(content) => setForm({ ...form, content })}
-                  placeholder="Start writing your news article..."
+                  placeholder="Start writing your case study..."
                   minHeight="400px"
                   blogTitle={form.title}
                 />

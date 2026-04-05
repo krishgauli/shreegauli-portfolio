@@ -106,7 +106,7 @@ export default function HeroNew() {
                 {t('Get a free strategy call')}
               </Link>
               <Link 
-                href="/case-studies" 
+                href="/work" 
                 className={`inline-flex items-center px-8 py-4 font-bold rounded-full transition-all border ${isDark ? 'bg-white/10 text-white border-white/20 hover:bg-white/20' : 'bg-slate-200 text-slate-900 border-slate-300 hover:bg-slate-300'}`}
               >
                 {t('See our work')}

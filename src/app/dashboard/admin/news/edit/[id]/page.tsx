@@ -185,7 +185,7 @@ export default function EditNewsArticle() {
               onChange={handleChange}
               className={`${inputCls} resize-none`}
               rows={2}
-              placeholder="Brief summary shown in news listings"
+              placeholder="Brief summary shown in case study listings"
             />
           </div>
         </Card>
@@ -249,7 +249,7 @@ export default function EditNewsArticle() {
         {/* ── 4. Cover Image ─────────────────────────────── */}
         <CoverImageCard
           url={form.coverImage}
-          alt={form.title || 'News cover image'}
+          alt={form.title || 'Case study cover image'}
           uploading={uploadingCover}
           onUrlChange={(v) => setForm((p) => ({ ...p, coverImage: v }))}
           onAltChange={() => {}}
@@ -267,7 +267,7 @@ export default function EditNewsArticle() {
         <ContentEditorCard
           content={form.content}
           onChange={(v) => setForm((p) => ({ ...p, content: v }))}
-          placeholder="Start writing your news article…"
+          placeholder="Start writing your case study…"
           blogTitle={form.title}
         />
       </div>

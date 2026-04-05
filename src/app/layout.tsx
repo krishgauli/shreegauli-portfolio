@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import PersonSchema from "@/components/PersonSchema";
+import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -75,14 +76,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-[#7C3AED] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
-        >
-          Skip to content
-        </a>
-        <PersonSchema />
-        {children}
+        <Providers>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-[#7C3AED] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+          >
+            Skip to content
+          </a>
+          <PersonSchema />
+          {children}
+        </Providers>
       </body>
     </html>
   );

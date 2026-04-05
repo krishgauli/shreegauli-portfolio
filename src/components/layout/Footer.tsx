@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
+import Logo from "@/components/Logo";
 
 const footerNav = {
   Services: [
@@ -55,9 +56,9 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] mb-12">
           {/* Brand + Newsletter */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <p className="text-base font-bold text-[#F8FAFC]">
-              Shree Krishna Gauli
-            </p>
+            <div className="mb-4">
+              <Logo showText={true} iconSize={48} darkText={false} compact={true} />
+            </div>
             <p className="text-sm text-[#94A3B8] mt-1 leading-relaxed">
               Digital Marketing Specialist · Dallas, TX
             </p>

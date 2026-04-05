@@ -50,11 +50,11 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="h-1 w-12 bg-blue-500 rounded-full" />
-            <span className="text-blue-600 text-sm font-bold uppercase tracking-wide">{t('News')}</span>
+            <span className="text-blue-600 text-sm font-bold uppercase tracking-wide">{t('Case Studies')}</span>
           </div>
-          <h2 className={`text-4xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Healthcare News')}</h2>
+          <h2 className={`text-4xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Case Studies')}</h2>
           <p className={`text-lg max-w-2xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-            {t('Latest news and updates in the healthcare industry.')}
+            {t('Real results from our client engagements.')}
           </p>
         </motion.div>
 
@@ -141,7 +141,7 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
           </div>
         ) : (
           <div className={`text-center py-12 rounded-2xl ${isDark ? 'bg-slate-800' : 'bg-slate-100'}`}>
-            <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>{t('No news articles available.')}</p>
+            <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>{t('No case studies available.')}</p>
           </div>
         )}
 
@@ -154,14 +154,14 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
           className="mt-12 text-center"
         >
           <Link
-            href="/news"
+            href="/work"
             className={`inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition-all ${
               isDark
                 ? 'bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 border border-blue-600/30'
                 : 'bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-200'
             }`}
           >
-            {t('View All News')}
+            {t('View All Case Studies')}
             <ExternalLink className="h-4 w-4" />
           </Link>
         </motion.div>

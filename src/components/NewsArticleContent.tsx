@@ -75,19 +75,19 @@ export default function NewsArticleContent({ article, moreNews }: NewsArticleCon
           />
         </div>
 
-        {/* Back to News */}
+        {/* Back to Case Studies */}
         <div className="mt-10 pt-8 border-t border-slate-200 dark:border-slate-700">
-          <Link href="/news" className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
-            ← {t('Back to Healthcare News')}
+          <Link href="/work" className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+            ← {t('Back to Case Studies')}
           </Link>
         </div>
       </article>
 
-      {/* More News */}
+      {/* More Case Studies */}
       {moreNews.length > 0 && (
         <section className="py-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-8">{t('More Healthcare News')}</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-8">{t('More Case Studies')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {moreNews.map((news) => (
                 <Link key={news.slug} href={`/news/${news.slug}`} className="group">

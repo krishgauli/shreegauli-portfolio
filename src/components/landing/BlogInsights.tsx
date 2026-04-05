@@ -143,7 +143,7 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
           className="mt-12 text-center"
         >
           <Link
-            href="/blog"
+            href="/writing"
             className={`inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition-all ${
               isDark
                 ? 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700'

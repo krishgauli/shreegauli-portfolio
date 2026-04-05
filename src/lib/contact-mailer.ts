@@ -1,5 +1,9 @@
 import type { ContactLead } from '@prisma/client';
+import dns from 'dns';
 import nodemailer from 'nodemailer';
+import { promisify } from 'util';
+
+const resolve4 = promisify(dns.resolve4);
 
 const CONTACT_SMTP_HOST = process.env.CONTACT_SMTP_HOST || process.env.SMTP_HOST || '';
 const CONTACT_SMTP_PORT = Number(process.env.CONTACT_SMTP_PORT || process.env.SMTP_PORT || 587);
@@ -59,20 +63,40 @@ function formatDate(date: Date) {
   }).format(date);
 }
 
-function getTransporter() {
+async function getTransporter() {
   if (!isContactMailerConfigured()) {
     throw new Error(
       'Contact mailer is not configured. Missing CONTACT_SMTP_HOST, CONTACT_SMTP_USER, or CONTACT_SMTP_PASSWORD.'
     );
   }
 
+  // Vercel serverless blocks DNS lookups for SMTP hostnames (getaddrinfo EBUSY).
+  // Pre-resolve to IP and set tls.servername for certificate validation.
+  const GMAIL_IPS = ['142.251.163.108', '142.251.163.109', '173.194.76.108', '173.194.76.109'];
+  let host = CONTACT_SMTP_HOST;
+
+  if (CONTACT_SMTP_HOST === 'smtp.gmail.com') {
+    // Use a known Gmail SMTP IP to skip DNS entirely
+    host = GMAIL_IPS[Math.floor(Math.random() * GMAIL_IPS.length)];
+  } else {
+    try {
+      const ips = await resolve4(CONTACT_SMTP_HOST);
+      if (ips.length > 0) host = ips[0];
+    } catch {
+      // Fall back to hostname
+    }
+  }
+
   return nodemailer.createTransport({
-    host: CONTACT_SMTP_HOST,
+    host,
     port: CONTACT_SMTP_PORT,
     secure: CONTACT_SMTP_SECURE,
     auth: {
       user: CONTACT_SMTP_USER,
       pass: CONTACT_SMTP_PASSWORD,
+    },
+    tls: {
+      servername: CONTACT_SMTP_HOST,
     },
   });
 }
@@ -180,7 +204,7 @@ export function isContactMailerConfigured() {
 export async function sendNewsletterNotification(email: string, source: string): Promise<boolean> {
   if (!isContactMailerConfigured()) return false;
 
-  const transporter = getTransporter();
+  const transporter = await getTransporter();
 
   const adminHtml = `
     <div style="font-family: Arial, sans-serif; background: #f8fafc; padding: 32px;">
@@ -247,7 +271,7 @@ export async function sendNewsletterNotification(email: string, source: string):
 }
 
 export async function sendContactLeadEmails(lead: ContactLead): Promise<ContactEmailStatus> {
-  const transporter = getTransporter();
+  const transporter = await getTransporter();
 
   const [notificationResult, confirmationResult] = await Promise.allSettled([
     transporter.sendMail({

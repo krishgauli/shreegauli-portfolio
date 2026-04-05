@@ -43,8 +43,8 @@ import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Toolti
 import SearchConsoleTab from '@/components/SearchConsoleTab';
 import ClientErrorBoundary from '@/components/ClientErrorBoundary';
 import PremiumAnalyticsChat from '@/components/PremiumAnalyticsChat';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 import LoadingScreen from '@/components/LoadingScreen';
 import DashboardLoader from '@/components/DashboardLoader';
 import { useSitePreferences } from '@/components/SitePreferencesProvider';

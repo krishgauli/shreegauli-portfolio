@@ -7,7 +7,7 @@ export default function AdminNewsPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/dashboard/admin?view=news-management');
+    router.replace('/dashboard/admin?view=case-studies');
   }, [router]);
 
   return (

@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Image as ImageIcon, LayoutDashboard, Upload } from 'lucide-react';
 import RichTextEditor from '@/components/RichTextEditor';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 
 export default function NewBlogPost() {
   const router = useRouter();

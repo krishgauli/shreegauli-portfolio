@@ -90,7 +90,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li><Link href="/services" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Services')}</Link></li>
               <li><Link href="/about" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('About')}</Link></li>
-              <li><Link href="/case-studies" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Case Studies')}</Link></li>
+              <li><Link href="/work" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Case Studies')}</Link></li>
               <li>
                 <Link 
                   href={user ? (user.role === 'admin' ? '/dashboard/admin' : '/dashboard/client?view=membership') : '/pricing'} 
@@ -99,8 +99,8 @@ export default function Footer() {
                   {t('Pricing')}
                 </Link>
               </li>
-              <li><Link href="/blog" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Blog')}</Link></li>
-              <li><Link href="/news" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Healthcare News')}</Link></li>
+              <li><Link href="/writing" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Blog')}</Link></li>
+              <li><Link href="/work" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Case Studies News')}</Link></li>
               <li><Link href="/contact" className={`transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>{t('Contact')}</Link></li>
             </ul>
           </div>

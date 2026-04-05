@@ -19,10 +19,10 @@ export default function LandingFooter() {
           </ul>
         </div>
         <div className="space-y-4">
-          <h4 className="font-bold">Industries</h4>
+          <h4 className="font-bold">Services</h4>
           <ul className="space-y-2">
-            <li><a href="/industries" className={`transition-colors ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>All Industries</a></li>
-            <li><a href="/industries/healthcare" className={`transition-colors ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>Healthcare</a></li>
+            <li><a href="/services" className={`transition-colors ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>All Services</a></li>
+            <li><a href="/services/seo-local-search" className={`transition-colors ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-emerald-600'}`}>Healthcare SEO</a></li>
           </ul>
         </div>
         <div className="space-y-4">

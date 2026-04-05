@@ -50,8 +50,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import AnalyticsForm from './analytics';
 import ClientAnalyticsView from '@/components/ClientAnalyticsView';
 import GoogleAnalyticsView from '@/components/GoogleAnalyticsView';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 import DeleteConfirmationModal from '@/components/DeleteConfirmationModal';
 import ActionFeedback from '@/components/ActionFeedback';
 import BackgroundTaskNotification, { BackgroundTask } from '@/components/BackgroundTaskNotification';
@@ -727,7 +727,7 @@ function AdminDashboardContent() {
     'Lead Pipeline',
     'Analytics',
     'Blog Management',
-    'News Management',
+    'Case Studies',
     'My Profile',
     'Settings',
   ] as const;
@@ -2099,7 +2099,7 @@ function AdminDashboardContent() {
           <NavItem icon={User} label={t('My Profile')} active={section==='My Profile'} onClick={() => { navigateToSection('My Profile'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={Lock} label={t('Settings')} active={section==='Settings'} onClick={() => { navigateToSection('Settings'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={FileText} label={t('Blog Management')} active={section==='Blog Management'} onClick={() => { navigateToSection('Blog Management'); setShowMobileMenu(false); }} dark={dark} />
-          <NavItem icon={Newspaper} label={t('News Management')} active={section==='News Management'} onClick={() => { navigateToSection('News Management'); setShowMobileMenu(false); }} dark={dark} />
+          <NavItem icon={Newspaper} label={t('Case Studies')} active={section==='Case Studies'} onClick={() => { navigateToSection('Case Studies'); setShowMobileMenu(false); }} dark={dark} />
           <Link href="/dashboard/admin/ai-creator" className={`w-full text-left flex items-center gap-3 p-3 rounded-xl transition-all ${dark ? 'text-slate-300 hover:text-white hover:bg-slate-700' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}>
             <Sparkles className="h-5 w-5" />
             <span className="text-sm">{t('AI Creator')}</span>
@@ -4115,7 +4115,7 @@ function ContentForSection(props: {
                   { label: 'Users', value: platformHealth.counts?.users, color: 'text-blue-500' },
                   { label: 'Clinics', value: platformHealth.counts?.clinics, color: 'text-emerald-500' },
                   { label: 'Blog Posts', value: platformHealth.counts?.posts, color: 'text-purple-500' },
-                  { label: 'News Articles', value: platformHealth.counts?.news, color: 'text-rose-500' },
+                  { label: 'Case Studies', value: platformHealth.counts?.news, color: 'text-rose-500' },
                   { label: 'Leads', value: platformHealth.counts?.leads, color: 'text-amber-500' },
                   { label: 'Subscribers', value: platformHealth.counts?.subscribers, color: 'text-cyan-500' },
                   { label: 'Chat Sessions', value: platformHealth.counts?.chatSessions, color: 'text-indigo-500' },
@@ -4146,7 +4146,7 @@ function ContentForSection(props: {
                       <span className="font-bold text-amber-500">{platformHealth.content?.draftPosts ?? 0}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-slate-600 dark:text-slate-400">Published News</span>
+                      <span className="text-sm text-slate-600 dark:text-slate-400">Published Case Studies</span>
                       <span className="font-bold text-blue-500">{platformHealth.content?.publishedNews ?? 0}</span>
                     </div>
                   </div>
@@ -4185,7 +4185,7 @@ function ContentForSection(props: {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-2xl font-bold mb-1">Content Overview</h2>
-              <p className="text-slate-600 dark:text-slate-400 text-sm">Blog, news, and newsletter performance at a glance</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">Blog, case studies, and newsletter performance at a glance</p>
             </div>
             {platformHealthLoading && <DashboardLoader variant="inline" />}
           </div>
@@ -4206,7 +4206,7 @@ function ContentForSection(props: {
                 <div className="glass rounded-xl p-5 border border-slate-200 dark:border-slate-700">
                   <div className="flex items-center gap-2 mb-2">
                     <Newspaper className="h-5 w-5 text-rose-500" />
-                    <p className="text-xs text-slate-500 uppercase tracking-wider">News Articles</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider">Case Studies</p>
                   </div>
                   <p className="text-3xl font-black">{platformHealth.counts?.news ?? 0}</p>
                   <p className="text-xs text-slate-500 mt-1">{platformHealth.content?.publishedNews ?? 0} published</p>
@@ -4252,7 +4252,7 @@ function ContentForSection(props: {
                 </div>
 
                 <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
-                  <h3 className="text-lg font-bold mb-4">Recent News</h3>
+                  <h3 className="text-lg font-bold mb-4">Recent Case Studies</h3>
                   <div className="space-y-3">
                     {(platformHealth.activityFeed || []).filter((a: any) => a.type === 'news').slice(0, 5).map((item: any, i: number) => (
                       <div key={i} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
@@ -4266,7 +4266,7 @@ function ContentForSection(props: {
                       </div>
                     ))}
                     {(platformHealth.activityFeed || []).filter((a: any) => a.type === 'news').length === 0 && (
-                      <p className="text-center text-slate-500 py-4 text-sm">No recent news</p>
+                      <p className="text-center text-slate-500 py-4 text-sm">No recent case studies</p>
                     )}
                   </div>
                 </div>
@@ -4276,8 +4276,8 @@ function ContentForSection(props: {
                 <Link href="/dashboard/admin?view=blog-management" className="glass rounded-xl px-5 py-3 border border-slate-200 dark:border-slate-700 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                   Manage Blog →
                 </Link>
-                <Link href="/dashboard/admin?view=news-management" className="glass rounded-xl px-5 py-3 border border-slate-200 dark:border-slate-700 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                  Manage News →
+                <Link href="/dashboard/admin?view=case-studies" className="glass rounded-xl px-5 py-3 border border-slate-200 dark:border-slate-700 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                  Manage Case Studies →
                 </Link>
               </div>
             </>
@@ -4426,7 +4426,7 @@ function ContentForSection(props: {
     case 'Blog Management':
       return <BlogManagementSection addBackgroundTask={addBackgroundTask} updateBackgroundTask={updateBackgroundTask} />;
 
-    case 'News Management':
+    case 'Case Studies':
       return <NewsManagementSection addBackgroundTask={addBackgroundTask} updateBackgroundTask={updateBackgroundTask} />;
 
     case 'My Profile':
@@ -5014,15 +5014,15 @@ function NewsManagementSection({
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold">News Management</h2>
-          <p className="text-slate-600 dark:text-slate-400">Create and manage healthcare news articles.</p>
+          <h2 className="text-2xl font-bold">Case Studies</h2>
+          <p className="text-slate-600 dark:text-slate-400">Create and manage case studies.</p>
         </div>
         <div className="flex gap-3">
           <button
             onClick={() => setAiShowPanel(!aiShowPanel)}
             className="flex items-center gap-2 bg-violet-500 text-white px-5 py-3 rounded-xl font-bold hover:bg-violet-400 transition-all"
           >
-            <Sparkles className="h-5 w-5" /> AI Auto-News
+            <Sparkles className="h-5 w-5" /> AI Auto-Generate
           </button>
           <Link
             href="/dashboard/admin/news/new"
@@ -5048,7 +5048,7 @@ function NewsManagementSection({
                   <Sparkles className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">AI News Generator</h3>
+                  <h3 className="font-bold text-lg">AI Case Study Generator</h3>
                   <p className="text-sm text-slate-500 dark:text-slate-400">
                     Auto-generates SEO-optimized news articles with images and credible sources. Runs daily at 2 PM CST.
                   </p>
@@ -5122,7 +5122,7 @@ function NewsManagementSection({
       ) : articles.length === 0 ? (
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-12 text-center">
           <Newspaper className="h-12 w-12 text-slate-400 mx-auto mb-4" />
-          <p className="text-slate-600 dark:text-slate-400 mb-4">No news articles yet. Create your first one!</p>
+          <p className="text-slate-600 dark:text-slate-400 mb-4">No case studies yet. Create your first one!</p>
           <Link href="/dashboard/admin/news/new" className="text-emerald-500 dark:text-emerald-400 font-bold hover:underline">Create Article →</Link>
         </div>
       ) : (
@@ -5217,8 +5217,8 @@ function NewsManagementSection({
       )}
       <DeleteConfirmationModal
         isOpen={deleteModal.isOpen}
-        title="Delete News Article"
-        description="This will permanently delete the news article. This action cannot be undone."
+        title="Delete Case Study"
+        description="This will permanently delete the case study. This action cannot be undone."
         itemName={deleteModal.articleTitle}
         isLoading={deleteModal.isLoading}
         onConfirm={confirmDelete}
