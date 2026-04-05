@@ -244,7 +244,7 @@ export async function sendNewsletterNotification(email: string, source: string):
   `;
 
   try {
-    await Promise.allSettled([
+    const [adminResult, subscriberResult] = await Promise.allSettled([
       transporter.sendMail({
         from: CONTACT_EMAIL_FROM,
         to: CONTACT_NOTIFICATION_RECIPIENTS,
@@ -262,7 +262,19 @@ export async function sendNewsletterNotification(email: string, source: string):
         text: "Thanks for subscribing to Shree Gauli's newsletter! You'll receive occasional updates on digital marketing insights, SEO tips, and more.",
       }),
     ]);
-    return true;
+
+    const errors = [
+      adminResult.status === 'rejected' ? adminResult.reason : null,
+      subscriberResult.status === 'rejected' ? subscriberResult.reason : null,
+    ]
+      .filter(Boolean)
+      .map((error) => (error instanceof Error ? error.message : 'Unknown newsletter email error'));
+
+    if (errors.length > 0) {
+      console.error('Newsletter email delivery issue:', errors.join(' | '));
+    }
+
+    return adminResult.status === 'fulfilled' || subscriberResult.status === 'fulfilled';
   } catch (error) {
     console.error('Newsletter email notification error:', error);
     return false;
