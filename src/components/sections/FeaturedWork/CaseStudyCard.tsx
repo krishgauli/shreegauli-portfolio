@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import type { CaseStudy } from "@/types";
@@ -31,9 +32,11 @@ export function CaseStudyCard({
           gradients[index % gradients.length]
         )}
       >
-        <img
+        <Image
           src={cs.thumbnail}
           alt={cs.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 224px"
           className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal transition-all duration-500"
         />
         {/* Result badge */}

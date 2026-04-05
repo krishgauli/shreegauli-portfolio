@@ -3554,8 +3554,8 @@ function ContentForSection(props: {
         <>
           <header className="flex items-center justify-between mb-12">
             <div>
-              <h1 className="text-[20px] font-bold mb-1">{t('Command Center')}</h1>
-              <p className="text-slate-500 dark:text-slate-400">{t('Welcome')}, {user.name}. {t('System health is optimal')}.</p>
+              <h1 className="text-[20px] font-bold mb-1 text-[#f8fafc]">{t('Command Center')}</h1>
+              <p className="text-[#94a3b8]">{t('Welcome')}, {user.name}. {t('System health is optimal')}.</p>
             </div>
             <div className="flex gap-3">
               <button 
@@ -3575,10 +3575,10 @@ function ContentForSection(props: {
 
           {/* Real-time Clinic Management (same as before) */}
           <div className="glass rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-700 mb-12">
-            <h3 className="text-xl font-bold mb-6">{t('Assign Clinics to Clients')}</h3>
+            <h3 className="text-xl font-bold text-[#f8fafc] mb-6">{t('Assign Clinics to Clients')}</h3>
             <div className="flex flex-wrap gap-4 mb-8">
               <select 
-                className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 dark:text-slate-200 focus:outline-none focus:border-emerald-500 min-w-[200px]"
+                className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-[#f8fafc] focus:outline-none focus:border-emerald-500 min-w-[200px]"
                 value={selectedUser}
                 onChange={(e) => setSelectedUser(e.target.value)}
               >
@@ -3588,7 +3588,7 @@ function ContentForSection(props: {
                 ))}
               </select>
               <select 
-                className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 dark:text-slate-200 focus:outline-none focus:border-emerald-500 min-w-[200px]"
+                className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-[#f8fafc] focus:outline-none focus:border-emerald-500 min-w-[200px]"
                 value={selectedClinic}
                 onChange={(e) => setSelectedClinic(e.target.value)}
               >
@@ -3600,17 +3600,17 @@ function ContentForSection(props: {
               <button 
                 onClick={handleAssign}
                 disabled={!selectedUser || !selectedClinic || isActionLoading}
-                className="bg-emerald-500 text-black px-6 py-3 rounded-xl font-bold hover:bg-emerald-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-emerald-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isActionLoading ? 'Assigning...' : 'Assign'}
               </button>
             </div>
 
-            <h3 className="text-xl font-bold mb-6">Manage Clinics (Real-time Sync)</h3>
+            <h3 className="text-xl font-bold text-[#f8fafc] mb-6">Manage Clinics (Real-time Sync)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-slate-700">
+                  <tr className="text-xs text-[#94a3b8] uppercase tracking-widest border-b border-slate-100 dark:border-slate-700">
                     <th className="px-4 py-4">Clinic Name</th>
                     <th className="px-4 py-4">Type</th>
                     <th className="px-4 py-4">Assigned Users</th>
@@ -3627,13 +3627,13 @@ function ContentForSection(props: {
                     }).filter(Boolean);
 
                     return (
-                      <tr key={clinic.id} className="hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                        <td className="px-4 py-4 font-bold">{clinic.name}</td>
-                        <td className="px-4 py-4 text-sm text-slate-600 dark:text-slate-400">{clinic.type}</td>
+                      <tr key={clinic.id} className="hover:bg-white/10 transition-colors">
+                        <td className="px-4 py-4 font-bold text-[#f8fafc]">{clinic.name}</td>
+                        <td className="px-4 py-4 text-sm text-[#94a3b8]">{clinic.type}</td>
                         <td className="px-4 py-4">
                           <div className="flex flex-wrap gap-2">
                             {assignedUsers.map((u: any) => (
-                              <span key={u.id} className="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded-md flex items-center gap-2">
+                              <span key={u.id} className="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded-md flex items-center gap-2 text-[#f8fafc]">
                                 {u.name}
                                 <button
                                   onClick={() => handleRemoveAssignment(u.id, clinic.id)}
@@ -3644,7 +3644,7 @@ function ContentForSection(props: {
                                 </button>
                               </span>
                             ))}
-                            {assignedUsers.length === 0 && <span className="text-slate-400 text-xs">Unassigned</span>}
+                            {assignedUsers.length === 0 && <span className="text-[#94a3b8] text-xs">Unassigned</span>}
                           </div>
                         </td>
                         <td className="px-4 py-4">
@@ -3652,7 +3652,7 @@ function ContentForSection(props: {
                             type="number" 
                             value={clinic.leads}
                             onChange={(e) => handleUpdateStats(clinic.id, parseInt(e.target.value) || 0, clinic.appointments)}
-                            className="w-20 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded p-1 text-center dark:text-slate-200"
+                            className="w-20 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded p-1 text-center text-[#f8fafc]"
                           />
                         </td>
                         <td className="px-4 py-4">
@@ -3660,16 +3660,16 @@ function ContentForSection(props: {
                             type="number" 
                             value={clinic.appointments}
                             onChange={(e) => handleUpdateStats(clinic.id, clinic.leads, parseInt(e.target.value) || 0)}
-                            className="w-20 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded p-1 text-center dark:text-slate-200"
+                            className="w-20 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded p-1 text-center text-[#f8fafc]"
                           />
                         </td>
                         <td className="px-4 py-4">
                           <div className="flex flex-col gap-2">
-                            <span className="text-emerald-500 text-xs">Live Sync Active</span>
+                            <span className="text-[#22d3ee] text-xs">Live Sync Active</span>
                             <div className="flex gap-2">
                               <button 
                                 onClick={() => onQuickAssign(clinic.id)}
-                                className="text-xs bg-emerald-500 text-black px-3 py-1 rounded hover:bg-emerald-400 transition-colors font-bold"
+                                className="text-xs bg-emerald-500 text-white px-3 py-1 rounded hover:bg-emerald-400 transition-colors font-bold"
                               >
                                 + Assign
                               </button>
@@ -3702,15 +3702,15 @@ function ContentForSection(props: {
             <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-2">
                 <Activity className="h-5 w-5 text-emerald-500" />
-                <h4 className="text-sm font-medium text-slate-600 dark:text-slate-400">Last Week</h4>
+                <h4 className="text-sm font-medium text-[#94a3b8]">Last Week</h4>
               </div>
-              <p className="text-3xl font-bold mb-1">{commandCenterData.weeklyPatients.toLocaleString()}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Patient Visits</p>
+              <p className="text-3xl font-bold text-[#f8fafc] mb-1">{commandCenterData.weeklyPatients.toLocaleString()}</p>
+              <p className="text-xs text-[#94a3b8]">Patient Visits</p>
               <div className="mt-3 flex items-center gap-1 text-xs">
                 <span className={commandCenterData.weeklyPatientsTrend >= 0 ? 'text-emerald-500' : 'text-red-500'}>
                   {commandCenterData.weeklyPatientsTrend >= 0 ? '↑' : '↓'} {Math.abs(commandCenterData.weeklyPatientsTrend)}%
                 </span>
-                <span className="text-slate-500 dark:text-slate-400">vs prev week</span>
+                <span className="text-[#94a3b8]">vs prev week</span>
               </div>
             </div>
 
@@ -3718,15 +3718,15 @@ function ContentForSection(props: {
             <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-2">
                 <Calendar className="h-5 w-5 text-blue-500" />
-                <h4 className="text-sm font-medium text-slate-600 dark:text-slate-400">Last Month</h4>
+                <h4 className="text-sm font-medium text-[#94a3b8]">Last Month</h4>
               </div>
-              <p className="text-3xl font-bold mb-1">{commandCenterData.monthlyPatients.toLocaleString()}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Patient Visits</p>
+              <p className="text-3xl font-bold text-[#f8fafc] mb-1">{commandCenterData.monthlyPatients.toLocaleString()}</p>
+              <p className="text-xs text-[#94a3b8]">Patient Visits</p>
               <div className="mt-3 flex items-center gap-1 text-xs">
                 <span className={commandCenterData.monthlyPatientsTrend >= 0 ? 'text-emerald-500' : 'text-red-500'}>
                   {commandCenterData.monthlyPatientsTrend >= 0 ? '↑' : '↓'} {Math.abs(commandCenterData.monthlyPatientsTrend)}%
                 </span>
-                <span className="text-slate-500 dark:text-slate-400">vs prev month</span>
+                <span className="text-[#94a3b8]">vs prev month</span>
               </div>
             </div>
 
@@ -3734,12 +3734,12 @@ function ContentForSection(props: {
             <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-5 w-5 text-amber-500" />
-                <h4 className="text-sm font-medium text-slate-600 dark:text-slate-400">Weekly Ad Spend</h4>
+                <h4 className="text-sm font-medium text-[#94a3b8]">Weekly Ad Spend</h4>
               </div>
-              <p className="text-3xl font-bold mb-1">${commandCenterData.weeklyAdSpend.total.toLocaleString()}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Meta + Google</p>
+              <p className="text-3xl font-bold text-[#f8fafc] mb-1">${commandCenterData.weeklyAdSpend.total.toLocaleString()}</p>
+              <p className="text-xs text-[#94a3b8]">Meta + Google</p>
               <div className="mt-3 flex items-center gap-1 text-xs">
-                <span className="text-slate-500 dark:text-slate-400">
+                <span className="text-[#94a3b8]">
                   Meta: ${commandCenterData.weeklyAdSpend.meta.toLocaleString()} • Google: ${commandCenterData.weeklyAdSpend.google.toLocaleString()}
                 </span>
               </div>
@@ -3749,12 +3749,12 @@ function ContentForSection(props: {
             <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-5 w-5 text-purple-500" />
-                <h4 className="text-sm font-medium text-slate-600 dark:text-slate-400">Monthly Ad Spend</h4>
+                <h4 className="text-sm font-medium text-[#94a3b8]">Monthly Ad Spend</h4>
               </div>
-              <p className="text-3xl font-bold mb-1">${commandCenterData.monthlyAdSpend.total.toLocaleString()}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Meta + Google</p>
+              <p className="text-3xl font-bold text-[#f8fafc] mb-1">${commandCenterData.monthlyAdSpend.total.toLocaleString()}</p>
+              <p className="text-xs text-[#94a3b8]">Meta + Google</p>
               <div className="mt-3 flex items-center gap-1 text-xs">
-                <span className="text-slate-500 dark:text-slate-400">
+                <span className="text-[#94a3b8]">
                   Meta: ${commandCenterData.monthlyAdSpend.meta.toLocaleString()} • Google: ${commandCenterData.monthlyAdSpend.google.toLocaleString()}
                 </span>
               </div>
@@ -3768,7 +3768,7 @@ function ContentForSection(props: {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
                   <Building2 className="h-5 w-5 text-emerald-500" />
-                  <h3 className="text-lg font-bold">Top Performing Clinics</h3>
+                  <h3 className="text-lg font-bold text-[#f8fafc]">Top Performing Clinics</h3>
                 </div>
                 <button 
                   onClick={() => navigateToSection('Analytics')}
@@ -3780,13 +3780,13 @@ function ContentForSection(props: {
               <div className="space-y-3">
                 {commandCenterData.topClinics.length > 0 ? (
                   commandCenterData.topClinics.map((clinic: any, idx: number) => (
-                    <div key={clinic.clinicId} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                    <div key={clinic.clinicId} className="flex items-center justify-between p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
                       <div className="flex-1">
-                        <p className="font-medium text-sm">{clinic.name}</p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">{clinic.location}</p>
+                        <p className="font-medium text-sm text-[#f8fafc]">{clinic.name}</p>
+                        <p className="text-xs text-[#94a3b8]">{clinic.location}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold text-lg">{clinic.patients.toLocaleString()}</p>
+                        <p className="font-bold text-lg text-[#f8fafc]">{clinic.patients.toLocaleString()}</p>
                         <p className="text-xs">
                           <span className={clinic.trend >= 0 ? 'text-emerald-500' : 'text-red-500'}>
                             {clinic.trend >= 0 ? '↑' : '↓'} {Math.abs(clinic.trend)}%
@@ -3796,10 +3796,10 @@ function ContentForSection(props: {
                     </div>
                   ))
                 ) : (
-                  <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                  <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
                     <div className="flex-1">
-                      <p className="font-medium text-sm">No data available</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">Add weekly analytics to see clinic performance</p>
+                      <p className="font-medium text-sm text-[#f8fafc]">No data available</p>
+                      <p className="text-xs text-[#94a3b8]">Add weekly analytics to see clinic performance</p>
                     </div>
                   </div>
                 )}
@@ -3810,24 +3810,24 @@ function ContentForSection(props: {
             <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-6">
                 <Globe className="h-5 w-5 text-blue-500" />
-                <h3 className="text-lg font-bold">Traffic & GMB Summary</h3>
+                <h3 className="text-lg font-bold text-[#f8fafc]">Traffic & GMB Summary</h3>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mb-1">Total Traffic</p>
-                  <p className="text-2xl font-bold">{commandCenterData.traffic.total.toLocaleString()}</p>
+                <div className="p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                  <p className="text-xs text-[#94a3b8] mb-1">Total Traffic</p>
+                  <p className="text-2xl font-bold text-[#f8fafc]">{commandCenterData.traffic.total.toLocaleString()}</p>
                 </div>
-                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mb-1">Phone Calls</p>
-                  <p className="text-2xl font-bold">{commandCenterData.traffic.calls.toLocaleString()}</p>
+                <div className="p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                  <p className="text-xs text-[#94a3b8] mb-1">Phone Calls</p>
+                  <p className="text-2xl font-bold text-[#f8fafc]">{commandCenterData.traffic.calls.toLocaleString()}</p>
                 </div>
-                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mb-1">Website Visits</p>
-                  <p className="text-2xl font-bold">{commandCenterData.traffic.websiteVisits.toLocaleString()}</p>
+                <div className="p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                  <p className="text-xs text-[#94a3b8] mb-1">Website Visits</p>
+                  <p className="text-2xl font-bold text-[#f8fafc]">{commandCenterData.traffic.websiteVisits.toLocaleString()}</p>
                 </div>
-                <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mb-1">Direction Clicks</p>
-                  <p className="text-2xl font-bold">{commandCenterData.traffic.directionClicks.toLocaleString()}</p>
+                <div className="p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                  <p className="text-xs text-[#94a3b8] mb-1">Direction Clicks</p>
+                  <p className="text-2xl font-bold text-[#f8fafc]">{commandCenterData.traffic.directionClicks.toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -3839,16 +3839,16 @@ function ContentForSection(props: {
             <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-6">
                 <ShieldAlert className="h-5 w-5 text-amber-500" />
-                <h3 className="text-lg font-bold">System Alerts</h3>
+                <h3 className="text-lg font-bold text-[#f8fafc]">System Alerts</h3>
               </div>
               <div className="space-y-3">
                 {commandCenterData.alerts.length > 0 ? (
                   commandCenterData.alerts.map((alert: any, idx: number) => (
-                    <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                    <div key={idx} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{alert.message}</p>
+                        <p className="text-sm font-medium text-[#e2e8f0]">{alert.message}</p>
                         {alert.details && (
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{alert.details}</p>
+                          <p className="text-xs text-[#94a3b8] mt-1">{alert.details}</p>
                         )}
                       </div>
                       <span className={`text-xs px-2 py-1 rounded-full ${
@@ -3861,10 +3861,10 @@ function ContentForSection(props: {
                     </div>
                   ))
                 ) : (
-                  <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                  <div className="flex items-start gap-3 p-3 bg-white/5 rounded-xl">
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-slate-700 dark:text-slate-300">All systems operational</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">No alerts or issues detected</p>
+                      <p className="text-sm font-medium text-[#e2e8f0]">All systems operational</p>
+                      <p className="text-xs text-[#94a3b8] mt-1">No alerts or issues detected</p>
                     </div>
                     <span className="text-xs px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full">OK</span>
                   </div>
@@ -3876,27 +3876,27 @@ function ContentForSection(props: {
             <div className="glass rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-6">
                 <Activity className="h-5 w-5 text-purple-500" />
-                <h3 className="text-lg font-bold">Recent Activity</h3>
+                <h3 className="text-lg font-bold text-[#f8fafc]">Recent Activity</h3>
               </div>
               <div className="space-y-3 max-h-[300px] overflow-y-auto">
                 {commandCenterData.recentActivity.length > 0 ? (
                   commandCenterData.recentActivity.map((activity: any, idx: number) => (
-                    <div key={idx} className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                    <div key={idx} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{activity.action}</p>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                        <p className="text-sm font-medium text-[#e2e8f0]">{activity.action}</p>
+                        <p className="text-xs text-[#94a3b8] mt-1">
                           {activity.name} {activity.details && `• ${activity.details}`}
                         </p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        <p className="text-xs text-[#94a3b8] mt-1">
                           {new Date(activity.timestamp).toLocaleString()}
                         </p>
                       </div>
                     </div>
                   ))
                 ) : (
-                  <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+                  <div className="flex items-start gap-3 p-3 bg-white/5 rounded-xl">
                     <div className="flex-1">
-                      <p className="text-sm text-slate-600 dark:text-slate-400">No recent activity</p>
+                      <p className="text-sm text-[#94a3b8]">No recent activity</p>
                     </div>
                   </div>
                 )}

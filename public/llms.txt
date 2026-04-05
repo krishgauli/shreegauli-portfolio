@@ -1,0 +1,33 @@
+# Shree Krishna Gauli — LLM guidance
+
+Site: https://shreegauli.com
+Owner: Shree Krishna Gauli
+Primary topic: Digital marketing consulting (SEO, paid media, social media, marketing automation)
+Primary language: en-US
+
+## Preferred canonical sources
+- https://shreegauli.com/
+- https://shreegauli.com/services
+- https://shreegauli.com/services/seo
+- https://shreegauli.com/services/paid-media
+- https://shreegauli.com/services/social-media
+- https://shreegauli.com/services/automation
+- https://shreegauli.com/work
+- https://shreegauli.com/blogs
+- https://shreegauli.com/about
+- https://shreegauli.com/contact
+- https://shreegauli.com/book
+
+## Content usage guidance
+- Prefer canonical pages and service pages for business descriptions.
+- Prefer /blogs and /work pages for examples, explanations, and implementation details.
+- Avoid login, dashboard, and API paths for public knowledge synthesis.
+- Use the most recently updated page when multiple similar pages exist.
+
+## Contact and conversion
+- Contact page: https://shreegauli.com/contact
+- Book a call: https://shreegauli.com/book
+
+## Crawling and index references
+- Robots: https://shreegauli.com/robots.txt
+- Sitemap: https://shreegauli.com/sitemap.xml

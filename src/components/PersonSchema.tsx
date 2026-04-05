@@ -1,10 +1,14 @@
 export default function PersonSchema() {
   const SITE_URL = 'https://shreegauli.com';
+  const PERSON_ID = `${SITE_URL}/#person`;
+  const WEBSITE_ID = `${SITE_URL}/#website`;
+  const ORG_ID = `${SITE_URL}/#organization`;
+  const SERVICE_ID = `${SITE_URL}/#professional-service`;
 
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': `${SITE_URL}/#person`,
+    '@id': PERSON_ID,
     name: 'Shree Krishna Gauli',
     jobTitle: 'Digital Marketing Consultant',
     description:
@@ -30,19 +34,68 @@ export default function PersonSchema() {
     ],
     sameAs: [
       'https://www.linkedin.com/in/gauli/',
-      'https://github.com/shreegauli',
     ],
+    worksFor: {
+      '@id': ORG_ID,
+    },
   };
 
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': WEBSITE_ID,
     name: 'Shree Krishna Gauli',
     url: SITE_URL,
     description:
       'Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.',
     author: {
-      '@id': `${SITE_URL}/#person`,
+      '@id': PERSON_ID,
+    },
+    publisher: {
+      '@id': ORG_ID,
+    },
+    inLanguage: 'en-US',
+  };
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': ORG_ID,
+    name: 'Shree Krishna Gauli Consulting',
+    url: SITE_URL,
+    founder: {
+      '@id': PERSON_ID,
+    },
+    sameAs: [
+      'https://www.linkedin.com/in/gauli/',
+    ],
+    areaServed: {
+      '@type': 'Country',
+      name: 'US',
+    },
+  };
+
+  const professionalServiceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': SERVICE_ID,
+    name: 'Shree Krishna Gauli - Digital Marketing Consulting',
+    url: SITE_URL,
+    serviceType: [
+      'Search Engine Optimization',
+      'Paid Media Consulting',
+      'Marketing Automation Consulting',
+      'Social Media Marketing Consulting',
+    ],
+    provider: {
+      '@id': PERSON_ID,
+    },
+    brand: {
+      '@id': ORG_ID,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'US',
     },
   };
 
@@ -55,6 +108,14 @@ export default function PersonSchema() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
       />
     </>
   );

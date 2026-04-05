@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { Calendar, Linkedin, Github, Send, CheckCircle2, X } from "lucide-react";
+import { Calendar, Linkedin, Send, CheckCircle2, X } from "lucide-react";
 import Link from "next/link";
 
 const serviceOptions = [
@@ -263,15 +263,6 @@ export function ContactForm() {
             >
               <Linkedin className="h-4 w-4 text-[#22D3EE]" />
               Connect on LinkedIn
-            </Link>
-            <Link
-              href="https://github.com/shreegauli"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#94A3B8] hover:text-[#F8FAFC] hover:border-white/20 transition-colors"
-            >
-              <Github className="h-4 w-4 text-[#22D3EE]" />
-              GitHub
             </Link>
           </div>
         </div>

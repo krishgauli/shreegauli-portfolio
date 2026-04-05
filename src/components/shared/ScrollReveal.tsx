@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 
@@ -16,28 +15,17 @@ interface ScrollRevealProps {
   threshold?: number;
 }
 
-const getInitial = (direction: Direction) => {
+const getInitialStyle = (direction: Direction) => {
   switch (direction) {
-    case "up": return { opacity: 0, y: 32 };
-    case "down": return { opacity: 0, y: -32 };
-    case "left": return { opacity: 0, x: 40 };
-    case "right": return { opacity: 0, x: -40 };
-    case "none": return { opacity: 0 };
+    case "up": return { opacity: 0, transform: "translate3d(0, 32px, 0)" };
+    case "down": return { opacity: 0, transform: "translate3d(0, -32px, 0)" };
+    case "left": return { opacity: 0, transform: "translate3d(40px, 0, 0)" };
+    case "right": return { opacity: 0, transform: "translate3d(-40px, 0, 0)" };
+    case "none": return { opacity: 0, transform: "translate3d(0,0,0)" };
   }
 };
 
-const getAnimate = (direction: Direction) => {
-  switch (direction) {
-    case "up":
-    case "down":
-      return { opacity: 1, y: 0 };
-    case "left":
-    case "right":
-      return { opacity: 1, x: 0 };
-    case "none":
-      return { opacity: 1 };
-  }
-};
+const visibleStyle = { opacity: 1, transform: "translate3d(0,0,0)" };
 
 /**
  * Wraps children in a scroll-triggered reveal animation.
@@ -51,8 +39,33 @@ export function ScrollReveal({
   threshold = 0.15,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const prefersReducedMotion = useReducedMotion();
-  const isInView = useInView(ref, { once: true, amount: threshold });
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setIsVisible(true);
+      return;
+    }
+
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold,
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [prefersReducedMotion, threshold]);
 
   if (prefersReducedMotion) {
     return (
@@ -62,19 +75,31 @@ export function ScrollReveal({
     );
   }
 
+  const transitionDelay = `${Math.max(0, delay)}s`;
+
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={getInitial(direction)}
-      animate={isInView ? getAnimate(direction) : getInitial(direction)}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      style={
+        isVisible
+          ? {
+              ...visibleStyle,
+              transition:
+                "transform 600ms cubic-bezier(0.22,1,0.36,1), opacity 600ms cubic-bezier(0.22,1,0.36,1)",
+              transitionDelay,
+              willChange: "transform, opacity",
+            }
+          : {
+              ...getInitialStyle(direction),
+              transition:
+                "transform 600ms cubic-bezier(0.22,1,0.36,1), opacity 600ms cubic-bezier(0.22,1,0.36,1)",
+              transitionDelay,
+              willChange: "transform, opacity",
+            }
+      }
       className={className}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

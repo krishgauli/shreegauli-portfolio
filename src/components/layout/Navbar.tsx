@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
   X,
@@ -13,7 +12,6 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { navLinks } from "@/lib/data";
-import { mobileMenuVariants, navbarEntrance } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
 import { useAuth } from "@/components/AuthProvider";
@@ -62,12 +60,7 @@ export function Navbar() {
   };
 
   return (
-    <motion.header
-      variants={navbarEntrance}
-      initial="hidden"
-      animate="visible"
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4"
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4">
       <nav
         className={cn(
           "w-full max-w-6xl rounded-2xl px-5 py-2.5 transition-all duration-300",
@@ -135,15 +128,8 @@ export function Navbar() {
                   />
                 </button>
 
-                <AnimatePresence>
-                  {userMenuOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
-                      className="absolute right-0 mt-3 w-72 rounded-2xl bg-[#0F172A]/95 backdrop-blur-xl border border-white/[0.12] shadow-2xl z-50 overflow-hidden"
-                    >
+                {userMenuOpen && (
+                  <div className="absolute right-0 mt-3 w-72 rounded-2xl bg-[#0F172A]/95 backdrop-blur-xl border border-white/[0.12] shadow-2xl z-50 overflow-hidden">
                       {/* User info header */}
                       <div className="px-4 py-4 border-b border-white/[0.08] bg-gradient-to-r from-[#7C3AED]/15 via-transparent to-transparent">
                         <div className="flex items-center gap-3">
@@ -218,9 +204,8 @@ export function Navbar() {
                           Sign Out
                         </button>
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                  </div>
+                )}
               </div>
             ) : null}
 
@@ -265,16 +250,8 @@ export function Navbar() {
         </div>
 
         {/* Mobile menu */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              key="mobile-menu"
-              variants={mobileMenuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="md:hidden overflow-hidden"
-            >
+        {mobileOpen && (
+          <div className="md:hidden overflow-hidden">
               <div className="pt-3 pb-2 flex flex-col gap-1 border-t border-white/[0.08] mt-3">
                 {navLinks.map((link) => (
                   <Link
@@ -353,10 +330,9 @@ export function Navbar() {
                   Book a Call
                 </Link>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        )}
       </nav>
-    </motion.header>
+    </header>
   );
 }

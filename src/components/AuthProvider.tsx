@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface User {
   id: string;
@@ -29,6 +30,17 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+
+  const shouldHydrateAuth = useMemo(() => {
+    return (
+      pathname.startsWith('/dashboard') ||
+      pathname.startsWith('/login') ||
+      pathname.startsWith('/signup') ||
+      pathname.startsWith('/forgot-password') ||
+      pathname.startsWith('/reset-password')
+    );
+  }, [pathname]);
 
   const refreshUser = useCallback(async () => {
     try {
@@ -48,21 +60,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
+    if (!shouldHydrateAuth) {
+      setLoading(false);
+      setUser(null);
+      return;
+    }
     refreshUser();
-  }, [refreshUser]);
+  }, [refreshUser, shouldHydrateAuth]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!shouldHydrateAuth || !user) return;
 
     const intervalId = window.setInterval(() => {
       refreshUser();
     }, 10000);
 
     return () => window.clearInterval(intervalId);
-  }, [user, refreshUser]);
+  }, [user, refreshUser, shouldHydrateAuth]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!shouldHydrateAuth || !user) return;
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
@@ -81,7 +98,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('focus', handleFocus);
     };
-  }, [user, refreshUser]);
+  }, [user, refreshUser, shouldHydrateAuth]);
 
   const login = useCallback(async (email: string, password: string) => {
     try {

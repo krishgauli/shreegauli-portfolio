@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import './dashboard.css';
 
 // Providers (AuthProvider + SitePreferencesProvider) are now at root layout level
 

@@ -1,10 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { TrendingUp, Users, Zap, CheckCircle2 } from "lucide-react";
-import { floatAnimation, fadeInVariants, staggerContainer } from "@/lib/animations";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 
 function ProfileCard() {
@@ -84,19 +79,8 @@ function SkillBadgeCard() {
 }
 
 export function HeroModuleCluster() {
-  const prefersReducedMotion = useReducedMotion();
-
-  const floatProps = prefersReducedMotion
-    ? {}
-    : { animate: floatAnimation };
-
   return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      animate="visible"
-      className="relative flex flex-col gap-3 max-w-sm w-full mx-auto lg:mx-0"
-    >
+    <div className="relative flex flex-col gap-3 max-w-sm w-full mx-auto lg:mx-0">
       {/* Glow behind cluster */}
       <div
         aria-hidden="true"
@@ -108,17 +92,14 @@ export function HeroModuleCluster() {
       />
 
       {/* Floating wrapper */}
-      <motion.div
-        {...floatProps}
-        className="flex flex-col gap-3"
-      >
+      <div className="flex flex-col gap-3">
         {/* Profile card */}
-        <motion.div variants={fadeInVariants}>
+        <div>
           <ProfileCard />
-        </motion.div>
+        </div>
 
         {/* Two metric cards side by side */}
-        <motion.div variants={fadeInVariants} className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <MetricCard
             icon={TrendingUp}
             value="+340%"
@@ -131,15 +112,15 @@ export function HeroModuleCluster() {
             label="Peak ROAS"
             color="#7C3AED"
           />
-        </motion.div>
+        </div>
 
         {/* Skill badge card */}
-        <motion.div variants={fadeInVariants}>
+        <div>
           <SkillBadgeCard />
-        </motion.div>
+        </div>
 
         {/* Bottom metric */}
-        <motion.div variants={fadeInVariants}>
+        <div>
           <MetricCard
             icon={Zap}
             value="20+ hrs"
@@ -147,8 +128,8 @@ export function HeroModuleCluster() {
             color="#F59E0B"
             className="w-full"
           />
-        </motion.div>
-      </motion.div>
-    </motion.div>
+        </div>
+      </div>
+    </div>
   );
 }
