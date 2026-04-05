@@ -268,13 +268,13 @@ async function seedWeeklyAnalytics() {
       console.log('⚠️  No client user found. Creating default client user...');
       clientUser = await prisma.user.create({
         data: {
-          email: 'jaya.r.dahal@focusyourfinance.com',
+          email: 'shree@focusyourfinance.com',
           password: 'Hello@123',
-          name: 'Jaya R. Dahal',
-          role: 'client',
+          name: 'Shree',
+          role: 'admin',
         }
       });
-      console.log(`✓ Created client user: ${clientUser.email}`);
+      console.log(`✓ Created fallback user: ${clientUser.email}`);
     }
 
     // Get all clinics

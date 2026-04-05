@@ -67,19 +67,7 @@ async function main() {
   });
   console.log(`✅ Admin created: ${admin.email} (id: ${admin.id})`);
 
-  // ─── 2. Client User ───
-  await ensureSupabaseUser('jaya.r.dahal@focusyourfinance.com', clientPassword, 'Jaya R. Dahal');
-  const client = await prisma.user.upsert({
-    where: { email: 'jaya.r.dahal@focusyourfinance.com' },
-    update: { password: clientHash, role: 'client', name: 'Jaya R. Dahal' },
-    create: {
-      email: 'jaya.r.dahal@focusyourfinance.com',
-      password: clientHash,
-      name: 'Jaya R. Dahal',
-      role: 'client',
-    },
-  });
-  console.log(`✅ Client created: ${client.email} (id: ${client.id})`);
+  // ─── 2. (Client user removed) ───
 
   // ─── 3. Create sample clinics ───
   const clinicData = [
@@ -165,7 +153,6 @@ async function main() {
   console.log('\n🎉 Seeding complete!\n');
   console.log('─── Login Credentials ───');
   console.log('Admin:  shree@focusyourfinance.com / Hello@123');
-  console.log('Client: jaya.r.dahal@focusyourfinance.com / Hello@123');
 }
 
 main()
