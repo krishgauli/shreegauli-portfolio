@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { revalidateSitemap } from '@/lib/revalidate-sitemap';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const auth = await requireAdmin(request);
@@ -35,12 +36,12 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
   }
   
   // Build update data dynamically (allows partial updates)
-  const updateData: any = {};
+  const updateData: Record<string, string | Date | null> = {};
   
   if (body.title !== undefined) updateData.title = body.title;
   if (body.slug !== undefined) updateData.slug = body.slug;
   if (body.excerpt !== undefined) updateData.excerpt = body.excerpt || null;
-  if (body.content !== undefined) updateData.content = body.content;
+  if (body.content !== undefined) updateData.content = sanitizeHtml(body.content || '');
   if (body.coverImage !== undefined) updateData.coverImage = body.coverImage || null;
   if (body.coverImageAlt !== undefined) updateData.coverImageAlt = body.coverImageAlt || null;
   if (body.seoTitle !== undefined) updateData.seoTitle = body.seoTitle || null;

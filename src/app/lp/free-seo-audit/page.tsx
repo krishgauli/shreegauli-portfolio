@@ -5,18 +5,21 @@ import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Free SEO Audit Landing Page — Shree Krishna Gauli",
+  title: "Free SEO Audit | Spot High-Impact Issues Fast",
   description:
     "Run a free SEO audit, spot high-impact issues fast, and book a review if you want help prioritizing the fixes.",
   path: "/lp/free-seo-audit",
-  keywords: ["free seo audit", "seo audit tool", "website seo checker"],
+  keywords: ["free SEO audit", "SEO audit tool", "website SEO checker", "on-page SEO analysis"],
 });
 
 export default function FreeSeoAuditLandingPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Free SEO Audit", path: "/lp/free-seo-audit" }])} />
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-5xl">
           <SectionHeader

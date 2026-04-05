@@ -449,6 +449,20 @@ model GoogleAdsData {
   @@index([date])
 }
 
+model AiHistory {
+  id            String   @id @default(cuid())
+  userId        String
+  generatorType String // 'text', 'image', 'blog', 'news'
+  prompt        String   @db.Text
+  settings      Json? // Store tone, word count, style presets, etc.
+  output        String   @db.Text // Text content or the image/video URL
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
+  @@index([generatorType])
+  @@index([createdAt])
+}
+
 model GoogleApiCache {
   id           String   @id @default(cuid())
   cacheKey     String   @unique
@@ -501,4 +515,71 @@ model MonthlyClinicReportEmail {
   @@unique([clinicId, recipientEmail, reportYear, reportMonth])
   @@index([reportYear, reportMonth])
   @@index([status])
+}
+
+// ─── Invoicing & Client Billing ──────────────────────────────────────
+
+model Client {
+  id             String    @id @default(cuid())
+  name           String
+  email          String    @unique
+  company        String?
+  phone          String?
+  billingAddress String?
+  city           String?
+  state          String?
+  country        String?   @default("US")
+  zipCode        String?
+  notes          String?
+  // Recurring billing config
+  monthlyRate    Float?              // Amount in USD charged each month
+  currency       String   @default("USD")
+  billingDay     Int      @default(1) // Day of month to bill (1-28)
+  isActive       Boolean  @default(true)
+  payoneerEmail  String?             // Payoneer email for payment link
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  invoices       Invoice[]
+
+  @@index([isActive])
+  @@index([email])
+}
+
+model Invoice {
+  id             String    @id @default(cuid())
+  invoiceNumber  String    @unique      // e.g. "INV-2026-0042"
+  clientId       String
+  client         Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  // Amounts
+  subtotal       Float
+  taxRate        Float     @default(0)
+  taxAmount      Float     @default(0)
+  total          Float
+  currency       String    @default("USD")
+  // Details
+  description    String?               // Line-item / service summary
+  lineItems      Json?                 // [{ description, qty, rate, amount }]
+  // Status
+  status         String    @default("draft") // draft | sent | paid | overdue | cancelled
+  // Dates
+  issueDate      DateTime  @default(now())
+  dueDate        DateTime
+  paidAt         DateTime?
+  // Payment
+  paymentMethod  String?               // "payoneer" | "stripe" | "bank_transfer"
+  paymentLink    String?               // Payoneer request-payment URL
+  transactionId  String?               // External payment reference
+  // Email tracking
+  sentAt         DateTime?
+  sentTo         String?
+  // Notes
+  notes          String?               // Internal notes
+  clientNotes    String?               // Notes visible on invoice
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([clientId])
+  @@index([status])
+  @@index([issueDate])
+  @@index([dueDate])
 }

@@ -2,16 +2,18 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import { BookingClient } from "./BookingClient";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Book a Call — Shree Krishna Gauli",
+  title: "Book a Free Strategy Call | 30-Minute Consultation",
   description:
     "Schedule a free 30-minute strategy call with Shree. Available Monday, Thursday, Friday, Saturday, and Sunday mornings 9 AM–1 PM CT.",
   path: "/book",
   keywords: [
     "book marketing consultation",
-    "free SEO strategy call",
+    "free strategy call",
     "schedule digital marketing call",
   ],
 });
@@ -19,6 +21,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function BookPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Book", path: "/book" }])} />
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-3xl mx-auto">
           <SectionHeader

@@ -46,7 +46,7 @@ const PAGES = [
   { path: '/work/seo-growth', section: 'work', title: 'SEO Growth Case Study' },
   { path: '/work/paid-media', section: 'work', title: 'Paid Media Case Study' },
   { path: '/work/automation', section: 'work', title: 'Automation Case Study' },
-  { path: '/writing', section: 'writing', title: 'Writing' },
+  { path: '/blogs', section: 'blogs', title: 'Blog' },
   { path: '/seo-tools', section: 'tools', title: 'SEO Tools' },
   { path: '/pricing', section: 'pricing', title: 'Pricing' },
   { path: '/working-together', section: 'company', title: 'Working Together' },

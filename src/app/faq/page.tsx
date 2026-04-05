@@ -5,9 +5,11 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "FAQ — Shree Krishna Gauli",
+  title: "FAQ | Digital Marketing Consultant Questions Answered",
   description:
     "Answers to common questions about services, timelines, pricing, communication, and who the work is best suited for.",
   path: "/faq",
@@ -83,6 +85,7 @@ const faqJsonLd = {
 export default function FaqPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "FAQ", path: "/faq" }])} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

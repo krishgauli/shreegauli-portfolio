@@ -130,7 +130,7 @@ export default function SearchConsoleTab({ clinicId, isDark = false }: SearchCon
     .filter((p: any) => {
       let path = p.page;
       try { path = new URL(p.page).pathname; } catch { /* keep full */ }
-      return path.includes('/blog');
+      return path.includes('/blogs');
     })
     .slice(0, 5);
 
@@ -258,7 +258,7 @@ export default function SearchConsoleTab({ clinicId, isDark = false }: SearchCon
                   try { displayUrl = new URL(p.page).pathname; } catch { /* keep full */ }
                   // Prettify blog path — strip '/blog/' prefix and trailing slash, replace hyphens
                   const blogTitle = displayUrl
-                    .replace(/^\/blog\//, '')
+                    .replace(/^\/blogs\//, '')
                     .replace(/\/$/, '')
                     .split('-')
                     .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))

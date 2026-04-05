@@ -18,16 +18,17 @@ export async function POST(request: NextRequest) {
     const body = await request.json().catch(() => ({}));
     const slug = typeof body?.slug === 'string' ? body.slug : null;
     const type = typeof body?.type === 'string' ? body.type : 'blog'; // 'blog' | 'news'
+    const detailBasePath = type === 'blog' ? '/blogs' : '/news';
 
     // Always revalidate sitemap and the relevant list page
     revalidatePath('/sitemap.xml');
     revalidatePath('/');
-    revalidatePath('/blog');
+    revalidatePath('/blogs');
     revalidatePath('/news');
 
     // Revalidate the specific post/article page if a slug was provided
     if (slug) {
-      revalidatePath(`/${type}/${slug}`);
+      revalidatePath(`${detailBasePath}/${slug}`);
     }
 
     return NextResponse.json({

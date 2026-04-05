@@ -1,5 +1,6 @@
 // Seed script to populate dummy weekly analytics data
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -265,11 +266,13 @@ async function seedWeeklyAnalytics() {
     });
 
     if (!clientUser) {
-      console.log('⚠️  No client user found. Creating default client user...');
+      console.log('⚠️  No client user found. Creating default admin user as a fallback...');
+      const fallbackPassword = 'Hello@123';
+      const fallbackHash = await bcrypt.hash(fallbackPassword, 12);
       clientUser = await prisma.user.create({
         data: {
           email: 'shree@focusyourfinance.com',
-          password: 'Hello@123',
+          password: fallbackHash,
           name: 'Shree',
           role: 'admin',
         }

@@ -2070,7 +2070,7 @@ function AdminDashboardContent() {
             ? 'Monitor publishing, lead flow, and account activity before issues compound.'
             : 'Move across clients, content, and systems without leaving the command center.';
   const sidebarLinkClass =
-    'group w-full text-left flex items-center gap-3 px-3 py-3 rounded-2xl transition-all text-[#94A3B8] hover:text-white hover:bg-white/6 border border-transparent';
+    'group w-full text-left flex items-center gap-3 px-3 py-3 rounded-2xl transition-all text-slate-300 hover:text-white hover:bg-white/10 hover:border-cyan-400/25 border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/55';
 
   return (
     <>
@@ -2141,6 +2141,10 @@ function AdminDashboardContent() {
           <Link href="/dashboard/admin/subscribers" className={sidebarLinkClass}>
             <Mail className="h-5 w-5" />
             <span className="text-sm">{t('Newsletter Subscribers')}</span>
+          </Link>
+          <Link href="/dashboard/admin/invoices" className={sidebarLinkClass}>
+            <DollarSign className="h-5 w-5" />
+            <span className="text-sm">{t('Invoices')}</span>
           </Link>
         </nav>
 

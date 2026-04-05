@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateText } from 'ai';
 import { openai } from '@ai-sdk/openai';
-import Replicate from 'replicate';
 import prisma from '@/lib/prisma';
-import { persistImage } from '@/lib/persist-image';
+import { generateImage } from '@/lib/generate-image';
+import { pickNextKeyword } from '@/lib/keywords';
 import { runSeoChecks, buildFixPrompt, generateSocialMeta, type SeoCheckResult } from '@/lib/seo-validation';
 
 export const dynamic = 'force-dynamic';
@@ -25,7 +25,7 @@ const INTERNAL_PAGES = [
   { url: '/working-together', label: 'how engagements work' },
   { url: '/faq', label: 'frequently asked questions' },
   { url: '/seo-tools', label: 'free SEO audit tool' },
-  { url: '/writing', label: 'marketing articles and insights' },
+  { url: '/blogs', label: 'marketing articles and insights' },
   { url: '/newsletter', label: 'marketing newsletter' },
   { url: '/testimonials', label: 'client testimonials' },
 ];
@@ -54,11 +54,20 @@ const EXTERNAL_SOURCES = [
  * STEP 1: AI-driven keyword research + topic selection.
  * Uses GPT to find a low-competition, high-intent keyword and topic
  * that does NOT duplicate existing posts.
+ *
+ * When a `seedKeyword` is provided (from the top-100 list) the AI is
+ * instructed to build the topic around it instead of picking freely.
  */
 async function researchKeywordAndTopic(
   customTopic: string | undefined,
-  existingTitles: string[]
+  existingTitles: string[],
+  existingDescriptions: string[],
+  seedKeyword?: string
 ): Promise<{ topic: string; focusKeyword: string; supportingKeywords: string[] }> {
+  const seedInstruction = seedKeyword
+    ? `\n\nIMPORTANT: You MUST use "${seedKeyword}" as the primary focus keyword. Build the blog topic around this keyword. Do NOT pick a different keyword.`
+    : '';
+
   const { text: keywordJson } = await generateText({
     model: openai('gpt-4o-mini'),
     system: `You are an SEO keyword research agent for shreegauli.com. Our niche is digital marketing consulting focused on SEO, paid media, content strategy, and automation.
@@ -86,6 +95,10 @@ The following titles already exist on our site. Do NOT propose a topic that over
 
 Existing titles:
 ${existingTitles.map((t) => `- ${t}`).join('\n')}
+
+Existing descriptions (do NOT reuse):
+${existingDescriptions.slice(0, 30).map((d) => `- ${d}`).join('\n')}
+${seedInstruction}
 
 Respond ONLY with valid JSON, no markdown.`,
     prompt: `${customTopic ? `The user wants a blog about: "${customTopic}". Research the best keyword for this topic.` : 'Research and propose the best keyword + topic for a new blog post.'}
@@ -117,38 +130,15 @@ Return this exact JSON structure:
 }
 
 /**
- * STEP 5: Generate a cover image for the blog post using Replicate (flux-schnell).
+ * STEP 5: Generate a cover image for the blog post using OpenAI DALL-E 3.
  *
  * IMAGE RULES:
  * - No cartoons. No illustrated art. No "AI-looking" faces.
- * - Professional editorial photography style.
+ * - Professional editorial photography style (style: "natural").
  * - Alt text must include the focus keyword.
  */
 async function generateBlogImage(focusKeyword: string, title: string): Promise<string | null> {
-  if (!process.env.REPLICATE_API_TOKEN) return null;
-
-  try {
-    const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
-    const output = (await replicate.run('black-forest-labs/flux-schnell', {
-      input: {
-        prompt: `Professional photorealistic editorial photograph for a healthcare marketing blog article about "${title}". Modern healthcare clinic interior or hospital corridor, realistic medical professionals in lab coats or scrubs, natural window light, shallow depth of field, authentic medical equipment visible. High-end editorial photography style similar to Harvard Business Review or JAMA. No cartoons, no digital art, no illustrated style, no text overlays, no logos.`,
-        aspect_ratio: '16:9',
-        num_outputs: 1,
-        output_format: 'webp',
-        output_quality: 85,
-      },
-    })) as string[];
-
-    const tempUrl = Array.isArray(output) ? output[0] : null;
-    if (!tempUrl) return null;
-
-    // Persist to permanent storage (Replicate output URLs expire after ~1 hour)
-    const permanentUrl = await persistImage(tempUrl, 'blog');
-    return permanentUrl;
-  } catch (error) {
-    console.error('Blog image generation failed:', error);
-    return null;
-  }
+  return generateImage(title, 'blog');
 }
 
 /**
@@ -161,16 +151,41 @@ async function generateBlogPost(customTopic?: string) {
 
   const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
 
-  // ── STEP 3: Duplicate check — fetch existing titles ─────────────────
+  // ── STEP 3: Duplicate check — fetch existing titles, slugs, descriptions ──
   const existingPosts = await prisma.post.findMany({
     orderBy: { publishedAt: 'desc' },
-    take: 50,
-    select: { title: true },
+    take: 200,
+    select: { title: true, slug: true, metaDesc: true },
   });
   const existingTitles = existingPosts.map((p) => p.title);
+  const existingSlugs = new Set(existingPosts.map((p) => p.slug));
+  const existingDescriptions = existingPosts.map((p) => p.metaDesc).filter(Boolean) as string[];
+
+  // Collect focus keywords previously used (stored in AiHistory.settings JSON)
+  const aiHistoryRows = await prisma.aiHistory.findMany({
+    where: { generatorType: 'blog' },
+    select: { settings: true },
+    orderBy: { createdAt: 'desc' },
+    take: 200,
+  });
+  const usedFocusKeywords = new Set<string>();
+  for (const row of aiHistoryRows) {
+    const kw = (row.settings as any)?.focusKeyword;
+    if (typeof kw === 'string') usedFocusKeywords.add(kw);
+  }
+
+  // ── Pick a seed keyword from the top-100 list (unless user gave a custom topic) ──
+  let seedKeyword: string | undefined;
+  if (!customTopic) {
+    const picked = pickNextKeyword(usedFocusKeywords);
+    if (picked) {
+      seedKeyword = picked.keyword;
+      console.log(`[Blog] Keyword from top-100 list: "${seedKeyword}" (rank #${picked.rank}, ${picked.priority})`);
+    }
+  }
 
   // ── STEP 1 + 2 + 3: Keyword research + site context + duplicate check ──
-  const research = await researchKeywordAndTopic(customTopic, existingTitles);
+  const research = await researchKeywordAndTopic(customTopic, existingTitles, existingDescriptions, seedKeyword);
   const { topic, focusKeyword, supportingKeywords } = research;
 
   // Pick internal pages and external sources for linking (at least 2 each per agent rules)
@@ -189,14 +204,23 @@ Topic: "${topic}"
 Focus Keyword: "${focusKeyword}"
 Supporting Keywords: ${supportingKeywords.join(', ')}
 
+EXISTING SLUGS (do NOT reuse any of these):
+${[...existingSlugs].slice(0, 50).join(', ')}
+
+EXISTING META DESCRIPTIONS (do NOT copy or closely paraphrase):
+${existingDescriptions.slice(0, 30).map((d) => `- ${d}`).join('\n')}
+
+EXISTING TITLES (do NOT duplicate):
+${existingTitles.slice(0, 50).map((t) => `- ${t}`).join('\n')}
+
 Return this exact JSON structure:
 {
   "focusKeyword": "${focusKeyword}",
   "supportingKeywords": ${JSON.stringify(supportingKeywords)},
   "seoTitle": "SEO title: START with focus keyword, include a NUMBER, a POWER word (Proven, Essential, Ultimate, Critical), and a SENTIMENT word (Boost, Devastating, Skyrocket). MUST be 30-60 characters total.",
-  "metaDescription": "Meta description: include the focus keyword, 140-160 characters, compelling and click-worthy",
+  "metaDescription": "Meta description: include the focus keyword, 140-160 characters, compelling and click-worthy. MUST be unique — not similar to any existing description.",
   "slug": "short-url-slug-with-focus-keyword",
-  "blogTitle": "engaging blog post title that includes the focus keyword, a number, and a power word"
+  "blogTitle": "engaging blog post title that includes the focus keyword, a number, and a power word. MUST be unique — not similar to any existing title."
 }
 
 STRICT RULES:
@@ -206,7 +230,8 @@ STRICT RULES:
 - seoTitle MUST be 30-60 characters (count carefully — this is strict)
 - metaDescription MUST be 140-160 characters
 - slug MUST be short, lowercase with hyphens, contain the focus keyword
-- focusKeyword MUST appear in seoTitle, metaDescription, and slug`,
+- focusKeyword MUST appear in seoTitle, metaDescription, and slug
+- blogTitle, slug, and metaDescription MUST ALL be unique — never duplicate existing ones`,
     temperature: 0.7,
   });
 
@@ -217,10 +242,22 @@ STRICT RULES:
     throw new Error('Failed to parse SEO JSON from AI');
   }
 
-  // Check slug uniqueness
-  const existingPost = await prisma.post.findUnique({ where: { slug: seo.slug } });
-  if (existingPost) {
+  // ── Enforce uniqueness: slug, title, description ────────────────────
+  // Slug
+  if (existingSlugs.has(seo.slug)) {
     seo.slug = `${seo.slug}-${Date.now().toString(36)}`;
+  }
+  // Title
+  const normTitles = new Set(existingTitles.map((t) => t.toLowerCase().trim()));
+  if (normTitles.has(seo.blogTitle.toLowerCase().trim())) {
+    seo.blogTitle = `${seo.blogTitle} — ${new Date().getFullYear()} Guide`;
+    seo.seoTitle = seo.seoTitle.replace(/\d{4}/, `${new Date().getFullYear()}`);
+  }
+  // Description
+  const normDescs = new Set(existingDescriptions.map((d) => d.toLowerCase().trim()));
+  if (normDescs.has(seo.metaDescription.toLowerCase().trim())) {
+    // Regenerate will be caught by the AI, but force-suffix as safety net
+    seo.metaDescription = seo.metaDescription.replace(/\.$/, '') + ` — updated ${new Date().getFullYear()}.`;
   }
 
   // ── STEP 4b: Generate the blog content (900-1200 words, 100/100 SEO) ──
@@ -502,8 +539,8 @@ export async function POST(request: NextRequest) {
         const { revalidatePath } = await import('next/cache');
         revalidatePath('/sitemap.xml');
         revalidatePath('/');
-        revalidatePath('/blog');
-        revalidatePath(`/blog/${post.slug}`);
+        revalidatePath('/blogs');
+        revalidatePath(`/blogs/${post.slug}`);
       } catch (revalError) {
         console.error('Revalidation failed (non-critical):', revalError);
       }

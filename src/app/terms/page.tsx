@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Terms of Service — Shree Krishna Gauli",
@@ -12,6 +14,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function TermsPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Terms of Service", path: "/terms" }])} />
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-3xl mx-auto prose-custom">
           <h1>Terms of Service</h1>

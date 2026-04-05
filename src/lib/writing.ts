@@ -428,7 +428,7 @@ export function getStaticArticleCards(): Article[] {
       year: "numeric",
     }),
     readTime: post.readTime,
-    href: `/writing/${post.slug}`,
+    href: `/blogs/${post.slug}`,
     gradient: post.gradient,
   }));
 }

@@ -4,18 +4,21 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { NewsletterSignupCard } from "@/components/forms/NewsletterSignupCard";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Newsletter — Shree Krishna Gauli",
+  title: "Marketing Newsletter | SEO, Automation, and Growth Notes",
   description:
-    "Subscribe for practical notes on SEO, paid media, automation, and conversion work.",
+    "Subscribe for practical notes on SEO, paid media, automation, and conversion work from a working consultant.",
   path: "/newsletter",
-  keywords: ["marketing newsletter", "SEO newsletter", "paid media insights"],
+  keywords: ["marketing newsletter", "SEO newsletter", "paid media insights", "automation newsletter"],
 });
 
 export default function NewsletterPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Newsletter", path: "/newsletter" }])} />
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-4xl">
           <SectionHeader

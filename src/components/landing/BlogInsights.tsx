@@ -118,7 +118,7 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
 
                   {/* Read More Link */}
                   <Link
-                    href={`/blog/${p.slug}`}
+                    href={`/blogs/${p.slug}`}
                     className="inline-flex items-center gap-2 text-emerald-600 font-semibold text-sm group-hover:gap-3 transition-all"
                   >
                     {t('Read More')}
@@ -143,7 +143,7 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
           className="mt-12 text-center"
         >
           <Link
-            href="/writing"
+            href="/blogs"
             className={`inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition-all ${
               isDark
                 ? 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700'

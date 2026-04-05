@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { featuredArticleCards } from "@/lib/writing";
+import { featuredArticleCards } from "@/lib/blogs";
 import { ArticleCard } from "./ArticleCard";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -20,6 +20,8 @@ async function getFeaturedArticles() {
         slug: true,
         excerpt: true,
         publishedAt: true,
+        coverImage: true,
+        coverImageAlt: true,
         categories: { select: { name: true } },
       },
       orderBy: { publishedAt: "desc" },
@@ -32,7 +34,7 @@ async function getFeaturedArticles() {
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || "",
-      href: `/writing/${post.slug}`,
+      href: `/blogs/${post.slug}`,
       category: post.categories[0]?.name || "Marketing",
       date: (post.publishedAt || new Date()).toLocaleDateString("en-US", {
         month: "long",
@@ -40,6 +42,8 @@ async function getFeaturedArticles() {
       }),
       readTime: `${Math.max(3, Math.ceil((post.excerpt?.length || 100) / 50))} min read`,
       gradient: gradients[index % gradients.length],
+      image: post.coverImage,
+      imageAlt: post.coverImageAlt || post.title,
     }));
   } catch {
     return featuredArticleCards;
@@ -50,10 +54,10 @@ export async function InsightsSection() {
   const articles = await getFeaturedArticles();
 
   return (
-    <section id="writing" className="relative z-10 section-pad px-6">
+    <section id="blogs" className="relative z-10 section-pad px-6">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          eyebrow="Writing"
+          eyebrow="Blog"
           title="What I write about"
           subtitle="Practical takes on SEO, paid media, and marketing systems."
         />

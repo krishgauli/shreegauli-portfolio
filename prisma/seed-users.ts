@@ -94,27 +94,27 @@ async function main() {
     console.log(`✅ Clinic created: ${clinic.name} (id: ${clinic.id})`);
   }
 
-  // ─── 4. Assign all clinics to the client ───
+  // ─── 4. Assign all clinics to the admin user ───
   for (const clinic of clinics) {
     await prisma.clientClinic.upsert({
       where: {
-        userId_clinicId: { userId: client.id, clinicId: clinic.id },
+        userId_clinicId: { userId: admin.id, clinicId: clinic.id },
       },
       update: {},
       create: {
-        userId: client.id,
+        userId: admin.id,
         clinicId: clinic.id,
       },
     });
-    console.log(`  🔗 Assigned "${clinic.name}" → ${client.email}`);
+    console.log(`  🔗 Assigned "${clinic.name}" → ${admin.email}`);
   }
 
   // ─── 5. Seed sample Analytics data for the client (per clinic) ───
-  const today = new Date();
+  const today = new Date(); // This variable is defined but never used
   for (const clinic of clinics) {
     // Check if data already exists
     const existing = await prisma.analyticsData.count({
-      where: { userId: client.id, clinicId: clinic.id },
+      where: { userId: admin.id, clinicId: clinic.id },
     });
     if (existing > 0) {
       console.log(`  📊 Analytics already exist for ${clinic.name}, skipping...`);
@@ -122,7 +122,7 @@ async function main() {
     }
 
     for (let daysAgo = 30; daysAgo >= 0; daysAgo--) {
-      const date = new Date(today);
+      const date = new Date();
       date.setDate(date.getDate() - daysAgo);
 
       // Generate realistic-looking data with some variance per clinic
@@ -131,7 +131,7 @@ async function main() {
 
       await prisma.analyticsData.create({
         data: {
-          userId: client.id,
+          userId: admin.id,
           clinicId: clinic.id,
           date,
           gscClicks: Math.floor((40 + base * 15) * (0.7 + trend * 0.6) + Math.random() * 20),

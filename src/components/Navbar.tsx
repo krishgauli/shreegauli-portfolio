@@ -28,7 +28,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
   const { user, logout } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const shouldUseSolidNav = forceSolid || pathname?.startsWith('/blog/') || pathname?.startsWith('/news/');
+  const shouldUseSolidNav = forceSolid || pathname?.startsWith('/blogs/') || pathname?.startsWith('/news/');
 
   // Close settings, user menu, and resources dropdowns when clicking outside
   useEffect(() => {
@@ -131,8 +131,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             <Link href="/services" className={`font-medium transition-colors ${desktopLinkClass}`}>{text.services}</Link>
-            <Link href="/automation" className={`font-medium transition-colors ${desktopLinkClass}`}>{text.automation}</Link>
-            <Link href="/industries" className={`font-medium transition-colors ${desktopLinkClass}`}>{text.industries}</Link>
+            <Link href="/work" className={`font-medium transition-colors ${desktopLinkClass}`}>{text.caseStudies}</Link>
             <Link href="/about" className={`font-medium transition-colors ${desktopLinkClass}`}>{text.about}</Link>
             
             {/* Resources Dropdown */}
@@ -159,7 +158,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                     }`}
                   >
                     <Link
-                      href="/blog"
+                      href="/blogs"
                       className={`block px-4 py-3 font-medium transition-colors ${
                         theme === 'dark'
                           ? 'text-slate-300 hover:bg-slate-700 hover:text-white'
@@ -170,7 +169,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                       {text.blog}
                     </Link>
                     <Link
-                      href="/case-studies"
+                      href="/work"
                       className={`block px-4 py-3 font-medium transition-colors border-t ${
                         theme === 'dark'
                           ? 'border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
@@ -181,7 +180,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                       {text.caseStudies}
                     </Link>
                     <Link
-                      href="/news"
+                      href="/seo-tools"
                       className={`block px-4 py-3 font-medium transition-colors border-t ${
                         theme === 'dark'
                           ? 'border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
@@ -189,7 +188,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                       }`}
                       onClick={() => setResourcesOpen(false)}
                     >
-                      {text.healthcareNews}
+                      SEO Tools
                     </Link>
                     <Link
                       href={user ? (user.role === 'admin' ? '/dashboard/admin' : '/dashboard/client?view=membership') : '/pricing'}
@@ -466,8 +465,8 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
               </AnimatePresence>
             </div>
 
-            <Link href="/book-a-demo" className="rounded-full bg-emerald-500 px-6 py-2 font-semibold text-black hover:bg-emerald-400 transition-all hover:scale-105">
-              {text.bookDemo}
+            <Link href="/lp/book-a-call" className="rounded-full bg-emerald-500 px-6 py-2 font-semibold text-black hover:bg-emerald-400 transition-all hover:scale-105">
+              Book a Call
             </Link>
           </div>
 
@@ -492,11 +491,10 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
           }`}
         >
           <Link href="/services" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.services}</Link>
-          <Link href="/case-studies" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.caseStudies}</Link>
-          <Link href="/automation" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.automation}</Link>
-          <Link href="/industries" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.industries}</Link>
+          <Link href="/work" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.caseStudies}</Link>
           <Link href="/about" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.about}</Link>
-          <Link href="/blog" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.blog}</Link>
+          <Link href="/blogs" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.blog}</Link>
+          <Link href="/seo-tools" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>SEO Tools</Link>
           <Link 
             href={user ? (user.role === 'admin' ? '/dashboard/admin' : '/dashboard/client?view=membership') : '/pricing'} 
             className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}
@@ -641,8 +639,8 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
             </div>
           </div>
 
-          <Link href="/book-a-demo" className="block w-full rounded-full bg-emerald-500 py-3 text-center font-bold text-black hover:bg-emerald-400">
-            {text.bookDemo}
+          <Link href="/lp/book-a-call" className="block w-full rounded-full bg-emerald-500 py-3 text-center font-bold text-black hover:bg-emerald-400">
+            Book a Call
           </Link>
         </motion.div>
       )}

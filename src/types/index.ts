@@ -85,6 +85,8 @@ export interface Article {
   readTime: string;
   href: string;
   gradient: string;
+  image?: string | null;
+  imageAlt?: string | null;
 }
 
 export interface TrustItem {

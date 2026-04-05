@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { revalidateSitemap } from '@/lib/revalidate-sitemap';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -42,5 +43,13 @@ export async function POST(request: NextRequest) {
       publishedAt: body.publishedAt ? new Date(body.publishedAt) : null,
     }
   });
+
+  if (post.publishedAt !== null) {
+    revalidateSitemap({
+      type: 'blog',
+      slug: post.slug,
+    });
+  }
+
   return NextResponse.json(post, { status: 201 });
 }

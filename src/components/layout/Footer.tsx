@@ -14,7 +14,7 @@ const footerNav = {
   ],
   Resources: [
     { label: "Case Studies", href: "/work" },
-    { label: "Writing", href: "/writing" },
+    { label: "Blog", href: "/blogs" },
     { label: "Free SEO Audit", href: "/seo-tools" },
     { label: "Newsletter", href: "/newsletter" },
     { label: "FAQ", href: "/faq" },

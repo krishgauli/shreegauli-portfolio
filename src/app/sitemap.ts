@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
-import { staticWritingPosts } from "@/lib/writing";
+import { staticWritingPosts } from "@/lib/blogs";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600; // revalidate every hour
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services/social-media",
     "/services/automation",
     "/about",
-    "/writing",
+    "/blogs",
     "/seo-tools",
     "/contact",
     "/pricing",
@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic blog posts
   let blogEntries: MetadataRoute.Sitemap = staticWritingPosts.map((post) => ({
-    url: `${baseUrl}/writing/${post.slug}`,
+    url: `${baseUrl}/blogs/${post.slug}`,
     lastModified: new Date(post.updatedAt),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -56,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
 
     const dynamicEntries = posts.map((post) => ({
-      url: `${baseUrl}/writing/${post.slug}`,
+      url: `${baseUrl}/blogs/${post.slug}`,
       lastModified: post.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.7,

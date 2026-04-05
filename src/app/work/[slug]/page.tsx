@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { caseStudies } from "@/lib/data";
 import { PageShell } from "@/components/layout/PageShell";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import { CaseStudyBody } from "./CaseStudyBody";
 
 interface Params {
@@ -23,8 +25,8 @@ export async function generateMetadata({
   if (!study) return {};
 
   return createPageMetadata({
-    title: `${study.title} — Shree Krishna Gauli`,
-    description: `${study.problem} ${study.result}`,
+    title: `${study.result} | ${study.tags[0]} Case Study`,
+    description: `${study.problem} See how ${study.result.toLowerCase()} was achieved through focused ${study.tags.join(", ").toLowerCase()} work.`,
     path: `/work/${study.id}`,
     keywords: study.tags,
   });
@@ -42,6 +44,10 @@ export default async function CaseStudyPage({
 
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([
+        { name: "Work", path: "/work" },
+        { name: study.title, path: `/work/${study.id}` },
+      ])} />
       <CaseStudyBody study={study} />
     </PageShell>
   );

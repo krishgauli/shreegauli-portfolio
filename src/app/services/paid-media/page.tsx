@@ -5,18 +5,20 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Paid Media Services — Shree Krishna Gauli",
+  title: "Google Ads Consultant | Paid Media Strategy and Optimization",
   description:
-    "Meta and Google campaign builds, audience testing, creative strategy, and ROAS-focused optimization for brands serious about growth.",
+    "Google Ads, Meta campaigns, tracking, and optimization designed to improve efficiency, attribution, and revenue.",
   path: "/services/paid-media",
   keywords: [
+    "Google Ads consultant",
     "paid media specialist",
-    "Google Ads management",
-    "Meta Ads specialist",
-    "PPC management",
+    "Meta Ads management",
+    "PPC optimization",
     "ROAS optimization",
     "paid advertising Dallas",
   ],
@@ -92,6 +94,20 @@ const faqs = [
 export default function PaidMediaServicePage() {
   return (
     <PageShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Services", path: "/services" },
+            { name: "Paid Media", path: "/services/paid-media" },
+          ]),
+          faqPageSchema(faqs.map((f) => ({ question: f.q, answer: f.a }))),
+          serviceSchema({
+            name: "Paid Media Services",
+            description: "Google Ads, Meta campaigns, tracking, and optimization designed to improve efficiency, attribution, and revenue.",
+            path: "/services/paid-media",
+          }),
+        ]}
+      />
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">

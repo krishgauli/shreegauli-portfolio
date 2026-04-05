@@ -12,26 +12,27 @@ import { TestimonialsSection } from "@/components/sections/Testimonials/Testimon
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { SeoToolPromoSection } from "@/components/sections/SeoToolPromo/SeoToolPromoSection";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Shree Krishna Gauli — Digital Marketing Specialist",
+  title: "Digital Marketing Consultant in Dallas | SEO, Ads, Automation",
   description:
-    "SEO, paid media, social media, and automation systems for brands that want clear growth. Based in Dallas. Working globally.",
+    "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth. Based in Dallas, working globally.",
   path: "/",
   keywords: [
-    "digital marketing specialist",
-    "SEO",
-    "paid media",
-    "social media marketing",
-    "n8n automation",
+    "digital marketing consultant dallas",
+    "SEO consultant",
+    "Google Ads specialist",
+    "marketing automation",
     "Shree Krishna Gauli",
-    "Dallas",
   ],
 });
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([])} />
       {/* Navigation */}
       <Navbar />
 

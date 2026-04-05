@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
-import Replicate from 'replicate';
 import prisma from '@/lib/prisma';
-import { persistImage } from '@/lib/persist-image';
+import { generateImage } from '@/lib/generate-image';
+import { pickNextKeyword } from '@/lib/keywords';
 import { runSeoChecks, generateSocialMeta, type SeoCheckResult } from '@/lib/seo-validation';
 
 export const dynamic = 'force-dynamic';
@@ -24,7 +24,7 @@ const INTERNAL_PAGES = [
   { url: '/working-together', label: 'how engagements work' },
   { url: '/faq', label: 'frequently asked questions' },
   { url: '/seo-tools', label: 'free SEO audit tool' },
-  { url: '/writing', label: 'marketing articles and insights' },
+  { url: '/blogs', label: 'marketing articles and insights' },
   { url: '/newsletter', label: 'marketing newsletter' },
   { url: '/testimonials', label: 'client testimonials' },
 ];
@@ -49,28 +49,10 @@ const EXTERNAL_SOURCES = [
 ];
 
 /**
- * Generate a cover image using Replicate flux-schnell.
+ * Generate a cover image using OpenAI DALL-E 3.
  */
 async function generateBlogImage(focusKeyword: string, title: string): Promise<string | null> {
-  if (!process.env.REPLICATE_API_TOKEN) return null;
-  try {
-    const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
-    const output = (await replicate.run('black-forest-labs/flux-schnell', {
-      input: {
-        prompt: `Professional photorealistic editorial photograph for a healthcare marketing blog article about "${title}". Modern healthcare clinic interior or hospital corridor, realistic medical professionals in lab coats or scrubs, natural window light, shallow depth of field, authentic medical equipment visible. High-end editorial photography style similar to Harvard Business Review or JAMA. No cartoons, no digital art, no illustrated style, no text overlays, no logos.`,
-        aspect_ratio: '16:9',
-        num_outputs: 1,
-        output_format: 'webp',
-        output_quality: 85,
-      },
-    })) as string[];
-    const tempUrl = Array.isArray(output) ? output[0] : null;
-    if (!tempUrl) return null;
-    return await persistImage(tempUrl, 'blog');
-  } catch (error) {
-    console.error('Blog image generation failed:', error);
-    return null;
-  }
+  return generateImage(title, 'blog');
 }
 
 function extractJsonObject(raw: string): string {
@@ -108,14 +90,38 @@ async function generateOneShotBlog(customTopic?: string) {
 
   const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
 
-  // Fetch existing titles for duplicate check
+  // Fetch existing titles, slugs, descriptions for full dedup
   const existingPosts = await prisma.post.findMany({
     orderBy: { publishedAt: 'desc' },
-    take: 50,
-    select: { title: true, slug: true },
+    take: 200,
+    select: { title: true, slug: true, metaDesc: true },
   });
   const existingTitles = existingPosts.map((p) => p.title);
   const existingSlugs = new Set(existingPosts.map((p) => p.slug));
+  const existingDescriptions = existingPosts.map((p) => p.metaDesc).filter(Boolean) as string[];
+
+  // Collect previously used focus keywords from AiHistory
+  const aiHistoryRows = await prisma.aiHistory.findMany({
+    where: { generatorType: 'blog' },
+    select: { settings: true },
+    orderBy: { createdAt: 'desc' },
+    take: 200,
+  });
+  const usedFocusKeywords = new Set<string>();
+  for (const row of aiHistoryRows) {
+    const kw = (row.settings as any)?.focusKeyword;
+    if (typeof kw === 'string') usedFocusKeywords.add(kw);
+  }
+
+  // Pick a seed keyword from the top-100 list (unless custom topic given)
+  let seedKeywordInstruction = '';
+  if (!customTopic) {
+    const picked = pickNextKeyword(usedFocusKeywords);
+    if (picked) {
+      seedKeywordInstruction = `\n\nMANDATORY KEYWORD: You MUST use "${picked.keyword}" as the focus keyword. Build the entire post around this keyword.\n`;
+      console.log(`[Blog One-Shot] Keyword from top-100 list: "${picked.keyword}" (rank #${picked.rank}, ${picked.priority})`);
+    }
+  }
 
   // Pick random internal & external links
   const shuffledInternal = [...INTERNAL_PAGES].sort(() => Math.random() - 0.5).slice(0, 4);
@@ -131,6 +137,12 @@ IMPORTANT: Respond with ONLY a JSON object. No markdown fences. No explanation.
 EXISTING TITLES (do NOT duplicate):
 ${existingTitles.map((t) => `• ${t}`).join('\n')}
 
+EXISTING META DESCRIPTIONS (do NOT copy or closely paraphrase):
+${existingDescriptions.slice(0, 30).map((d) => `• ${d}`).join('\n')}
+
+EXISTING SLUGS (do NOT reuse):
+${[...existingSlugs].slice(0, 50).join(', ')}
+${seedKeywordInstruction}
 INTERNAL PAGES you MUST link to (use at least 2):
 ${shuffledInternal.map((l) => `• <a href="${SITE_URL}${l.url}">${l.label}</a>`).join('\n')}
 
@@ -268,6 +280,18 @@ JSON RESPONSE FORMAT (return exactly this)
     parsed.slug = `${parsed.slug}-${Date.now().toString(36)}`;
   }
 
+  // Ensure title uniqueness
+  const normTitles = new Set(existingTitles.map((t) => t.toLowerCase().trim()));
+  if (normTitles.has(parsed.blogTitle.toLowerCase().trim())) {
+    parsed.blogTitle = `${parsed.blogTitle} — ${new Date().getFullYear()} Guide`;
+  }
+
+  // Ensure description uniqueness
+  const normDescs = new Set(existingDescriptions.map((d) => d.toLowerCase().trim()));
+  if (normDescs.has(parsed.metaDescription.toLowerCase().trim())) {
+    parsed.metaDescription = parsed.metaDescription.replace(/\.$/, '') + ` — updated ${new Date().getFullYear()}.`;
+  }
+
   // Clean content
   const cleanedContent = parsed.htmlContent
     .replace(/```html\n?|\n?```/g, '')
@@ -384,8 +408,8 @@ export async function POST(request: NextRequest) {
         const { revalidatePath } = await import('next/cache');
         revalidatePath('/sitemap.xml');
         revalidatePath('/');
-        revalidatePath('/blog');
-        revalidatePath(`/blog/${post.slug}`);
+        revalidatePath('/blogs');
+        revalidatePath(`/blogs/${post.slug}`);
       } catch (revalError) {
         console.error('Revalidation failed (non-critical):', revalError);
       }

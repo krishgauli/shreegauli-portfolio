@@ -23,15 +23,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Shree Krishna Gauli — Digital Marketing Specialist",
+  title: "Shree Krishna Gauli — Digital Marketing Consultant",
   description:
-    "SEO, paid media, social media, and automation systems for brands that want clear growth. Based in Dallas. Working globally.",
+    "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.",
   keywords: [
-    "digital marketing specialist",
-    "SEO",
-    "paid media",
-    "social media marketing",
-    "n8n automation",
+    "digital marketing consultant",
+    "SEO consultant",
+    "Google Ads specialist",
+    "marketing automation",
     "Shree Krishna Gauli",
     "Dallas",
   ],
@@ -43,23 +42,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://shreegauli.com",
     siteName: "Shree Krishna Gauli",
-    title: "Shree Krishna Gauli — Digital Marketing Specialist",
+    title: "Shree Krishna Gauli — Digital Marketing Consultant",
     description:
-      "SEO, paid media, social media, and automation systems for brands that want clear growth.",
+      "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Shree Krishna Gauli — Digital Marketing Specialist",
+        alt: "Shree Krishna Gauli — Digital Marketing Consultant",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shree Krishna Gauli — Digital Marketing Specialist",
+    title: "Shree Krishna Gauli — Digital Marketing Consultant",
     description:
-      "SEO, paid media, social media, and automation systems for brands that want clear growth.",
+      "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.",
     images: ["/og-image.jpg"],
   },
   robots: {

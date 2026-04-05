@@ -19,9 +19,11 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Pricing — Shree Krishna Gauli",
+  title: "Digital Marketing Pricing | Hourly and Retainer Options",
   description:
     "Transparent pricing: $50/hour or monthly retainers starting at $1,499. Full-stack digital marketing — SEO, social media, content, design, and web maintenance.",
   path: "/pricing",
@@ -178,6 +180,7 @@ const serviceAreas = [
 export default function PricingPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Pricing", path: "/pricing" }])} />
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-6xl">

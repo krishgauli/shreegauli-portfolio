@@ -6,19 +6,22 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import { testimonials } from "@/lib/data";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Testimonials — Shree Krishna Gauli",
+  title: "Client Testimonials | SEO, Paid Media, Automation Results",
   description:
-    "Read feedback from clients across SEO, paid media, and automation engagements.",
+    "Read feedback from clients across SEO, paid media, and automation engagements with measurable outcomes.",
   path: "/testimonials",
-  keywords: ["marketing consultant testimonials", "SEO consultant reviews", "client feedback"],
+  keywords: ["marketing consultant testimonials", "SEO consultant reviews", "client results feedback"],
 });
 
 export default function TestimonialsPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Testimonials", path: "/testimonials" }])} />
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-5xl">
           <SectionHeader

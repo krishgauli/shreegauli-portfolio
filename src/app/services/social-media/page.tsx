@@ -5,17 +5,19 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Social Media Growth Services — Shree Krishna Gauli",
+  title: "Social Media Consultant | LinkedIn, Content Systems, Growth",
   description:
-    "Platform strategies, content calendars, and community systems that build engaged audiences on Instagram, LinkedIn, and beyond.",
+    "Platform strategies, content calendars, and community systems that grow engaged audiences on Instagram, LinkedIn, and beyond.",
   path: "/services/social-media",
   keywords: [
-    "social media marketing",
-    "Instagram growth",
-    "LinkedIn strategy",
+    "social media consultant",
+    "Instagram growth strategy",
+    "LinkedIn marketing",
     "social media management",
     "content calendar",
     "community management",
@@ -92,6 +94,20 @@ const faqs = [
 export default function SocialMediaServicePage() {
   return (
     <PageShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Services", path: "/services" },
+            { name: "Social Media", path: "/services/social-media" },
+          ]),
+          faqPageSchema(faqs.map((f) => ({ question: f.q, answer: f.a }))),
+          serviceSchema({
+            name: "Social Media Marketing Services",
+            description: "Platform strategies, content calendars, and community systems that grow engaged audiences on Instagram, LinkedIn, and beyond.",
+            path: "/services/social-media",
+          }),
+        ]}
+      />
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">

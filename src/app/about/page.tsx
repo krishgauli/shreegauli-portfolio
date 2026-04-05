@@ -5,16 +5,18 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import { Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About — Shree Krishna Gauli",
+  title: "About Shree Krishna Gauli | Digital Marketing Consultant",
   description:
-    "Learn about Shree Krishna Gauli, a digital marketing specialist focused on measurable outcomes across SEO, paid media, and automation.",
+    "Meet Shree Krishna Gauli — a digital marketing consultant focused on SEO, paid media, and automation systems that deliver measurable growth.",
   path: "/about",
-  keywords: ["about shree gauli", "digital marketer dallas", "SEO specialist profile"],
+  keywords: ["about shree gauli", "digital marketing consultant dallas", "SEO specialist", "marketing consultant profile"],
 });
 
 const timeline = [
@@ -63,6 +65,7 @@ const certifications = [
 export default function AboutPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "About", path: "/about" }])} />
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">

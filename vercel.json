@@ -2,6 +2,15 @@
   "functions": {
     "src/app/api/**/*.ts": {
       "maxDuration": 30
+    },
+    "src/app/api/cron/monthly-invoices/route.ts": {
+      "maxDuration": 120
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/monthly-invoices",
+      "schedule": "0 15 1 * *"
+    }
+  ]
 }

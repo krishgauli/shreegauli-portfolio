@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock } from "lucide-react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
@@ -8,20 +9,37 @@ export function ArticleCard({ article }: { article: Article }) {
   return (
     <ModuleShell
       as="article"
-      className="overflow-hidden flex flex-col"
+      className="group overflow-hidden flex flex-col"
       enableHoverLift
     >
-      {/* Gradient header */}
-      <div
-        className={cn(
-          "h-24 bg-gradient-to-br flex items-end p-4",
-          article.gradient
-        )}
-      >
-        <span className="px-2 py-0.5 rounded-md bg-[#070B14]/80 text-xs font-semibold text-[#22D3EE]">
-          {article.category}
-        </span>
-      </div>
+      {article.image ? (
+        <div className="relative h-44 overflow-hidden">
+          <Image
+            src={article.image}
+            alt={article.imageAlt || article.title}
+            fill
+            sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 p-4">
+            <span className="px-2 py-0.5 rounded-md bg-[#070B14]/80 text-xs font-semibold text-[#22D3EE]">
+              {article.category}
+            </span>
+          </div>
+        </div>
+      ) : (
+        <div
+          className={cn(
+            "h-24 bg-gradient-to-br flex items-end p-4",
+            article.gradient
+          )}
+        >
+          <span className="px-2 py-0.5 rounded-md bg-[#070B14]/80 text-xs font-semibold text-[#22D3EE]">
+            {article.category}
+          </span>
+        </div>
+      )}
 
       {/* Content */}
       <div className="flex flex-col gap-4 p-6 flex-1">

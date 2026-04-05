@@ -292,7 +292,7 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
     .filter((p: any) => {
       let path = p.page;
       try { path = new URL(p.page).pathname; } catch { /* keep full */ }
-      return path.includes('/blog');
+      return path.includes('/blogs');
     })
     .slice(0, 5);
 
@@ -572,7 +572,7 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
                   let displayUrl = rawPage;
                   try { displayUrl = new URL(rawPage).pathname; } catch { /* keep full */ }
                   const blogTitle = displayUrl
-                    .replace(/^\/blog\//, '')
+                    .replace(/^\/blogs\//, '')
                     .replace(/\/$/, '')
                     .split('-')
                     .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))

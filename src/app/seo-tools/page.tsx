@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { createPageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 import SeoToolsClient from './SeoToolsClient';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Free SEO Audit Tool — Shree Krishna Gauli',
+  title: 'Free SEO Audit Tool | Check Titles, H1s, Speed, Schema',
   description:
-    'Instantly audit any URL for title tags, meta descriptions, H1 headings, page speed, Open Graph, schema markup, canonical tags, and more.',
+    'Audit any page for titles, meta descriptions, H1s, schema, canonical tags, and other SEO issues in minutes.',
   path: '/seo-tools',
   keywords: [
     'free SEO audit tool',
@@ -17,5 +19,10 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function SeoToolsPage() {
-  return <SeoToolsClient />;
+  return (
+    <>
+      <JsonLd data={breadcrumbSchema([{ name: "SEO Tools", path: "/seo-tools" }])} />
+      <SeoToolsClient />
+    </>
+  );
 }

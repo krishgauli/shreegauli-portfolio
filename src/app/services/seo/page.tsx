@@ -5,15 +5,17 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "SEO & Content Services — Shree Krishna Gauli",
+  title: "SEO Consultant | Technical Audits, Content Strategy, Growth",
   description:
-    "Technical audits, keyword strategy, link building, and content systems that build lasting organic presence. Based in Dallas, working globally.",
+    "Technical SEO audits, keyword strategy, content systems, and reporting for brands that want sustainable organic growth.",
   path: "/services/seo",
   keywords: [
-    "SEO services",
+    "SEO consultant",
     "technical SEO audit",
     "keyword strategy",
     "content marketing",
@@ -92,6 +94,20 @@ const faqs = [
 export default function SeoServicePage() {
   return (
     <PageShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Services", path: "/services" },
+            { name: "SEO", path: "/services/seo" },
+          ]),
+          faqPageSchema(faqs.map((f) => ({ question: f.q, answer: f.a }))),
+          serviceSchema({
+            name: "SEO & Content Services",
+            description: "Technical SEO audits, keyword strategy, content systems, and reporting for brands that want sustainable organic growth.",
+            path: "/services/seo",
+          }),
+        ]}
+      />
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">

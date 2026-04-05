@@ -6,10 +6,11 @@ export default function PersonSchema() {
     '@type': 'Person',
     '@id': `${SITE_URL}/#person`,
     name: 'Shree Krishna Gauli',
-    jobTitle: 'Digital Marketing Specialist',
+    jobTitle: 'Digital Marketing Consultant',
     description:
-      'Digital marketing specialist focusing on SEO, paid media, social media, and marketing automation. Based in Dallas, TX.',
+      'Digital marketing consultant focusing on SEO, paid media, social media, and marketing automation. Based in Dallas, TX.',
     url: SITE_URL,
+    image: `${SITE_URL}/shree-gauli.png`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Dallas',
@@ -39,7 +40,7 @@ export default function PersonSchema() {
     name: 'Shree Krishna Gauli',
     url: SITE_URL,
     description:
-      'SEO, paid media, social media, and automation systems for brands that want clear growth.',
+      'Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.',
     author: {
       '@id': `${SITE_URL}/#person`,
     },

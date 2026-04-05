@@ -1,5 +1,3 @@
-'use client';
-
 import { ReactNode } from 'react';
 
 // Providers (AuthProvider + SitePreferencesProvider) are now at root layout level

@@ -6,13 +6,15 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Working Together — Shree Krishna Gauli",
+  title: "How It Works | Hiring a Digital Marketing Consultant",
   description:
-    "See how discovery, strategy, execution, and reporting work when you hire Shree directly.",
+    "See how discovery, strategy, execution, and reporting work when you hire Shree directly as your marketing consultant.",
   path: "/working-together",
-  keywords: ["working with a marketing consultant", "digital marketing process", "SEO consultant engagement"],
+  keywords: ["working with a marketing consultant", "digital marketing process", "consultant engagement model"],
 });
 
 const steps = [
@@ -48,6 +50,7 @@ const fits = [
 export default function WorkingTogetherPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Working Together", path: "/working-together" }])} />
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-5xl">
           <SectionHeader
@@ -105,7 +108,7 @@ export default function WorkingTogetherPage() {
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20"
+                  className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20 hover:text-white"
                 >
                   Start the conversation
                 </Link>

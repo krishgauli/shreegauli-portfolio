@@ -184,3 +184,166 @@ Root Layout (layout.tsx)
 3. **Delete old components:** `src/components/Navbar.tsx`, `src/components/Footer.tsx`, backup files
 4. **Remove `test-site.js`** from the repository
 5. **Set up Vercel Cron** for daily case study auto-generation (already configured in `vercel.json`)
+
+---
+
+## 7. Admin Invoices QA Report (April 5, 2026)
+
+### Scope tested
+
+- Admin authentication flow using seeded admin account
+- Admin invoice interface route and navigation links
+- Invoice dashboard tabs: Invoices, Clients, Create New
+- Add client flow
+- Create invoice flow
+- Send invoice flow
+- Mark invoice as paid flow
+- Auth protection behavior on invoice APIs vs dashboard pages
+- Hover/text visibility and form readability by class-level inspection and functional smoke checks
+
+### What was tested (execution details)
+
+1. Logged in as admin using:
+   - Email: shree@focusyourfinance.com
+   - Password: Hello@123
+2. Verified protected invoice APIs with authenticated session cookie.
+3. Created a real QA client through [src/app/api/invoices/clients/route.ts](src/app/api/invoices/clients/route.ts).
+4. Created a real invoice through [src/app/api/invoices/route.ts](src/app/api/invoices/route.ts).
+5. Sent invoice email through [src/app/api/invoices/[id]/send/route.ts](src/app/api/invoices/[id]/send/route.ts).
+6. Marked invoice paid through [src/app/api/invoices/[id]/route.ts](src/app/api/invoices/[id]/route.ts).
+7. Retrieved invoice and verified status transitions, payment link, sent timestamps, transaction ID, and generated invoice HTML.
+8. Smoke-tested admin link routes:
+   - /dashboard/admin
+   - /dashboard/admin/invoices
+   - /dashboard/admin/ai-creator
+   - /dashboard/admin/chat-reports
+   - /dashboard/admin/leads
+   - /dashboard/admin/subscribers
+
+### What is working
+
+- Admin login works and sets a usable auth cookie.
+- Invoice APIs are protected from anonymous access (401).
+- Full invoice lifecycle works end-to-end after schema sync:
+  - Create client
+  - Create draft invoice
+  - Send invoice
+  - Mark paid
+  - Fetch invoice details + rendered HTML
+- Admin sidebar includes Invoices link in [src/app/dashboard/admin/page.tsx](src/app/dashboard/admin/page.tsx).
+- Invoices page renders via [src/app/dashboard/admin/invoices/page.tsx](src/app/dashboard/admin/invoices/page.tsx).
+
+### What is broken
+
+1. **Admin page routes are publicly reachable (HTTP 200) without auth**
+   - Impact: anonymous users can load dashboard shells/pages directly.
+   - Affected routes include /dashboard/admin and /dashboard/admin/invoices.
+   - Affected files:
+     - [src/app/dashboard/admin/layout.tsx](src/app/dashboard/admin/layout.tsx)
+     - [src/app/dashboard/admin/invoices/page.tsx](src/app/dashboard/admin/invoices/page.tsx)
+
+2. **Invoice dashboard can show misleading empty states when API auth fails**
+   - Impact: users may see “No clients yet” / “No invoices yet” instead of auth/session error messaging.
+   - Root cause: non-OK fetch responses are not surfaced to UI.
+   - Affected file:
+     - [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+
+3. **Initial 500 errors occur if DB schema not synced with Prisma models**
+   - Impact: all invoice APIs fail until schema is pushed/migrated.
+   - Context: this was reproduced and resolved locally via prisma db push.
+   - Affected files:
+     - [prisma/schema.prisma](prisma/schema.prisma)
+     - [src/app/api/invoices/route.ts](src/app/api/invoices/route.ts)
+     - [src/app/api/invoices/clients/route.ts](src/app/api/invoices/clients/route.ts)
+
+### Text visibility failures
+
+1. **Light-mode incompatibility in InvoiceDashboard (hardcoded dark-theme text tokens)**
+   - Symptoms:
+     - Body/table text uses text-white and text-gray-* even when page/theme can be light.
+     - Input text and labels can become low-contrast/invisible depending on background.
+   - Affected file:
+     - [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+   - Exact areas:
+     - Header/title and stat badges
+     - Table cell text (client, amount, date)
+     - Form labels, inputs, textarea, select
+
+2. **Form placeholder/readability is too low in several fields**
+   - Symptoms:
+     - placeholder text-gray-500 on semi-transparent input backgrounds has weak contrast.
+   - Affected file:
+     - [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+
+### Hover effects broken or unclear
+
+1. **Invoice tab hover feedback is weak/unclear**
+   - Symptoms:
+     - inactive tabs only change text color on hover; hover hit area does not clearly stand out.
+   - Affected file:
+     - [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+
+2. **Potentially unclear sidebar hover affordance consistency**
+   - Symptoms:
+     - sidebar links rely on subtle hover background and text shifts; perceived hover state can be weak on some displays.
+   - Affected file:
+     - [src/app/dashboard/admin/page.tsx](src/app/dashboard/admin/page.tsx)
+
+### Where form text is not visible or at risk
+
+- Create Client form in [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+  - name, email, company, phone, address, city, state, zip, monthly rate, payoneer email, notes
+- Create Invoice form in [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+  - client select, description, rate, qty, tax rate, due days, client notes
+
+Primary cause: hardcoded text colors and translucent backgrounds without theme-aware tokens.
+
+### Exact areas needing fixes + recommended fix per issue
+
+1. **Protect admin pages server-side**
+   - Area: [src/app/dashboard/admin/layout.tsx](src/app/dashboard/admin/layout.tsx)
+   - Fix:
+     - Convert to server layout guard or add middleware-based route protection for /dashboard/admin/**.
+     - Redirect unauthenticated users to /login.
+
+2. **Add fetch error handling and auth error UI in InvoiceDashboard**
+   - Area: [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+   - Fix:
+     - For every fetch, if status is 401/403, show explicit “Session expired / Unauthorized” feedback and CTA to login.
+     - For non-OK responses, surface server error message in toast and avoid fake empty state.
+
+3. **Make InvoiceDashboard theme-aware**
+   - Area: [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+   - Fix:
+     - Replace hardcoded text-white/text-gray-* + bg-white/5 usage with dashboard token classes or dark/light variants.
+     - Follow existing dashboard design primitives from [src/app/globals.css](src/app/globals.css) (dashboard-input, dashboard-panel, etc.).
+
+4. **Improve hover state clarity**
+   - Areas:
+     - [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx) (tab buttons, action buttons)
+     - [src/app/dashboard/admin/page.tsx](src/app/dashboard/admin/page.tsx) (sidebar links)
+   - Fix:
+     - Add clear hover background + border contrast change (not text-only).
+     - Ensure hover state remains readable in both theme modes.
+
+5. **Improve form readability/accessibility**
+   - Area: [src/components/InvoiceDashboard.tsx](src/components/InvoiceDashboard.tsx)
+   - Fix:
+     - Increase placeholder contrast and label contrast.
+     - Add visible focus ring and consistent input border contrast in both themes.
+
+6. **Formalize Prisma migration baseline for invoicing models**
+   - Area: [prisma/schema.prisma](prisma/schema.prisma)
+   - Fix:
+     - Create and commit a baseline migration for existing DB state, then manage future invoice/client schema updates through Prisma Migrate.
+     - Prevent recurrence of 500 errors on fresh environments.
+
+### QA conclusion
+
+- Functional invoice flow is working end-to-end after DB schema sync.
+- The highest-priority product issues are:
+  1) missing server-side admin route protection,
+  2) poor error-state handling in invoice UI,
+  3) theme/contrast problems causing visibility issues for text and forms.
+
+- These issues should be fixed before considering the invoice admin interface production-ready.

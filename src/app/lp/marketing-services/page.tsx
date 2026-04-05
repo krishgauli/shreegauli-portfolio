@@ -3,19 +3,22 @@ import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/app/contact/ContactForm";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Marketing Services Landing Page — Shree Krishna Gauli",
+  title: "Digital Marketing Services | SEO, Ads, Automation Support",
   description:
     "A focused entry point for SEO, paid media, and automation support built around bottlenecks, not bloated retainers.",
   path: "/lp/marketing-services",
-  keywords: ["digital marketing services", "seo consultant", "marketing automation consultant"],
+  keywords: ["digital marketing services", "SEO consultant", "marketing automation consultant", "paid media specialist"],
 });
 
 export default function MarketingServicesLandingPage() {
   return (
     <PageShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Marketing Services", path: "/lp/marketing-services" }])} />
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-5xl">
           <SectionHeader

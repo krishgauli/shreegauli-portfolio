@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateText } from 'ai';
 import { openai } from '@ai-sdk/openai';
-import Replicate from 'replicate';
 import prisma from '@/lib/prisma';
-import { persistImage } from '@/lib/persist-image';
+import { generateImage } from '@/lib/generate-image';
 import { generateSocialMeta } from '@/lib/seo-validation';
 import { runHealthcareNewsValidation, buildHealthcareFixPrompt, type HealthcareNewsValidationReport } from '@/lib/news-validation';
 
@@ -26,7 +25,7 @@ const INTERNAL_PAGES = [
   { url: '/working-together', label: 'how engagements work' },
   { url: '/faq', label: 'frequently asked questions' },
   { url: '/seo-tools', label: 'free SEO audit tool' },
-  { url: '/writing', label: 'marketing articles and insights' },
+  { url: '/blogs', label: 'marketing articles and insights' },
   { url: '/newsletter', label: 'marketing newsletter' },
   { url: '/testimonials', label: 'client testimonials' },
 ];
@@ -121,38 +120,15 @@ Return this exact JSON structure:
 }
 
 /**
- * STEP 5: Generate a cover image for the news article using Replicate (flux-schnell).
+ * STEP 5: Generate a cover image for the news article using OpenAI DALL-E 3.
  *
  * IMAGE RULES:
  * - No cartoons. No illustrated art. No "AI-looking" faces.
- * - Professional photojournalistic / editorial style.
+ * - Professional photojournalistic / editorial style (style: "natural").
  * - Alt text must include the focus keyword.
  */
 async function generateNewsImage(focusKeyword: string, title: string): Promise<string | null> {
-  if (!process.env.REPLICATE_API_TOKEN) return null;
-
-  try {
-    const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN });
-    const output = (await replicate.run('black-forest-labs/flux-schnell', {
-      input: {
-        prompt: `Professional photojournalistic photograph for a healthcare industry news article about "${title}". Hospital corridor, health policy conference, medical technology lab, or healthcare executives in discussion. Realistic people in authentic settings, natural documentary-style lighting, realistic skin tones. High-end photojournalism similar to Reuters Health or STAT News. No cartoons, no digital art, no illustrated style, no text overlays, no logos.`,
-        aspect_ratio: '16:9',
-        num_outputs: 1,
-        output_format: 'webp',
-        output_quality: 85,
-      },
-    })) as string[];
-
-    const tempUrl = Array.isArray(output) ? output[0] : null;
-    if (!tempUrl) return null;
-
-    // Persist to permanent storage (Replicate output URLs expire after ~1 hour)
-    const permanentUrl = await persistImage(tempUrl, 'news');
-    return permanentUrl;
-  } catch (error) {
-    console.error('News image generation failed:', error);
-    return null;
-  }
+  return generateImage(title, 'news');
 }
 
 /**
@@ -577,7 +553,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Save to database
-    const article = await (prisma.newsArticle as any).create({
+    const article = await prisma.newsArticle.create({
       data: {
         title: newsData.title,
         slug: newsData.slug,
@@ -597,7 +573,7 @@ export async function POST(request: NextRequest) {
 
     // Save generation metadata to AiHistory
     try {
-      await (prisma as any).aiHistory.create({
+      await prisma.aiHistory.create({
         data: {
           userId: 'auto-news-system',
           generatorType: 'news',

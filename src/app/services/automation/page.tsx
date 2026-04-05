@@ -5,16 +5,18 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Reporting & Automation Services — Shree Krishna Gauli",
+  title: "Marketing Automation Consultant | n8n, CRM, Reporting",
   description:
-    "n8n workflows, CRM integrations, and reporting dashboards that eliminate manual work and save 20+ hours per week.",
+    "Build n8n workflows, CRM automation, and reporting systems that save time, reduce lead leakage, and improve visibility.",
   path: "/services/automation",
   keywords: [
+    "marketing automation consultant",
     "n8n automation",
-    "marketing automation",
     "CRM integration",
     "reporting dashboards",
     "workflow automation",
@@ -92,6 +94,20 @@ const faqs = [
 export default function AutomationServicePage() {
   return (
     <PageShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Services", path: "/services" },
+            { name: "Automation", path: "/services/automation" },
+          ]),
+          faqPageSchema(faqs.map((f) => ({ question: f.q, answer: f.a }))),
+          serviceSchema({
+            name: "Reporting & Automation Services",
+            description: "Build n8n workflows, CRM automation, and reporting systems that save time, reduce lead leakage, and improve visibility.",
+            path: "/services/automation",
+          }),
+        ]}
+      />
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">

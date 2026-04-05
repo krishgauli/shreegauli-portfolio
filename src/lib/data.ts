@@ -12,7 +12,7 @@ export const navLinks: NavLink[] = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Writing", href: "/writing" },
+  { label: "Blog", href: "/blogs" },
   { label: "SEO Tools", href: "/seo-tools" },
   { label: "Contact", href: "/contact" },
 ];
@@ -286,7 +286,7 @@ export const articles: Article[] = [
       "Most agencies will tell you what you want to hear. Here's how to ask the questions that reveal what they actually know.",
     date: "March 2025",
     readTime: "8 min read",
-    href: "/writing/15-questions-hiring-marketing-agency",
+    href: "/blogs/15-questions-hiring-marketing-agency",
     gradient: "from-violet-900/40 to-purple-900/20",
   },
   {
@@ -297,7 +297,7 @@ export const articles: Article[] = [
       "Building a workflow that runs in dev is easy. Building one that runs reliably in production for 6 months is a different discipline.",
     date: "February 2025",
     readTime: "6 min read",
-    href: "/writing/n8n-workflows-production",
+    href: "/blogs/n8n-workflows-production",
     gradient: "from-cyan-900/40 to-teal-900/20",
   },
   {
@@ -308,7 +308,7 @@ export const articles: Article[] = [
       "Your ROAS number is probably wrong. Not because the platform is lying—because attribution models hide more than they reveal.",
     date: "January 2025",
     readTime: "7 min read",
-    href: "/writing/attribution-problem-small-business-ads",
+    href: "/blogs/attribution-problem-small-business-ads",
     gradient: "from-amber-900/40 to-orange-900/20",
   },
 ];

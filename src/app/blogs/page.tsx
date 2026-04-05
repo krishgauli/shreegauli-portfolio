@@ -6,16 +6,18 @@ import { ArticleCard } from "@/components/sections/Insights/ArticleCard";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { NewsletterSignupCard } from "@/components/forms/NewsletterSignupCard";
 import { createPageMetadata } from "@/lib/seo";
-import { getStaticArticleCards } from "@/lib/writing";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
+import { getStaticArticleCards } from "@/lib/blogs";
 import prisma from "@/lib/prisma";
 import type { Article } from "@/types";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Writing — Shree Krishna Gauli",
+  title: "Digital Marketing Blog | SEO, Ads, Automation Insights",
   description:
-    "Practical writing on SEO, paid media, marketing operations, and automation systems.",
-  path: "/writing",
-  keywords: ["marketing articles", "SEO blog", "paid media insights", "automation writing"],
+    "Practical articles on SEO, paid media, marketing operations, and automation systems from a working consultant.",
+  path: "/blogs",
+  keywords: ["digital marketing blog", "SEO articles", "paid media insights", "automation blog"],
 });
 
 const fallbackArticles = getStaticArticleCards();
@@ -38,6 +40,8 @@ async function getArticles(): Promise<Article[]> {
         slug: true,
         excerpt: true,
         publishedAt: true,
+        coverImage: true,
+        coverImageAlt: true,
         categories: { select: { name: true } },
       },
       orderBy: { publishedAt: "desc" },
@@ -48,7 +52,7 @@ async function getArticles(): Promise<Article[]> {
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || "",
-      href: `/writing/${post.slug}`,
+      href: `/blogs/${post.slug}`,
       category: post.categories[0]?.name || "Marketing",
       date: (post.publishedAt || new Date()).toLocaleDateString("en-US", {
         month: "long",
@@ -56,6 +60,8 @@ async function getArticles(): Promise<Article[]> {
       }),
       readTime: `${Math.max(3, Math.ceil((post.excerpt?.length || 100) / 50))} min read`,
       gradient: gradients[i % gradients.length],
+      image: post.coverImage,
+      imageAlt: post.coverImageAlt || post.title,
     }));
 
     if (dbArticles.length >= 9) return dbArticles;
@@ -69,22 +75,37 @@ async function getArticles(): Promise<Article[]> {
   }
 }
 
-export default async function WritingPage() {
+export default async function BlogPage() {
   const articles = await getArticles();
 
   return (
     <PageShell>
+      <JsonLd
+        data={[
+          breadcrumbSchema([{ name: "Blog", path: "/blogs" }]),
+          collectionPageSchema(
+            "Digital Marketing Blog",
+            "Practical articles on SEO, paid media, marketing operations, and automation systems from a working consultant.",
+            "/blogs",
+            articles.map((a, i) => ({
+              position: i + 1,
+              name: a.title,
+              url: a.href,
+            })),
+          ),
+        ]}
+      />
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-5xl mx-auto">
           <SectionHeader
-            eyebrow="Writing"
+            eyebrow="Blog"
             title="What I write about"
             subtitle="Practical takes on SEO, paid media, and marketing systems."
           />
 
           <div className="mb-10">
             <NewsletterSignupCard
-              source="writing-index"
+              source="blog-index"
               title="Get new essays and field notes first"
               subtitle="Useful breakdowns on SEO, paid media, automation, and conversion work without the agency fluff."
             />
