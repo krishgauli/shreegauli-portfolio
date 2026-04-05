@@ -98,11 +98,13 @@ function extractJsonObject(raw: string): string {
  * loop — the prompt is comprehensive enough for a first-pass passing score.
  */
 async function generateOneShotBlog(customTopic?: string) {
-  if (!process.env.OPENAI_API_KEY) {
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+
+  if (!apiKey) {
     throw new Error('OPENAI_API_KEY is not configured');
   }
 
-  const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const openaiClient = new OpenAI({ apiKey });
 
   const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
 
@@ -221,15 +223,23 @@ JSON RESPONSE FORMAT (return exactly this)
     ? `Write a complete one-shot blog post about: "${customTopic}". Follow every rule in the system prompt. Return ONLY the JSON object.`
     : `Write a complete one-shot blog post on the best healthcare marketing topic you can find. Follow every rule in the system prompt. Return ONLY the JSON object.`;
 
-  const completion = await openaiClient.chat.completions.create({
-    model: 'gpt-4o',
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userPrompt },
-    ],
-    response_format: { type: 'json_object' },
-    temperature: 0.7,
-  });
+  let completion;
+  try {
+    completion = await openaiClient.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
+      ],
+      response_format: { type: 'json_object' },
+      temperature: 0.7,
+    });
+  } catch (error: any) {
+    if (error?.status === 401) {
+      throw new Error('OpenAI authentication failed. Verify OPENAI_API_KEY in Vercel Production (no quotes, no spaces/newlines, active key).');
+    }
+    throw error;
+  }
 
   const raw = completion.choices?.[0]?.message?.content?.trim();
   if (!raw) {
