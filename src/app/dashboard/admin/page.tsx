@@ -772,6 +772,7 @@ function AdminDashboardContent() {
   const [newClientRole, setNewClientRole] = useState('client');
   const [newClinicName, setNewClinicName] = useState('');
   const [newClinicType, setNewClinicType] = useState('');
+  const [newClinicCustomType, setNewClinicCustomType] = useState('');
   const [newClinicLocation, setNewClinicLocation] = useState('');
   const [newClinicAssignedUser, setNewClinicAssignedUser] = useState('');
   const [newClinicServiceCategories, setNewClinicServiceCategories] = useState<string[]>([]);
@@ -1360,7 +1361,10 @@ function AdminDashboardContent() {
   };
 
   const handleAddClinic = async () => {
-    if (!newClinicName || !newClinicType || !newClinicLocation) {
+    const finalClinicType =
+      newClinicType === '__custom__' ? newClinicCustomType.trim() : newClinicType;
+
+    if (!newClinicName || !finalClinicType || !newClinicLocation) {
       alert('Please fill in all required fields');
       return;
     }
@@ -1373,7 +1377,7 @@ function AdminDashboardContent() {
         credentials: 'include',
         body: JSON.stringify({
           name: newClinicName,
-          type: newClinicType,
+          type: finalClinicType,
           location: newClinicLocation,
           assignedUsers: newClinicAssignedUser ? [newClinicAssignedUser] : [],
           serviceCategories: newClinicServiceCategories,
@@ -1398,6 +1402,7 @@ function AdminDashboardContent() {
       finishActionSuccess('Clinic created successfully.');
       setNewClinicName('');
       setNewClinicType('');
+      setNewClinicCustomType('');
       setNewClinicLocation('');
       setNewClinicAssignedUser('');
       setNewClinicServiceCategories([]);
@@ -2276,11 +2281,11 @@ function AdminDashboardContent() {
       </div>
     </Modal>
 
-    {/* Add Clinic Modal */}
-    <Modal isOpen={showAddClinicModal} onClose={() => setShowAddClinicModal(false)} title="Add New Clinic">
+    {/* Add Client Modal */}
+    <Modal isOpen={showAddClinicModal} onClose={() => setShowAddClinicModal(false)} title="Add New Client">
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Clinic Name</label>
+          <label className="block text-sm font-medium mb-1">Client Name</label>
           <input
             type="text"
             value={newClinicName}
@@ -2292,7 +2297,10 @@ function AdminDashboardContent() {
         <AdminSelect
           label="Type"
           value={newClinicType}
-          onChange={(value) => setNewClinicType(value)}
+          onChange={(value) => {
+            setNewClinicType(value);
+            if (value !== '__custom__') setNewClinicCustomType('');
+          }}
           options={[
             { value: '', label: 'Select type...' },
             { value: 'ER', label: 'Emergency Room (ER)' },
@@ -2301,9 +2309,22 @@ function AdminDashboardContent() {
             { value: 'MedSpa', label: 'MedSpa' },
             { value: 'Dental', label: 'Dental Practice' },
             { value: 'Specialty', label: 'Specialty Clinic' },
+            { value: '__custom__', label: 'Custom (enter manually)' },
           ]}
           required
         />
+        {newClinicType === '__custom__' && (
+          <div>
+            <label className="block text-sm font-medium mb-1">Custom Type</label>
+            <input
+              type="text"
+              value={newClinicCustomType}
+              onChange={(e) => setNewClinicCustomType(e.target.value)}
+              className="w-full border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 bg-white dark:bg-slate-800"
+              placeholder="Enter custom type"
+            />
+          </div>
+        )}
         <div>
           <label className="block text-sm font-medium mb-1">Location</label>
           <input
@@ -2334,10 +2355,10 @@ function AdminDashboardContent() {
         <div className="flex gap-3 pt-2">
           <button
             onClick={handleAddClinic}
-            disabled={!newClinicName || !newClinicType || !newClinicLocation}
+            disabled={!newClinicName || !(newClinicType === '__custom__' ? newClinicCustomType.trim() : newClinicType) || !newClinicLocation}
             className="flex-1 bg-emerald-500 text-black font-bold py-2 rounded-lg hover:bg-emerald-400 disabled:opacity-50"
           >
-            Add Clinic
+            Add Client
           </button>
           <button
             onClick={() => setShowAddClinicModal(false)}
@@ -2424,6 +2445,9 @@ function AdminDashboardContent() {
                     <option value="MedSpa">MedSpa</option>
                     <option value="Dental">Dental Practice</option>
                     <option value="Specialty">Specialty Clinic</option>
+                    {editingClinic.type && !['ER', 'Urgent Care', 'Wellness', 'MedSpa', 'Dental', 'Specialty'].includes(editingClinic.type) && (
+                      <option value={editingClinic.type}>Custom: {editingClinic.type}</option>
+                    )}
                   </select>
                   <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 </div>
@@ -4015,7 +4039,7 @@ function ContentForSection(props: {
               onClick={onAddClinic}
               className="flex items-center gap-2 bg-emerald-500 text-black px-4 py-2 rounded-xl font-bold hover:bg-emerald-400 transition-all"
             >
-              <Plus className="h-5 w-5" /> Add Clinic
+              <Plus className="h-5 w-5" /> Add Client
             </button>
           </div>
           <div className="overflow-x-auto">
@@ -4053,7 +4077,7 @@ function ContentForSection(props: {
                 {clinics.length === 0 && (
                   <tr>
                     <td colSpan={6} className="px-4 py-8 text-center text-slate-500 dark:text-slate-400">
-                      No clinics registered yet. <button onClick={onAddClinic} className="text-emerald-500 font-bold hover:underline">Add one now</button>
+                      No clients registered yet. <button onClick={onAddClinic} className="text-emerald-500 font-bold hover:underline">Add one now</button>
                     </td>
                   </tr>
                 )}

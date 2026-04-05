@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateText } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import OpenAI from 'openai';
 import Replicate from 'replicate';
 import prisma from '@/lib/prisma';
 import { persistImage } from '@/lib/persist-image';
@@ -74,6 +73,22 @@ async function generateBlogImage(focusKeyword: string, title: string): Promise<s
   }
 }
 
+function extractJsonObject(raw: string): string {
+  const cleaned = raw.replace(/```json\n?|\n?```/g, '').trim();
+
+  if (cleaned.startsWith('{') && cleaned.endsWith('}')) {
+    return cleaned;
+  }
+
+  const firstBrace = cleaned.indexOf('{');
+  const lastBrace = cleaned.lastIndexOf('}');
+  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+    return cleaned.slice(firstBrace, lastBrace + 1);
+  }
+
+  throw new Error('One-shot generation failed: could not parse AI JSON response');
+}
+
 /**
  * ONE-SHOT Blog Draft Generator
  *
@@ -86,6 +101,8 @@ async function generateOneShotBlog(customTopic?: string) {
   if (!process.env.OPENAI_API_KEY) {
     throw new Error('OPENAI_API_KEY is not configured');
   }
+
+  const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
 
@@ -103,9 +120,7 @@ async function generateOneShotBlog(customTopic?: string) {
   const shuffledExternal = [...EXTERNAL_SOURCES].sort(() => Math.random() - 0.5).slice(0, 4);
 
   // ── Single GPT-4o call: produce everything in one shot ──────────────
-  const { text: raw } = await generateText({
-    model: openai('gpt-4o'),
-    system: `You are an elite SEO content engineer for shreegauli.com — a digital marketing consultant site focused on SEO, paid media, content systems, and automation. You will produce a COMPLETE blog post package in a SINGLE output that scores 75+ on a 100-point Rank Math-style SEO audit.
+  const systemPrompt = `You are an elite SEO content engineer for shreegauli.com — a digital marketing consultant site focused on SEO, paid media, content systems, and automation. You will produce a COMPLETE blog post package in a SINGLE output that scores 75+ on a 100-point Rank Math-style SEO audit.
 
 ────────────────────────────────────────────
 IMPORTANT: Respond with ONLY a JSON object. No markdown fences. No explanation.
@@ -200,12 +215,26 @@ JSON RESPONSE FORMAT (return exactly this)
   "slug": "short-slug-with-keyword",
   "htmlContent": "<p>Full HTML blog post, 900-1200 words...</p>",
   "excerpt": "1-2 sentence plain-text excerpt with keyword, max 200 chars"
-}`,
-    prompt: customTopic
-      ? `Write a complete one-shot blog post about: "${customTopic}". Follow every rule in the system prompt. Return ONLY the JSON object.`
-      : `Write a complete one-shot blog post on the best healthcare marketing topic you can find. Follow every rule in the system prompt. Return ONLY the JSON object.`,
+}`;
+
+  const userPrompt = customTopic
+    ? `Write a complete one-shot blog post about: "${customTopic}". Follow every rule in the system prompt. Return ONLY the JSON object.`
+    : `Write a complete one-shot blog post on the best healthcare marketing topic you can find. Follow every rule in the system prompt. Return ONLY the JSON object.`;
+
+  const completion = await openaiClient.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt },
+    ],
+    response_format: { type: 'json_object' },
     temperature: 0.7,
   });
+
+  const raw = completion.choices?.[0]?.message?.content?.trim();
+  if (!raw) {
+    throw new Error('One-shot generation failed: empty response from OpenAI');
+  }
 
   // Parse JSON
   let parsed: {
@@ -219,8 +248,7 @@ JSON RESPONSE FORMAT (return exactly this)
     excerpt: string;
   };
   try {
-    const cleaned = raw.replace(/```json\n?|\n?```/g, '').trim();
-    parsed = JSON.parse(cleaned);
+    parsed = JSON.parse(extractJsonObject(raw));
   } catch {
     throw new Error('One-shot generation failed: could not parse AI JSON response');
   }
