@@ -65,6 +65,25 @@ const certifications = [
   "HubSpot Inbound Marketing",
 ];
 
+const education = [
+  {
+    school: "University of the People",
+    degree: "Bachelor's degree, Business Administration",
+  },
+  {
+    school: "Pearson College London",
+    degree: "Level 3 Diploma, Information Technology",
+  },
+  {
+    school: "UK Public College",
+    degree: "Diploma, Leadership and Management",
+  },
+  {
+    school: "HubSpot Academy",
+    degree: "Digital Marketing",
+  },
+];
+
 export default function AboutPage() {
   return (
     <PageShell>
@@ -88,7 +107,8 @@ export default function AboutPage() {
                 </div>
                 <div className="p-5">
                   <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>
-                  <p className="text-sm text-[#94A3B8] mt-0.5">Digital Marketing Specialist</p>
+                  <p className="text-sm text-[#94A3B8] mt-0.5">Automation Strategist | Product Manager | SEO, &amp; Team Leadership Expert</p>
+                  <p className="text-xs text-[#94A3B8]/80 mt-1">Trusted by 15+ Clients</p>
                   <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Working globally</p>
                   <div className="flex gap-3 mt-4">
                     <Link
@@ -191,6 +211,23 @@ export default function AboutPage() {
                   <span className="text-xs font-bold text-[#7C3AED]">{item.period}</span>
                   <h3 className="text-base font-bold text-[#F8FAFC] mt-1">{item.role}</h3>
                   <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
+                </ModuleShell>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Education</h2>
+          <div className="grid gap-4">
+            {education.map((item) => (
+              <ScrollReveal key={item.school}>
+                <ModuleShell className="p-6">
+                  <h3 className="text-base font-bold text-[#F8FAFC]">{item.school}</h3>
+                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.degree}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
