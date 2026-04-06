@@ -4,7 +4,7 @@
 **Search intent:** Informational  
 **SEO title:** AEO and GEO: How to Rank in AI Search as SEO Keeps Changing  
 **Meta description:** Learn how AEO and GEO fit into modern SEO, what still matters, and how to rank in AI-driven search experiences without chasing shortcuts.  
-**Featured image:** `/12.png`  
+**Featured image:** `/aeo-geo-how-to-rank-in-ai-search.png`  
 **Featured image alt:** Abstract AI search landscape illustration for an article about AEO, GEO, and modern SEO  
 **URL slug:** `/blogs/aeo-geo-how-to-rank-in-ai-search`
 
