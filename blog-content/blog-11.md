@@ -12,6 +12,8 @@ SEO used to feel more stable than it does now. Not simple, exactly, but stable e
 
 That model still matters. I think it matters more than some people want to admit. But it is no longer the whole picture.
 
+## Why AEO and GEO matter now
+
 Now people search through classic Google results, [AI Overviews](https://static.googleusercontent.com/media/www.google.com/en//search/howsearchworks/google-about-AI-overviews.pdf), AI-assisted Bing experiences, and tools like [ChatGPT search](https://help.openai.com/en/articles/9237897-chatgpt-search). They ask longer questions. They ask follow-ups. They compare options without always clicking the first blue link. Sometimes they barely click at all, which is uncomfortable if you grew up on CTR charts and rank trackers.
 
 That shift is why AEO and GEO started showing up everywhere.
@@ -20,15 +22,23 @@ AEO, or Answer Engine Optimization, is the practice of making content easy to su
 
 Still, this is the part where things get a little less glamorous. New labels do not erase old fundamentals.
 
+## SEO is still the foundation
+
 Google said that pretty plainly in its [Search Essentials](https://developers.google.com/search/docs/essentials), and then said it again in its May 21, 2025 post on [how to succeed in Google's AI search experiences](https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search). The advice is not magical. Create useful content for people. Make the page experience good. Make sure Google can access the page. Use structured data properly.
 
 But that consistency is useful. It tells us something important: AI search is changing SEO, yes, though not by replacing it. It is layering new interfaces and behaviors on top of the same old need for relevance, clarity, trust, and crawlability.
 
+## How to rank in AI-influenced search
+
 So, how do you rank in this environment?
+
+## Answer the main question early
 
 The first step is to answer the main question earlier than feels comfortable. A lot of pages still spend the opening section circling the point. AI systems make that weakness more obvious. If the query is "how to rank in AI search," the page should explain the answer fast: publish original content, structure it clearly, support claims with reliable sources, and make the page easy for search engines to access and interpret. Then expand from there.
 
 That structure matters because search engines do not just evaluate a page as one big block anymore. Google has explained in its [ranking systems guide](https://developers.google.com/search/docs/appearance/ranking-systems-guide) that different systems help it understand relevance in more granular ways. So a strong section can carry weight by itself. A buried answer is still an answer, of course, but it is a weaker one.
+
+## Make content citation-friendly
 
 The second step is to make content citation-friendly. I do not mean robotic. The best pages now tend to do three things at once: they read naturally, they state things clearly, and they give machines something solid to extract. That usually means:
 
@@ -40,15 +50,25 @@ The second step is to make content citation-friendly. I do not mean robotic. The
 
 This last part matters more than it used to. When Google explains that [AI Overviews rely on supporting web results](https://static.googleusercontent.com/media/www.google.com/en//search/howsearchworks/google-about-AI-overviews.pdf), and when OpenAI says ChatGPT search depends on relevance, reliability, and access for [OAI-SearchBot](https://help.openai.com/en/articles/9237897-chatgpt-search), the pattern is pretty clear. AI systems do not just want words. They want information they can ground.
 
+## Build trust into the page
+
 That also means trust signals are no longer a nice extra. Author names, publication dates, cited research, real examples, and clean site architecture all help reduce ambiguity. Not every site needs to sound academic, thankfully. But vague pages with no proof behind them are going to struggle more.
+
+## Think beyond text alone
 
 The third step is to think beyond text alone. Google's May 21, 2025 guidance on AI search points to [multimodal search and structured data](https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search). In practice, that means your page should not be just a wall of paragraphs if the topic would benefit from visuals, product data, charts, screenshots, or video.
 
 And yes, structured data still matters. Not because it guarantees rankings. It does not. But Google is clear that [structured data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) helps its systems understand your content and can make pages eligible for richer search features. In AI search, where machine interpretation is even more central, that clarity becomes more valuable, not less.
 
+## Measure more than clicks
+
 The fourth step is to stop measuring success only by raw clicks. Clicks are easy to obsess over, but Google said in that same May 21, 2025 guidance that clicks from AI Overviews tend to be higher quality, with users spending more time on the site. So a lower volume of better visits may be a healthy trade. Not always, obviously. But teams need a wider lens now: conversions, engaged sessions, branded search growth, and lead quality should matter more.
 
+## The AI search landscape is moving fast
+
 The landscape around all of this is changing fast. Stanford HAI's [2025 AI Index Report](https://hai.stanford.edu/assets/files/hai_ai-index-report-2025_chapter1_final.pdf) showed how quickly AI adoption has accelerated across industries. Google said on March 5, 2025 that it was expanding AI-driven search experiences, and by May 20, 2025 the company said at I/O that [AI Overviews had scaled to more than 1.5 billion users](https://blog.google/innovation-and-ai/technology/ai/io-2025-keynote/). That is not a side experiment anymore.
+
+## What modern SEO is becoming
 
 Maybe the clearest way to think about modern SEO is this: you are no longer optimizing only for a ranking position. You are optimizing to become the source that can be found, trusted, quoted, summarized, and clicked when needed.
 
