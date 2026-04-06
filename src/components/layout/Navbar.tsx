@@ -39,6 +39,17 @@ export function Navbar() {
     return () => window.removeEventListener("resize", handler);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+
+    document.body.style.overflow = "";
+  }, [mobileOpen]);
+
   // Close user menu on outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -64,7 +75,9 @@ export function Navbar() {
       <nav
         className={cn(
           "w-full max-w-6xl rounded-2xl px-5 py-2.5 transition-all duration-300",
-          scrolled
+          mobileOpen
+            ? "bg-[#070B14]/96 backdrop-blur-xl border border-white/[0.12] shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
+            : scrolled
             ? "glass shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
             : "bg-[#070B14]/55 backdrop-blur-sm border border-white/[0.06]"
         )}
@@ -251,8 +264,9 @@ export function Navbar() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden overflow-hidden">
-              <div className="pt-3 pb-2 flex flex-col gap-1 border-t border-white/[0.08] mt-3">
+          <div className="md:hidden fixed inset-0 z-40 bg-[#070B14]/84 backdrop-blur-sm pt-24 px-4 pb-4">
+              <div className="h-full overflow-y-auto rounded-2xl border border-white/[0.12] bg-[#0B1220]/96 px-4 py-4 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
+              <div className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -330,6 +344,7 @@ export function Navbar() {
                   Book a Call
                 </Link>
               </div>
+            </div>
           </div>
         )}
       </nav>
