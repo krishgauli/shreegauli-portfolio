@@ -21,9 +21,9 @@ function FloatingParticles() {
     () =>
       Array.from({ length: 20 }, (_, i) => ({
         id: i,
-        size: seededRandom(i * 4 + 1) * 3 + 1,
-        x: seededRandom(i * 4 + 2) * 100,
-        y: seededRandom(i * 4 + 3) * 100,
+        size: `${(seededRandom(i * 4 + 1) * 3 + 1).toFixed(4)}px`,
+        x: `${(seededRandom(i * 4 + 2) * 100).toFixed(4)}%`,
+        y: `${(seededRandom(i * 4 + 3) * 100).toFixed(4)}%`,
         duration: seededRandom(i * 4 + 4) * 8 + 6,
         delay: seededRandom(i * 4 + 5) * 4,
       })),
@@ -41,8 +41,8 @@ function FloatingParticles() {
           style={{
             width: p.size,
             height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
+            left: p.x,
+            top: p.y,
           }}
           animate={{
             y: [0, -30, 0],

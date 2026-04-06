@@ -264,8 +264,8 @@ export function Navbar() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden fixed inset-0 z-40 bg-[#070B14]/84 backdrop-blur-sm pt-24 px-4 pb-4">
-              <div className="h-full overflow-y-auto rounded-2xl border border-white/[0.12] bg-[#0B1220]/96 px-4 py-4 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
+          <div className="md:hidden absolute left-0 right-0 top-full z-[60] mt-3 px-1">
+              <div className="max-h-[calc(100vh-8.5rem)] overflow-y-auto rounded-2xl border border-white/[0.12] bg-[#0B1220]/98 px-4 py-4 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
               <div className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <Link
