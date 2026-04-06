@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   title: "Shree Krishna Gauli — Digital Marketing Consultant",
   description:
     "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   keywords: [
     "digital marketing consultant",
     "SEO consultant",
