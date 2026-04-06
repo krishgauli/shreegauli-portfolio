@@ -7,10 +7,14 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 const skills = [
   "SEO Strategy",
+  "AEO/GEO",
   "Google Analytics",
   "Meta Ads",
   "Content Systems",
   "n8n Automation",
+  "Fullstack",
+  "Next.js",
+  "Mobile App",
   "Project Management",
   "CRM Workflows",
   "WordPress",
@@ -67,8 +71,9 @@ export function AboutPreview() {
               <div className="space-y-4 text-[#94A3B8] leading-relaxed">
                 <p>
                   I&apos;m a digital marketing specialist focused on the work that
-                  actually moves the needle — SEO, paid media, social media
-                  strategy, and the automation systems that make all of it more
+                  actually moves the needle — SEO, AEO/GEO, paid media, social
+                  media strategy, fullstack and Next.js builds, mobile app
+                  support, and automation systems that make all of it more
                   consistent and measurable.
                 </p>
                 <p>

@@ -19,10 +19,14 @@ export const navLinks: NavLink[] = [
 
 export const trustItems: TrustItem[] = [
   { label: "SEO Strategy" },
+  { label: "AEO/GEO" },
   { label: "Paid Campaigns" },
   { label: "Social Growth" },
   { label: "Content Systems" },
   { label: "n8n Automation" },
+  { label: "Fullstack" },
+  { label: "Next.js" },
+  { label: "Mobile App" },
   { label: "Google Analytics" },
   { label: "Meta Ads" },
   { label: "Email Marketing" },

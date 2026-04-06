@@ -22,9 +22,9 @@ export const metadata: Metadata = createPageMetadata({
 const timeline = [
   {
     period: "2024 — Present",
-    role: "Independent Digital Marketing Specialist",
+    role: "Independent Digital Marketing & Fullstack Specialist",
     description:
-      "Working directly with brands on SEO, paid media, social growth, and automation. Building systems that deliver measurable growth without the agency overhead.",
+      "Working directly with brands on SEO, AEO/GEO, paid media, social growth, Next.js and mobile app initiatives, and automation. Building systems that deliver measurable growth without the agency overhead.",
   },
   {
     period: "2022 — 2024",
@@ -36,7 +36,7 @@ const timeline = [
     period: "2020 — 2022",
     role: "Digital Marketing Foundations",
     description:
-      "Developed core skills in SEO, Google Analytics, advertising platforms, and CRM management. Earned Google Ads and Analytics certifications while working on real campaigns.",
+      "Developed core skills in SEO, AEO/GEO foundations, Google Analytics, advertising platforms, CRM management, and web delivery with Next.js. Earned Google Ads and Analytics certifications while working on real campaigns.",
   },
 ];
 
@@ -52,7 +52,10 @@ const tools = [
   { name: "Make", category: "Automation" },
   { name: "HubSpot", category: "CRM" },
   { name: "WordPress", category: "CMS" },
+  { name: "AEO/GEO", category: "SEO" },
+  { name: "Fullstack", category: "Dev" },
   { name: "Next.js", category: "Dev" },
+  { name: "Mobile App", category: "Dev" },
 ];
 
 const certifications = [
@@ -114,8 +117,9 @@ export default function AboutPage() {
                 <div className="space-y-4 text-[#94A3B8] leading-relaxed">
                   <p>
                     I&apos;m a digital marketing specialist focused on the work that
-                    actually moves the needle — SEO, paid media, social media
-                    strategy, and the automation systems that make all of it more
+                    actually moves the needle — SEO, AEO/GEO, paid media, social
+                    media strategy, fullstack and Next.js builds, mobile app
+                    support, and the automation systems that make all of it more
                     consistent and measurable.
                   </p>
                   <p>

@@ -1,13 +1,17 @@
 import { GlowButton } from "@/components/shared/GlowButton";
 import { GlassButton } from "@/components/shared/GlassButton";
-import { BarChart2, Target, Users, Zap, Search } from "lucide-react";
+import { BarChart2, Target, Users, Zap, Search, Smartphone, Code2 } from "lucide-react";
 
 const proofChips = [
   { icon: Search, label: "SEO" },
+  { icon: Search, label: "AEO/GEO" },
   { icon: Target, label: "Paid Media" },
   { icon: Users, label: "Social Growth" },
   { icon: BarChart2, label: "Growth Strategy" },
   { icon: Zap, label: "Automation" },
+  { icon: Code2, label: "Fullstack" },
+  { icon: Code2, label: "Next.js" },
+  { icon: Smartphone, label: "Mobile App" },
 ];
 
 export function HeroText() {
@@ -29,8 +33,9 @@ export function HeroText() {
 
       {/* Sub */}
       <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
-        SEO, Google Ads, social growth, and automation for founders and lean
-        teams that want a clearer path from traffic to pipeline.
+        SEO, AEO/GEO, Google Ads, social growth, fullstack builds, Next.js,
+        mobile app flows, and automation for founders and lean teams that want
+        a clearer path from traffic to pipeline.
       </p>
 
       {/* CTAs */}
@@ -56,7 +61,8 @@ export function HeroText() {
 
       {/* Social proof micro-line */}
       <p className="text-xs text-[#94A3B8]/60">
-        Recent work across healthcare, SaaS, e-commerce, and local services.
+        Recent work across healthcare, SaaS, e-commerce, local services, and
+        product teams shipping web and mobile.
       </p>
     </div>
   );
