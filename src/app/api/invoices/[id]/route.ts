@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { generateInvoiceHtml, type InvoiceLineItem } from '@/lib/invoice-generator';
-import { sendInvoiceEmail } from '@/lib/invoice-mailer';
 
 export const dynamic = 'force-dynamic';
 

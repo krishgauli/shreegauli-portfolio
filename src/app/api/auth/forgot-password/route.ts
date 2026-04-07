@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import prisma from '@/lib/prisma';
-import { sendPasswordResetEmail } from '@/lib/password-reset-mailer';
+
 
 export async function POST(req: Request) {
   try {
@@ -35,14 +35,7 @@ export async function POST(req: Request) {
       || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
     const resetUrl = `${baseUrl}/reset-password?token=${resetToken}`;
 
-    // Send reset email
-    try {
-      await sendPasswordResetEmail(normalizedEmail, user.name, resetUrl);
-    } catch (emailErr) {
-      console.error('Failed to send password reset email:', emailErr);
-      // Still return success — the token is saved, user can retry
-    }
-
+    // Email sending removed — token saved in DB for manual reset if needed
     return NextResponse.json({ message: 'If an account exists, a reset link has been sent.' });
   } catch (error) {
     console.error('Forgot password error:', error);

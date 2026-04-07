@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { generateInvoiceHtml, buildPayoneerPaymentLink, type InvoiceLineItem } from '@/lib/invoice-generator';
-import { sendInvoiceEmail } from '@/lib/invoice-mailer';
 
 export const dynamic = 'force-dynamic';
 
@@ -92,7 +91,6 @@ export async function POST(request: NextRequest) {
     dueInDays = 15,
     notes,
     clientNotes,
-    sendEmail = false,
     description,
   } = body as {
     clientId: string;
@@ -101,7 +99,6 @@ export async function POST(request: NextRequest) {
     dueInDays?: number;
     notes?: string;
     clientNotes?: string;
-    sendEmail?: boolean;
     description?: string;
   };
 
@@ -150,64 +147,16 @@ export async function POST(request: NextRequest) {
       currency: client.currency || 'USD',
       description: description || lineItems.map((i: InvoiceLineItem) => i.description).join(', '),
       lineItems: lineItems as unknown as Record<string, unknown>[],
-      status: sendEmail ? 'sent' : 'draft',
+      status: 'draft',
       issueDate,
       dueDate,
       paymentMethod: 'payoneer',
       paymentLink,
       notes,
       clientNotes,
-      sentAt: sendEmail ? new Date() : null,
-      sentTo: sendEmail ? client.email : null,
     },
     include: { client: true },
   });
-
-  // Send email if requested
-  if (sendEmail) {
-    try {
-      const clientAddress = [client.billingAddress, client.city, client.state, client.zipCode, client.country]
-        .filter(Boolean)
-        .join(', ');
-
-      const html = generateInvoiceHtml({
-        invoiceNumber,
-        issueDate: formatDate(issueDate),
-        dueDate: formatDate(dueDate),
-        businessName: BUSINESS.name,
-        businessEmail: BUSINESS.email,
-        businessAddress: BUSINESS.address,
-        businessPhone: BUSINESS.phone,
-        clientName: client.name,
-        clientEmail: client.email,
-        clientCompany: client.company || undefined,
-        clientAddress: clientAddress || undefined,
-        lineItems,
-        subtotal,
-        taxRate,
-        taxAmount,
-        total,
-        currency: client.currency || 'USD',
-        paymentLink: paymentLink || undefined,
-        paymentMethod: 'payoneer',
-        notes: clientNotes || undefined,
-        status: 'sent',
-      });
-
-      await sendInvoiceEmail({
-        to: client.email,
-        invoiceNumber,
-        clientName: client.name,
-        total: formatCurrency(total, client.currency || 'USD'),
-        dueDate: formatDate(dueDate),
-        invoiceHtml: html,
-        paymentLink: paymentLink || undefined,
-      });
-    } catch (emailError) {
-      console.error('[Invoice] Email send failed:', emailError);
-      // Don't fail the creation — invoice is saved, just email failed
-    }
-  }
 
   return NextResponse.json({ success: true, invoice }, { status: 201 });
 }

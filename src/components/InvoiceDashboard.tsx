@@ -102,7 +102,6 @@ export default function InvoiceDashboard() {
     dueInDays: '15',
     notes: '',
     clientNotes: '',
-    sendEmail: true,
   });
 
   function showFeedback(type: 'success' | 'error', message: string) {
@@ -232,7 +231,6 @@ export default function InvoiceDashboard() {
           dueInDays: parseInt(invoiceForm.dueInDays) || 15,
           notes: invoiceForm.notes,
           clientNotes: invoiceForm.clientNotes,
-          sendEmail: invoiceForm.sendEmail,
           description: invoiceForm.description,
         }),
       });
@@ -242,8 +240,8 @@ export default function InvoiceDashboard() {
       }
       const data = await res.json();
       if (data.success) {
-        showFeedback('success', `Invoice ${data.invoice.invoiceNumber} created${invoiceForm.sendEmail ? ' & sent' : ''}`);
-        setInvoiceForm({ clientId: '', description: '', rate: '', qty: '1', taxRate: '0', dueInDays: '15', notes: '', clientNotes: '', sendEmail: true });
+        showFeedback('success', `Invoice ${data.invoice.invoiceNumber} created`);
+        setInvoiceForm({ clientId: '', description: '', rate: '', qty: '1', taxRate: '0', dueInDays: '15', notes: '', clientNotes: '' });
         fetchInvoices();
       } else {
         showFeedback('error', data.error || 'Failed to create invoice');
@@ -274,19 +272,6 @@ export default function InvoiceDashboard() {
     }
     fetchInvoices();
     showFeedback('success', 'Invoice marked as paid');
-    setActionLoading(null);
-  }
-
-  async function resendInvoice(id: string) {
-    setActionLoading(id);
-    const res = await fetch(`/api/invoices/${id}/send`, { method: 'POST' });
-    if (res.status === 401 || res.status === 403) {
-      handleUnauthorized();
-      setActionLoading(null);
-      return;
-    }
-    const data = await res.json();
-    showFeedback(data.success ? 'success' : 'error', data.message || data.error);
     setActionLoading(null);
   }
 
@@ -438,13 +423,6 @@ export default function InvoiceDashboard() {
                             >
                               Mark Paid
                             </button>
-                            <button
-                              onClick={() => resendInvoice(inv.id)}
-                              disabled={actionLoading === inv.id}
-                              className="px-2.5 py-1 bg-violet-600 hover:bg-violet-500 text-white text-xs rounded-md transition disabled:opacity-50"
-                            >
-                              {inv.sentAt ? 'Resend' : 'Send'}
-                            </button>
                           </>
                         )}
                         {inv.paymentLink && (
@@ -595,12 +573,8 @@ export default function InvoiceDashboard() {
                 <input type="number" value={invoiceForm.dueInDays} onChange={(e) => setInvoiceForm({ ...invoiceForm, dueInDays: e.target.value })} className="dashboard-input w-full rounded-lg px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 dark:text-white dark:placeholder:text-slate-500" />
               </div>
               <textarea placeholder="Client-facing notes (shown on invoice)" value={invoiceForm.clientNotes} onChange={(e) => setInvoiceForm({ ...invoiceForm, clientNotes: e.target.value })} rows={2} className="dashboard-input w-full resize-none rounded-lg px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 dark:text-white dark:placeholder:text-slate-500" />
-              <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
-                <input type="checkbox" checked={invoiceForm.sendEmail} onChange={(e) => setInvoiceForm({ ...invoiceForm, sendEmail: e.target.checked })} className="accent-violet-500" />
-                Send invoice email immediately
-              </label>
               <button type="submit" disabled={actionLoading === 'create-invoice'} className="w-full py-2.5 bg-violet-600 hover:bg-violet-500 text-white rounded-lg text-sm font-semibold transition disabled:opacity-50">
-                {actionLoading === 'create-invoice' ? 'Creating...' : 'Create & Send Invoice'}
+                {actionLoading === 'create-invoice' ? 'Creating...' : 'Create Invoice'}
               </button>
             </form>
           </div>

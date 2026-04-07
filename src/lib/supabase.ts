@@ -122,7 +122,6 @@ export async function ensureSupabasePasswordUser(params: {
   if (existing) {
     const { data, error } = await supabaseAdmin.auth.admin.updateUserById(existing.id, {
       email: normalizedEmail,
-      email_confirm: true,
       password: params.password,
       user_metadata: {
         name: params.name,
@@ -138,7 +137,6 @@ export async function ensureSupabasePasswordUser(params: {
 
   const { data, error } = await supabaseAdmin.auth.admin.createUser({
     email: normalizedEmail,
-    email_confirm: true,
     password: params.password,
     user_metadata: {
       name: params.name,

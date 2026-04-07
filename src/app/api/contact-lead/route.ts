@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
-import { isContactMailerConfigured, sendContactLeadEmails } from '@/lib/contact-mailer';
+import { isMailerConfigured, sendContactEmails } from '@/lib/mailer';
 
 function getTrimmedValue(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
@@ -43,35 +43,32 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    let emailStatus: 'failed' | 'partial' | 'sent' | 'skipped' = 'skipped';
+    let emailStatus: 'sent' | 'partial' | 'failed' | 'skipped' = 'skipped';
 
-    if (isContactMailerConfigured()) {
+    if (isMailerConfigured()) {
       try {
-        console.log('[contact-lead] Sending emails for lead:', lead.id, lead.email);
-        const result = await sendContactLeadEmails(lead);
-        console.log('[contact-lead] Email result:', {
-          notificationSent: result.notificationSent,
-          confirmationSent: result.confirmationSent,
-          errors: result.errors,
+        const result = await sendContactEmails({
+          name,
+          email,
+          phone,
+          businessType,
+          budget,
+          message,
+          source,
+          createdAt: lead.createdAt,
         });
 
-        if (result.notificationSent && result.confirmationSent) {
-          emailStatus = 'sent';
-        } else if (result.notificationSent || result.confirmationSent) {
-          emailStatus = 'partial';
-        } else {
-          emailStatus = 'failed';
-        }
+        if (result.adminSent && result.userSent) emailStatus = 'sent';
+        else if (result.adminSent || result.userSent) emailStatus = 'partial';
+        else emailStatus = 'failed';
 
-        if (result.errors.length > 0) {
-          console.error('[contact-lead] Email delivery issue:', result.errors.join(' | '));
+        if (result.errors.length) {
+          console.error('[contact-lead] Email issue:', result.errors.join(' | '));
         }
-      } catch (error) {
+      } catch (err) {
         emailStatus = 'failed';
-        console.error('[contact-lead] Email error:', error instanceof Error ? error.message : error);
+        console.error('[contact-lead] Email error:', err instanceof Error ? err.message : err);
       }
-    } else {
-      console.warn('[contact-lead] Mailer not configured — missing CONTACT_SMTP_HOST, CONTACT_SMTP_USER, or CONTACT_SMTP_PASSWORD. Emails skipped.');
     }
 
     return NextResponse.json(

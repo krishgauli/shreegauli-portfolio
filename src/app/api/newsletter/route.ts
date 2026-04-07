@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
-import { sendNewsletterNotification } from '@/lib/contact-mailer';
+
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,14 +27,7 @@ export async function POST(req: NextRequest) {
           data: { active: true },
         });
 
-        // Send reactivation notification and await delivery in serverless runtime
-        const delivered = await sendNewsletterNotification(email, source || 'reactivation');
-        const emailStatus = delivered ? 'sent' : 'failed';
-        if (!delivered) {
-          console.error('[newsletter] Reactivation email delivery failed for:', email);
-        }
-
-        return NextResponse.json({ message: 'Subscription reactivated', emailStatus }, { status: 200 });
+        return NextResponse.json({ message: 'Subscription reactivated' }, { status: 200 });
       }
     }
 
@@ -46,14 +39,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Send email notifications (admin + welcome email to subscriber) and await in serverless runtime
-    const delivered = await sendNewsletterNotification(email, source || 'footer');
-    const emailStatus = delivered ? 'sent' : 'failed';
-    if (!delivered) {
-      console.error('[newsletter] Subscription email delivery failed for:', email);
-    }
-
-    return NextResponse.json({ message: 'Successfully subscribed', subscriber, emailStatus }, { status: 201 });
+    return NextResponse.json({ message: 'Successfully subscribed', subscriber }, { status: 201 });
   } catch (error) {
     console.error('Newsletter subscription error:', error);
     return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
