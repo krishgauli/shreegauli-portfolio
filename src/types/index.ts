@@ -36,6 +36,8 @@ export interface CaseStudy {
   strategyHeading?: string;
   strategyItems?: StrategyItem[];
   quote?: { text: string; author: string };
+  proofImage?: { src: string; alt: string; caption?: string };
+  takeaway?: string;
 }
 
 export interface Metric {

@@ -86,24 +86,30 @@ export function ContactForm() {
       {/* ── Success Popup Overlay ── */}
       {submitState === "success" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0F172A] p-8 text-center shadow-2xl">
+          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-bg-panel p-0 text-center shadow-[0_40px_120px_rgba(2,6,23,0.8)]">
+            <div className="border-b border-white/10 bg-[#0B1533] px-8 py-6">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-violet text-sm font-bold text-white">SG</div>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4B5FD]">Shree Gauli</p>
+            </div>
+            <div className="relative p-8">
             <button
               onClick={() => setSubmitState("idle")}
-              className="absolute right-4 top-4 text-[#94A3B8] hover:text-white transition-colors"
+              className="absolute right-4 top-4 text-content-muted hover:text-white transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
               <CheckCircle2 className="h-8 w-8 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-semibold text-[#F8FAFC] mb-2">Message sent!</h3>
-            <p className="text-sm text-[#94A3B8] leading-relaxed">{feedbackMessage}</p>
+            <h3 className="text-2xl font-semibold text-content-primary mb-2">Thanks — your message is received</h3>
+            <p className="text-sm text-content-muted leading-relaxed max-w-sm mx-auto">{feedbackMessage}</p>
             <button
               onClick={() => setSubmitState("idle")}
-              className="mt-6 inline-flex items-center justify-center rounded-2xl bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8B5CF6]"
+              className="mt-6 inline-flex items-center justify-center rounded-2xl bg-brand-violet px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8B5CF6]"
             >
               Got it
             </button>
+            </div>
           </div>
         </div>
       )}

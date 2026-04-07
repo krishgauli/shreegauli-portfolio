@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
-import { Check } from 'lucide-react';
+import { Check, CheckCircle2, X } from 'lucide-react';
 import { useSitePreferences } from '@/components/SitePreferencesProvider';
 
 export default function CtaContactForm() {
@@ -17,6 +17,7 @@ export default function CtaContactForm() {
     budget: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,6 +42,11 @@ export default function CtaContactForm() {
 
       if (response.ok) {
         setSubmitted(true);
+        setFeedbackMessage(
+          data?.emailStatus === 'sent'
+            ? 'Thanks! Your message is in and a confirmation email is on its way.'
+            : "Thanks! Your message is in. I'll follow up as soon as possible."
+        );
         setFormData({ name: '', businessType: '', email: '', phone: '', budget: '' });
       } else {
         console.error('Lead submission error:', data.error);
@@ -60,6 +66,36 @@ export default function CtaContactForm() {
 
   return (
     <section className={`py-24 relative overflow-hidden ${isDark ? 'bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-800' : 'bg-gradient-to-br from-emerald-50 via-white to-blue-50'}`}>
+      {submitted && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-bg-panel p-0 text-center shadow-[0_40px_120px_rgba(2,6,23,0.8)]">
+            <div className="border-b border-white/10 bg-[#0B1533] px-8 py-6">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-violet text-sm font-bold text-white">SG</div>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#C4B5FD]">Shree Gauli</p>
+            </div>
+            <div className="relative p-8">
+              <button
+                onClick={() => setSubmitted(false)}
+                className="absolute right-4 top-4 text-content-muted hover:text-white transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
+                <CheckCircle2 className="h-8 w-8 text-emerald-400" />
+              </div>
+              <h3 className="text-2xl font-semibold text-content-primary mb-2">Thanks — your message is received</h3>
+              <p className="text-sm text-content-muted leading-relaxed max-w-sm mx-auto">{feedbackMessage}</p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="mt-6 inline-flex items-center justify-center rounded-2xl bg-brand-violet px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8B5CF6]"
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Background image */}
       <div className={`absolute inset-0 ${isDark ? 'opacity-20' : 'opacity-10'}`}>
         <Image
@@ -111,15 +147,7 @@ export default function CtaContactForm() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            {submitted ? (
-              <div className={`rounded-3xl p-8 text-center ${isDark ? 'bg-slate-800' : 'bg-white'}`}>
-                <div className="w-16 h-16 rounded-full bg-emerald-500 flex items-center justify-center mx-auto mb-4">
-                  <Check className="w-8 h-8 text-white" />
-                </div>
-                <h3 className={`text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Thank you!</h3>
-                <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>{t("We'll be in touch within 24 hours to schedule your free strategy audit.")}</p>
-              </div>
-            ) : (
+            {
               <form onSubmit={handleSubmit} className={`rounded-3xl p-8 shadow-2xl ${isDark ? 'bg-slate-800' : 'bg-white'}`}>
                 <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Start growing today')}</h3>
                 
@@ -206,7 +234,7 @@ export default function CtaContactForm() {
                   {loading ? t('Submitting...') : t('Start growing today')}
                 </button>
               </form>
-            )}
+            }
           </motion.div>
         </div>
       </div>

@@ -16,14 +16,13 @@ const SMTP_APP_PASSWORD = process.env.SMTP_APP_PASSWORD || '';
 const ADMIN_EMAIL = process.env.SMTP_ADMIN_EMAIL || SMTP_USER;
 const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
 const BRAND = {
-  name: 'Shree Krishna Gauli',
+  name: 'Shree Gauli',
   tagline: 'Digital Marketing Consultant',
   email: SMTP_USER || 'hello@shreegauli.com',
   address: '3001 Skyway Cir N, Irving, TX 75038',
   phone: '972-848-1153',
   url: SITE_URL,
   linkedin: 'https://www.linkedin.com/in/gauli/',
-  instagram: 'https://instagram.com',
   facebook: 'https://facebook.com',
 };
 
@@ -70,7 +69,7 @@ function emailShell(bodyHtml: string) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shree Krishna Gauli</title>
+<title>Shree Gauli</title>
 </head>
 <body style="margin:0;padding:0;background:#f1f5f9;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;">
 
@@ -81,8 +80,7 @@ function emailShell(bodyHtml: string) {
       <table role="presentation" cellpadding="0" cellspacing="0">
         <tr>
           <td style="padding-right:14px;vertical-align:middle;">
-            <!-- Brand icon – purple gradient circle -->
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);display:inline-block;"></div>
+            <div style="width:40px;height:40px;border-radius:9999px;background:#7c3aed;color:#ffffff;font-weight:700;font-size:14px;line-height:40px;text-align:center;display:inline-block;">SG</div>
           </td>
           <td style="vertical-align:middle;">
             <span style="font-size:22px;font-weight:800;color:#ffffff;letter-spacing:0.5px;">${esc(BRAND.name.toUpperCase())}</span>
@@ -137,7 +135,6 @@ function emailShell(bodyHtml: string) {
           <td align="center" style="padding:24px 0 8px;">
             <!-- Social icons -->
             <a href="${esc(BRAND.facebook)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#0f172a;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">f</a>
-            <a href="${esc(BRAND.instagram)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#0f172a;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">✿</a>
             <a href="${esc(BRAND.linkedin)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#0f172a;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">in</a>
           </td>
         </tr>
@@ -288,7 +285,7 @@ export async function sendContactEmails(lead: LeadData): Promise<ContactEmailRes
       from,
       to: lead.email,
       replyTo: SMTP_USER,
-      subject: 'Thanks for Reaching Out — Shree Krishna Gauli',
+      subject: 'Thanks for Reaching Out — Shree Gauli',
       html: userConfirmationHtml(lead),
     }),
   ]);

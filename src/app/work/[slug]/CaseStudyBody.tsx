@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -28,6 +29,21 @@ import {
   Zap,
   DollarSign,
   Gauge,
+  PhoneMissed,
+  Users,
+  TrendingDown,
+  Search,
+  UserPlus,
+  Phone,
+  Globe,
+  MapPin,
+  Code,
+  Eye,
+  MousePointerClick,
+  Bot,
+  Repeat,
+  UserX,
+  Lightbulb,
   type LucideIcon,
 } from "lucide-react";
 import type { CaseStudy } from "@/types";
@@ -57,6 +73,21 @@ const iconMap: Record<string, LucideIcon> = {
   zap: Zap,
   "dollar-sign": DollarSign,
   gauge: Gauge,
+  "phone-missed": PhoneMissed,
+  users: Users,
+  "trending-down": TrendingDown,
+  search: Search,
+  "user-plus": UserPlus,
+  phone: Phone,
+  globe: Globe,
+  "map-pin": MapPin,
+  code: Code,
+  eye: Eye,
+  "mouse-pointer-click": MousePointerClick,
+  bot: Bot,
+  repeat: Repeat,
+  "user-x": UserX,
+  lightbulb: Lightbulb,
 };
 
 function LIcon({ name, className }: { name: string; className?: string }) {
@@ -321,6 +352,44 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
           </motion.section>
         )}
 
+        {/* ─── 3b. PROOF IMAGE ─────────────────────────── */}
+        {study.proofImage && (
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.7, ease, delay: 0.15 }}
+            className="mb-24 md:mb-40"
+          >
+            <div className="text-center mb-10">
+              <div
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-md ${a.badge} text-xs font-bold uppercase tracking-[0.16em] mb-6`}
+              >
+                Real Proof
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">
+                Don&apos;t take our word for it — see the data.
+              </h2>
+            </div>
+            <div className="glass rounded-3xl overflow-hidden p-2">
+              <Image
+                src={study.proofImage.src}
+                alt={study.proofImage.alt}
+                width={1200}
+                height={630}
+                className="w-full h-auto rounded-2xl"
+                quality={90}
+              />
+            </div>
+            {study.proofImage.caption && (
+              <p className="text-center text-sm text-[#94A3B8] mt-4 font-medium">
+                {study.proofImage.caption}
+              </p>
+            )}
+          </motion.section>
+        )}
+
         {/* ─── 4. THE IMPACT ──────────────────────────── */}
         <motion.section
           initial="hidden"
@@ -396,7 +465,40 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
           </div>
         </motion.section>
 
-        {/* ─── 5. CTA ─────────────────────────────────── */}
+        {/* ─── 5. KEY TAKEAWAY ──────────────────────────── */}
+        {study.takeaway && (
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.7, ease, delay: 0.22 }}
+            className="mb-24 md:mb-40"
+          >
+            <div
+              className="glass p-8 md:p-12 rounded-3xl relative overflow-hidden"
+              style={{ borderLeftWidth: "4px", borderLeftColor: `${a.hex}80` }}
+            >
+              <div className="flex items-start gap-5">
+                <div
+                  className={`w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center ${strategyColor[study.accentColor ?? "violet"]}`}
+                >
+                  <Lightbulb className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8] mb-3">
+                    Key Takeaway
+                  </h3>
+                  <p className="text-xl md:text-2xl font-medium text-[#F8FAFC] leading-relaxed">
+                    {study.takeaway}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.section>
+        )}
+
+        {/* ─── 6. CTA ─────────────────────────────────── */}
         <motion.section
           initial="hidden"
           whileInView="visible"

@@ -57,9 +57,9 @@ export async function GET(req: NextRequest) {
           select: { id: true, name: true, email: true, role: true, createdAt: true },
         }),
         prisma.post.findMany({
-          orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+          orderBy: [{ publishedAt: 'desc' }, { updatedAt: 'desc' }],
           take: 50,
-          select: { id: true, title: true, slug: true, publishedAt: true, createdAt: true },
+          select: { id: true, title: true, slug: true, publishedAt: true, updatedAt: true },
         }),
         prisma.chatSession.findMany({
           orderBy: { startedAt: 'desc' },
@@ -79,13 +79,13 @@ export async function GET(req: NextRequest) {
         }),
       ]),
       prisma.post.findMany({
-        orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+        orderBy: [{ publishedAt: 'desc' }, { updatedAt: 'desc' }],
         select: {
           id: true,
           title: true,
           slug: true,
           publishedAt: true,
-          createdAt: true,
+          updatedAt: true,
         },
       }),
     ]);
@@ -116,7 +116,7 @@ export async function GET(req: NextRequest) {
         title: `Blog: ${p.title?.slice(0, 50)}`,
         detail: p.publishedAt ? 'published' : 'draft',
         status: p.publishedAt ? 'published' : 'draft',
-        timestamp: p.publishedAt || p.createdAt,
+        timestamp: p.publishedAt || p.updatedAt,
       })),
       ...recentChatsFeed.map(c => ({
         type: 'chat' as const,
@@ -187,7 +187,7 @@ export async function GET(req: NextRequest) {
           slug: post.slug,
           detail: post.publishedAt ? 'published' : 'draft',
           status: post.publishedAt ? 'published' : 'draft',
-          timestamp: post.publishedAt || post.createdAt,
+          timestamp: post.publishedAt || post.updatedAt,
         })),
       },
       leadPipeline: {
