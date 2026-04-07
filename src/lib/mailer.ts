@@ -23,7 +23,7 @@ const BRAND = {
   phone: '972-848-1153',
   url: SITE_URL,
   linkedin: 'https://www.linkedin.com/in/gauli/',
-  facebook: 'https://facebook.com',
+  facebook: 'https://www.facebook.com/profile.php?id=61582408185149',
 };
 
 /* ── Transporter (singleton) ──────────────────────────────────────── */
@@ -254,6 +254,76 @@ function adminNotificationHtml(lead: LeadData) {
   `);
 }
 
+/* ── Newsletter email templates ────────────────────────────────────── */
+
+/**
+ * Subscriber welcome email — "Welcome to the Newsletter"
+ */
+function subscriberWelcomeHtml(email: string) {
+  return emailShell(`
+    <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#0f172a;">Welcome Aboard 🎉</h1>
+    <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Newsletter subscription confirmed</p>
+
+    <p style="margin:0 0 16px;font-size:15px;color:#0f172a;line-height:1.6;">Hey there,</p>
+    <p style="margin:0 0 24px;font-size:15px;color:#334155;line-height:1.7;">
+      Thanks for subscribing to the <strong>${esc(BRAND.name)}</strong> newsletter. You'll receive practical notes on SEO, paid media, automation, and conversion strategies that are actually worth acting on.
+    </p>
+
+    <div style="margin:0 0 28px;padding:20px 24px;border-radius:12px;background:#f0fdf4;border:1px solid #86efac;">
+      <p style="margin:0 0 8px;color:#15803d;font-weight:700;font-size:15px;">What to expect:</p>
+      <ul style="margin:0;padding:0 0 0 18px;color:#166534;font-size:14px;line-height:1.8;">
+        <li>Actionable SEO and marketing insights</li>
+        <li>Real case studies with specific numbers</li>
+        <li>Automation tips to save you hours every week</li>
+        <li>No fluff — only things you can implement today</li>
+      </ul>
+    </div>
+
+    <p style="margin:0 0 24px;font-size:15px;color:#334155;line-height:1.7;">
+      In the meantime, check out our latest work and see what results look like:
+    </p>
+
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 28px;">
+      <tr>
+        <td style="border-radius:12px;background:#7c3aed;text-align:center;">
+          <a href="${esc(BRAND.url)}/work" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;">View Case Studies →</a>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0;font-size:14px;color:#334155;line-height:1.7;">
+      If you ever want to unsubscribe, just reply to this email and let us know.
+    </p>
+  `);
+}
+
+/**
+ * Admin notification — "New Newsletter Subscriber"
+ */
+function adminNewSubscriberHtml(email: string, source: string) {
+  return emailShell(`
+    <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7c3aed;font-weight:700;">NEW SUBSCRIBER</p>
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#0f172a;">New Newsletter Signup</h1>
+    <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Received ${formatDate(new Date())}</p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+      ${detailRow('Email', email)}
+      ${detailRow('Source', source)}
+      ${detailRow('Time', formatDate(new Date()))}
+    </table>
+
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+      <tr>
+        <td style="border-radius:12px;background:#7c3aed;text-align:center;">
+          <a href="${esc(BRAND.url)}/dashboard/admin/subscribers" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;">View All Subscribers →</a>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin:0;font-size:14px;color:#64748b;">Total subscriber count is growing — keep delivering value.</p>
+  `);
+}
+
 /* ── Public API ────────────────────────────────────────────────────── */
 
 export interface ContactEmailResult {
@@ -299,6 +369,50 @@ export async function sendContactEmails(lead: LeadData): Promise<ContactEmailRes
   }
 
   if (errors.length) console.error('[Mailer]', errors.join(' | '));
+
+  return {
+    adminSent: adminResult.status === 'fulfilled',
+    userSent: userResult.status === 'fulfilled',
+    errors,
+  };
+}
+
+/**
+ * Send both admin notification + subscriber welcome emails for newsletter signup.
+ */
+export async function sendNewsletterEmails(email: string, source: string = 'unknown'): Promise<ContactEmailResult> {
+  if (!isMailerConfigured()) {
+    return { userSent: false, adminSent: false, errors: ['SMTP not configured'] };
+  }
+
+  const transporter = getTransporter();
+  const from = `${BRAND.name} <${SMTP_USER}>`;
+
+  const [adminResult, userResult] = await Promise.allSettled([
+    transporter.sendMail({
+      from,
+      to: ADMIN_EMAIL,
+      subject: `New newsletter subscriber: ${email}`,
+      html: adminNewSubscriberHtml(email, source),
+    }),
+    transporter.sendMail({
+      from,
+      to: email,
+      replyTo: SMTP_USER,
+      subject: 'Welcome to the Newsletter — Shree Gauli',
+      html: subscriberWelcomeHtml(email),
+    }),
+  ]);
+
+  const errors: string[] = [];
+  if (adminResult.status === 'rejected') {
+    errors.push(`Admin email failed: ${adminResult.reason instanceof Error ? adminResult.reason.message : 'Unknown'}`);
+  }
+  if (userResult.status === 'rejected') {
+    errors.push(`Subscriber email failed: ${userResult.reason instanceof Error ? userResult.reason.message : 'Unknown'}`);
+  }
+
+  if (errors.length) console.error('[Mailer:Newsletter]', errors.join(' | '));
 
   return {
     adminSent: adminResult.status === 'fulfilled',

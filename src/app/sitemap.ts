@@ -74,6 +74,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "seo-growth",
     "paid-media",
     "automation",
+    "lead-conversion-fix",
+    "seo-website-launch",
+    "ai-call-centre",
   ].map((slug) => ({
     url: `${baseUrl}/work/${slug}`,
     lastModified: now,

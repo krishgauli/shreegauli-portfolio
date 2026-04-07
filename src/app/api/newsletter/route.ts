@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin } from '@/lib/auth';
+import { isMailerConfigured, sendNewsletterEmails } from '@/lib/mailer';
 
 
 export async function POST(req: NextRequest) {
@@ -27,7 +28,21 @@ export async function POST(req: NextRequest) {
           data: { active: true },
         });
 
-        return NextResponse.json({ message: 'Subscription reactivated' }, { status: 200 });
+        // Send welcome email on reactivation too
+        let emailStatus: 'sent' | 'partial' | 'failed' | 'skipped' = 'skipped';
+        if (isMailerConfigured()) {
+          try {
+            const emailResult = await sendNewsletterEmails(email, source || 'reactivation');
+            if (emailResult.adminSent && emailResult.userSent) emailStatus = 'sent';
+            else if (emailResult.adminSent || emailResult.userSent) emailStatus = 'partial';
+            else emailStatus = 'failed';
+          } catch (emailError) {
+            console.error('Newsletter reactivation email error:', emailError);
+            emailStatus = 'failed';
+          }
+        }
+
+        return NextResponse.json({ message: 'Subscription reactivated', emailStatus }, { status: 200 });
       }
     }
 
@@ -39,7 +54,21 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({ message: 'Successfully subscribed', subscriber }, { status: 201 });
+    // Send welcome + admin notification emails (non-blocking)
+    let emailStatus: 'sent' | 'partial' | 'failed' | 'skipped' = 'skipped';
+    if (isMailerConfigured()) {
+      try {
+        const emailResult = await sendNewsletterEmails(email, source || 'footer');
+        if (emailResult.adminSent && emailResult.userSent) emailStatus = 'sent';
+        else if (emailResult.adminSent || emailResult.userSent) emailStatus = 'partial';
+        else emailStatus = 'failed';
+      } catch (emailError) {
+        console.error('Newsletter email error:', emailError);
+        emailStatus = 'failed';
+      }
+    }
+
+    return NextResponse.json({ message: 'Successfully subscribed', subscriber, emailStatus }, { status: 201 });
   } catch (error) {
     console.error('Newsletter subscription error:', error);
     return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
