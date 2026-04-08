@@ -551,6 +551,28 @@ export function BlogPostBody({
                     dangerouslySetInnerHTML={{ __html: articleHtml }}
                   />
 
+                  {/* Author byline */}
+                  <div className="mt-10 flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#7C3AED,#22D3EE)] text-sm font-bold text-white">
+                      SG
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        Written by {post.author?.name || "Shree Krishna Gauli"}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-slate-500">
+                        Dallas-based digital marketing consultant specializing in SEO, paid media, and marketing automation for healthcare and service businesses.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Last updated */}
+                  {post.updatedAt && (
+                    <p className="mt-4 text-xs text-slate-400">
+                      Last updated: {new Date(post.updatedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                    </p>
+                  )}
+
                   <div
                     className="mt-14 rounded-[28px] border border-[#7C3AED]/10 p-6 text-white sm:p-8"
                     style={ctaPanelStyle}

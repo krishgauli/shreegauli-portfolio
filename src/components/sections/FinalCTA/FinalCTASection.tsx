@@ -152,8 +152,8 @@ export function FinalCTASection() {
         <ScrollReveal delay={0.1}>
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#F8FAFC] leading-tight mb-6">
-              Ready to build something that{" "}
-              <span className="text-gradient-brand">actually moves</span>?
+              Ready to fix the{" "}
+              <span className="text-gradient-brand">bottleneck</span>?
             </h2>
           </div>
         </ScrollReveal>
@@ -161,9 +161,9 @@ export function FinalCTASection() {
         <ScrollReveal delay={0.2}>
           <div className="text-center">
             <p className="text-lg text-[#94A3B8] leading-relaxed mb-10 max-w-xl mx-auto">
-              Whether you need growth support, a cleaner marketing system, or a
-              stronger digital presence, let&apos;s talk. I usually respond within one
-              business day.
+              Tell me what you&apos;re trying to grow, what&apos;s blocking progress,
+              and what kind of help you need. I&apos;ll review it and follow up
+              within one business day.
             </p>
           </div>
         </ScrollReveal>
@@ -172,11 +172,11 @@ export function FinalCTASection() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <GlowButton href="/contact" className="gap-2">
               <MessageSquare className="h-4 w-4" />
-              Get in Touch
+              Send a Message
             </GlowButton>
             <GlassButton href="/book" className="gap-2">
               <Calendar className="h-4 w-4" />
-              Book a Call
+              Book a Call Instead
             </GlassButton>
           </div>
         </ScrollReveal>
@@ -285,7 +285,7 @@ export function FinalCTASection() {
 
         <ScrollReveal delay={0.5}>
           <p className="mt-8 text-center text-xs text-[#94A3B8]/60">
-            Not sure yet? Fill out the form above and I&apos;ll follow up personally.
+            Most engagements start with a 30-minute diagnostic call.
           </p>
         </ScrollReveal>
       </div>

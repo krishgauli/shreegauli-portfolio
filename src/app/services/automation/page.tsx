@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -166,6 +167,28 @@ export default function AutomationServicePage() {
                 <h3 className="text-base font-bold text-[#F8FAFC]">{faq.q}</h3>
                 <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{faq.a}</p>
               </ModuleShell>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Services */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Related Services</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { title: "AI Follow-Up", description: "Respond to every lead in under 60 seconds.", href: "/services/ai-follow-up" },
+              { title: "Lead Conversion", description: "Fix the gap between leads and revenue.", href: "/services/lead-conversion" },
+              { title: "SEO", description: "Technical audits, content strategy, and sustainable organic growth.", href: "/services/seo" },
+              { title: "Paid Media", description: "Google Ads and Meta campaigns that actually convert.", href: "/services/paid-media" },
+            ].map((svc) => (
+              <Link key={svc.title} href={svc.href}>
+                <ModuleShell className="p-5 h-full" enableHoverLift>
+                  <h3 className="text-sm font-semibold text-[#F8FAFC]">{svc.title}</h3>
+                  <p className="text-xs text-[#94A3B8] mt-1">{svc.description}</p>
+                </ModuleShell>
+              </Link>
             ))}
           </div>
         </div>

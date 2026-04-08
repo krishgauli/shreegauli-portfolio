@@ -1,17 +1,13 @@
 import { GlowButton } from "@/components/shared/GlowButton";
 import { GlassButton } from "@/components/shared/GlassButton";
-import { BarChart2, Target, Users, Zap, Search, Smartphone, Code2 } from "lucide-react";
+import { BarChart2, Target, Users, Zap, Search } from "lucide-react";
 
 const proofChips = [
   { icon: Search, label: "SEO" },
-  { icon: Search, label: "AEO/GEO" },
-  { icon: Target, label: "Paid Media" },
-  { icon: Users, label: "Social Growth" },
-  { icon: BarChart2, label: "Growth Strategy" },
-  { icon: Zap, label: "Automation" },
-  { icon: Code2, label: "Fullstack" },
-  { icon: Code2, label: "Next.js" },
-  { icon: Smartphone, label: "Mobile App" },
+  { icon: Target, label: "Google Ads" },
+  { icon: Zap, label: "Marketing Automation" },
+  { icon: BarChart2, label: "Lead Conversion" },
+  { icon: Users, label: "AI Follow-Up" },
 ];
 
 export function HeroText() {
@@ -21,28 +17,29 @@ export function HeroText() {
       <div>
         <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#22D3EE]/30 bg-[#22D3EE]/[0.08] text-[#22D3EE] text-xs font-semibold tracking-wider uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] animate-pulse-glow" />
-          Digital Marketing Consultant
+          Digital Marketing Consultant — Dallas, TX
         </span>
       </div>
 
       {/* Headline */}
       <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-[#F8FAFC]">
-        Growth systems for brands that need more{" "}
-        <span className="text-gradient-brand">qualified demand</span>.
+        You&apos;re generating leads.{" "}
+        <span className="text-gradient-brand">You&apos;re losing revenue.</span>
       </h1>
 
       {/* Sub */}
       <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
-        SEO, AEO/GEO, Google Ads, social growth, fullstack builds, Next.js,
-        mobile app flows, and automation for founders and lean teams that want
-        a clearer path from traffic to pipeline.
+        I build the system between your ad spend and your closed deals — SEO,
+        Google Ads, and automation designed so every lead gets followed up,
+        tracked, and converted. For healthcare practices, service businesses,
+        and growth-stage teams.
       </p>
 
       {/* CTAs */}
       <div className="flex flex-wrap gap-3">
-        <GlowButton href="/work">See Results</GlowButton>
+        <GlowButton href="/work">See How It Works</GlowButton>
         <GlassButton href="/book">
-          Book a Call
+          Book a Strategy Call
         </GlassButton>
       </div>
 
@@ -61,8 +58,7 @@ export function HeroText() {
 
       {/* Social proof micro-line */}
       <p className="text-xs text-[#94A3B8]/60">
-        Recent work across healthcare, SaaS, e-commerce, local services, and
-        product teams shipping web and mobile.
+        Based in Dallas. Working with healthcare, local services, and SaaS teams across the US.
       </p>
     </div>
   );

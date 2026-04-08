@@ -4,22 +4,46 @@ Allow: /
 Disallow: /api/
 Disallow: /_next/
 Disallow: /.next/
+Disallow: /dashboard/
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /reset-password
 
-# Specific rules for Googlebot
+# Googlebot
 User-agent: Googlebot
 Allow: /
 Disallow: /api/
 Disallow: /_next/
 Disallow: /.next/
+Disallow: /dashboard/
 
-# Specific rules for Bingbot
+# Bingbot
 User-agent: Bingbot
 Allow: /
-Allow: /login
-Allow: /signup
 Disallow: /api/
 Disallow: /_next/
 Disallow: /.next/
+Disallow: /dashboard/
+
+# AI crawlers — allow indexing for AEO/GEO visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
 
 # Sitemap location
-Sitemap: https://thenextgenhealth.com/sitemap.xml
+Sitemap: https://shreegauli.com/sitemap.xml

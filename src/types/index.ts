@@ -38,6 +38,12 @@ export interface CaseStudy {
   quote?: { text: string; author: string };
   proofImage?: { src: string; alt: string; caption?: string };
   takeaway?: string;
+  /** Enhanced template fields */
+  baselineMetrics?: { metric: string; before: string }[];
+  beforeAfter?: { metric: string; before: string; after: string; change: string }[];
+  toolsUsed?: string[];
+  timelinePhases?: { phase: string; description: string }[];
+  businessOutcome?: string;
 }
 
 export interface Metric {
@@ -76,6 +82,7 @@ export interface Testimonial {
   avatarColor: string;
   stars: number;
   result?: string;
+  industry?: string;
 }
 
 export interface Article {

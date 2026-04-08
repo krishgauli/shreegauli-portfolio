@@ -12,31 +12,31 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Shree Krishna Gauli | Digital Marketing Consultant",
+  title: "About Shree Krishna Gauli | Digital Marketing Consultant — Dallas, TX",
   description:
-    "Meet Shree Krishna Gauli — a digital marketing consultant focused on SEO, paid media, and automation systems that deliver measurable growth.",
+    "Shree Krishna Gauli helps healthcare practices, local businesses, and SaaS teams turn SEO, paid media, and automation into measurable revenue. Based in Dallas, working globally.",
   path: "/about",
-  keywords: ["about shree gauli", "digital marketing consultant dallas", "SEO specialist", "marketing consultant profile"],
+  keywords: ["about shree gauli", "digital marketing consultant dallas", "SEO specialist dallas", "healthcare marketing consultant"],
 });
 
 const timeline = [
   {
     period: "2024 — Present",
-    role: "Independent Digital Marketing & Fullstack Specialist",
+    role: "Independent Digital Marketing Consultant",
     description:
-      "Working directly with brands on SEO, AEO/GEO, paid media, social growth, Next.js and mobile app initiatives, and automation. Building systems that deliver measurable growth without the agency overhead.",
+      "Working directly with healthcare practices, local service businesses, and SaaS teams on SEO, AEO/GEO, paid media, lead-conversion systems, and marketing automation. Building revenue-focused systems without the agency overhead.",
   },
   {
     period: "2022 — 2024",
-    role: "Marketing Operations & SEO",
+    role: "Marketing Operations & SEO Lead",
     description:
-      "Managed organic and paid channels for healthcare SaaS and e-commerce brands. Built reporting dashboards and automated lead-routing workflows that saved teams 20+ hours weekly.",
+      "Managed organic and paid channels for healthcare and e-commerce brands. Built reporting dashboards and automated lead-routing workflows that saved teams 20+ hours weekly and increased conversion rates by 3×.",
   },
   {
     period: "2020 — 2022",
     role: "Digital Marketing Foundations",
     description:
-      "Developed core skills in SEO, AEO/GEO foundations, Google Analytics, advertising platforms, CRM management, and web delivery with Next.js. Earned Google Ads and Analytics certifications while working on real campaigns.",
+      "Developed core skills in SEO, AEO/GEO, Google Analytics, advertising platforms, CRM management, and marketing technology. Earned Google Ads and Analytics certifications while working on real campaigns.",
   },
 ];
 
@@ -51,11 +51,7 @@ const tools = [
   { name: "n8n", category: "Automation" },
   { name: "Make", category: "Automation" },
   { name: "HubSpot", category: "CRM" },
-  { name: "WordPress", category: "CMS" },
-  { name: "AEO/GEO", category: "SEO" },
-  { name: "Fullstack", category: "Dev" },
-  { name: "Next.js", category: "Dev" },
-  { name: "Mobile App", category: "Dev" },
+  { name: "ChatGPT / Claude", category: "AI" },
 ];
 
 const certifications = [
@@ -107,8 +103,8 @@ export default function AboutPage() {
                 </div>
                 <div className="p-5">
                   <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>
-                  <p className="text-sm text-[#94A3B8] mt-0.5">Automation Strategist | Product Manager | SEO, &amp; Team Leadership Expert</p>
-                  <p className="text-xs text-[#94A3B8]/80 mt-1">Trusted by 15+ Clients</p>
+                  <p className="text-sm text-[#94A3B8] mt-0.5">Digital Marketing Consultant — SEO, Paid Media &amp; Automation</p>
+                  <p className="text-xs text-[#94A3B8]/80 mt-1">Trusted by 14+ Clients</p>
                   <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Working globally</p>
                   <div className="flex gap-3 mt-4">
                     <Link
@@ -136,11 +132,11 @@ export default function AboutPage() {
                 />
                 <div className="space-y-4 text-[#94A3B8] leading-relaxed">
                   <p>
-                    I&apos;m a digital marketing specialist focused on the work that
-                    actually moves the needle — SEO, AEO/GEO, paid media, social
-                    media strategy, fullstack and Next.js builds, mobile app
-                    support, and the automation systems that make all of it more
-                    consistent and measurable.
+                    I&apos;m a digital marketing consultant who helps healthcare
+                    practices, local service businesses, and SaaS teams turn
+                    traffic into revenue. My focus is SEO, AEO/GEO, paid media,
+                    and the automation systems that make lead follow-up instant
+                    and measurement airtight.
                   </p>
                   <p>
                     I&apos;ve worked with brands in healthcare, SaaS, e-commerce, and

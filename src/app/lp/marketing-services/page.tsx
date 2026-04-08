@@ -8,11 +8,11 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "@/app/contact/ContactForm";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Digital Marketing Services | SEO, Ads, Automation Support",
+  title: "Healthcare & Local Business Marketing Services | SEO, Ads, Automation",
   description:
-    "A focused entry point for SEO, paid media, and automation support built around bottlenecks, not bloated retainers.",
+    "Marketing services built for healthcare practices, dental clinics, and local service businesses — SEO, Google Ads, and lead conversion systems that turn traffic into booked appointments.",
   path: "/lp/marketing-services",
-  keywords: ["digital marketing services", "SEO consultant", "marketing automation consultant", "paid media specialist"],
+  keywords: ["healthcare marketing services", "local business SEO", "dental marketing consultant", "Google Ads for clinics", "lead conversion for healthcare"],
 });
 
 export default function MarketingServicesLandingPage() {
@@ -22,31 +22,33 @@ export default function MarketingServicesLandingPage() {
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-5xl">
           <SectionHeader
-            eyebrow="Landing Page"
-            title="Marketing support built around the real bottleneck"
-            subtitle="Choose this path when you need direct help with SEO, paid media, reporting, or automation and you want the same person diagnosing and shipping the work."
+            eyebrow="For Healthcare & Local Service Businesses"
+            title="Marketing that turns traffic into booked appointments"
+            subtitle="You don't need more tactics — you need a system that connects your SEO, ads, and follow-up so leads actually convert. Built specifically for clinics, practices, and local service teams."
           />
 
           <div className="mb-10 grid gap-6 lg:grid-cols-3">
             <ModuleShell className="p-6">
-              <h2 className="text-xl font-semibold text-[#F8FAFC]">SEO and content systems</h2>
+              <h2 className="text-xl font-semibold text-[#F8FAFC]">SEO for healthcare & local businesses</h2>
               <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
-                Technical audits, service-page strategy, internal linking, and
-                content planning that improve both rankings and lead quality.
+                Technical audits, local pack optimization, service-page strategy,
+                and content systems built to rank for &quot;near me&quot; and
+                high-intent treatment searches.
               </p>
             </ModuleShell>
             <ModuleShell className="p-6">
-              <h2 className="text-xl font-semibold text-[#F8FAFC]">Google Ads and paid media</h2>
+              <h2 className="text-xl font-semibold text-[#F8FAFC]">Google Ads for patient acquisition</h2>
               <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
-                Account cleanup, search term control, landing-page alignment, and
-                reporting that focuses on qualified demand rather than vanity ROAS.
+                Campaign structure, search term control, landing page alignment,
+                and conversion tracking tied to actual appointments booked — not
+                vanity clicks.
               </p>
             </ModuleShell>
             <ModuleShell className="p-6">
-              <h2 className="text-xl font-semibold text-[#F8FAFC]">Automation and reporting</h2>
+              <h2 className="text-xl font-semibold text-[#F8FAFC]">Lead follow-up & automation</h2>
               <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
-                Lead routing, CRM workflows, dashboards, and operational fixes that
-                stop demand generation from breaking after the form fill.
+                CRM workflows, AI call agents, and automated follow-up sequences
+                that close the gap between a form fill and a booked consultation.
               </p>
             </ModuleShell>
           </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Clock,
   Zap,
   Rocket,
   CheckCircle2,
@@ -23,53 +22,35 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Digital Marketing Pricing | Hourly and Retainer Options",
+  title: "Digital Marketing Investment | Growth & Scale Retainers",
   description:
-    "Transparent pricing: $50/hour or monthly retainers starting at $1,499. Full-stack digital marketing — SEO, social media, content, design, and web maintenance.",
+    "Investment tiers built for measurable growth: monthly retainers from $1,499 covering SEO, paid media, automation, and reporting. No agency layers.",
   path: "/pricing",
   keywords: [
     "marketing consultant pricing",
-    "SEO consultant pricing",
+    "SEO consultant retainer",
     "digital marketing retainer",
-    "freelance marketing hourly rate",
-    "social media management pricing",
+    "marketing consultant dallas pricing",
+    "healthcare marketing pricing",
   ],
 });
 
 /* ── Plan data ────────────────────────────────────────────────── */
 const plans = [
   {
-    icon: Clock,
-    label: "Hourly",
-    price: "$50",
-    unit: "per hour",
-    tagline: "Pay only for the hours you use",
-    description:
-      "Best when you need targeted help on a specific channel or project without committing to a monthly scope.",
-    features: [
-      "Billed monthly on actual hours worked",
-      "No minimum commitment",
-      "Full access to all five service areas",
-      "Monthly timesheet included with invoice",
-    ],
-    cta: "Get started",
-    popular: false,
-  },
-  {
     icon: Zap,
     label: "Growth",
     price: "$1,499",
     unit: "/month",
-    tagline: "30 hours of execution per month",
+    tagline: "Consistent marketing execution",
     description:
-      "The most popular option for businesses that need consistent marketing execution across SEO, social, content, and web.",
+      "For businesses that need a reliable marketing operator across SEO, paid media, content, and automation — without the agency overhead.",
     features: [
-      "Up to 30 hours per month",
-      "All five service disciplines included",
-      "Monthly analytics report",
+      "SEO, paid media, content & automation",
+      "Monthly analytics & performance report",
       "Weekly implementation rhythm",
-      "Additional hours at $50/hr",
-      "14-day invoice terms",
+      "Direct access — no account managers",
+      "Month-to-month, cancel anytime",
     ],
     cta: "Start growing",
     popular: true,
@@ -79,16 +60,15 @@ const plans = [
     label: "Scale",
     price: "$2,500",
     unit: "/month",
-    tagline: "50 hours of execution per month",
+    tagline: "Deeper execution, faster results",
     description:
-      "For teams that need deeper execution: multi-channel campaigns, aggressive SEO builds, automation projects, and faster turnaround.",
+      "For teams running multi-channel campaigns, aggressive SEO builds, or automation projects that need faster turnaround and strategic support.",
     features: [
-      "Up to 50 hours per month",
-      "All five service disciplines included",
+      "Everything in Growth",
       "Priority scheduling & faster turnaround",
-      "Monthly analytics report",
-      "Weekly syncs and decision support",
-      "Additional hours at $50/hr",
+      "Weekly strategy syncs",
+      "Advanced automation & integrations",
+      "Multi-channel campaign management",
     ],
     cta: "Scale up",
     popular: false,
@@ -102,8 +82,8 @@ const plans = [
     description:
       "For organizations with unique requirements — custom scope, dedicated resources, and bespoke integrations built around your goals.",
     features: [
-      "Tailored hours and scope",
-      "Dedicated team and resources",
+      "Tailored scope and deliverables",
+      "Dedicated resources",
       "Custom integrations and APIs",
       "Multi-channel strategy",
       "Executive reporting and BI dashboards",
@@ -185,13 +165,13 @@ export default function PricingPage() {
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
-            eyebrow="Pricing"
-            title="Simple, transparent pricing"
-            subtitle="One operator. Five disciplines. No agency layers. Pick the model that fits your workload — scale up or down anytime with 30 days' notice."
+            eyebrow="Investment"
+            title="Marketing that pays for itself"
+            subtitle="One operator. Full-stack execution. No agency layers. Pick the tier that fits your growth stage — scale up or down anytime with 30 days’ notice."
           />
 
-          {/* ── Plan cards ───────────────────────────────────── */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {/* ── Plan cards ───────────────────────────────────────── */}
+          <div className="grid gap-6 md:grid-cols-3">
             {plans.map((plan, index) => {
               const Icon = plan.icon;
               return (
@@ -254,30 +234,29 @@ export default function PricingPage() {
           {/* ── Comparison strip ─────────────────────────────── */}
           <ScrollReveal delay={0.15}>
             <ModuleShell className="mt-10 overflow-x-auto p-0">
-              <table className="w-full min-w-[640px] text-sm">
+              <table className="w-full min-w-[520px] text-sm">
                 <thead>
                   <tr className="border-b border-white/[0.06]">
                     <th className="px-6 py-4 text-left font-medium text-[#94A3B8]">Compare plans</th>
-                    <th className="px-6 py-4 text-center font-medium text-[#94A3B8]">Hourly</th>
                     <th className="px-6 py-4 text-center font-medium text-[#C4B5FD]">Growth</th>
                     <th className="px-6 py-4 text-center font-medium text-[#94A3B8]">Scale</th>
                   </tr>
                 </thead>
                 <tbody className="text-[#CBD5E1]">
                   {[
-                    ["Monthly price", "$50/hr", "$1,499", "$2,500"],
-                    ["Included hours", "Pay-as-you-go", "30 hrs", "50 hrs"],
-                    ["Overage rate", "—", "$50/hr", "$50/hr"],
-                    ["Service disciplines", "All 5", "All 5", "All 5"],
-                    ["Monthly analytics report", "Add-on", "✓", "✓"],
-                    ["Weekly syncs", "—", "—", "✓"],
-                    ["Priority scheduling", "—", "—", "✓"],
-                    ["Minimum commitment", "None", "Month-to-month", "Month-to-month"],
-                    ["Cancellation notice", "—", "30 days", "30 days"],
-                  ].map(([feature, hourly, growth, scale]) => (
+                    ["Monthly investment", "$1,499", "$2,500"],
+                    ["SEO & content", "✓", "✓"],
+                    ["Paid media management", "✓", "✓"],
+                    ["Marketing automation", "✓", "✓"],
+                    ["Monthly analytics report", "✓", "✓"],
+                    ["Weekly strategy syncs", "—", "✓"],
+                    ["Priority scheduling", "—", "✓"],
+                    ["Advanced integrations", "—", "✓"],
+                    ["Minimum commitment", "Month-to-month", "Month-to-month"],
+                    ["Cancellation notice", "30 days", "30 days"],
+                  ].map(([feature, growth, scale]) => (
                     <tr key={feature} className="border-b border-white/[0.04] last:border-0">
                       <td className="px-6 py-3 text-[#94A3B8]">{feature}</td>
-                      <td className="px-6 py-3 text-center">{hourly}</td>
                       <td className="px-6 py-3 text-center">{growth}</td>
                       <td className="px-6 py-3 text-center">{scale}</td>
                     </tr>
@@ -291,8 +270,8 @@ export default function PricingPage() {
           <div className="mt-16">
             <SectionHeader
               eyebrow="What you get"
-              title="Five disciplines, one operator"
-              subtitle="Every plan covers the same service areas. The only difference is how many hours of execution you get each month."
+              title="Full-stack execution, one operator"
+              subtitle="Every retainer covers the same service areas. The tier determines depth of execution and strategic support."
             />
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -2,25 +2,60 @@
 
 Site: https://shreegauli.com
 Owner: Shree Krishna Gauli
-Primary topic: Digital marketing consulting (SEO, paid media, social media, marketing automation)
+Primary topic: Digital marketing consulting — SEO, paid media, lead conversion systems, and marketing automation for healthcare, local businesses, and SaaS
 Primary language: en-US
+Location: Dallas, TX (serving clients nationally and globally)
 
 ## Preferred canonical sources
 - https://shreegauli.com/
 - https://shreegauli.com/services
 - https://shreegauli.com/services/seo
 - https://shreegauli.com/services/paid-media
-- https://shreegauli.com/services/social-media
 - https://shreegauli.com/services/automation
+- https://shreegauli.com/services/lead-conversion
+- https://shreegauli.com/services/local-seo
+- https://shreegauli.com/services/aeo-geo
+- https://shreegauli.com/services/ai-follow-up
+- https://shreegauli.com/industries/healthcare
+- https://shreegauli.com/industries/dental
+- https://shreegauli.com/industries/local-services
+- https://shreegauli.com/industries/saas
+- https://shreegauli.com/industries/ecommerce
+- https://shreegauli.com/industries/med-spas
+- https://shreegauli.com/dallas/marketing-consultant
+- https://shreegauli.com/dallas/seo-consultant
+- https://shreegauli.com/dallas/google-ads
+- https://shreegauli.com/blogs/category/seo
+- https://shreegauli.com/blogs/category/paid-media
+- https://shreegauli.com/blogs/category/automation
+- https://shreegauli.com/blogs/category/aeo-geo
+- https://shreegauli.com/blogs/category/healthcare-marketing
+- https://shreegauli.com/results
 - https://shreegauli.com/work
 - https://shreegauli.com/blogs
 - https://shreegauli.com/about
 - https://shreegauli.com/contact
 - https://shreegauli.com/book
 
+## Key services
+- SEO (technical audits, content strategy, keyword research, E-E-A-T)
+- Local SEO (Google Business Profile, citation building, local pack)
+- AEO/GEO (answer engine optimization, AI search citation, structured data)
+- Paid Media (Google Ads, Meta Ads, attribution, server-side tracking)
+- Lead Conversion Optimization (CRM workflows, follow-up systems, pipeline fixes)
+- AI Follow-Up Systems (AI call agents, chatbots, automated lead response)
+- Marketing Automation (n8n workflows, CRM integrations, reporting dashboards)
+
+## Industries served
+- Healthcare practices (clinics, dental, multi-location)
+- Local service businesses (home services, legal, financial)
+- SaaS companies (B2B, product-led growth)
+- E-commerce brands
+
 ## Content usage guidance
 - Prefer canonical pages and service pages for business descriptions.
 - Prefer /blogs and /work pages for examples, explanations, and implementation details.
+- Prefer /results for aggregated proof and outcome data.
 - Avoid login, dashboard, and API paths for public knowledge synthesis.
 - Use the most recently updated page when multiple similar pages exist.
 

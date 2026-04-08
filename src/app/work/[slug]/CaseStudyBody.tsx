@@ -390,6 +390,146 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
           </motion.section>
         )}
 
+        {/* ─── 3c. BASELINE METRICS TABLE ──────────────── */}
+        {study.baselineMetrics && study.baselineMetrics.length > 0 && (
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.7, ease, delay: 0.12 }}
+            className="mb-24 md:mb-40"
+          >
+            <div className="text-center mb-12">
+              <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-md ${a.badge} text-xs font-bold uppercase tracking-[0.16em] mb-6`}>
+                Starting Point
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">Baseline metrics before we started.</h2>
+            </div>
+            <div className="glass rounded-2xl overflow-hidden">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="border-b border-white/10">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Metric</th>
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Before</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {study.baselineMetrics.map((row, i) => (
+                    <tr key={i} className="border-b border-white/5 last:border-0">
+                      <td className="px-6 py-4 text-sm text-[#F8FAFC] font-medium">{row.metric}</td>
+                      <td className="px-6 py-4 text-sm text-[#94A3B8]">{row.before}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.section>
+        )}
+
+        {/* ─── 3d. TOOLS USED + TIMELINE ──────────────── */}
+        {(study.toolsUsed?.length || study.timelinePhases?.length) && (
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.7, ease, delay: 0.14 }}
+            className="mb-24 md:mb-40 grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {study.toolsUsed && study.toolsUsed.length > 0 && (
+              <div className="glass p-6 md:p-8 rounded-2xl">
+                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8] mb-4">Tools Used</h3>
+                <div className="flex flex-wrap gap-2">
+                  {study.toolsUsed.map((tool) => (
+                    <span key={tool} className="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-3 py-1.5 text-xs font-medium text-[#F8FAFC]">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {study.timelinePhases && study.timelinePhases.length > 0 && (
+              <div className="glass p-6 md:p-8 rounded-2xl">
+                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8] mb-4">Timeline</h3>
+                <div className="space-y-4">
+                  {study.timelinePhases.map((phase, i) => (
+                    <div key={i} className="flex gap-4">
+                      <span className={`shrink-0 mt-1 w-2 h-2 rounded-full ${a.dot}`} />
+                      <div>
+                        <p className="text-sm font-bold text-[#F8FAFC]">{phase.phase}</p>
+                        <p className="text-sm text-[#94A3B8]">{phase.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </motion.section>
+        )}
+
+        {/* ─── 3e. BEFORE & AFTER TABLE ───────────────── */}
+        {study.beforeAfter && study.beforeAfter.length > 0 && (
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.7, ease, delay: 0.16 }}
+            className="mb-24 md:mb-40"
+          >
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-[0.16em] mb-6">
+                Before &amp; After
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">The numbers tell the story.</h2>
+            </div>
+            <div className="glass rounded-2xl overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left min-w-[500px]">
+                  <thead>
+                    <tr className="border-b border-white/10">
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Metric</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Before</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">After</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Change</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {study.beforeAfter.map((row, i) => (
+                      <tr key={i} className="border-b border-white/5 last:border-0">
+                        <td className="px-6 py-4 text-sm text-[#F8FAFC] font-medium">{row.metric}</td>
+                        <td className="px-6 py-4 text-sm text-[#94A3B8]">{row.before}</td>
+                        <td className="px-6 py-4 text-sm text-emerald-400 font-semibold">{row.after}</td>
+                        <td className="px-6 py-4 text-sm text-[#C4B5FD] font-bold">{row.change}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </motion.section>
+        )}
+
+        {/* ─── 3f. BUSINESS OUTCOME ───────────────────── */}
+        {study.businessOutcome && (
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={fadeUp}
+            transition={{ duration: 0.7, ease, delay: 0.18 }}
+            className="mb-24 md:mb-40"
+          >
+            <div className="glass p-8 md:p-12 rounded-3xl relative overflow-hidden" style={{ borderLeftWidth: "4px", borderLeftColor: "rgba(16,185,129,0.6)" }}>
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-400 mb-4">Business Outcome</h3>
+              <p className="text-xl md:text-2xl font-medium text-[#F8FAFC] leading-relaxed">
+                {study.businessOutcome}
+              </p>
+            </div>
+          </motion.section>
+        )}
+
         {/* ─── 4. THE IMPACT ──────────────────────────── */}
         <motion.section
           initial="hidden"

@@ -7,7 +7,8 @@ const footerNav = {
   Services: [
     { label: "SEO & Content", href: "/services/seo" },
     { label: "Paid Media", href: "/services/paid-media" },
-    { label: "Social Media", href: "/services/social-media" },
+    { label: "Lead Conversion", href: "/services/lead-conversion" },
+    { label: "Local SEO", href: "/services/local-seo" },
     { label: "Automation", href: "/services/automation" },
   ],
   Resources: [
@@ -39,7 +40,7 @@ export function Footer() {
               <Logo showText={true} iconSize={48} darkText={false} compact={true} />
             </div>
             <p className="text-sm text-[#94A3B8] mt-1 leading-relaxed">
-              Digital Marketing Specialist · Dallas, TX
+              Digital Marketing Consultant — Dallas, TX · Serving healthcare, service businesses, and growth teams.
             </p>
 
             {/* Newsletter */}

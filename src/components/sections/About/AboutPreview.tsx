@@ -7,17 +7,12 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 const skills = [
   "SEO Strategy",
-  "AEO/GEO",
-  "Google Analytics",
-  "Meta Ads",
-  "Content Systems",
-  "n8n Automation",
-  "Fullstack",
-  "Next.js",
-  "Mobile App",
-  "Project Management",
+  "Google Ads",
+  "Marketing Automation",
   "CRM Workflows",
-  "WordPress",
+  "AEO/GEO",
+  "Content Systems",
+  "Growth Reporting",
 ];
 
 export function AboutPreview() {
@@ -26,7 +21,7 @@ export function AboutPreview() {
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="About"
-          title="A quick intro"
+          title="Who's behind this"
           align="left"
           className="mb-10"
         />
@@ -48,8 +43,8 @@ export function AboutPreview() {
               </div>
               <div className="p-5">
                 <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>
-                <p className="text-sm text-[#94A3B8] mt-0.5">Digital Marketing Specialist</p>
-                <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Working globally</p>
+                <p className="text-sm text-[#94A3B8] mt-0.5">Digital Marketing Consultant</p>
+                <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Serving the US and select international clients</p>
                 <div className="flex gap-3 mt-4">
                   <Link
                     href="https://www.linkedin.com/in/gauli/"
@@ -70,22 +65,13 @@ export function AboutPreview() {
             <div className="flex flex-col gap-6">
               <div className="space-y-4 text-[#94A3B8] leading-relaxed">
                 <p>
-                  I&apos;m a digital marketing specialist focused on the work that
-                  actually moves the needle — SEO, AEO/GEO, paid media, social
-                  media strategy, fullstack and Next.js builds, mobile app
-                  support, and automation systems that make all of it more
-                  consistent and measurable.
-                </p>
-                <p>
-                  I&apos;ve worked with brands in healthcare, SaaS, e-commerce, and
-                  local services across the US and internationally. My north star
-                  is outcomes that matter to the business — not vanity metrics.
-                </p>
-                <p>
-                  When I&apos;m not building campaigns or automation workflows, you&apos;ll
-                  find me hiking, working on open source projects, or learning
-                  whatever the next useful thing is (currently: React, ML pipelines,
-                  and DevOps fundamentals).
+                  I&apos;m a Dallas-based digital marketing consultant. I specialize
+                  in the full path from search result to signed client — SEO,
+                  paid media, and the automation systems that make follow-up and
+                  reporting actually work. Most of my work is with healthcare
+                  practices and local service businesses, but I also take on
+                  select SaaS and e-commerce projects. You work directly with
+                  me. No account managers, no junior handoffs.
                 </p>
               </div>
 

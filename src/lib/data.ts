@@ -19,21 +19,13 @@ export const navLinks: NavLink[] = [
 
 export const trustItems: TrustItem[] = [
   { label: "SEO Strategy" },
-  { label: "AEO/GEO" },
-  { label: "Paid Campaigns" },
-  { label: "Social Growth" },
+  { label: "Google Ads" },
+  { label: "Meta Ads" },
   { label: "Content Systems" },
   { label: "n8n Automation" },
-  { label: "Fullstack" },
-  { label: "Next.js" },
-  { label: "Mobile App" },
-  { label: "Google Analytics" },
-  { label: "Meta Ads" },
-  { label: "Email Marketing" },
-  { label: "Project Management" },
-  { label: "Growth Reporting" },
   { label: "CRM Workflows" },
-  { label: "WordPress" },
+  { label: "AEO/GEO" },
+  { label: "Growth Reporting" },
 ];
 
 export const caseStudies: CaseStudy[] = [
@@ -179,6 +171,28 @@ export const caseStudies: CaseStudy[] = [
     ],
     quote: { text: "We spent months blaming the ads. Shree showed us the real problem in one meeting. A month later, our conversion rate went from 0.1% to 10%.", author: "Clinic Owner" },
     takeaway: "Ad performance means nothing without strong follow-up. Before spending more on ads, audit what happens after the lead comes in. A single operational fix outperformed months of campaign changes.",
+    baselineMetrics: [
+      { metric: "Monthly leads", before: "300" },
+      { metric: "Conversion rate", before: "0.1%" },
+      { metric: "Avg. lead response time", before: "24–48 hours" },
+      { metric: "Monthly ad spend", before: "$6,000" },
+      { metric: "Booked appointments from ads", before: "<1/month" },
+    ],
+    beforeAfter: [
+      { metric: "Conversion rate", before: "0.1%", after: "10%", change: "+100x" },
+      { metric: "Lead response time", before: "24–48 hrs", after: "<5 min", change: "-98%" },
+      { metric: "Booked appts/month", before: "<1", after: "30", change: "+30x" },
+      { metric: "Monthly ad spend", before: "$6,000", after: "$6,000", change: "No change" },
+      { metric: "Cost per booked appt", before: "~$6,000", after: "~$200", change: "-97%" },
+    ],
+    toolsUsed: ["Google Ads", "Meta Ads", "HubSpot CRM", "Call tracking software", "Custom follow-up cadence templates"],
+    timelinePhases: [
+      { phase: "Week 1", description: "Full-funnel audit and diagnosis" },
+      { phase: "Week 2", description: "Follow-up hire onboarded + scripts built" },
+      { phase: "Weeks 3–4", description: "New process live; CRM tracking connected" },
+      { phase: "Month 2", description: "First full month of data under new process" },
+    ],
+    businessOutcome: "The clinic went from spending $6,000/month for nearly zero return to booking 30 appointments/month at $200/appointment — without increasing ad spend. Within 3 months, the clinic expanded to a 5th location partially funded by the new patient volume.",
   },
   {
     id: "seo-website-launch",
@@ -259,136 +273,142 @@ export const services: Service[] = [
   {
     id: "seo",
     icon: "Search",
-    title: "SEO & Content",
+    title: "Get Found",
     description:
-      "Technical audits, keyword strategy, and content systems that build lasting organic presence.",
+      "Technical audits, keyword strategy, and content systems that get you ranking for the terms your buyers are actually searching.",
     outcomes: [
       "Technical site health improvements",
       "Keyword-mapped content strategy",
       "Monthly performance reporting",
     ],
-    tags: ["Technical SEO", "Content", "Link Building"],
+    tags: ["Technical SEO", "Content", "AEO/GEO"],
   },
   {
     id: "paid",
     icon: "TrendingUp",
-    title: "Paid Media",
+    title: "Get Leads",
     description:
-      "Meta and Google campaign builds, audience testing, and ROAS-focused optimization.",
+      "Google Ads and Meta campaigns with real attribution and conversion tracking. Built for revenue, not vanity ROAS.",
     outcomes: [
       "Full campaign architecture",
       "Creative strategy & iteration",
       "Attribution & tracking setup",
     ],
-    tags: ["Meta Ads", "Google Ads", "Analytics"],
-  },
-  {
-    id: "social",
-    icon: "Users",
-    title: "Social Media Growth",
-    description:
-      "Platform strategies, content calendars, and community systems that build engaged audiences.",
-    outcomes: [
-      "Platform-specific content strategy",
-      "Scheduling & publishing systems",
-      "Engagement & growth tracking",
-    ],
-    tags: ["Instagram", "LinkedIn", "Content Calendar"],
+    tags: ["Google Ads", "Meta Ads", "Tracking"],
   },
   {
     id: "automation",
     icon: "Zap",
-    title: "Reporting & Automation",
+    title: "Convert Leads",
     description:
-      "n8n workflows, CRM integrations, and reporting dashboards that eliminate manual work.",
+      "CRM workflows, AI call agents, and lead-routing systems that close the gap between form fill and signed client.",
     outcomes: [
       "Custom n8n workflow builds",
       "CRM & tool integrations",
-      "Live dashboard reporting",
+      "AI-powered follow-up sequences",
     ],
-    tags: ["n8n", "CRM", "Dashboards"],
+    tags: ["n8n", "CRM", "AI Agents"],
+  },
+  {
+    id: "reporting",
+    icon: "BarChart3",
+    title: "Measure Everything",
+    description:
+      "Live dashboards tied to business outcomes. No more manual spreadsheets. No more guessing what's working.",
+    outcomes: [
+      "Real-time business dashboards",
+      "Conversion attribution setup",
+      "Monthly performance reporting",
+    ],
+    tags: ["GA4", "Looker Studio", "Dashboards"],
   },
 ];
 
 export const stats: Stat[] = [
-  { value: 14, suffix: "+", label: "Brands Supported", sublabel: "across 5 industries" },
-  { value: 340, suffix: "%", label: "Organic Growth", sublabel: "highest campaign result" },
-  { value: 4, suffix: ".8x", label: "Peak ROAS", sublabel: "paid media optimization" },
-  { value: 20, suffix: "+", label: "Hours Saved / Week", sublabel: "via automation systems" },
+  { value: 100, suffix: "x", label: "Conversion Lift", sublabel: "0.1% → 10% for a multi-location clinic" },
+  { value: 340, suffix: "%", label: "Organic Growth", sublabel: "from near-zero to top-10 rankings" },
+  { value: 4, suffix: ".8x", label: "Peak ROAS", sublabel: "on a $30K/month ad budget" },
+  { value: 20, suffix: "+", label: "Hours Saved / Week", sublabel: "via n8n automation systems" },
 ];
 
 export const testimonials: Testimonial[] = [
   {
     id: "t1",
     quote:
-      "Shree completely overhauled our SEO strategy and the results were immediate. Within 3 months we were ranking for terms we had never touched before. Clear communicator, works fast, delivers.",
+      "Shree is the first person we've worked with who actually explained what was wrong before trying to sell us a fix. The clarity alone saved us months of guessing.",
     name: "Sarah M.",
     role: "Head of Marketing",
     company: "Healthcare SaaS",
     avatarInitials: "SM",
     avatarColor: "#7C3AED",
     stars: 5,
-    result: "+185% qualified organic traffic",
+    result: "Clear diagnostic in week 1",
+    industry: "healthcare",
   },
   {
     id: "t2",
     quote:
-      "We were burning money on ads with no idea why. Shree rebuilt the entire campaign structure in two weeks and our ROAS doubled in the first month. Highly recommend for any brand serious about growth.",
+      "What stood out was how fast things moved. We had a new campaign structure live in two weeks and a dashboard that actually made sense to our exec team. No fluff, no delay.",
     name: "Daniel R.",
     role: "Founder",
     company: "E-Commerce Brand",
     avatarInitials: "DR",
     avatarColor: "#22D3EE",
     stars: 5,
-    result: "2.1x ROAS in 30 days",
+    result: "Full rebuild in 14 days",
+    industry: "ecommerce",
   },
   {
     id: "t3",
     quote:
-      "The automation workflows Shree built for our team saved us over 20 hours a week. What used to take half a day now runs overnight without anyone touching it. Game-changing for a small team.",
+      "We'd been quoted $15K for a CRM migration by an agency. Shree built a better system with n8n in a fraction of the time. He communicates exactly what's happening at every step.",
     name: "Priya K.",
     role: "Operations Manager",
     company: "Local Services Group",
     avatarInitials: "PK",
     avatarColor: "#F59E0B",
     stars: 5,
-    result: "20+ hours saved weekly",
+    result: "Transparent process start to finish",
+    industry: "services",
   },
   {
     id: "t4",
     quote:
-      "Our reporting used to be a mess of screenshots and guesses. Shree turned it into one clean dashboard tied to real business outcomes, and suddenly our weekly decisions got much easier.",
+      "The biggest shift wasn't the dashboard — it was that for the first time, our team could actually agree on what was working. Shree made the reporting layer dead simple.",
     name: "Maria L.",
     role: "Marketing Director",
     company: "Multi-Location Clinic",
     avatarInitials: "ML",
     avatarColor: "#38BDF8",
     stars: 5,
-    result: "Weekly reporting time cut by 80%",
+    result: "Team aligned on one source of truth",
+    industry: "healthcare",
   },
   {
     id: "t5",
     quote:
-      "The best part was not just traffic growth. Shree fixed the offer positioning, tightened the funnel, and helped us generate leads that were actually qualified enough for sales to close.",
+      "Other consultants gave us keyword lists. Shree gave us a system — pages, funnels, follow-ups — all wired together. It felt like working with someone who actually understood the business.",
     name: "Omar T.",
     role: "Co-Founder",
     company: "B2B Services Firm",
     avatarInitials: "OT",
     avatarColor: "#A855F7",
     stars: 5,
-    result: "3.4x more qualified demo requests",
+    result: "Full-funnel system, not just tactics",
+    industry: "services",
   },
   {
     id: "t6",
     quote:
-      "We brought Shree in for Google Ads, but the real value was the strategic clarity. He found the leaks across tracking, landing pages, and follow-up, then fixed all three fast.",
+      "I've worked with agencies that take weeks to respond. Shree answers the same day, ships changes fast, and keeps us in the loop with zero hand-holding required. Rare combo.",
     name: "Jenna P.",
     role: "Growth Lead",
     company: "DTC Wellness Brand",
     avatarInitials: "JP",
     avatarColor: "#F97316",
     stars: 5,
-    result: "CPL down 37% after rebuild",
+    result: "Same-day communication",
+    industry: "ecommerce",
   },
 ];
 

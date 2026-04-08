@@ -8,9 +8,9 @@ export function ServicesSection() {
     <section id="services" className="relative z-10 section-pad px-6">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          eyebrow="What I Do"
-          title="What I actually do"
-          subtitle="Four areas. All connected. All pointed at the same goal: clear growth."
+          eyebrow="The System"
+          title="One system. Four layers. All connected."
+          subtitle="Most consultants manage channels in silos. I build the system that connects them — so leads come in, get followed up, get tracked, and convert into revenue."
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">

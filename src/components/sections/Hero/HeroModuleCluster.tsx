@@ -18,10 +18,6 @@ function ProfileCard() {
       <div>
         <p className="text-sm font-semibold text-[#F8FAFC]">Shree Krishna Gauli</p>
         <p className="text-xs text-[#94A3B8] mt-0.5">Digital Marketing Consultant</p>
-        <div className="flex items-center gap-1.5 mt-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-          <span className="text-xs text-green-400 font-medium">Open to work</span>
-        </div>
       </div>
     </div>
   );
