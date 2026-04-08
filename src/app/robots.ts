@@ -8,10 +8,42 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/dashboard/", "/login", "/signup", "/forgot-password", "/reset-password", "/api/"],
+        disallow: [
+          "/dashboard/",
+          "/login",
+          "/signup",
+          "/forgot-password",
+          "/reset-password",
+          "/api/",
+          "/_next/",
+          "/.next/",
+        ],
+      },
+      {
+        userAgent: "GPTBot",
+        allow: "/",
+      },
+      {
+        userAgent: "ChatGPT-User",
+        allow: "/",
+      },
+      {
+        userAgent: "Google-Extended",
+        allow: "/",
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+      },
+      {
+        userAgent: "ClaudeBot",
+        allow: "/",
+      },
+      {
+        userAgent: "Applebot-Extended",
+        allow: "/",
       },
     ],
     sitemap: "https://shreegauli.com/sitemap.xml",
-    host: "https://shreegauli.com",
   };
 }
