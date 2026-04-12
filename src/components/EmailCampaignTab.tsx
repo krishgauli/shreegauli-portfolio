@@ -340,30 +340,28 @@ export default function EmailCampaignTab() {
             {/* Body */}
             <div>
               <label className="block text-xs font-medium text-[#94a3b8] mb-1.5">
-                Email Body (HTML supported) *
+                Email Body *
               </label>
               <p className="text-[10px] text-[#64748b] mb-2">
-                Each email starts with &quot;Hi [Name],&quot; automatically. Write your message below.
-                You can use HTML tags for formatting.
+                Each email starts with &quot;Hi [Name],&quot; automatically. Just type your message with normal line breaks — it will be formatted into paragraphs automatically. HTML is also supported.
               </p>
               <textarea
-                placeholder={`<p style="font-size:16px;color:#0f172a;line-height:1.6;">
-  Write your email body here...
-</p>
+                placeholder={`I hope you are doing well.
 
-<p style="font-size:16px;color:#0f172a;line-height:1.6;">
-  Add more paragraphs, links, or any content.
-</p>
+This is a friendly reminder to please settle the payment before April 14.
 
-<p style="font-size:16px;color:#0f172a;">
-  Best regards,<br/>
-  <strong>Shree Gauli</strong>
-</p>`}
+You can make the payment using the link below:
+https://link.payoneer.com/...
+
+Please let me know once the payment has been completed.
+
+Best regards,
+Shree Gauli`}
                 value={bodyHtml}
                 onChange={(e) => setBodyHtml(e.target.value)}
                 disabled={campaignStatus === 'sending'}
                 rows={10}
-                className="dashboard-input w-full rounded-lg px-4 py-3 text-sm font-mono resize-y disabled:opacity-50"
+                className="dashboard-input w-full rounded-lg px-4 py-3 text-sm resize-y disabled:opacity-50"
               />
             </div>
 

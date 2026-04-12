@@ -65,6 +65,24 @@ export async function POST(request: NextRequest) {
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  /**
+   * Convert plain-text body to styled HTML paragraphs.
+   * If the input already contains HTML tags, pass it through unchanged.
+   */
+  function formatBody(raw: string): string {
+    const hasHtml = /<\/?[a-z][\s\S]*?>/i.test(raw);
+    if (hasHtml) return raw;
+
+    // Split on double newlines → paragraphs; single newlines → <br>
+    return raw
+      .split(/\n\s*\n/)
+      .map((para) => {
+        const inner = para.trim().replace(/\n/g, '<br>');
+        return `<p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#334155;">${inner}</p>`;
+      })
+      .join('\n');
+  }
+
   const BRAND = {
     name: 'Shree Gauli',
     email: SMTP_USER || 'hello@shreegauli.com',
@@ -94,7 +112,7 @@ export async function POST(request: NextRequest) {
             <div style="width:40px;height:40px;border-radius:9999px;background:#7c3aed;color:#ffffff;font-weight:700;font-size:14px;line-height:40px;text-align:center;display:inline-block;">SG</div>
           </td>
           <td style="vertical-align:middle;">
-            <span style="font-size:22px;font-weight:800;color:#ffffff;letter-spacing:0.5px;">${esc(BRAND.name.toUpperCase())}</span>
+            <span style="font-size:22px;font-weight:800;color:#ffffff;letter-spacing:0.5px;">${esc(BRAND.name)}</span>
           </td>
         </tr>
       </table>
@@ -110,7 +128,7 @@ export async function POST(request: NextRequest) {
         <tr>
           <td style="padding:40px 36px 32px;">
             <p style="margin:0 0 16px;font-size:16px;color:#0f172a;">Hi ${esc(recipientName)},</p>
-            ${htmlBody}
+            <div style="font-size:15px;line-height:1.7;color:#334155;">${htmlBody}</div>
           </td>
         </tr>
       </table>
@@ -180,7 +198,7 @@ export async function POST(request: NextRequest) {
         to: recipient.email,
         replyTo: SMTP_USER,
         subject,
-        html: campaignEmailHtml(recipient.name || 'there', bodyHtml),
+        html: campaignEmailHtml(recipient.name || 'there', formatBody(bodyHtml)),
       });
       results.push({ email: recipient.email, name: recipient.name, sent: true });
     } catch (err) {

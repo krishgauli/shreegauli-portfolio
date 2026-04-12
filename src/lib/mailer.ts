@@ -83,7 +83,7 @@ function emailShell(bodyHtml: string) {
             <div style="width:40px;height:40px;border-radius:9999px;background:#7c3aed;color:#ffffff;font-weight:700;font-size:14px;line-height:40px;text-align:center;display:inline-block;">SG</div>
           </td>
           <td style="vertical-align:middle;">
-            <span style="font-size:22px;font-weight:800;color:#ffffff;letter-spacing:0.5px;">${esc(BRAND.name.toUpperCase())}</span>
+            <span style="font-size:22px;font-weight:800;color:#ffffff;letter-spacing:0.5px;">${esc(BRAND.name)}</span>
           </td>
         </tr>
       </table>
