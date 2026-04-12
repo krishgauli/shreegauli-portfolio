@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback, Suspense } from 'react';
+import { useState, useEffect, useRef, useCallback, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, 
@@ -64,6 +64,15 @@ import AdminSelect from '@/components/AdminSelect';
 import Image from 'next/image';
 import ClientErrorBoundary from '@/components/ClientErrorBoundary';
 import { SERVICE_CATEGORY_OPTIONS } from '@/lib/service-categories';
+
+const EmailCampaignTab = lazy(() => import('@/components/EmailCampaignTab'));
+function EmailCampaignLazy() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="animate-spin h-8 w-8 border-4 border-violet-500 border-t-transparent rounded-full" /></div>}>
+      <EmailCampaignTab />
+    </Suspense>
+  );
+}
 
 // Modal Component
 function Modal({ isOpen, onClose, title, children, size = 'default' }: { isOpen: boolean; onClose: () => void; title: string; children: React.ReactNode; size?: 'default' | 'large' }) {
@@ -725,6 +734,7 @@ function AdminDashboardContent() {
     'Platform Health',
     'Content Overview',
     'Lead Pipeline',
+    'Email Campaign',
     'Analytics',
     'Blog Management',
     'Case Studies',
@@ -2122,6 +2132,7 @@ function AdminDashboardContent() {
           <NavItem icon={Zap} label={t('Platform Health')} active={section==='Platform Health'} onClick={() => { navigateToSection('Platform Health'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={FileText} label={t('Content Overview')} active={section==='Content Overview'} onClick={() => { navigateToSection('Content Overview'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={Target} label={t('Lead Pipeline')} active={section==='Lead Pipeline'} onClick={() => { navigateToSection('Lead Pipeline'); setShowMobileMenu(false); }} dark={dark} />
+          <NavItem icon={Mail} label={t('Email Campaign')} active={section==='Email Campaign'} onClick={() => { navigateToSection('Email Campaign'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={User} label={t('My Profile')} active={section==='My Profile'} onClick={() => { navigateToSection('My Profile'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={Lock} label={t('Settings')} active={section==='Settings'} onClick={() => { navigateToSection('Settings'); setShowMobileMenu(false); }} dark={dark} />
           <NavItem icon={FileText} label={t('Blog Management')} active={section==='Blog Management'} onClick={() => { navigateToSection('Blog Management'); setShowMobileMenu(false); }} dark={dark} />
@@ -4425,6 +4436,9 @@ function ContentForSection(props: {
 
     case 'Case Studies':
       return <NewsManagementSection addBackgroundTask={addBackgroundTask} updateBackgroundTask={updateBackgroundTask} />;
+
+    case 'Email Campaign':
+      return <EmailCampaignLazy />;
 
     case 'My Profile':
       return <AdminProfileView user={user} />;
