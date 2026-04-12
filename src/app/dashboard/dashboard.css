@@ -127,123 +127,141 @@
       0 20px 54px -24px rgba(2, 6, 23, 0.88),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
-  .dashboard-scope .bg-white,
-  .dashboard-scope .bg-slate-50,
-  .dashboard-scope .bg-slate-100 {
-    background-color: rgba(15, 23, 42, 0.76);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-  .dashboard-scope .hover\:bg-slate-50:hover,
-  .dashboard-scope .hover\:bg-slate-100:hover,
-  .dashboard-scope .hover\:bg-white:hover,
-  .dashboard-scope .dark\:hover\:bg-slate-800:hover,
-  .dashboard-scope .dark\:hover\:bg-slate-700:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  .dashboard-scope .bg-gradient-to-br.from-emerald-50 {
-    background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.12), rgba(20, 184, 166, 0.08));
-  }
-  .dashboard-scope .bg-gradient-to-r.from-slate-50 {
-    background: linear-gradient(to right, rgba(15, 23, 42, 0.76), rgba(76, 29, 149, 0.15));
-  }
-  .dashboard-scope .bg-blue-50 {
-    background-color: rgba(59, 130, 246, 0.08);
-  }
-  .dashboard-scope .bg-blue-100 {
-    background-color: rgba(59, 130, 246, 0.15);
-  }
-  .dashboard-scope .bg-slate-200 {
-    background-color: rgba(148, 163, 184, 0.18);
-  }
-  .dashboard-scope .bg-emerald-50 {
-    background-color: rgba(16, 185, 129, 0.08);
-  }
-  .dashboard-scope .bg-purple-50 {
-    background-color: rgba(139, 92, 246, 0.08);
-  }
-  .dashboard-scope .bg-amber-50 {
-    background-color: rgba(245, 158, 11, 0.08);
-  }
-  .dashboard-scope .bg-red-50 {
-    background-color: rgba(239, 68, 68, 0.08);
-  }
-  .dashboard-scope .bg-yellow-50 {
-    background-color: rgba(234, 179, 8, 0.08);
-  }
-  .dashboard-scope .bg-white\/80,
-  .dashboard-scope .bg-white\/70,
-  .dashboard-scope .bg-white\/50,
-  .dashboard-scope .bg-slate-800\/80,
-  .dashboard-scope .bg-slate-900\/50,
-  .dashboard-scope .bg-slate-900\/40 {
-    background-color: rgba(15, 23, 42, 0.72);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-  .dashboard-scope .text-slate-900,
-  .dashboard-scope .text-slate-800,
-  .dashboard-scope .dark\:text-white,
-  .dashboard-scope .text-black {
-    color: #f8fafc;
-  }
-  .dashboard-scope .text-slate-700,
-  .dashboard-scope .dark\:text-slate-200,
-  .dashboard-scope .dark\:text-slate-100 {
-    color: #e2e8f0;
-  }
-  .dashboard-scope .text-slate-600,
-  .dashboard-scope .text-slate-500,
-  .dashboard-scope .text-slate-400,
-  .dashboard-scope .dark\:text-slate-400,
-  .dashboard-scope .dark\:text-slate-500 {
-    color: #94a3b8;
-  }
-  .dashboard-scope .border-slate-100,
-  .dashboard-scope .border-slate-200,
-  .dashboard-scope .border-slate-300,
-  .dashboard-scope .border-slate-700,
-  .dashboard-scope .border-slate-800 {
-    border-color: rgba(148, 163, 184, 0.16);
-  }
-  .dashboard-scope .bg-emerald-500,
-  .dashboard-scope .hover\:bg-emerald-400:hover,
-  .dashboard-scope .hover\:bg-emerald-500:hover,
-  .dashboard-scope .hover\:bg-emerald-600:hover {
-    background: var(--gradient-brand);
-    color: #f8fafc;
-  }
-  .dashboard-scope .text-emerald-500,
-  .dashboard-scope .text-emerald-600,
-  .dashboard-scope .dark\:text-emerald-400 {
-    color: #22d3ee;
-  }
-  .dashboard-scope .hover\:border-emerald-300:hover,
-  .dashboard-scope .dark\:hover\:border-emerald-700:hover,
-  .dashboard-scope .focus\:border-emerald-400:focus {
-    border-color: rgba(34, 211, 238, 0.4);
-  }
-  .dashboard-scope .focus\:ring-emerald-500:focus,
-  .dashboard-scope .focus\:ring-emerald-500\/20:focus {
-    --tw-ring-color: rgba(34, 211, 238, 0.18);
-  }
+}
 
-  .dashboard-scope input,
-  .dashboard-scope select,
-  .dashboard-scope textarea {
-    color: #f8fafc;
-  }
-  .dashboard-scope input::placeholder,
-  .dashboard-scope textarea::placeholder {
-    color: #94a3b8;
-    opacity: 1;
-  }
-  .dashboard-scope select option,
-  .dashboard-scope select optgroup {
-    background-color: #0f172a;
-    color: #f8fafc;
-  }
-  .dashboard-scope label {
-    color: #e2e8f0;
-  }
+/* ─── Dashboard-scope bg overrides (OUTSIDE @layer to beat Tailwind utilities) ─── */
+.dashboard-scope .bg-white,
+.dashboard-scope .bg-slate-50,
+.dashboard-scope .bg-slate-100 {
+  background-color: rgba(15, 23, 42, 0.76) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.dashboard-scope .hover\:bg-slate-50:hover,
+.dashboard-scope .hover\:bg-slate-100:hover,
+.dashboard-scope .hover\:bg-white:hover,
+.dashboard-scope .dark\:hover\:bg-slate-800:hover,
+.dashboard-scope .dark\:hover\:bg-slate-700:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+.dashboard-scope .bg-gradient-to-br.from-emerald-50 {
+  background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.12), rgba(20, 184, 166, 0.08));
+}
+.dashboard-scope .bg-gradient-to-r.from-slate-50 {
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.76), rgba(76, 29, 149, 0.15));
+}
+.dashboard-scope .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.08) !important;
+}
+.dashboard-scope .bg-blue-100 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+}
+.dashboard-scope .bg-slate-200 {
+  background-color: rgba(148, 163, 184, 0.18) !important;
+}
+.dashboard-scope .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.08) !important;
+}
+.dashboard-scope .bg-purple-50 {
+  background-color: rgba(139, 92, 246, 0.08) !important;
+}
+.dashboard-scope .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+}
+.dashboard-scope .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+}
+.dashboard-scope .bg-yellow-50 {
+  background-color: rgba(234, 179, 8, 0.08) !important;
+}
+.dashboard-scope .bg-white\/80,
+.dashboard-scope .bg-white\/70,
+.dashboard-scope .bg-white\/50,
+.dashboard-scope .bg-slate-800\/80,
+.dashboard-scope .bg-slate-900\/50,
+.dashboard-scope .bg-slate-900\/40 {
+  background-color: rgba(15, 23, 42, 0.72) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* ─── Dashboard-scope overrides (OUTSIDE @layer so they beat Tailwind utilities) ─── */
+.dashboard-scope .text-slate-900,
+.dashboard-scope .text-slate-800,
+.dashboard-scope .dark\:text-white,
+.dashboard-scope .text-black {
+  color: #f8fafc !important;
+}
+.dashboard-scope .text-slate-700,
+.dashboard-scope .dark\:text-slate-200,
+.dashboard-scope .dark\:text-slate-100 {
+  color: #e2e8f0 !important;
+}
+.dashboard-scope .text-slate-600,
+.dashboard-scope .text-slate-500,
+.dashboard-scope .text-slate-400,
+.dashboard-scope .dark\:text-slate-400,
+.dashboard-scope .dark\:text-slate-500 {
+  color: #94a3b8 !important;
+}
+.dashboard-scope .border-slate-100,
+.dashboard-scope .border-slate-200,
+.dashboard-scope .border-slate-300,
+.dashboard-scope .border-slate-700,
+.dashboard-scope .border-slate-800 {
+  border-color: rgba(148, 163, 184, 0.16) !important;
+}
+.dashboard-scope .bg-emerald-500,
+.dashboard-scope .hover\:bg-emerald-400:hover,
+.dashboard-scope .hover\:bg-emerald-500:hover,
+.dashboard-scope .hover\:bg-emerald-600:hover {
+  background: var(--gradient-brand);
+  color: #f8fafc;
+}
+.dashboard-scope .text-emerald-500,
+.dashboard-scope .text-emerald-600,
+.dashboard-scope .dark\:text-emerald-400 {
+  color: #22d3ee !important;
+}
+.dashboard-scope .hover\:border-emerald-300:hover,
+.dashboard-scope .dark\:hover\:border-emerald-700:hover,
+.dashboard-scope .focus\:border-emerald-400:focus {
+  border-color: rgba(34, 211, 238, 0.4);
+}
+.dashboard-scope .focus\:ring-emerald-500:focus,
+.dashboard-scope .focus\:ring-emerald-500\/20:focus {
+  --tw-ring-color: rgba(34, 211, 238, 0.18);
+}
+
+.dashboard-scope input,
+.dashboard-scope select,
+.dashboard-scope textarea {
+  color: #f8fafc !important;
+}
+.dashboard-scope input::placeholder,
+.dashboard-scope textarea::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
+}
+.dashboard-scope select option,
+.dashboard-scope select optgroup {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+.dashboard-scope label {
+  color: #e2e8f0;
+}
+.dashboard-scope h1,
+.dashboard-scope h2,
+.dashboard-scope h3,
+.dashboard-scope h4 {
+  color: #f8fafc;
+}
+
+/* Ensure dashboard-input always shows white text regardless of utility classes */
+.dashboard-input {
+  color: #f8fafc !important;
+}
+.dashboard-input::placeholder {
+  color: rgba(148, 163, 184, 0.78) !important;
 }

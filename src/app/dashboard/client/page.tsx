@@ -127,7 +127,7 @@ function Toast({ type, message, onClose }: { type: 'success' | 'error'; message:
 /* ─── Dashboard Component ─── */
 export default function ClientDashboardPage() {
   return (
-    <Suspense fallback={<div className="dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading dashboard..." className="text-[#22D3EE]" /></div>}>
+    <Suspense fallback={<div className="dark dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading dashboard..." className="text-[#22D3EE]" /></div>}>
       <ClientDashboard />
     </Suspense>
   );
@@ -408,7 +408,7 @@ function ClientDashboard() {
     }
   };
 
-  if (!user) return <div className="dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
+  if (!user) return <div className="dark dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
 
   const currentPlanIdRaw = subStatus?.planId || null;
   const currentPlanId = currentPlanIdRaw === 'platinum' ? 'premium' : currentPlanIdRaw;
@@ -458,7 +458,7 @@ function ClientDashboard() {
     <>
     <LoadingScreen active={showGlobalLoader} durationMs={1000} />
     <Navbar />
-    <div className="dashboard-scope dashboard-shell min-h-screen text-slate-100 flex pt-20">
+    <div className="dark dashboard-scope dashboard-shell min-h-screen text-slate-100 flex pt-20">
       {/* Toast */}
       <AnimatePresence>
         {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}

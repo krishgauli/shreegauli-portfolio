@@ -2057,7 +2057,7 @@ function AdminDashboardContent() {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, [editingClinic?.id]);
 
-  if (!user) return <div className="dashboard-shell min-h-screen flex items-center justify-center text-white"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
+  if (!user) return <div className="dark dashboard-shell min-h-screen flex items-center justify-center text-white"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
 
   const sectionSubtitle =
     section === 'Global Stats'
@@ -2075,7 +2075,7 @@ function AdminDashboardContent() {
   return (
     <>
     <Navbar />
-    <div className="dashboard-scope dashboard-shell min-h-screen flex pt-20 text-slate-100">
+    <div className="dark dashboard-scope dashboard-shell min-h-screen flex pt-20 text-slate-100">
       {/* Mobile Menu Overlay */}
       {showMobileMenu && (
         <div className="fixed inset-0 z-40 lg:hidden" onClick={() => setShowMobileMenu(false)}>

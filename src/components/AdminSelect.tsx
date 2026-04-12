@@ -77,19 +77,11 @@ export default function AdminSelect({
         ))}
       </select>
       <style jsx>{`
-        /* Improve option visibility in dropdown */
+        /* Improve option visibility in dropdown - always dark in dashboard */
         select option {
-          background-color: white;
-          color: #1e293b;
+          background-color: #1e293b;
+          color: #f1f5f9;
           padding: 6px 8px;
-        }
-
-        /* Dark mode styles for option dropdown */
-        @media (prefers-color-scheme: dark) {
-          select option {
-            background-color: #1e293b;
-            color: #f1f5f9;
-          }
         }
       `}</style>
     </div>
