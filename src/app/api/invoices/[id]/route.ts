@@ -94,6 +94,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
   if (body.transactionId !== undefined) updateData.transactionId = body.transactionId;
   if (body.notes !== undefined) updateData.notes = body.notes;
   if (body.clientNotes !== undefined) updateData.clientNotes = body.clientNotes;
+  if (body.paymentLink !== undefined) updateData.paymentLink = body.paymentLink || null;
 
   const invoice = await prisma.invoice.update({
     where: { id },

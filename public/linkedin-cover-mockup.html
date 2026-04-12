@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LinkedIn Cover — Shree Gauli</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    padding: 40px;
+    gap: 32px;
+  }
+  .label {
+    color: #94A3B8;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Banner ───────────────────────────────── */
+  .banner {
+    width: 1584px;
+    height: 396px;
+    position: relative;
+    overflow: hidden;
+    background: #070B14;
+    border-radius: 4px;
+  }
+
+  /* Gradient orbs */
+  .banner::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: -80px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .banner::after {
+    content: '';
+    position: absolute;
+    bottom: -140px;
+    right: 60px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Dot grid overlay */
+  .dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  /* Gradient line accent */
+  .accent-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7C3AED 0%, #22D3EE 50%, #7C3AED 100%);
+  }
+
+  /* Content layout */
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 48px 72px;
+  }
+
+  /* Left side */
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 640px;
+  }
+  .name {
+    font-size: 42px;
+    font-weight: 800;
+    color: #F8FAFC;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #94A3B8;
+    line-height: 1.5;
+  }
+  .services {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+  .service-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    font-size: 13px;
+    font-weight: 600;
+    color: #CBD5E1;
+    letter-spacing: 0.02em;
+  }
+  .niche {
+    margin-top: 6px;
+    font-size: 15px;
+    color: #64748B;
+    font-weight: 500;
+  }
+  .niche span {
+    color: #C4B5FD;
+    font-weight: 600;
+  }
+
+  /* Right side — proof cards */
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .proof-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    min-width: 340px;
+  }
+  .proof-value {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .proof-value.violet { color: #C4B5FD; }
+  .proof-value.cyan { color: #67E8F9; }
+  .proof-value.white { color: #F8FAFC; }
+  .proof-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #94A3B8;
+    line-height: 1.4;
+  }
+  .proof-sublabel {
+    font-size: 11px;
+    color: #64748B;
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .cta {
+    position: absolute;
+    bottom: 20px;
+    right: 72px;
+    z-index: 3;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748B;
+    letter-spacing: 0.04em;
+  }
+  .cta span {
+    color: #22D3EE;
+  }
+
+  /* ── Instructions ─────────────────────────── */
+  .instructions {
+    max-width: 800px;
+    color: #94A3B8;
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: center;
+  }
+  .instructions strong { color: #F8FAFC; }
+  .instructions code {
+    background: rgba(124,58,237,0.15);
+    color: #C4B5FD;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<p class="label">LinkedIn Cover Image — 1584 × 396 px</p>
+
+<div class="banner">
+  <div class="dots"></div>
+  <div class="accent-line"></div>
+
+  <div class="content">
+    <!-- Left: Identity -->
+    <div class="left">
+      <div class="name">Shree Krishna Gauli</div>
+      <div class="title">Digital Marketing Consultant — Dallas, TX</div>
+      <div class="services">
+        <span class="service-tag">SEO</span>
+        <span class="service-tag">Google Ads</span>
+        <span class="service-tag">Lead Conversion</span>
+        <span class="service-tag">Automation</span>
+      </div>
+      <div class="niche">For <span>healthcare practices</span> & <span>service businesses</span></div>
+    </div>
+
+    <!-- Right: Proof -->
+    <div class="right">
+      <div class="proof-card">
+        <div class="proof-value violet">100x</div>
+        <div>
+          <div class="proof-label">Conversion Lift</div>
+          <div class="proof-sublabel">0.1% → 10% for a multi-location clinic</div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-value cyan">340%</div>
+        <div>
+          <div class="proof-label">Organic Growth</div>
+          <div class="proof-sublabel">From near-zero to top-10 rankings</div>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-value white">4.8x</div>
+        <div>
+          <div class="proof-label">Peak ROAS</div>
+          <div class="proof-sublabel">On a $30K/month ad budget</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">shreegauli.com/<span>book</span></div>
+</div>
+
+<div class="instructions">
+  <strong>How to use:</strong> Open this page in Chrome, zoom to <code>100%</code>, and take a screenshot of just the banner.
+  Or use DevTools → select the <code>.banner</code> element → right-click → <strong>Capture node screenshot</strong>.
+  The banner is exactly <code>1584 × 396px</code> which is LinkedIn's recommended cover image size.
+</div>
+
+</body>
+</html>

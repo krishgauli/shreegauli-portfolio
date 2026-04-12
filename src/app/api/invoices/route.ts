@@ -92,6 +92,7 @@ export async function POST(request: NextRequest) {
     notes,
     clientNotes,
     description,
+    paymentLink: customPaymentLink,
   } = body as {
     clientId: string;
     lineItems: InvoiceLineItem[];
@@ -100,6 +101,7 @@ export async function POST(request: NextRequest) {
     notes?: string;
     clientNotes?: string;
     description?: string;
+    paymentLink?: string;
   };
 
   if (!clientId) {
@@ -124,17 +126,19 @@ export async function POST(request: NextRequest) {
   const dueDate = new Date();
   dueDate.setDate(dueDate.getDate() + dueInDays);
 
-  // Build Payoneer payment link
+  // Build Payoneer payment link (use custom link if provided)
   const payoneerEmail = client.payoneerEmail || PAYONEER_EMAIL;
-  const paymentLink = payoneerEmail
-    ? buildPayoneerPaymentLink({
-        payoneerEmail,
-        amount: total,
-        currency: client.currency || 'USD',
-        invoiceNumber,
-        clientEmail: client.email,
-      })
-    : null;
+  const paymentLink = customPaymentLink
+    ? customPaymentLink
+    : payoneerEmail
+      ? buildPayoneerPaymentLink({
+          payoneerEmail,
+          amount: total,
+          currency: client.currency || 'USD',
+          invoiceNumber,
+          clientEmail: client.email,
+        })
+      : null;
 
   const invoice = await prisma.invoice.create({
     data: {

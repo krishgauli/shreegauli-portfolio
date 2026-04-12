@@ -102,7 +102,12 @@ export default function InvoiceDashboard() {
     dueInDays: '15',
     notes: '',
     clientNotes: '',
+    paymentLink: '',
   });
+
+  // ── Inline payment-link editor state ────────────────────────────────
+  const [editingPaymentLink, setEditingPaymentLink] = useState<string | null>(null);
+  const [paymentLinkDraft, setPaymentLinkDraft] = useState('');
 
   function showFeedback(type: 'success' | 'error', message: string) {
     setFeedback({ type, message });
@@ -232,6 +237,7 @@ export default function InvoiceDashboard() {
           notes: invoiceForm.notes,
           clientNotes: invoiceForm.clientNotes,
           description: invoiceForm.description,
+          paymentLink: invoiceForm.paymentLink || undefined,
         }),
       });
       if (res.status === 401 || res.status === 403) {
@@ -241,7 +247,7 @@ export default function InvoiceDashboard() {
       const data = await res.json();
       if (data.success) {
         showFeedback('success', `Invoice ${data.invoice.invoiceNumber} created`);
-        setInvoiceForm({ clientId: '', description: '', rate: '', qty: '1', taxRate: '0', dueInDays: '15', notes: '', clientNotes: '' });
+        setInvoiceForm({ clientId: '', description: '', rate: '', qty: '1', taxRate: '0', dueInDays: '15', notes: '', clientNotes: '', paymentLink: '' });
         fetchInvoices();
       } else {
         showFeedback('error', data.error || 'Failed to create invoice');
@@ -292,6 +298,33 @@ export default function InvoiceDashboard() {
     fetchClients();
     fetchInvoices();
     showFeedback('success', 'Client deleted');
+    setActionLoading(null);
+  }
+
+  // ── Save / update payment link on an invoice ────────────────────────
+  async function savePaymentLink(invoiceId: string) {
+    setActionLoading(invoiceId);
+    try {
+      const res = await fetch(`/api/invoices/${invoiceId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentLink: paymentLinkDraft }),
+      });
+      if (res.status === 401 || res.status === 403) {
+        handleUnauthorized();
+        return;
+      }
+      if (!res.ok) {
+        showFeedback('error', await extractError(res, 'Failed to update payment link'));
+        return;
+      }
+      setEditingPaymentLink(null);
+      setPaymentLinkDraft('');
+      fetchInvoices();
+      showFeedback('success', 'Payment link updated');
+    } catch {
+      showFeedback('error', 'Network error');
+    }
     setActionLoading(null);
   }
 
@@ -413,7 +446,7 @@ export default function InvoiceDashboard() {
                     <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{formatDate(inv.issueDate)}</td>
                     <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{formatDate(inv.dueDate)}</td>
                     <td className="px-4 py-3 text-right">
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-end gap-2 flex-wrap">
                         {inv.status !== 'paid' && inv.status !== 'cancelled' && (
                           <>
                             <button
@@ -425,17 +458,64 @@ export default function InvoiceDashboard() {
                             </button>
                           </>
                         )}
-                        {inv.paymentLink && (
-                          <a
-                            href={inv.paymentLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs rounded-md transition"
+
+                        {/* Payment Link: show link or edit button */}
+                        {editingPaymentLink === inv.id ? (
+                          <div className="flex items-center gap-1">
+                            <input
+                              type="url"
+                              placeholder="Paste Payoneer link…"
+                              value={paymentLinkDraft}
+                              onChange={(e) => setPaymentLinkDraft(e.target.value)}
+                              className="dashboard-input w-48 rounded-md px-2 py-1 text-xs text-slate-900 placeholder:text-slate-400 dark:text-white dark:placeholder:text-slate-500"
+                            />
+                            <button
+                              onClick={() => savePaymentLink(inv.id)}
+                              disabled={actionLoading === inv.id}
+                              className="px-2 py-1 bg-violet-600 hover:bg-violet-500 text-white text-xs rounded-md transition disabled:opacity-50"
+                            >
+                              Save
+                            </button>
+                            <button
+                              onClick={() => { setEditingPaymentLink(null); setPaymentLinkDraft(''); }}
+                              className="px-2 py-1 bg-slate-300 hover:bg-slate-200 text-slate-700 text-xs rounded-md transition dark:bg-white/10 dark:text-slate-300 dark:hover:bg-white/20"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ) : inv.paymentLink ? (
+                          <div className="flex items-center gap-1">
+                            <a
+                              href={inv.paymentLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs rounded-md transition"
+                            >
+                              Pay Link
+                            </a>
+                            <button
+                              onClick={() => { setEditingPaymentLink(inv.id); setPaymentLinkDraft(inv.paymentLink || ''); }}
+                              className="px-1.5 py-1 text-slate-400 hover:text-violet-400 text-xs transition"
+                              title="Edit payment link"
+                            >
+                              ✏️
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => { setEditingPaymentLink(inv.id); setPaymentLinkDraft(''); }}
+                            className="px-2.5 py-1 bg-amber-600 hover:bg-amber-500 text-white text-xs rounded-md transition"
                           >
-                            Payoneer
-                          </a>
+                            + Pay Link
+                          </button>
                         )}
                       </div>
+                      {/* Payment terms notice */}
+                      {inv.paymentLink && inv.status !== 'paid' && inv.status !== 'cancelled' && (
+                        <p className="mt-1 text-[10px] leading-tight text-slate-400 dark:text-slate-500 text-right max-w-xs ml-auto">
+                          Payment must be settled before the 14th. Invoice attached at payment link — client can pay by logging in.
+                        </p>
+                      )}
                     </td>
                   </tr>
                 ))
@@ -572,6 +652,28 @@ export default function InvoiceDashboard() {
                 <label className="mb-1 block text-xs text-slate-600 dark:text-slate-400">Due in (days)</label>
                 <input type="number" value={invoiceForm.dueInDays} onChange={(e) => setInvoiceForm({ ...invoiceForm, dueInDays: e.target.value })} className="dashboard-input w-full rounded-lg px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 dark:text-white dark:placeholder:text-slate-500" />
               </div>
+
+              {/* Payment Link */}
+              <div>
+                <label className="mb-1 block text-xs text-slate-600 dark:text-slate-400">Payment Link (Payoneer)</label>
+                <input
+                  type="url"
+                  placeholder="https://payoneer.com/your-custom-link"
+                  value={invoiceForm.paymentLink}
+                  onChange={(e) => setInvoiceForm({ ...invoiceForm, paymentLink: e.target.value })}
+                  className="dashboard-input w-full rounded-lg px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 dark:text-white dark:placeholder:text-slate-500"
+                />
+                <p className="mt-1 text-[10px] text-slate-400 dark:text-slate-500">
+                  Leave empty to auto-generate from client&apos;s Payoneer email. Or paste your custom Payoneer payment request link.
+                </p>
+              </div>
+
+              {/* Payment terms notice – auto shown when a link is entered */}
+              {invoiceForm.paymentLink && (
+                <div className="rounded-lg border border-amber-300/40 bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
+                  <strong>Payment Terms:</strong> Payment must be settled before the 14th of the invoiced month. The invoice is attached at the payment link — the client can pay by logging in through the link above.
+                </div>
+              )}
               <textarea placeholder="Client-facing notes (shown on invoice)" value={invoiceForm.clientNotes} onChange={(e) => setInvoiceForm({ ...invoiceForm, clientNotes: e.target.value })} rows={2} className="dashboard-input w-full resize-none rounded-lg px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 dark:text-white dark:placeholder:text-slate-500" />
               <button type="submit" disabled={actionLoading === 'create-invoice'} className="w-full py-2.5 bg-violet-600 hover:bg-violet-500 text-white rounded-lg text-sm font-semibold transition disabled:opacity-50">
                 {actionLoading === 'create-invoice' ? 'Creating...' : 'Create Invoice'}
