@@ -1,16 +1,9 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ModuleShell } from "@/components/shared/ModuleShell";
-import {
-  Award,
-  ShieldCheck,
-  ChevronLeft,
-  ChevronRight,
-  X,
-  ZoomIn,
-} from "lucide-react";
+import { Award, ShieldCheck, X, ZoomIn } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
 /*  Certificate data — Accredible API images                           */
@@ -61,68 +54,20 @@ const certificates = [
   },
 ];
 
-const VISIBLE = 3;
-const AUTOPLAY_MS = 8000;
+const SPEED = 35; // seconds for one full marquee cycle
 
 /* ------------------------------------------------------------------ */
-/*  Carousel + Lightbox zoom                                           */
+/*  Infinite marquee + Lightbox zoom                                   */
 /* ------------------------------------------------------------------ */
 
 export function CertificationsCarousel() {
-  const totalPages = Math.ceil(certificates.length / VISIBLE);
-  const [page, setPage] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const [paused, setPaused] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
   const lightboxCert = lightbox
     ? certificates.find((c) => c.id === lightbox)
     : null;
 
-  /* ── Autoplay: chained setTimeout ─────────────────────────────── */
-  const scheduleNext = useCallback(() => {
-    clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(
-      () => setPage((p) => (p + 1) % totalPages),
-      AUTOPLAY_MS,
-    );
-  }, [totalPages]);
-
-  useEffect(() => {
-    if (!isPaused && !lightbox && !document.hidden) scheduleNext();
-    return () => clearTimeout(timerRef.current);
-  }, [page, isPaused, lightbox, scheduleNext]);
-
-  useEffect(() => {
-    const h = () => {
-      if (document.hidden) clearTimeout(timerRef.current);
-      else if (!isPaused && !lightbox) scheduleNext();
-    };
-    document.addEventListener("visibilitychange", h);
-    return () => document.removeEventListener("visibilitychange", h);
-  }, [isPaused, lightbox, scheduleNext]);
-
-  const pause = () => {
-    setIsPaused(true);
-    clearTimeout(timerRef.current);
-  };
-  const resume = () => setIsPaused(false);
-
-  const next = () => setPage((p) => (p + 1) % totalPages);
-  const prev = () => setPage((p) => (p - 1 + totalPages) % totalPages);
-
-  /* ── Touch swipe ──────────────────────────────────────────────── */
-  const touchRef = useRef(0);
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchRef.current = e.touches[0].clientX;
-    pause();
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    const dx = e.changedTouches[0].clientX - touchRef.current;
-    if (Math.abs(dx) > 50) (dx > 0 ? prev : next)();
-    resume();
-  };
-
-  /* ── Lightbox keyboard ────────────────────────────────────────── */
+  /* ── Lightbox keyboard + body lock ────────────────────────────── */
   useEffect(() => {
     if (!lightbox) return;
     const handler = (e: KeyboardEvent) => {
@@ -136,44 +81,17 @@ export function CertificationsCarousel() {
     };
   }, [lightbox]);
 
-  /* ── Pre-compute pages ────────────────────────────────────────── */
-  const pages = Array.from({ length: totalPages }, (_, i) =>
-    certificates.slice(i * VISIBLE, (i + 1) * VISIBLE),
-  );
+  /* Duplicate items for seamless loop */
+  const doubled = [...certificates, ...certificates];
 
   return (
     <>
-      <section
-        className="relative z-10 pb-20 px-6"
-        aria-label="Certifications"
-        onMouseEnter={pause}
-        onMouseLeave={resume}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
-      >
-        <div className="max-w-6xl mx-auto">
+      <section className="relative z-10 pb-20" aria-label="Certifications">
+        <div className="max-w-6xl mx-auto px-6">
           {/* Header */}
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-xl font-bold text-[#F8FAFC]">
-              Verified Certifications
-            </h2>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={prev}
-                aria-label="Previous certificates"
-                className="p-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={next}
-                aria-label="Next certificates"
-                className="p-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          <h2 className="text-xl font-bold text-[#F8FAFC] mb-3">
+            Verified Certifications
+          </h2>
 
           {/* Summary badges */}
           <div className="flex flex-wrap items-center gap-3 mb-8">
@@ -189,109 +107,82 @@ export function CertificationsCarousel() {
               15 months of mentored, hands-on client work
             </span>
           </div>
+        </div>
 
-          {/* Crossfade + directional slide carousel */}
-          <div className="grid" style={{ gridTemplateRows: "1fr" }}>
-            {pages.map((items, i) => (
-              <div
-                key={i}
-                aria-hidden={i !== page}
-                style={{ gridArea: "1 / 1" }}
-                className={`grid md:grid-cols-2 lg:grid-cols-3 gap-4 transition-all duration-500 ease-out ${
-                  i === page
-                    ? "opacity-100 translate-x-0 z-10"
-                    : i < page
-                    ? "opacity-0 -translate-x-8 z-0 pointer-events-none"
-                    : "opacity-0 translate-x-8 z-0 pointer-events-none"
-                }`}
-              >
-                {items.map((cert) => (
-                  <button
-                    key={cert.id}
-                    onClick={() => setLightbox(cert.id)}
-                    className="text-left group/cert cursor-zoom-in"
-                  >
-                    <ModuleShell className="overflow-hidden" enableHoverLift>
-                      <div className="relative w-full aspect-[4/3] overflow-hidden">
-                        <Image
-                          src={cert.imageUrl}
-                          alt={`Certificate — ${cert.focus}`}
-                          fill
-                          className="object-contain transition-transform duration-500 group-hover/cert:scale-110"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                        {/* Zoom hint overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/cert:bg-black/30 transition-colors duration-300">
-                          <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
-                        </div>
-                      </div>
-                      <div className="px-4 py-3 border-t border-white/[0.06]">
-                        <p className="text-xs font-medium text-[#F8FAFC] group-hover/cert:text-[#C4B5FD] transition-colors">
-                          {cert.focus}
-                        </p>
-                        <p className="text-[10px] text-[#94A3B8] mt-0.5">
-                          Click to zoom &amp; read
-                        </p>
-                      </div>
-                    </ModuleShell>
-                  </button>
-                ))}
-              </div>
-            ))}
-          </div>
+        {/* ── Marquee track (full-bleed) ──────────────────────────── */}
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {/* Fade masks */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-[#070B14] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-[#070B14] to-transparent" />
 
-          {/* Dot indicators with progress */}
-          <div className="flex items-center justify-center gap-2 mt-6">
-            {Array.from({ length: totalPages }).map((_, i) => (
+          <div
+            className="flex gap-4 w-max"
+            style={{
+              animation: `marquee ${SPEED}s linear infinite`,
+              animationPlayState: paused || lightbox ? "paused" : "running",
+            }}
+          >
+            {doubled.map((cert, i) => (
               <button
-                key={i}
-                onClick={() => setPage(i)}
-                aria-label={`Go to page ${i + 1}`}
-                className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
-                  i === page
-                    ? "w-8 bg-[#7C3AED]/30"
-                    : "w-2 bg-white/20 hover:bg-white/40"
-                }`}
+                key={`${cert.id}-${i}`}
+                onClick={() => setLightbox(cert.id)}
+                className="w-[360px] shrink-0 text-left group/cert cursor-zoom-in"
               >
-                {i === page && (
-                  <span
-                    key={`pf-${page}`}
-                    className="absolute inset-0 rounded-full bg-[#7C3AED] origin-left"
-                    style={{
-                      animation: `progress-fill ${AUTOPLAY_MS}ms linear forwards`,
-                      animationPlayState:
-                        isPaused || lightbox ? "paused" : "running",
-                    }}
-                  />
-                )}
+                <ModuleShell className="overflow-hidden h-full" enableHoverLift>
+                  <div className="relative w-full aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={cert.imageUrl}
+                      alt={`Certificate — ${cert.focus}`}
+                      fill
+                      className="object-contain transition-transform duration-500 group-hover/cert:scale-110"
+                      sizes="360px"
+                    />
+                    {/* Zoom hint */}
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/cert:bg-black/30 transition-colors duration-300">
+                      <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+                    </div>
+                  </div>
+                  <div className="px-4 py-3 border-t border-white/[0.06]">
+                    <p className="text-xs font-medium text-[#F8FAFC] group-hover/cert:text-[#C4B5FD] transition-colors">
+                      {cert.focus}
+                    </p>
+                    <p className="text-[10px] text-[#94A3B8] mt-0.5">
+                      Click to zoom &amp; read
+                    </p>
+                  </div>
+                </ModuleShell>
               </button>
             ))}
           </div>
+        </div>
 
-          {/* Other certifications */}
-          <div className="mt-10">
-            <h3 className="text-sm font-bold text-[#F8FAFC] mb-3">
-              Other Certifications
-            </h3>
-            <ModuleShell className="p-5">
-              <div className="flex flex-wrap gap-x-6 gap-y-2">
-                {[
-                  "Google Analytics Certified",
-                  "Google Ads Search Certified",
-                  "Google Ads Display Certified",
-                  "HubSpot Inbound Marketing",
-                ].map((c) => (
-                  <span
-                    key={c}
-                    className="flex items-center gap-2 text-xs text-[#94A3B8]"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] shrink-0" />
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </ModuleShell>
-          </div>
+        {/* Other certifications */}
+        <div className="max-w-6xl mx-auto px-6 mt-10">
+          <h3 className="text-sm font-bold text-[#F8FAFC] mb-3">
+            Other Certifications
+          </h3>
+          <ModuleShell className="p-5">
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              {[
+                "Google Analytics Certified",
+                "Google Ads Search Certified",
+                "Google Ads Display Certified",
+                "HubSpot Inbound Marketing",
+              ].map((c) => (
+                <span
+                  key={c}
+                  className="flex items-center gap-2 text-xs text-[#94A3B8]"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] shrink-0" />
+                  {c}
+                </span>
+              ))}
+            </div>
+          </ModuleShell>
         </div>
       </section>
 
@@ -308,7 +199,6 @@ export function CertificationsCarousel() {
             className="relative max-w-4xl w-full animate-[zoom-in_300ms_cubic-bezier(0.22,1,0.36,1)]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
               onClick={() => setLightbox(null)}
               className="absolute -top-12 right-0 flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors"
@@ -318,7 +208,6 @@ export function CertificationsCarousel() {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Zoomed certificate */}
             <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#0F172A] shadow-2xl shadow-[#7C3AED]/10">
               <Image
                 src={lightboxCert.imageUrl}
