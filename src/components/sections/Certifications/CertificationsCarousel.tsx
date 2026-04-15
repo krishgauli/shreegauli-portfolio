@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
-import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { apprenticeships } from "@/lib/credentials";
 import {
@@ -13,70 +12,71 @@ import {
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Carousel                                                           */
+/*  Certifications Carousel — auto-advance with infinite loop          */
 /* ------------------------------------------------------------------ */
 
 export function CertificationsCarousel() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [active, setActive] = useState(0);
+  const total = apprenticeships.length;
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pausedRef = useRef(false);
 
-  const checkScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 8);
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8);
-  }, []);
+  /* Auto-advance every 4 s */
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      if (!pausedRef.current) {
+        setActive((prev) => (prev + 1) % total);
+      }
+    }, 4000);
+  }, [total]);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    checkScroll();
-    el.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("resize", checkScroll);
+    startTimer();
     return () => {
-      el.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
+      if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [checkScroll]);
+  }, [startTimer]);
 
-  const scroll = (direction: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = el.querySelector<HTMLElement>(":scope > div")?.offsetWidth ?? 320;
-    el.scrollBy({ left: direction === "left" ? -cardWidth - 16 : cardWidth + 16, behavior: "smooth" });
+  const go = (direction: "left" | "right") => {
+    setActive((prev) =>
+      direction === "right" ? (prev + 1) % total : (prev - 1 + total) % total
+    );
+    startTimer(); // reset timer on manual nav
   };
 
   return (
-    <section className="relative z-10 pb-20 px-6" aria-label="Certifications">
+    <section
+      className="relative z-10 pb-20 px-6"
+      aria-label="Certifications"
+      onMouseEnter={() => { pausedRef.current = true; }}
+      onMouseLeave={() => { pausedRef.current = false; }}
+    >
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-xl font-bold text-[#F8FAFC]">
             Verified Certifications
           </h2>
-          {/* Carousel arrows — desktop */}
-          <div className="hidden sm:flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <button
-              onClick={() => scroll("left")}
-              disabled={!canScrollLeft}
-              aria-label="Scroll left"
-              className="p-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors disabled:opacity-30 disabled:cursor-default"
+              onClick={() => go("left")}
+              aria-label="Previous certificate"
+              className="p-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
-              onClick={() => scroll("right")}
-              disabled={!canScrollRight}
-              aria-label="Scroll right"
-              className="p-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors disabled:opacity-30 disabled:cursor-default"
+              onClick={() => go("right")}
+              aria-label="Next certificate"
+              className="p-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Summary badge */}
+        {/* Summary badges */}
         <div className="flex flex-wrap items-center gap-3 mb-8">
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border border-[#7C3AED]/30 bg-[#7C3AED]/10 text-[#C4B5FD]">
             <Award className="w-3.5 h-3.5" />
@@ -91,21 +91,23 @@ export function CertificationsCarousel() {
           </span>
         </div>
 
-        {/* Carousel */}
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mb-4 no-scrollbar"
-          role="list"
-          aria-label="Certificate cards"
-        >
+        {/* Card area — fade transition between cards */}
+        <div className="relative min-h-[240px]">
           {apprenticeships.map((cert, i) => (
-            <ScrollReveal key={cert.id} delay={i * 80}>
-              <div
-                className="snap-start shrink-0 w-[280px] sm:w-[300px]"
-                role="listitem"
-              >
-                <ModuleShell className="p-6 h-full flex flex-col" enableHoverLift>
-                  {/* Top badge row */}
+            <div
+              key={cert.id}
+              className="absolute inset-0 transition-all duration-500 ease-in-out"
+              style={{
+                opacity: i === active ? 1 : 0,
+                transform: i === active ? "translateX(0)" : i < active ? "translateX(-40px)" : "translateX(40px)",
+                pointerEvents: i === active ? "auto" : "none",
+              }}
+              aria-hidden={i !== active}
+            >
+              <ModuleShell className="p-8 flex flex-col sm:flex-row gap-6" enableHoverLift>
+                {/* Left column */}
+                <div className="flex-1 flex flex-col">
+                  {/* Badge row */}
                   <div className="flex items-center justify-between mb-4">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border border-[#7C3AED]/40 bg-[#7C3AED]/10 text-[#C4B5FD]">
                       <Award className="w-3 h-3" />
@@ -117,19 +119,19 @@ export function CertificationsCarousel() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-sm font-bold text-[#F8FAFC] leading-snug">
+                  <h3 className="text-lg font-bold text-[#F8FAFC] leading-snug">
                     {cert.title}
                   </h3>
-                  <p className="text-xs text-[#22D3EE] font-medium mt-1">
+                  <p className="text-sm text-[#22D3EE] font-medium mt-1">
                     {cert.focus}
                   </p>
 
                   {/* Skills */}
-                  <div className="flex flex-wrap gap-1.5 mt-4">
+                  <div className="flex flex-wrap gap-2 mt-5">
                     {cert.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2 py-0.5 rounded text-[10px] font-medium border border-white/[0.06] bg-white/[0.03] text-[#94A3B8]"
+                        className="px-2.5 py-1 rounded-md text-xs font-medium border border-white/[0.08] bg-white/[0.04] text-[#94A3B8]"
                       >
                         {skill}
                       </span>
@@ -137,29 +139,45 @@ export function CertificationsCarousel() {
                   </div>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between mt-auto pt-5">
-                    <span className="inline-flex items-center gap-1 text-[10px] text-[#34D399]/80">
-                      <ShieldCheck className="w-3 h-3" />
-                      Verified
+                  <div className="flex items-center justify-between mt-auto pt-6">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-[#34D399]/80">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      Blockchain Verified
                     </span>
                     <a
                       href={cert.verifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] font-medium text-[#7C3AED] hover:text-[#C4B5FD] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#7C3AED] hover:text-[#C4B5FD] transition-colors"
                     >
-                      Verify
-                      <ExternalLink className="w-3 h-3" />
+                      Verify Credential
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
-                </ModuleShell>
-              </div>
-            </ScrollReveal>
+                </div>
+              </ModuleShell>
+            </div>
+          ))}
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {apprenticeships.map((cert, i) => (
+            <button
+              key={cert.id}
+              onClick={() => { setActive(i); startTimer(); }}
+              aria-label={`Go to certificate ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === active
+                  ? "w-6 bg-[#7C3AED]"
+                  : "w-2 bg-white/20 hover:bg-white/40"
+              }`}
+            />
           ))}
         </div>
 
         {/* Other certifications */}
-        <div className="mt-8">
+        <div className="mt-10">
           <h3 className="text-sm font-bold text-[#F8FAFC] mb-3">
             Other Certifications
           </h3>
@@ -170,13 +188,13 @@ export function CertificationsCarousel() {
                 "Google Ads Search Certified",
                 "Google Ads Display Certified",
                 "HubSpot Inbound Marketing",
-              ].map((cert) => (
+              ].map((c) => (
                 <span
-                  key={cert}
+                  key={c}
                   className="flex items-center gap-2 text-xs text-[#94A3B8]"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] shrink-0" />
-                  {cert}
+                  {c}
                 </span>
               ))}
             </div>
@@ -186,5 +204,3 @@ export function CertificationsCarousel() {
     </section>
   );
 }
-
-

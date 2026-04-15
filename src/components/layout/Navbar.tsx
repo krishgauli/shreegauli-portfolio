@@ -15,7 +15,7 @@ import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
 import { useAuth } from "@/components/AuthProvider";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,6 +24,7 @@ export function Navbar() {
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { user, logout } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -93,16 +94,27 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors duration-200 rounded-lg hover:bg-white/[0.05]"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg",
+                      isActive
+                        ? "text-[#F8FAFC] bg-white/[0.08]"
+                        : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Right side: user menu + CTA */}
@@ -267,16 +279,27 @@ export function Navbar() {
           <div className="md:hidden absolute left-0 right-0 top-full z-[60] mt-3 px-1">
               <div className="max-h-[calc(100vh-8.5rem)] overflow-y-auto rounded-2xl border border-white/[0.12] bg-[#0B1220]/98 px-4 py-4 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
               <div className="flex flex-col gap-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="px-3 py-2.5 text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05] rounded-lg transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive =
+                    link.href === "/"
+                      ? pathname === "/"
+                      : pathname.startsWith(link.href);
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                        isActive
+                          ? "text-[#F8FAFC] bg-white/[0.08]"
+                          : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
 
                 {/* Auth section in mobile */}
                 <div className="border-t border-white/[0.06] mt-2 pt-3">
