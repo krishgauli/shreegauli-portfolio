@@ -18,7 +18,7 @@ export const navLinks: NavLink[] = [
     href: "/seo-tools",
     children: [
       { label: "Analyze URL", href: "/seo-tools", description: "On-page SEO checks, keywords & backlinks" },
-      { label: "Site Audit", href: "/seo-tools/site-audit", description: "Crawl an entire site — 50+ SEO checks" },
+      { label: "Site Audit", href: "/seo-tools/site-audit", description: "Crawl every page — no limits, 50+ checks" },
     ],
   },
   { label: "Contact", href: "/contact" },

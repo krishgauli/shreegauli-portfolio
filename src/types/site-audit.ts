@@ -22,11 +22,11 @@ export interface SiteAuditConfig {
 }
 
 export const DEFAULT_AUDIT_CONFIG: SiteAuditConfig = {
-  maxPages: 50,
-  maxDepth: 5,
-  timeout: 12_000,
+  maxPages: 500,
+  maxDepth: 10,
+  timeout: 8_000,
   userAgent: 'SiteAuditBot/1.0 (+https://www.shreegauli.com/seo-tools)',
-  concurrency: 3,
+  concurrency: 10,
   checkExternalLinks: true,
 };
 

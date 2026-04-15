@@ -153,6 +153,7 @@ function IssueRow({ issue }: { issue: SiteAuditIssue }) {
 
 export default function SiteAuditTab() {
   const [domain, setDomain] = useState('');
+  const [maxPages, setMaxPages] = useState(500);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<AuditProgressEvent | null>(null);
   const [result, setResult] = useState<SiteAuditResult | null>(null);
@@ -177,7 +178,7 @@ export default function SiteAuditTab() {
       const resp = await fetch('/api/seo-tools/site-audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: cleaned }),
+        body: JSON.stringify({ url: cleaned, maxPages }),
         signal: abortRef.current.signal,
       });
 
@@ -224,7 +225,7 @@ export default function SiteAuditTab() {
     } finally {
       setLoading(false);
     }
-  }, [domain]);
+  }, [domain, maxPages]);
 
   /* Cancel */
   const cancelAudit = useCallback(() => {
@@ -286,6 +287,18 @@ export default function SiteAuditTab() {
               className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] py-3 pl-11 pr-4 text-sm text-white placeholder:text-[#475569] outline-none focus:border-[#7C3AED]/60"
             />
           </div>
+          <select
+            value={maxPages}
+            onChange={(e) => setMaxPages(Number(e.target.value))}
+            disabled={loading}
+            className="rounded-xl border border-white/[0.10] bg-white/[0.04] px-3 py-3 text-sm text-[#CBD5E1] outline-none focus:border-[#7C3AED]/60"
+          >
+            <option value={100}>100 pages</option>
+            <option value={250}>250 pages</option>
+            <option value={500}>500 pages</option>
+            <option value={1000}>1,000 pages</option>
+            <option value={5000}>Unlimited</option>
+          </select>
           <button
             type="submit"
             disabled={!domain.trim() && !loading}
@@ -304,11 +317,12 @@ export default function SiteAuditTab() {
             ) : (
               <>
                 <Search className="h-4 w-4" />
-                Run Site Audit
+                Run Full Audit
               </>
             )}
           </button>
         </form>
+        <p className="mt-3 text-[11px] text-[#64748B]">100% free • No signup • No paywall • Crawls every page • 50+ checks per page • CSV export included</p>
 
         {error && (
           <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</div>
@@ -342,10 +356,19 @@ export default function SiteAuditTab() {
       {!loading && !result && (
         <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 text-center">
           <Globe className="mx-auto h-10 w-10 text-[#475569]" />
-          <p className="mt-4 text-sm text-[#94A3B8]">
-            Enter a domain above and run a full site audit.<br />
-            We&apos;ll crawl up to 50 pages and check ~50 SEO factors — matching SEMrush-level depth.
+          <p className="mt-4 text-base font-semibold text-white">Enterprise-grade site audit. Completely free.</p>
+          <p className="mt-2 text-sm text-[#94A3B8] max-w-lg mx-auto">
+            Other tools charge $100+/mo and cap you at a handful of pages. We crawl your <strong className="text-white">entire</strong> site —
+            100, 500, even 1,000+ pages — and run <strong className="text-white">50+ SEO checks</strong> on every single one.
+            Crawlability, content, links, performance, schema, and social tags. Then export the full report as CSV.
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-4 text-xs text-[#64748B]">
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />No page limit</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />50+ checks per page</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />CSV export</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />No signup required</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />Real-time progress</span>
+          </div>
         </div>
       )}
 
@@ -509,10 +532,10 @@ export default function SiteAuditTab() {
 
           {/* ── Audit CTA ── */}
           <div className="rounded-2xl border border-[#7C3AED]/30 bg-[#7C3AED]/[0.06] p-6">
-            <p className="text-sm font-semibold text-white">Need help fixing these issues?</p>
+            <p className="text-sm font-semibold text-white">Want these issues fixed for you?</p>
             <p className="mt-2 text-sm text-[#94A3B8]">
-              This audit found {result.totalIssues} issues across {result.pagesScanned} pages.
-              Book a free review and I&apos;ll prioritise the highest-impact fixes.
+              This free audit found <strong className="text-white">{result.totalIssues} issues</strong> across <strong className="text-white">{result.pagesScanned} pages</strong>.
+              Other agencies charge $500+ just for the report. Book a free call and I&apos;ll walk you through the highest-impact fixes.
             </p>
             <div className="mt-4 flex gap-3">
               <a

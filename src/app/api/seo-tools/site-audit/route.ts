@@ -17,7 +17,7 @@ import { analyzePage } from '@/lib/site-audit/page-analyzer';
 import { buildSiteAuditResult } from '@/lib/site-audit/checks';
 
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60; // Vercel function timeout
+export const maxDuration = 300; // Vercel Pro — 5 min for full-site crawls
 
 export async function POST(req: NextRequest) {
   let body: { url?: string; maxPages?: number };
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
 
   const config: SiteAuditConfig = {
     ...DEFAULT_AUDIT_CONFIG,
-    maxPages: Math.min(body.maxPages || DEFAULT_AUDIT_CONFIG.maxPages, 100),
+    maxPages: body.maxPages || DEFAULT_AUDIT_CONFIG.maxPages,
   };
 
   // Create SSE stream

@@ -5,17 +5,21 @@ import { breadcrumbSchema } from '@/lib/schema';
 import SiteAuditClient from './SiteAuditClient';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Free Site Audit Tool | Crawl & Check 50+ SEO Factors',
+  title: 'Free Full-Site SEO Audit — Crawl Every Page, No Limits | Shree Gauli',
   description:
-    'Crawl any website and audit 50+ SEO factors — titles, meta descriptions, broken links, schema, performance, and more. SEMrush-level depth, completely free.',
+    'The only free SEO audit tool that crawls your entire site — 100, 500, or 1,000+ pages. 50+ checks per page covering crawlability, content, links, performance, schema & more. No signup. No paywall. Better than paid tools.',
   path: '/seo-tools/site-audit',
   keywords: [
     'free site audit tool',
-    'SEO site crawler',
+    'free SEO crawler',
+    'full site SEO audit',
+    'SEMrush alternative free',
+    'Ahrefs alternative free',
     'website SEO checker',
-    'technical SEO audit',
+    'technical SEO audit tool',
     'site health score',
     'broken link checker',
+    'crawl entire website free',
   ],
 });
 

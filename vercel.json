@@ -1,5 +1,8 @@
 {
   "functions": {
+    "src/app/api/seo-tools/site-audit/**/route.ts": {
+      "maxDuration": 300
+    },
     "src/app/api/**/*.ts": {
       "maxDuration": 30
     }
