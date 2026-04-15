@@ -13,7 +13,14 @@ export const navLinks: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blogs" },
-  { label: "SEO Tools", href: "/seo-tools" },
+  {
+    label: "SEO Tools",
+    href: "/seo-tools",
+    children: [
+      { label: "Analyze URL", href: "/seo-tools", description: "On-page SEO checks, keywords & backlinks" },
+      { label: "Site Audit", href: "/seo-tools/site-audit", description: "Crawl an entire site — 50+ SEO checks" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ];
 

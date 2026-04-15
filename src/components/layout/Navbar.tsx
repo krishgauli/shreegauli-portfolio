@@ -21,6 +21,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [navDropdown, setNavDropdown] = useState<string | null>(null);
+  const navDropdownRef = useRef<HTMLLIElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { user, logout } = useAuth();
   const router = useRouter();
@@ -51,7 +53,7 @@ export function Navbar() {
     document.body.style.overflow = "";
   }, [mobileOpen]);
 
-  // Close user menu on outside click
+  // Close user menu / nav dropdown on outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (
@@ -59,6 +61,12 @@ export function Navbar() {
         !userMenuRef.current.contains(e.target as Node)
       ) {
         setUserMenuOpen(false);
+      }
+      if (
+        navDropdownRef.current &&
+        !navDropdownRef.current.contains(e.target as Node)
+      ) {
+        setNavDropdown(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -99,6 +107,76 @@ export function Navbar() {
                 link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
+
+              // Dropdown nav item
+              if (link.children && link.children.length > 0) {
+                return (
+                  <li
+                    key={link.href}
+                    className="relative"
+                    ref={navDropdown === link.href ? navDropdownRef : undefined}
+                    onMouseEnter={() => setNavDropdown(link.href)}
+                    onMouseLeave={() => setNavDropdown(null)}
+                  >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setNavDropdown((prev) =>
+                          prev === link.href ? null : link.href
+                        )
+                      }
+                      className={cn(
+                        "inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg",
+                        isActive
+                          ? "text-[#F8FAFC] bg-white/[0.08]"
+                          : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                      )}
+                    >
+                      {link.label}
+                      <ChevronDown
+                        className={cn(
+                          "h-3.5 w-3.5 transition-transform duration-200",
+                          navDropdown === link.href && "rotate-180"
+                        )}
+                      />
+                    </button>
+
+                    {navDropdown === link.href && (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50">
+                        <div className="w-56 rounded-xl border border-white/[0.12] bg-[#0F172A]/95 backdrop-blur-xl shadow-2xl p-2 space-y-0.5">
+                          {link.children.map((child) => {
+                            const childActive = pathname === child.href;
+                            return (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                onClick={() => setNavDropdown(null)}
+                                className={cn(
+                                  "block rounded-lg px-3 py-2.5 transition-colors",
+                                  childActive
+                                    ? "bg-white/[0.08] text-[#F8FAFC]"
+                                    : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.06]"
+                                )}
+                              >
+                                <span className="text-sm font-medium">
+                                  {child.label}
+                                </span>
+                                {child.description && (
+                                  <span className="block mt-0.5 text-[11px] text-[#64748B]">
+                                    {child.description}
+                                  </span>
+                                )}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                );
+              }
+
+              // Plain nav item
               return (
                 <li key={link.href}>
                   <Link
@@ -284,6 +362,64 @@ export function Navbar() {
                     link.href === "/"
                       ? pathname === "/"
                       : pathname.startsWith(link.href);
+
+                  // Mobile dropdown
+                  if (link.children && link.children.length > 0) {
+                    return (
+                      <div key={link.href} className="flex flex-col">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setNavDropdown((prev) =>
+                              prev === link.href ? null : link.href
+                            )
+                          }
+                          className={cn(
+                            "flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                            isActive
+                              ? "text-[#F8FAFC] bg-white/[0.08]"
+                              : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                          )}
+                        >
+                          {link.label}
+                          <ChevronDown
+                            className={cn(
+                              "h-3.5 w-3.5 transition-transform duration-200",
+                              navDropdown === link.href && "rotate-180"
+                            )}
+                          />
+                        </button>
+                        {navDropdown === link.href && (
+                          <div className="ml-3 mt-0.5 flex flex-col gap-0.5 border-l border-white/[0.08] pl-3">
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                onClick={() => {
+                                  setMobileOpen(false);
+                                  setNavDropdown(null);
+                                }}
+                                className={cn(
+                                  "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+                                  pathname === child.href
+                                    ? "text-[#F8FAFC] bg-white/[0.08]"
+                                    : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                                )}
+                              >
+                                {child.label}
+                                {child.description && (
+                                  <span className="block text-[11px] text-[#64748B]">
+                                    {child.description}
+                                  </span>
+                                )}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+
                   return (
                     <Link
                       key={link.href}
