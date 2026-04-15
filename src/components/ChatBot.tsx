@@ -276,7 +276,7 @@ export default function ChatBot() {
                   <h3 className="font-bold text-sm">Nex</h3>
                   <p className="text-[11px] text-violet-100 flex items-center gap-1">
                     <Sparkles className="h-3 w-3" />
-                    {language === 'es' ? 'Asistente de Marketing' : 'Marketing Assistant'}
+                    {language === 'es' ? 'Asistente Web & SEO' : 'Web & SEO Assistant'}
                   </p>
                 </div>
               </div>

@@ -17,7 +17,7 @@ function ProfileCard() {
       </div>
       <div>
         <p className="text-sm font-semibold text-[#F8FAFC]">Shree Krishna Gauli</p>
-        <p className="text-xs text-[#94A3B8] mt-0.5">Digital Marketing Consultant</p>
+        <p className="text-xs text-[#94A3B8] mt-0.5">Full-Stack Web Developer & SEO Consultant</p>
       </div>
     </div>
   );

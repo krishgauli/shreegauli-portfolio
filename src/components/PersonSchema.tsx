@@ -10,9 +10,9 @@ export default function PersonSchema() {
     '@type': 'Person',
     '@id': PERSON_ID,
     name: 'Shree Krishna Gauli',
-    jobTitle: 'Digital Marketing Consultant',
+    jobTitle: 'Full-Stack Web Developer & SEO Consultant',
     description:
-      'Digital marketing consultant focusing on SEO, paid media, social media, and marketing automation. Based in Dallas, TX.',
+      'Full-stack web developer and SEO consultant specializing in Next.js, WordPress, Shopify, SEO/AEO/GEO, and marketing automation. Based in Dallas, TX.',
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
     address: {
@@ -22,15 +22,18 @@ export default function PersonSchema() {
       addressCountry: 'US',
     },
     knowsAbout: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'WordPress',
+      'Shopify',
       'Search Engine Optimization',
-      'Paid Media',
-      'Social Media Marketing',
+      'Answer Engine Optimization',
       'Marketing Automation',
       'n8n',
-      'Google Analytics',
-      'Google Ads',
-      'Meta Ads',
-      'Content Strategy',
+      'Tailwind CSS',
+      'Prisma',
+      'Supabase',
     ],
     sameAs: [
       'https://www.linkedin.com/in/gauli/',
@@ -47,7 +50,7 @@ export default function PersonSchema() {
     name: 'Shree Krishna Gauli',
     url: SITE_URL,
     description:
-      'Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.',
+      'Work directly with Shree Krishna Gauli on custom web development, SEO, and marketing automation systems built for measurable growth.',
     author: {
       '@id': PERSON_ID,
     },
@@ -79,13 +82,14 @@ export default function PersonSchema() {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     '@id': SERVICE_ID,
-    name: 'Shree Krishna Gauli - Digital Marketing Consulting',
+    name: 'Shree Krishna Gauli - Web Development & SEO Consulting',
     url: SITE_URL,
     serviceType: [
+      'Custom Web Application Development',
+      'WordPress Development',
+      'Shopify Development',
       'Search Engine Optimization',
-      'Paid Media Consulting',
       'Marketing Automation Consulting',
-      'Social Media Marketing Consulting',
     ],
     provider: {
       '@id': PERSON_ID,

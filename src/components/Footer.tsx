@@ -52,7 +52,7 @@ export default function Footer() {
               <Logo showText={true} iconSize={96} darkText={!isDark} />
             </div>
             <p className={`max-w-sm mb-8 leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              {t('Premium digital marketing for ERs, MedSpas, and urgent care centers.')}
+              {t('Full-Stack Web Developer & SEO Consultant — Dallas, TX')}
             </p>
             
             {/* Email Signup */}

@@ -8,11 +8,11 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Digital Marketing Case Studies | SEO, Ads, Automation",
+  title: "Portfolio | Next.js, WordPress & Shopify Projects",
   description:
-    "See measurable results across SEO, paid media, and automation projects with strategy, execution details, and outcomes.",
+    "14+ live websites and web apps built with Next.js, WordPress, and Shopify — with SEO, automation, and measurable results for every project.",
   path: "/work",
-  keywords: ["marketing case studies", "SEO results", "paid media case study", "automation case study"],
+  keywords: ["web development portfolio", "Next.js projects", "WordPress projects", "Shopify projects", "SEO case studies"],
 });
 
 export default function WorkPage() {
@@ -20,15 +20,16 @@ export default function WorkPage() {
     <PageShell>
       <JsonLd
         data={[
-          breadcrumbSchema([{ name: "Work", path: "/work" }]),
+          breadcrumbSchema([{ name: "Portfolio", path: "/work" }]),
           collectionPageSchema(
-            "Digital Marketing Case Studies",
-            "Measurable results across SEO, paid media, and automation projects with strategy, execution details, and outcomes.",
+            "Web Development Portfolio",
+            "14+ live websites and web apps built with Next.js, WordPress, and Shopify — with SEO, automation, and measurable results.",
             "/work",
             [
               { position: 1, name: "SEO Growth Case Study", url: "/work/seo-growth" },
-              { position: 2, name: "Paid Media Case Study", url: "/work/paid-media" },
-              { position: 3, name: "Automation Case Study", url: "/work/automation" },
+              { position: 2, name: "Automation Case Study", url: "/work/automation" },
+              { position: 3, name: "SEO Website Launch", url: "/work/seo-website-launch" },
+              { position: 4, name: "AI Call Centre", url: "/work/ai-call-centre" },
             ],
           ),
         ]}

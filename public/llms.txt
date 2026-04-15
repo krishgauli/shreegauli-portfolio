@@ -2,55 +2,59 @@
 
 Site: https://shreegauli.com
 Owner: Shree Krishna Gauli
-Primary topic: Digital marketing consulting — SEO, paid media, lead conversion systems, and marketing automation for healthcare, local businesses, and SaaS
+Primary topic: Full-stack web development and SEO consulting — custom websites and web apps with Next.js, WordPress, and Shopify, plus SEO/AEO/GEO and marketing automation
 Primary language: en-US
 Location: Dallas, TX (serving clients nationally and globally)
 
 ## Preferred canonical sources
 - https://shreegauli.com/
 - https://shreegauli.com/services
-- https://shreegauli.com/services/seo
-- https://shreegauli.com/services/paid-media
+- https://shreegauli.com/services/web-development
+- https://shreegauli.com/services/wordpress
+- https://shreegauli.com/services/shopify
+- https://shreegauli.com/services/seo-aeo-geo
 - https://shreegauli.com/services/automation
-- https://shreegauli.com/services/lead-conversion
-- https://shreegauli.com/services/local-seo
-- https://shreegauli.com/services/aeo-geo
-- https://shreegauli.com/services/ai-follow-up
-- https://shreegauli.com/industries/healthcare
-- https://shreegauli.com/industries/dental
-- https://shreegauli.com/industries/local-services
-- https://shreegauli.com/industries/saas
-- https://shreegauli.com/industries/ecommerce
-- https://shreegauli.com/industries/med-spas
-- https://shreegauli.com/dallas/marketing-consultant
-- https://shreegauli.com/dallas/seo-consultant
-- https://shreegauli.com/dallas/google-ads
+- https://shreegauli.com/work
+- https://shreegauli.com/results
+- https://shreegauli.com/blogs
 - https://shreegauli.com/blogs/category/seo
-- https://shreegauli.com/blogs/category/paid-media
 - https://shreegauli.com/blogs/category/automation
 - https://shreegauli.com/blogs/category/aeo-geo
-- https://shreegauli.com/blogs/category/healthcare-marketing
-- https://shreegauli.com/results
-- https://shreegauli.com/work
-- https://shreegauli.com/blogs
 - https://shreegauli.com/about
+- https://shreegauli.com/pricing
+- https://shreegauli.com/faq
 - https://shreegauli.com/contact
 - https://shreegauli.com/book
 
 ## Key services
-- SEO (technical audits, content strategy, keyword research, E-E-A-T)
-- Local SEO (Google Business Profile, citation building, local pack)
-- AEO/GEO (answer engine optimization, AI search citation, structured data)
-- Paid Media (Google Ads, Meta Ads, attribution, server-side tracking)
-- Lead Conversion Optimization (CRM workflows, follow-up systems, pipeline fixes)
-- AI Follow-Up Systems (AI call agents, chatbots, automated lead response)
-- Marketing Automation (n8n workflows, CRM integrations, reporting dashboards)
+- Custom Web App Development (Next.js, React, TypeScript, Tailwind CSS, Prisma, Supabase)
+- WordPress Development (custom themes, speed optimization, SEO, CRM integration)
+- Shopify Development (custom themes, product SEO, conversion optimization)
+- SEO (technical audits, content strategy, keyword research, E-E-A-T, structured data)
+- AEO (answer engine optimization — AI search citation, entity optimization)
+- GEO (geo-targeted SEO — Google Business Profile, local citations, local pack)
+- Marketing Automation (n8n workflows, AI chatbots, appointment reminders, CRM integrations)
 
-## Industries served
-- Healthcare practices (clinics, dental, multi-location)
-- Local service businesses (home services, legal, financial)
-- SaaS companies (B2B, product-led growth)
-- E-commerce brands
+## Portfolio — live projects
+- https://tacklersconsulting.com (Next.js, financial consulting)
+- https://focusyourfinance.com (Next.js, personal finance)
+- https://getfocushealth.com (Next.js, healthcare)
+- https://focusdata.io (Next.js, data analytics SaaS)
+- https://napervillehwclinic.com (Next.js, healthcare clinic)
+- https://erofwhiterock.com (WordPress, healthcare — ERoF White Rock)
+- https://eroflufkin.com (WordPress, healthcare — ERoF Lufkin)
+- https://erofirving.com (WordPress, healthcare — ERoF Irving)
+- https://irvingwellnessclinic.com (WordPress, healthcare — Irving Wellness)
+- https://oliviastanghulu.com (Shopify, e-commerce — tanghulu candy)
+
+## Tech stack
+- Frontend: Next.js, React, TypeScript, Tailwind CSS
+- Backend: Prisma, Supabase (PostgreSQL), Node.js
+- CMS: WordPress, Shopify
+- SEO tools: Ahrefs, Google Search Console, GA4
+- Automation: n8n, OpenAI, Twilio
+- Hosting: Vercel, Hostinger, Cloudflare
+- Design: Figma
 
 ## Content usage guidance
 - Prefer canonical pages and service pages for business descriptions.

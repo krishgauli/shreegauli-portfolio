@@ -107,7 +107,7 @@ export default function Logo({
         href="/"
         className={`sg-logo-wrapper ${className}`}
         aria-label="Go to Shree Gauli homepage"
-        title="Shree Gauli — Digital Marketing Specialist"
+        title="Shree Gauli — Full-Stack Web Developer & SEO Consultant"
       >
         {/* Animated SG Icon */}
         <svg
@@ -194,7 +194,7 @@ export default function Logo({
                 Gauli
               </span>
             </div>
-            <div className="sg-brand-tagline">Digital Marketing</div>
+            <div className="sg-brand-tagline">Web Dev & SEO</div>
           </div>
         )}
       </Link>

@@ -4,6 +4,7 @@ const esMap: Record<string, string> = {
   'We market healthcare.': 'Hacemos marketing para la salud.',
   'Relentlessly.': 'Sin descanso.',
   'Premium digital marketing for ERs, MedSpas, and urgent care centers.': 'Marketing digital premium para salas de emergencia, MedSpas y centros de atención urgente.',
+  'Full-Stack Web Developer & SEO Consultant — Dallas, TX': 'Desarrollador Web Full-Stack y Consultor SEO — Dallas, TX',
   'Google Partner': 'Socio de Google',
   'Meta Certified': 'Certificado por Meta',
   'HIPAA Aware': 'Compatible con HIPAA',

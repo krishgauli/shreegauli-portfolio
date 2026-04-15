@@ -120,7 +120,7 @@ export function personSchema() {
     name: "Shree Krishna Gauli",
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
-    jobTitle: "Digital Marketing Consultant",
+    jobTitle: "Full-Stack Web Developer & SEO Consultant",
     worksFor: {
       "@type": "Organization",
       name: "Shree Gauli Consulting",
@@ -134,12 +134,17 @@ export function personSchema() {
     },
     sameAs: ["https://www.linkedin.com/in/gauli/"],
     knowsAbout: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "WordPress",
+      "Shopify",
       "SEO",
-      "Google Ads",
-      "Marketing Automation",
-      "Lead Conversion Optimization",
       "AEO/GEO",
-      "Healthcare Marketing",
+      "n8n Automation",
+      "Tailwind CSS",
+      "Prisma",
+      "Supabase",
     ],
   };
 }
@@ -150,10 +155,10 @@ export function websiteSearchActionSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Shree Gauli — Digital Marketing Consultant",
+    name: "Shree Gauli — Full-Stack Web Developer & SEO Consultant",
     url: SITE_URL,
     description:
-      "Dallas-based digital marketing consultant specializing in SEO, Google Ads, and lead conversion systems for healthcare practices and service businesses.",
+      "Full-stack web developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation for businesses across the US.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -196,7 +201,7 @@ export function articleSchema(input: ArticleSchemaInput) {
       "@type": "Person",
       name: "Shree Krishna Gauli",
       url: SITE_URL,
-      jobTitle: "Digital Marketing Consultant",
+      jobTitle: "Full-Stack Web Developer & SEO Consultant",
       sameAs: ["https://www.linkedin.com/in/gauli/"],
     },
     publisher: {
@@ -242,7 +247,7 @@ export function aggregateRatingSchema(reviews: ReviewInput[]) {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Shree Gauli — Digital Marketing Consultant",
+    name: "Shree Gauli — Full-Stack Web Developer & SEO Consultant",
     url: SITE_URL,
     aggregateRating: {
       "@type": "AggregateRating",
@@ -304,11 +309,11 @@ export function professionalServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Shree Gauli — Digital Marketing Consultant",
+    name: "Shree Gauli — Full-Stack Web Developer & SEO Consultant",
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
     description:
-      "Dallas-based digital marketing consultant specializing in SEO, Google Ads, and lead conversion systems for healthcare practices and service businesses.",
+      "Full-stack web developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation for businesses across the US.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dallas",
@@ -328,42 +333,51 @@ export function professionalServiceSchema() {
     priceRange: "$$",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Marketing Services",
+      name: "Web Development & SEO Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "SEO & Content Strategy",
+            name: "Custom Web App Development",
             description:
-              "Technical audits, keyword strategy, and content systems for organic growth.",
+              "Custom websites and web applications built with Next.js, React, TypeScript, and Tailwind CSS.",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Google Ads & Paid Media",
+            name: "WordPress Development",
             description:
-              "Campaign management with real attribution and conversion tracking.",
+              "Professional WordPress sites with custom themes, speed optimization, and SEO.",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Lead Conversion & Automation",
+            name: "Shopify Development",
             description:
-              "CRM workflows, AI follow-up, and lead-routing systems.",
+              "Shopify stores with custom theme design, product SEO, and conversion optimization.",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Reporting & Dashboards",
+            name: "SEO / AEO / GEO",
             description:
-              "Live dashboards tied to business outcomes with GA4 and Looker Studio.",
+              "Technical SEO, AI search optimization, and geo-targeted search strategies.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Marketing Automation",
+            description:
+              "n8n workflows, AI chatbots, appointment reminders, and CRM integrations.",
           },
         },
       ],

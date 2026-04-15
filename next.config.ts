@@ -58,6 +58,71 @@ const nextConfig: NextConfig = {
         destination: "/lp/book-a-call",
         permanent: true,
       },
+      // Old service pages → new equivalents
+      {
+        source: "/services/seo",
+        destination: "/services/seo-aeo-geo",
+        permanent: true,
+      },
+      {
+        source: "/services/local-seo",
+        destination: "/services/seo-aeo-geo",
+        permanent: true,
+      },
+      {
+        source: "/services/aeo-geo",
+        destination: "/services/seo-aeo-geo",
+        permanent: true,
+      },
+      {
+        source: "/services/paid-media",
+        destination: "/services",
+        permanent: true,
+      },
+      {
+        source: "/services/social-media",
+        destination: "/services",
+        permanent: true,
+      },
+      {
+        source: "/services/lead-conversion",
+        destination: "/services/automation",
+        permanent: true,
+      },
+      {
+        source: "/services/ai-follow-up",
+        destination: "/services/automation",
+        permanent: true,
+      },
+      // Old industry pages → portfolio
+      {
+        source: "/industries/:slug",
+        destination: "/work",
+        permanent: true,
+      },
+      // Old Dallas geo pages → homepage
+      {
+        source: "/dallas/:slug",
+        destination: "/",
+        permanent: true,
+      },
+      // Old landing page
+      {
+        source: "/lp/marketing-services",
+        destination: "/services",
+        permanent: true,
+      },
+      // Old case study slugs that no longer exist
+      {
+        source: "/work/paid-media",
+        destination: "/work",
+        permanent: true,
+      },
+      {
+        source: "/work/lead-conversion-fix",
+        destination: "/work",
+        permanent: true,
+      },
     ];
   },
 };

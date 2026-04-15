@@ -8,11 +8,11 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { BookingClient } from "@/app/book/BookingClient";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Book a Free Strategy Call | Digital Marketing Consultation",
+  title: "Book a Free Strategy Call | Web Development & SEO Consultation",
   description:
-    "Book a 30-minute strategy call to review the bottleneck, current channels, and the next highest-leverage fix.",
+    "Book a 30-minute strategy call to review your website, tech stack, and SEO — and map out the next highest-leverage move.",
   path: "/lp/book-a-call",
-  keywords: ["book marketing call", "free strategy call", "SEO consultation", "marketing consultation"],
+  keywords: ["book web development call", "free strategy call", "SEO consultation", "website consultation"],
 });
 
 export default function BookCallLandingPage() {
@@ -24,7 +24,7 @@ export default function BookCallLandingPage() {
           <SectionHeader
             eyebrow="Landing Page"
             title="Book a focused strategy call"
-            subtitle="Use this when you already know you want to talk through the bottleneck, the current stack, and the next best move."
+            subtitle="Use this when you already know you want to talk through your website, tech stack, SEO, or automation needs."
           />
 
           <div className="mb-8 grid gap-6 md:grid-cols-3">
@@ -34,11 +34,11 @@ export default function BookCallLandingPage() {
             </ModuleShell>
             <ModuleShell className="p-5">
               <p className="text-lg font-semibold text-[#F8FAFC]">No pitch deck</p>
-              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">We focus on your current traffic, offers, tracking, and handoff issues instead of a generic presentation.</p>
+              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">We focus on your current website, SEO performance, and tech requirements instead of a generic presentation.</p>
             </ModuleShell>
             <ModuleShell className="p-5">
               <p className="text-lg font-semibold text-[#F8FAFC]">Clear next step</p>
-              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">You should leave knowing whether the right move is an audit, an execution sprint, or no project at all yet.</p>
+              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">You leave knowing whether the right move is a new build, an SEO sprint, automation setup, or no project at all yet.</p>
             </ModuleShell>
           </div>
 

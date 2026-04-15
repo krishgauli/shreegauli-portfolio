@@ -11,84 +11,121 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Marketing Automation Consultant | n8n, CRM, Reporting",
+  title: "Marketing Automation & AI Follow-Up Systems | n8n, CRM & AI Bots",
   description:
-    "Build n8n workflows, CRM automation, and reporting systems that save time, reduce lead leakage, and improve visibility.",
+    "Custom n8n workflows, AI chatbot lead capture, automated appointment reminders, review collection, and CRM integration — so you never lose a lead again.",
   path: "/services/automation",
   keywords: [
-    "marketing automation consultant",
     "n8n automation",
-    "CRM integration",
-    "reporting dashboards",
-    "workflow automation",
-    "business process automation",
+    "marketing automation",
+    "AI chatbot",
+    "CRM automation",
+    "appointment reminders",
+    "review automation",
+    "lead follow-up automation",
+    "AI call center",
   ],
 });
 
 const process = [
   {
     step: "01",
-    title: "Process Mapping",
+    title: "Workflow Audit",
     description:
-      "Document current manual workflows, identify bottlenecks, and map out the ideal automated state for each process.",
+      "Map your current lead flow, follow-up process, appointment scheduling, and review collection to identify bottlenecks and manual steps to automate.",
   },
   {
     step: "02",
-    title: "Tool Selection",
+    title: "Tool Stack Selection",
     description:
-      "Choose the right stack for your needs — n8n, Make, Zapier, or custom solutions — based on complexity, budget, and integration requirements.",
+      "Select the right tools — n8n for orchestration, Twilio for SMS/voice, OpenAI for AI responses, CRM integration, calendar booking, and review platforms.",
   },
   {
     step: "03",
-    title: "Workflow Build",
+    title: "Workflow Design",
     description:
-      "Build automated workflows with error handling, retry logic, and monitoring. Every workflow is production-grade from day one.",
+      "Design automations from trigger to action: lead capture → qualification → CRM entry → follow-up sequence → booking → reminder → post-visit review request.",
   },
   {
     step: "04",
-    title: "CRM Integration",
+    title: "Build & Integrate",
     description:
-      "Connect your CRM, email platform, ad accounts, and internal tools into a unified data pipeline.",
+      "Build the workflows in n8n, connect your CRM, configure AI prompts, set up SMS/email templates, and wire everything into your existing tech stack.",
   },
   {
     step: "05",
-    title: "Dashboard Setup",
+    title: "Test & Refine",
     description:
-      "Build live reporting dashboards that pull from all sources. No more manual spreadsheet updates or end-of-month scrambles.",
+      "Run live tests through every automation path. Verify data flows, timing, AI response quality, and fallback logic before going live.",
   },
   {
     step: "06",
-    title: "Training & Handoff",
+    title: "Launch & Monitor",
     description:
-      "Document everything. Train your team on how to use, maintain, and extend the automations without ongoing dependency on me.",
+      "Deploy to production, monitor execution logs, track conversion rates, and iterate on messaging and timing based on real performance data.",
+  },
+];
+
+const automationTypes = [
+  {
+    title: "AI Chatbot Lead Capture",
+    description:
+      "Website chatbots that qualify leads, answer FAQs, capture contact info, and book appointments — powered by OpenAI, running 24/7.",
+  },
+  {
+    title: "Appointment Reminders & No-Show Recovery",
+    description:
+      "Automated SMS/email reminders before appointments, plus follow-up sequences for missed appointments to recover lost revenue.",
+  },
+  {
+    title: "Google Review Collection",
+    description:
+      "Post-visit automation that sends review requests via SMS/email at the right time with direct Google review links.",
+  },
+  {
+    title: "Patient/Client Intake",
+    description:
+      "Digital intake forms that auto-populate your CRM, trigger pre-appointment workflows, and eliminate paper-based processes.",
+  },
+  {
+    title: "Social Media Auto-Posting",
+    description:
+      "Content scheduling workflows that repurpose blog posts and updates across platforms automatically via n8n.",
+  },
+  {
+    title: "AI Call Centre & Voice Bots",
+    description:
+      "Twilio + OpenAI-powered voice bots that answer calls, qualify leads, book appointments, and escalate to humans when needed.",
   },
 ];
 
 const deliverables = [
-  "Process audit and automation roadmap",
-  "Custom n8n / Make workflow builds",
-  "CRM and tool integrations (HubSpot, Salesforce, etc.)",
-  "Live reporting dashboard",
-  "Error monitoring and alerting setup",
-  "Documentation and team training",
+  "Custom n8n workflow design & deployment",
+  "AI chatbot (OpenAI-powered) for lead capture",
+  "Automated appointment reminder sequences",
+  "Google review request automation",
+  "CRM integration (GoHighLevel, HubSpot, etc.)",
+  "SMS/email follow-up sequences via Twilio",
+  "Social media auto-posting workflow",
+  "Workflow documentation & training",
 ];
 
 const faqs = [
   {
-    q: "What tools do you work with?",
-    a: "Primarily n8n (self-hosted for full control), but also Make and Zapier depending on the use case. For CRM, I work with HubSpot, Salesforce, Pipedrive, and others. For reporting: Looker Studio, custom dashboards, and Google Sheets as a last resort.",
+    q: "What is n8n and why do you use it?",
+    a: "n8n is an open-source workflow automation platform — like Zapier but more powerful and cost-effective. It lets me build complex multi-step automations with branching logic, AI integration, and custom code nodes. You can self-host it for full data control.",
   },
   {
-    q: "How much time can automation actually save?",
-    a: "It depends on your current processes, but most clients save 15-25 hours per week across their team. My highest-impact project saved a team of 6 over 30 hours weekly by automating reporting and lead routing.",
+    q: "Can you integrate with my existing CRM?",
+    a: "Yes. I work with GoHighLevel, HubSpot, Salesforce, and most CRMs that have an API. The automation workflows connect directly to your CRM so leads, appointments, and follow-ups are synced in real time.",
   },
   {
-    q: "Will I be dependent on you to maintain the workflows?",
-    a: "No. Everything I build comes with documentation and training. The goal is to hand off fully functional systems your team can manage. I\u2019m available for ongoing support if needed, but it\u2019s not required.",
+    q: "How much does automation cost?",
+    a: "Project pricing depends on the number of workflows and complexity. A basic chatbot + review automation starts around $2,000. Multi-workflow systems with AI, voice bots, and CRM integration are scoped individually.",
   },
   {
-    q: "What\u2019s the typical timeline for an automation project?",
-    a: "Simple automations (lead routing, notifications) can be built in 1-2 weeks. Complex multi-system integrations with dashboards typically take 4-6 weeks. I scope every project upfront so there are no surprises.",
+    q: "Do I need technical knowledge to manage the automations?",
+    a: "No. I design workflows to run autonomously. You get a dashboard to monitor performance and I provide documentation for any adjustments you may need. I also offer ongoing management retainers.",
   },
 ];
 
@@ -103,20 +140,38 @@ export default function AutomationServicePage() {
           ]),
           faqPageSchema(faqs.map((f) => ({ question: f.q, answer: f.a }))),
           serviceSchema({
-            name: "Reporting & Automation Services",
-            description: "Build n8n workflows, CRM automation, and reporting systems that save time, reduce lead leakage, and improve visibility.",
+            name: "Marketing Automation & AI Follow-Up Systems",
+            description: "Custom n8n workflows, AI chatbots, appointment reminders, review automation, and CRM integration to automate your lead flow.",
             path: "/services/automation",
           }),
         ]}
       />
+
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeader
-            eyebrow="Reporting & Automation"
-            title="Eliminate the manual work that slows you down"
-            subtitle="n8n workflows, CRM integrations, and reporting dashboards that save 20+ hours per week and eliminate human error."
+            eyebrow="Automation"
+            title="Stop losing leads. Automate follow-up, booking, and reviews."
+            subtitle="Custom n8n workflows, AI chatbots, and automated sequences that capture leads, book appointments, collect reviews, and follow up — so nothing slips through the cracks."
           />
+        </div>
+      </section>
+
+      {/* Automation Types */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">What I automate</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {automationTypes.map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 0.06}>
+                <ModuleShell className="p-6 h-full">
+                  <h3 className="text-base font-bold text-[#F8FAFC]">{item.title}</h3>
+                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
+                </ModuleShell>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -128,11 +183,9 @@ export default function AutomationServicePage() {
             {process.map((item, i) => (
               <ScrollReveal key={item.step} delay={i * 0.06}>
                 <ModuleShell className="p-6 h-full">
-                  <span className="text-xs font-bold text-[#34D399]">{item.step}</span>
+                  <span className="text-xs font-bold text-[#22D3EE]">{item.step}</span>
                   <h3 className="text-base font-bold text-[#F8FAFC] mt-2">{item.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">
-                    {item.description}
-                  </p>
+                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -148,11 +201,25 @@ export default function AutomationServicePage() {
             <ul className="grid sm:grid-cols-2 gap-3">
               {deliverables.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-[#94A3B8]">
-                  <CheckCircle2 className="h-4 w-4 text-[#34D399] mt-0.5 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-[#22D3EE] mt-0.5 shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
+          </ModuleShell>
+        </div>
+      </section>
+
+      {/* n8n Templates callout */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <ModuleShell className="p-8 text-center">
+            <h2 className="text-lg font-bold text-[#F8FAFC]">Pre-built n8n templates available</h2>
+            <p className="text-sm text-[#94A3B8] mt-2 max-w-xl mx-auto">
+              I maintain a library of battle-tested n8n workflow templates for common automations —
+              chatbot lead capture, appointment reminders, review collection, insurance verification,
+              and social media posting. These accelerate deployment and reduce cost.
+            </p>
           </ModuleShell>
         </div>
       </section>
@@ -175,13 +242,13 @@ export default function AutomationServicePage() {
       {/* Related Services */}
       <section className="relative z-10 pb-20 px-6">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Related Services</h2>
+          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Related services</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              { title: "AI Follow-Up", description: "Respond to every lead in under 60 seconds.", href: "/services/ai-follow-up" },
-              { title: "Lead Conversion", description: "Fix the gap between leads and revenue.", href: "/services/lead-conversion" },
-              { title: "SEO", description: "Technical audits, content strategy, and sustainable organic growth.", href: "/services/seo" },
-              { title: "Paid Media", description: "Google Ads and Meta campaigns that actually convert.", href: "/services/paid-media" },
+              { title: "Web App Development", description: "Custom Next.js sites with built-in chatbot and form integrations.", href: "/services/web-development" },
+              { title: "WordPress Development", description: "WordPress sites with CRM and automation hooks.", href: "/services/wordpress" },
+              { title: "Shopify Development", description: "E-commerce stores with automated review and follow-up.", href: "/services/shopify" },
+              { title: "SEO / AEO / GEO", description: "Search optimization that drives the leads your automations capture.", href: "/services/seo-aeo-geo" },
             ].map((svc) => (
               <Link key={svc.title} href={svc.href}>
                 <ModuleShell className="p-5 h-full" enableHoverLift>

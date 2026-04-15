@@ -12,45 +12,51 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Shree Krishna Gauli | Digital Marketing Consultant — Dallas, TX",
+  title: "About Shree Krishna Gauli | Full-Stack Web Developer & SEO Consultant — Dallas, TX",
   description:
-    "Shree Krishna Gauli helps healthcare practices, local businesses, and SaaS teams turn SEO, paid media, and automation into measurable revenue. Based in Dallas, working globally.",
+    "Full-stack developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation. Based in Dallas, working globally.",
   path: "/about",
-  keywords: ["about shree gauli", "digital marketing consultant dallas", "SEO specialist dallas", "healthcare marketing consultant"],
+  keywords: ["about shree gauli", "full-stack web developer dallas", "Next.js developer", "SEO consultant dallas"],
 });
 
 const timeline = [
   {
     period: "2024 — Present",
-    role: "Independent Digital Marketing Consultant",
+    role: "Full-Stack Web Developer & SEO Consultant",
     description:
-      "Working directly with healthcare practices, local service businesses, and SaaS teams on SEO, AEO/GEO, paid media, lead-conversion systems, and marketing automation. Building revenue-focused systems without the agency overhead.",
+      "Building custom websites and web apps with Next.js, WordPress, and Shopify for healthcare, finance, SaaS, and e-commerce businesses. Handling design, development, SEO, and automation end-to-end. 14+ projects shipped.",
   },
   {
     period: "2022 — 2024",
-    role: "Marketing Operations & SEO Lead",
+    role: "Web Developer & SEO Specialist",
     description:
-      "Managed organic and paid channels for healthcare and e-commerce brands. Built reporting dashboards and automated lead-routing workflows that saved teams 20+ hours weekly and increased conversion rates by 3×.",
+      "Built WordPress sites for multi-location healthcare practices. Developed SEO strategies that drove 340% organic growth. Created n8n automation workflows saving 20+ hours weekly. Began transitioning to full-stack JavaScript.",
   },
   {
     period: "2020 — 2022",
-    role: "Digital Marketing Foundations",
+    role: "Marketing & Web Foundations",
     description:
-      "Developed core skills in SEO, AEO/GEO, Google Analytics, advertising platforms, CRM management, and marketing technology. Earned Google Ads and Analytics certifications while working on real campaigns.",
+      "Developed core skills in SEO, web development, Google Analytics, CRM management, and marketing technology. Started building WordPress sites and learning React/Next.js.",
   },
 ];
 
 const tools = [
+  { name: "Next.js", category: "Framework" },
+  { name: "React", category: "Framework" },
+  { name: "TypeScript", category: "Language" },
+  { name: "Tailwind CSS", category: "Styling" },
+  { name: "Prisma", category: "ORM" },
+  { name: "Supabase", category: "Database" },
+  { name: "WordPress", category: "CMS" },
+  { name: "Shopify", category: "E-Commerce" },
+  { name: "Vercel", category: "Hosting" },
+  { name: "VS Code", category: "Editor" },
+  { name: "Figma", category: "Design" },
+  { name: "Git / GitHub", category: "Version Control" },
+  { name: "n8n", category: "Automation" },
   { name: "Ahrefs", category: "SEO" },
-  { name: "Screaming Frog", category: "SEO" },
   { name: "Google Search Console", category: "SEO" },
   { name: "GA4", category: "Analytics" },
-  { name: "Looker Studio", category: "Analytics" },
-  { name: "Meta Ads Manager", category: "Paid" },
-  { name: "Google Ads", category: "Paid" },
-  { name: "n8n", category: "Automation" },
-  { name: "Make", category: "Automation" },
-  { name: "HubSpot", category: "CRM" },
   { name: "ChatGPT / Claude", category: "AI" },
 ];
 
@@ -103,8 +109,8 @@ export default function AboutPage() {
                 </div>
                 <div className="p-5">
                   <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>
-                  <p className="text-sm text-[#94A3B8] mt-0.5">Digital Marketing Consultant — SEO, Paid Media &amp; Automation</p>
-                  <p className="text-xs text-[#94A3B8]/80 mt-1">Trusted by 14+ Clients</p>
+                  <p className="text-sm text-[#94A3B8] mt-0.5">Full-Stack Web Developer &amp; SEO Consultant</p>
+                  <p className="text-xs text-[#94A3B8]/80 mt-1">14+ Websites Shipped</p>
                   <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Working globally</p>
                   <div className="flex gap-3 mt-4">
                     <Link
@@ -132,22 +138,23 @@ export default function AboutPage() {
                 />
                 <div className="space-y-4 text-[#94A3B8] leading-relaxed">
                   <p>
-                    I&apos;m a digital marketing consultant who helps healthcare
-                    practices, local service businesses, and SaaS teams turn
-                    traffic into revenue. My focus is SEO, AEO/GEO, paid media,
-                    and the automation systems that make lead follow-up instant
-                    and measurement airtight.
+                    I&apos;m a full-stack web developer and SEO consultant who builds
+                    custom websites, web apps, and e-commerce stores with Next.js,
+                    WordPress, and Shopify. Every project ships with SEO baked in
+                    from day one — structured data, technical optimization, and
+                    content strategy included.
                   </p>
                   <p>
-                    I&apos;ve worked with brands in healthcare, SaaS, e-commerce, and
-                    local services across the US and internationally. My north star
-                    is outcomes that matter to the business — not vanity metrics.
+                    I&apos;ve shipped 14+ projects for healthcare, finance, SaaS, and
+                    e-commerce businesses across the US. My stack is React,
+                    TypeScript, Tailwind CSS, Prisma, and Supabase for web apps —
+                    plus WordPress and Shopify when they&apos;re the right tool.
                   </p>
                   <p>
-                    I work directly with founders and marketing leads. No account
-                    managers, no junior handoffs, no multi-week approval chains.
-                    You get strategy and execution from the same person — which
-                    means faster iteration and better results.
+                    I work directly with founders and business owners. No account
+                    managers, no junior handoffs. You get design, development,
+                    SEO, and automation from the same person — which means faster
+                    iteration and better results.
                   </p>
                 </div>
               </div>
@@ -161,23 +168,23 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-[#F8FAFC] mb-2">How I work</h2>
           <p className="text-sm text-[#94A3B8] mb-8 max-w-2xl">
-            Every engagement follows the same core methodology, adapted to what the brand actually needs.
+            Every project follows the same core methodology, adapted to what the business actually needs.
           </p>
           <div className="grid sm:grid-cols-3 gap-5">
             {[
               {
-                title: "Audit First",
-                body: "Before any strategy, I audit what exists. Data, channels, content, tracking — everything gets reviewed so we start from facts, not assumptions.",
+                title: "Design",
+                body: "Wireframes and visual design in Figma before writing a single line of code. You see the layout, approve it, and then I build it.",
                 color: "#22D3EE",
               },
               {
-                title: "Build Systems",
-                body: "I don\u2019t just run campaigns — I build the systems around them. Reporting, automation, and processes that keep working after I\u2019m done.",
+                title: "Develop & Optimize",
+                body: "Clean code, fast pages, and SEO built in from the start. Every site ships with structured data, Core Web Vitals tuned, and mobile-first responsive design.",
                 color: "#7C3AED",
               },
               {
-                title: "Measure Everything",
-                body: "Every initiative ties back to a metric. If we can\u2019t measure it, we don\u2019t do it. Monthly reports are clear, actionable, and honest.",
+                title: "Launch & Iterate",
+                body: "Deploy to production, set up analytics, and monitor performance. Post-launch SEO, content updates, and automation workflows keep things growing.",
                 color: "#34D399",
               },
             ].map((item) => (
@@ -274,11 +281,12 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold text-[#F8FAFC] mb-4">Outside of work</h2>
           <ModuleShell className="p-6">
             <p className="text-sm text-[#94A3B8] leading-relaxed">
-              When I&apos;m not building campaigns or automation workflows, you&apos;ll
-              find me hiking, working on open-source projects, or learning
-              whatever the next useful thing is — currently: React, ML pipelines,
-              and DevOps fundamentals. I believe the best marketers are the ones
-              who never stop learning how things actually work under the hood.
+              When I&apos;m not shipping websites or building automation workflows,
+              you&apos;ll find me hiking, contributing to open-source projects, or
+              learning whatever the next useful thing is — currently deep into
+              AI integrations, edge computing, and DevOps. I believe the best
+              developers are the ones who never stop learning how things
+              actually work under the hood.
             </p>
           </ModuleShell>
         </div>

@@ -8,45 +8,44 @@ import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection"
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
-import { ArrowRight, TrendingUp, Zap, Clock, Target, BarChart3, Users } from "lucide-react";
+import { ArrowRight, TrendingUp, Zap, Clock, Globe, Code2, BarChart3 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Results & Case Studies | Proven Marketing Outcomes",
+  title: "Results & Case Studies | Websites Built, Rankings Earned",
   description:
-    "Real results from real businesses: 100x conversion lifts, 340% organic growth, 4.8x ROAS, and 20+ hours saved weekly. See the proof behind every claim.",
+    "Real results from real projects: 14+ websites shipped, 5 Next.js web apps, 340% organic growth, and 20+ hours saved weekly through automation.",
   path: "/results",
   keywords: [
-    "digital marketing results",
-    "marketing case studies",
-    "SEO results",
-    "conversion rate improvement",
-    "marketing ROI proof",
-    "lead conversion case study",
+    "web development results",
+    "SEO case studies",
+    "Next.js portfolio",
+    "WordPress results",
+    "website development case studies",
   ],
 });
 
 /* ── Headline metrics ─────────────────────────────────────────── */
 const headlineStats = [
   {
-    icon: TrendingUp,
-    value: "100x",
-    label: "Conversion Lift",
-    detail: "0.1% → 10% for a multi-location clinic — without changing a single ad.",
+    icon: Code2,
+    value: "14+",
+    label: "Websites Shipped",
+    detail: "Next.js, WordPress, and Shopify sites — designed, developed, and deployed.",
     color: "#7C3AED",
   },
   {
-    icon: BarChart3,
-    value: "340%",
-    label: "Organic Growth",
-    detail: "From near-zero to consistent top-10 rankings in 8 months.",
+    icon: Globe,
+    value: "5",
+    label: "Next.js Web Apps",
+    detail: "Custom web applications built with React, TypeScript, Prisma, and Supabase.",
     color: "#22D3EE",
   },
   {
-    icon: Target,
-    value: "4.8x",
-    label: "Peak ROAS",
-    detail: "On a $30K/month ad budget — rebuilt from 1.2x in one quarter.",
-    color: "#7C3AED",
+    icon: TrendingUp,
+    value: "340%",
+    label: "Organic Growth",
+    detail: "From near-zero to consistent top-10 rankings in 8 months with technical SEO.",
+    color: "#22D3EE",
   },
   {
     icon: Clock,
@@ -59,14 +58,14 @@ const headlineStats = [
     icon: Zap,
     value: "<1 min",
     label: "Lead Response Time",
-    detail: "AI call agent responding to every new lead within 60 seconds.",
+    detail: "AI call agent responding to every new lead within 60 seconds, 24/7.",
     color: "#22D3EE",
   },
   {
-    icon: Users,
-    value: "10–12",
-    label: "New Clients / Month",
-    detail: "Generated entirely by AI-powered follow-up — no additional ad spend.",
+    icon: BarChart3,
+    value: "9.4K",
+    label: "Impressions in 60 Days",
+    detail: "New clinic site built in one day — 9,410 impressions and 252 clicks in 2 months.",
     color: "#F59E0B",
   },
 ];
@@ -74,44 +73,14 @@ const headlineStats = [
 /* ── Case studies ─────────────────────────────────────────────── */
 const caseStudies = [
   {
-    title: "From 0.1% to 10% conversion rate — without changing a single ad",
-    client: "Multi-Location Clinic",
-    industry: "Healthcare",
-    result: "100x conversion lift in 30 days",
-    description:
-      "The client was spending $6K/month on ads, generating 300 leads, but converting at 0.1%. We audited the full funnel and found the problem was follow-up — not the ads. With a dedicated follow-up hire, structured call scripts, and CRM-based sequences, conversion jumped to 10% in one month.",
-    tags: ["Lead Conversion", "Google Ads", "Process Fix"],
-    href: "/work/lead-conversion-fix",
-  },
-  {
     title: "Organic search rebuilt from near-zero to consistent top-10 rankings",
     client: "Healthcare SaaS",
     industry: "Healthcare",
     result: "340% organic growth in 8 months",
     description:
-      "No SEO foundation, thin content, zero domain presence. We re-engineered the site architecture, deployed 50+ deep-dive clinical articles, and built a backlink profile from Tier-1 medical publications. Indexing coverage went from 18% to 99%.",
-    tags: ["SEO", "Content", "Technical Audit"],
+      "No SEO foundation, thin content, zero domain presence. Re-engineered site architecture, deployed 50+ deep-dive clinical articles, and built a backlink profile from Tier-1 medical publications. Indexing coverage went from 18% to 99%.",
+    tags: ["SEO", "Content Strategy", "Technical Audit"],
     href: "/work/seo-growth",
-  },
-  {
-    title: "Paid media overhaul: from 1.2x ROAS to 4.8x in one quarter",
-    client: "E-Commerce Brand",
-    industry: "E-Commerce",
-    result: "4.8x ROAS on $30K/month budget",
-    description:
-      "The brand was spending $30K/month with no attribution model and overlapping campaigns. We implemented server-side tracking, consolidated 12 campaigns to 4 pillars, and built a systematic creative testing framework. CAC dropped 42%.",
-    tags: ["Meta Ads", "Google Ads", "Attribution"],
-    href: "/work/paid-media",
-  },
-  {
-    title: "AI call centre agent turns missed leads into 10–12 new clients per month",
-    client: "Service-Based Business",
-    industry: "Local Services",
-    result: "10–12 new clients/month via AI follow-up",
-    description:
-      "Inconsistent manual follow-up meant leads waited 2–3 days for a callback. We built a conversational AI agent that calls or texts every new lead within 60 seconds, qualifying and scheduling automatically. Over 40 hours/month reclaimed.",
-    tags: ["AI Automation", "Lead Follow-Up", "CRM"],
-    href: "/work/ai-call-centre",
   },
   {
     title: "From zero to 9.41K impressions in 60 days with a one-day website build",
@@ -119,9 +88,19 @@ const caseStudies = [
     industry: "Healthcare",
     result: "9.41K impressions, 252 clicks in 60 days",
     description:
-      "Brand-new clinic, no website, no domain authority. We built a fully SEO-optimized site in one day, submitted the sitemap, set up Google Business Profile, and built local citations. Within 60 days: 9,410 impressions and 252 organic clicks.",
-    tags: ["SEO", "Web Development", "Local SEO"],
+      "Brand-new clinic, no website, no domain authority. Built a fully SEO-optimized site in one day, submitted the sitemap, set up Google Business Profile, and built local citations. Within 60 days: 9,410 impressions and 252 organic clicks.",
+    tags: ["Web Development", "SEO", "Local SEO"],
     href: "/work/seo-website-launch",
+  },
+  {
+    title: "AI call centre agent turns missed leads into 10–12 new clients per month",
+    client: "Service-Based Business",
+    industry: "Local Services",
+    result: "10–12 new clients/month via AI follow-up",
+    description:
+      "Inconsistent manual follow-up meant leads waited 2–3 days for a callback. Built a conversational AI agent that calls or texts every new lead within 60 seconds, qualifying and scheduling automatically. Over 40 hours/month reclaimed.",
+    tags: ["AI Automation", "Lead Follow-Up", "CRM"],
+    href: "/work/ai-call-centre",
   },
   {
     title: "Automated reporting and lead pipeline saving 20+ hours per week",
@@ -129,18 +108,18 @@ const caseStudies = [
     industry: "Local Services",
     result: "20+ hours saved weekly",
     description:
-      "The team was drowning in manual processes — copying data between tools, manually generating reports, chasing leads. We built 7 interconnected n8n workflows, unified 5 data sources into one CRM, and replaced manual reporting with live dashboards.",
+      "The team was drowning in manual processes — copying data between tools, manually generating reports, chasing leads. Built 7 interconnected n8n workflows, unified 5 data sources into one CRM, and replaced manual reporting with live dashboards.",
     tags: ["n8n", "CRM", "Automation"],
     href: "/work/automation",
   },
 ];
 
-/* ── Industries served ────────────────────────────────────────── */
-const industries = [
-  { name: "Healthcare & Dental", href: "/industries/healthcare" },
-  { name: "Local Service Businesses", href: "/industries/local-services" },
-  { name: "E-Commerce", href: "/industries/ecommerce" },
-  { name: "SaaS", href: "/industries/saas" },
+/* ── Technologies ────────────────────────────────────────────── */
+const technologies = [
+  { name: "Next.js & React", href: "/services/web-development" },
+  { name: "WordPress", href: "/services/wordpress" },
+  { name: "Shopify", href: "/services/shopify" },
+  { name: "SEO / AEO / GEO", href: "/services/seo-aeo-geo" },
 ];
 
 /* ── Component ────────────────────────────────────────────────── */
@@ -241,16 +220,16 @@ export default function ResultsPage() {
         </div>
       </section>
 
-      {/* Industries */}
+      {/* Technologies */}
       <section className="relative z-10 pb-20 px-6">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Industries I work with</h2>
+          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Technologies I build with</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {industries.map((ind) => (
-              <ScrollReveal key={ind.name}>
-                <Link href={ind.href}>
+            {technologies.map((tech) => (
+              <ScrollReveal key={tech.name}>
+                <Link href={tech.href}>
                   <ModuleShell className="p-5 text-center" enableHoverLift>
-                    <p className="text-sm font-semibold text-[#F8FAFC]">{ind.name}</p>
+                    <p className="text-sm font-semibold text-[#F8FAFC]">{tech.name}</p>
                   </ModuleShell>
                 </Link>
               </ScrollReveal>

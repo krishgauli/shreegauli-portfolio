@@ -3,19 +3,19 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 const goodFit = [
-  "You're spending $3K–$10K+/mo on ads and leads aren't converting",
-  "Your follow-up process is manual, slow, or nonexistent",
-  "You've hired agencies before and the reporting was useless",
-  "You need one person who diagnoses and fixes across SEO, ads, and operations",
-  "You're in healthcare, local services, or growth-stage SaaS",
+  "You need a custom website or web app built with modern technology",
+  "You want SEO, AEO, and performance baked in from day one — not bolted on later",
+  "You need a WordPress or Shopify site built by a developer, not a page builder",
+  "You want one person who builds, optimizes, and maintains — no agency layers",
+  "You're in healthcare, finance, SaaS, or e-commerce and need a web presence that works",
 ];
 
 const notFit = [
-  "You need a social media manager to post daily content",
-  "You need brand identity, logo design, or video production",
-  "You want a 20-person agency team with dedicated account managers",
-  "You're pre-revenue and need general business advice",
-  "You need enterprise programmatic advertising",
+  "You need only logo design, branding, or video production",
+  "You want a cheap template site with no custom development",
+  "You need a 20-person agency team with project managers and account reps",
+  "You're looking for enterprise Java, .NET, or legacy system development",
+  "You need mobile app development (iOS/Android native)",
 ];
 
 export function WhoThisIsForSection() {
@@ -24,7 +24,7 @@ export function WhoThisIsForSection() {
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="Best Fit"
-          title="Built for teams with a revenue leak — not a traffic problem"
+          title="Built for businesses that need a website that works — not just looks good"
         />
 
         <div className="grid md:grid-cols-2 gap-6">

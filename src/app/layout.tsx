@@ -23,19 +23,22 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Shree Krishna Gauli — Digital Marketing Consultant",
+  title: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
   description:
-    "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.",
+    "Custom websites, web apps, and e-commerce stores built with Next.js, WordPress, and Shopify. SEO, AEO, and performance optimization baked in. 14+ projects shipped.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
   keywords: [
-    "digital marketing consultant",
+    "full-stack web developer",
+    "Next.js developer",
     "SEO consultant",
-    "Google Ads specialist",
-    "marketing automation",
+    "WordPress developer",
+    "Shopify developer",
+    "web app development",
+    "AEO GEO optimization",
     "Shree Krishna Gauli",
     "Dallas",
   ],
@@ -47,23 +50,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://shreegauli.com",
     siteName: "Shree Krishna Gauli",
-    title: "Shree Krishna Gauli — Digital Marketing Consultant",
+    title: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
     description:
-      "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.",
+      "Custom websites, web apps, and e-commerce stores built with Next.js, WordPress, and Shopify. SEO, AEO, and performance optimization baked in.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Shree Krishna Gauli — Digital Marketing Consultant",
+        alt: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shree Krishna Gauli — Digital Marketing Consultant",
+    title: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
     description:
-      "Work directly with Shree Krishna Gauli on SEO, Google Ads, and marketing automation systems built for measurable growth.",
+      "Custom websites, web apps, and e-commerce stores built with Next.js, WordPress, and Shopify. SEO, AEO, and performance optimization baked in.",
     images: ["/og-image.jpg"],
   },
   robots: {

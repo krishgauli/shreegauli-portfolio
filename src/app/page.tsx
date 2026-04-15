@@ -16,26 +16,28 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, personSchema, professionalServiceSchema, websiteSearchActionSchema, faqPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Digital Marketing Consultant Dallas | SEO, Google Ads & Lead Conversion",
+  title: "Full-Stack Web Developer & SEO Consultant Dallas | Next.js, WordPress, Shopify",
   description:
-    "Dallas-based marketing consultant specializing in SEO, Google Ads, and lead conversion systems for healthcare practices and service businesses. No agency layers. Strategy and execution from the same person.",
+    "Dallas-based full-stack web developer building custom websites, web apps, and e-commerce stores with Next.js, WordPress, and Shopify. SEO/AEO/GEO optimization built into every project. 14+ sites shipped.",
   path: "/",
   keywords: [
-    "digital marketing consultant dallas",
+    "full-stack web developer dallas",
+    "Next.js developer",
+    "WordPress developer dallas",
+    "Shopify developer",
     "SEO consultant dallas",
-    "Google Ads consultant",
-    "lead conversion optimization",
-    "healthcare marketing consultant",
+    "web app development",
+    "AEO GEO optimization",
   ],
 });
 
 export default function Home() {
   const homepageFaqs = [
-    { question: "What industries do you specialize in?", answer: "I primarily work with healthcare practices, dental clinics, med spas, and local service businesses. My systems are built for businesses that depend on local lead flow and patient acquisition." },
-    { question: "How is working with a consultant different from an agency?", answer: "You work directly with me — no account managers, no layers. I diagnose the problem, build the strategy, and execute the fix. That means faster turnaround, clearer communication, and no wasted retainer spend." },
-    { question: "What does a typical engagement look like?", answer: "Most engagements start with a diagnostic — a full audit of your SEO, ads, and lead flow. From there we prioritize the highest-impact fix first and build out a 90-day roadmap. No long-term contracts required." },
-    { question: "Do you only work with businesses in Dallas?", answer: "I'm based in Dallas, TX, but I work with clients across the US. Local SEO and Google Business Profile optimization are a core part of my work, but the systems I build work for any geography." },
-    { question: "What results can I expect and how fast?", answer: "Timelines vary, but most clients see measurable improvements within 30–60 days. SEO takes longer (3–6 months for compounding gains), while paid media and automation fixes often show results in the first 2–4 weeks." },
+    { question: "What tech stack do you use?", answer: "I primarily build with Next.js (React, TypeScript, Tailwind CSS) for custom websites and web apps, WordPress for content-driven business sites, and Shopify for e-commerce stores. Backend work uses Prisma, Supabase, and PostgreSQL." },
+    { question: "Do you build WordPress and Shopify sites too?", answer: "Yes. I\'ve built 4+ WordPress healthcare sites and a Shopify e-commerce store. WordPress is great for content-heavy businesses that need CMS flexibility. Shopify is ideal for product-based businesses that need optimized e-commerce infrastructure." },
+    { question: "How does SEO/AEO/GEO work with web development?", answer: "Every site I build has SEO baked in from day one — semantic HTML, structured data (JSON-LD), dynamic sitemaps, meta tags, Core Web Vitals optimization, and schema markup. AEO (Answer Engine Optimization) ensures your site gets cited by AI search engines like ChatGPT and Perplexity. GEO targets local search visibility." },
+    { question: "What\'s your development process?", answer: "Discovery → Design → Development → Launch & Optimize. I start with a deep dive into your business goals, build a wireframe plan, develop with modern tools, and launch with SEO, performance, and analytics in place. Most projects ship in 2–6 weeks." },
+    { question: "How long does a project take?", answer: "A standard website takes 1–3 weeks. A full-stack web app with auth, dashboards, and APIs takes 3–6 weeks. SEO retainers run monthly with measurable progress each month. Shopify and WordPress builds typically ship in 1–2 weeks." },
   ];
 
   return (

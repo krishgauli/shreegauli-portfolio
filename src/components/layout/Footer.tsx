@@ -5,14 +5,14 @@ import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
 const footerNav = {
   Services: [
-    { label: "SEO & Content", href: "/services/seo" },
-    { label: "Paid Media", href: "/services/paid-media" },
-    { label: "Lead Conversion", href: "/services/lead-conversion" },
-    { label: "Local SEO", href: "/services/local-seo" },
+    { label: "Web Development", href: "/services/web-development" },
+    { label: "WordPress", href: "/services/wordpress" },
+    { label: "Shopify", href: "/services/shopify" },
+    { label: "SEO / AEO / GEO", href: "/services/seo-aeo-geo" },
     { label: "Automation", href: "/services/automation" },
   ],
   Resources: [
-    { label: "Case Studies", href: "/work" },
+    { label: "Portfolio", href: "/work" },
     { label: "Blog", href: "/blogs" },
     { label: "Free SEO Audit", href: "/seo-tools" },
     { label: "Newsletter", href: "/newsletter" },
@@ -40,7 +40,7 @@ export function Footer() {
               <Logo showText={true} iconSize={48} darkText={false} compact={true} />
             </div>
             <p className="text-sm text-[#94A3B8] mt-1 leading-relaxed">
-              Digital Marketing Consultant — Dallas, TX · Serving healthcare, service businesses, and growth teams.
+              Full-Stack Web Developer &amp; SEO Consultant — Dallas, TX · Building websites that rank, convert, and scale.
             </p>
 
             {/* Newsletter */}

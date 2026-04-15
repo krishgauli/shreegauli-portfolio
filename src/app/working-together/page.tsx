@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MessageSquare, Search, Wrench, LineChart } from "lucide-react";
+import { MessageSquare, Paintbrush, Code2, Rocket } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ModuleShell } from "@/components/shared/ModuleShell";
@@ -10,41 +10,41 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "How It Works | Hiring a Digital Marketing Consultant",
+  title: "How It Works | Working With a Full-Stack Developer",
   description:
-    "See how discovery, strategy, execution, and reporting work when you hire Shree directly as your marketing consultant.",
+    "See how discovery, design, development, and launch work when you hire Shree directly as your web developer and SEO consultant.",
   path: "/working-together",
-  keywords: ["working with a marketing consultant", "digital marketing process", "consultant engagement model"],
+  keywords: ["working with a web developer", "web development process", "project engagement model"],
 });
 
 const steps = [
   {
     icon: MessageSquare,
-    title: "1. Clarify the bottleneck",
-    body: "We start with what is actually blocking growth: weak demand capture, poor conversion flow, unclear attribution, or too much manual work.",
+    title: "1. Discovery call",
+    body: "We start with what you need: a new website, a redesign, an e-commerce store, or SEO for an existing site. I ask about your goals, timeline, and budget — then recommend the right approach.",
   },
   {
-    icon: Search,
-    title: "2. Audit before action",
-    body: "I review the current stack, traffic quality, page experience, campaign structure, tracking, and workflow gaps before recommending a plan.",
+    icon: Paintbrush,
+    title: "2. Design & scope",
+    body: "I create wireframes and visual designs in Figma before writing code. You see the layout, give feedback, and approve it. A detailed proposal with fixed pricing is delivered before work begins.",
   },
   {
-    icon: Wrench,
-    title: "3. Ship the highest-leverage work",
-    body: "The first work usually focuses on the clearest constraint: fixing service pages, cleaning campaigns, improving reporting, or building automation.",
+    icon: Code2,
+    title: "3. Build & optimize",
+    body: "I build the site with clean code, SEO baked in, and performance tuned. You get progress updates throughout. For automation projects, workflows are built and tested in staging first.",
   },
   {
-    icon: LineChart,
-    title: "4. Report and iterate",
-    body: "Reporting is tied to decisions. We look at what changed, what it means, and what should happen next instead of dumping dashboards without context.",
+    icon: Rocket,
+    title: "4. Launch & grow",
+    body: "Deploy to production, set up analytics, submit sitemaps, and verify everything works. Post-launch, I'm available for maintenance, SEO iteration, and new features as your business grows.",
   },
 ];
 
 const fits = [
-  "Founder-led businesses that want direct operator access",
-  "Lean marketing teams that need senior execution without agency layers",
-  "Teams with channel activity already happening but weak measurement or coordination",
-  "Businesses willing to fix site and process issues, not just buy more traffic",
+  "Business owners who want a website that actually drives leads and revenue",
+  "Teams that need one developer who handles design, code, SEO, and automation",
+  "Healthcare, finance, SaaS, or e-commerce businesses needing a professional site",
+  "Founders who value direct communication over agency processes",
 ];
 
 export default function WorkingTogetherPage() {
@@ -55,8 +55,8 @@ export default function WorkingTogetherPage() {
         <div className="mx-auto max-w-5xl">
           <SectionHeader
             eyebrow="Working Together"
-            title="What an engagement actually looks like"
-            subtitle="Direct collaboration, practical diagnosis, and work tied to measurable movement. No account-manager layer and no inflated process for its own sake."
+            title="What a project actually looks like"
+            subtitle="Direct collaboration from design to launch. No account-manager layer, no inflated process. One developer handling everything."
           />
 
           <div className="grid gap-6 md:grid-cols-2">

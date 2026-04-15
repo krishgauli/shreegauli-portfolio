@@ -12,9 +12,9 @@ export const metadata: Metadata = createPageMetadata({
     "Schedule a free 30-minute strategy call with Shree. Available Monday, Thursday, Friday, Saturday, and Sunday mornings 9 AM–1 PM CT.",
   path: "/book",
   keywords: [
-    "book marketing consultation",
+    "book web development consultation",
     "free strategy call",
-    "schedule digital marketing call",
+    "schedule website consultation",
   ],
 });
 

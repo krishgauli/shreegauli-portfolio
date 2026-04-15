@@ -5,12 +5,10 @@ import {
   Rocket,
   CheckCircle2,
   Sparkles,
-  BarChart3,
-  PenTool,
-  Search,
+  Code2,
   Globe,
-  Shield,
-  FileText,
+  Search,
+  ShoppingCart,
   ArrowRight,
 } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
@@ -22,137 +20,95 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Digital Marketing Investment | Growth & Scale Retainers",
+  title: "Pricing | Web Development, SEO & Automation — Project-Based",
   description:
-    "Investment tiers built for measurable growth: monthly retainers from $1,499 covering SEO, paid media, automation, and reporting. No agency layers.",
+    "Transparent, project-based pricing for custom websites, web apps, e-commerce stores, SEO, and automation. No retainer lock-ins. No agency overhead.",
   path: "/pricing",
   keywords: [
-    "marketing consultant pricing",
-    "SEO consultant retainer",
-    "digital marketing retainer",
-    "marketing consultant dallas pricing",
-    "healthcare marketing pricing",
+    "web development pricing",
+    "Next.js developer cost",
+    "WordPress website cost",
+    "Shopify development pricing",
+    "SEO consultant pricing",
   ],
 });
 
-/* ── Plan data ────────────────────────────────────────────────── */
-const plans = [
+/* ── Project-based pricing ────────────────────────────────────── */
+const projectTypes = [
   {
-    icon: Zap,
-    label: "Growth",
-    price: "$1,499",
-    unit: "/month",
-    tagline: "Consistent marketing execution",
+    icon: Code2,
+    label: "Custom Website / Web App",
+    price: "From $3,000",
+    tagline: "Next.js, React, TypeScript",
     description:
-      "For businesses that need a reliable marketing operator across SEO, paid media, content, and automation — without the agency overhead.",
+      "Custom-designed, SEO-optimized websites and web applications built with Next.js, React, Tailwind CSS, and Prisma/Supabase. Ideal for SaaS, healthcare, and professional services.",
     features: [
-      "SEO, paid media, content & automation",
-      "Monthly analytics & performance report",
-      "Weekly implementation rhythm",
-      "Direct access — no account managers",
-      "Month-to-month, cancel anytime",
+      "Custom design in Figma → code",
+      "Responsive, mobile-first layout",
+      "SEO & structured data built in",
+      "CMS or admin dashboard (if needed)",
+      "Hosting setup on Vercel",
+      "Post-launch support included",
     ],
-    cta: "Start growing",
+    cta: "Get a quote",
     popular: true,
   },
   {
-    icon: Rocket,
-    label: "Scale",
-    price: "$2,500",
-    unit: "/month",
-    tagline: "Deeper execution, faster results",
+    icon: Globe,
+    label: "WordPress Website",
+    price: "From $1,500",
+    tagline: "Custom theme or page builder",
     description:
-      "For teams running multi-channel campaigns, aggressive SEO builds, or automation projects that need faster turnaround and strategic support.",
+      "Professional WordPress sites with custom themes, speed optimization, and SEO. Perfect for clinics, local businesses, and content-heavy sites that need easy self-management.",
     features: [
-      "Everything in Growth",
-      "Priority scheduling & faster turnaround",
-      "Weekly strategy syncs",
-      "Advanced automation & integrations",
-      "Multi-channel campaign management",
+      "Custom theme or Elementor build",
+      "Mobile-responsive design",
+      "On-page SEO & schema markup",
+      "Contact forms & CRM integration",
+      "Speed & security optimization",
+      "Training for self-management",
     ],
-    cta: "Scale up",
+    cta: "Get a quote",
     popular: false,
   },
   {
-    icon: Sparkles,
-    label: "Custom",
-    price: "Custom",
-    unit: "",
-    tagline: "Tailored to your business needs",
+    icon: ShoppingCart,
+    label: "Shopify Store",
+    price: "From $2,000",
+    tagline: "Custom theme + e-commerce SEO",
     description:
-      "For organizations with unique requirements — custom scope, dedicated resources, and bespoke integrations built around your goals.",
+      "Shopify stores with custom theme design, product SEO, and conversion-optimized layouts. Built for brands that want a store that ranks and sells.",
     features: [
-      "Tailored scope and deliverables",
-      "Dedicated resources",
-      "Custom integrations and APIs",
-      "Multi-channel strategy",
-      "Executive reporting and BI dashboards",
-      "Enterprise SLA and support",
+      "Custom Shopify theme design",
+      "Product & collection page SEO",
+      "Payment & shipping setup",
+      "App integrations & reviews",
+      "Speed optimization",
+      "Post-launch training",
     ],
-    cta: "Contact sales",
+    cta: "Get a quote",
     popular: false,
   },
 ];
 
-/* ── Service areas ────────────────────────────────────────────── */
-const serviceAreas = [
-  {
-    icon: Sparkles,
-    title: "Social Media",
-    items: [
-      "Strategy, scheduling, and publishing across LinkedIn, Instagram, Facebook, and X",
-      "Up to 20 posts per month with captions and hashtags",
-      "Community management — comments, DMs, and engagement",
-    ],
-  },
-  {
-    icon: PenTool,
-    title: "Graphic Design",
-    items: [
-      "Branded visual assets ­and post graphics",
-      "Carousel templates and infographics",
-      "Promotional materials consistent with your brand guidelines",
-    ],
-  },
-  {
-    icon: FileText,
-    title: "Content Creation",
-    items: [
-      "Up to 2 long-form articles per month (800–1,200 words)",
-      "Monthly content calendar and copywriting",
-      "Newsletter copy — subject line, body, and CTA",
-      "Content refreshes and rewrites for existing pages",
-    ],
-  },
+const addOns = [
   {
     icon: Search,
-    title: "SEO",
-    items: [
-      "Keyword research and monthly targeting plan",
-      "On-page optimisation — meta tags, headings, internal linking",
-      "Backlink building from relevant industry publications",
-      "Technical SEO monitoring — Core Web Vitals, crawl errors, structured data",
-    ],
+    label: "SEO / AEO / GEO Retainer",
+    price: "From $750/mo",
+    description: "Ongoing technical SEO, content strategy, AI search optimization, and local SEO with monthly reporting.",
   },
   {
-    icon: Globe,
-    title: "Website Maintenance",
-    items: [
-      "Content, image, and layout updates",
-      "Performance and security checks",
-      "Plugin/theme updates and uptime monitoring",
-      "Up to 8 hours of site updates per month",
-    ],
+    icon: Zap,
+    label: "Automation Setup",
+    price: "From $1,500",
+    description: "n8n workflows, AI chatbots, appointment reminders, review collection, and CRM integration — one-time build.",
   },
   {
-    icon: BarChart3,
-    title: "Reporting",
-    items: [
-      "Monthly consolidated analytics report",
-      "Social reach, engagement, and follower growth",
-      "SEO rankings, organic traffic, and backlink profile",
-      "Clear recommendations tied to business outcomes",
-    ],
+    icon: Rocket,
+    label: "Maintenance & Growth",
+    price: "From $500/mo",
+    description: "Ongoing updates, performance monitoring, content changes, and iterative SEO improvements post-launch.",
   },
 ];
 
@@ -166,24 +122,24 @@ export default function PricingPage() {
         <div className="mx-auto max-w-6xl">
           <SectionHeader
             eyebrow="Investment"
-            title="Marketing that pays for itself"
-            subtitle="One operator. Full-stack execution. No agency layers. Pick the tier that fits your growth stage — scale up or down anytime with 30 days’ notice."
+            title="Transparent, project-based pricing"
+            subtitle="One developer. Design, code, SEO, and automation. No agency layers, no hourly surprises. Every project is scoped and quoted before work begins."
           />
 
-          {/* ── Plan cards ───────────────────────────────────────── */}
+          {/* ── Project cards ───────────────────────────────────── */}
           <div className="grid gap-6 md:grid-cols-3">
-            {plans.map((plan, index) => {
-              const Icon = plan.icon;
+            {projectTypes.map((project, index) => {
+              const Icon = project.icon;
               return (
-                <ScrollReveal key={plan.label} delay={index * 0.08}>
+                <ScrollReveal key={project.label} delay={index * 0.08}>
                   <ModuleShell
                     className={`relative h-full p-6 ${
-                      plan.popular
+                      project.popular
                         ? "border-[#7C3AED]/50 ring-1 ring-[#7C3AED]/20"
                         : ""
                     }`}
                   >
-                    {plan.popular && (
+                    {project.popular && (
                       <span className="absolute -top-3 left-6 rounded-full bg-[#7C3AED] px-3 py-1 text-xs font-semibold text-white">
                         Most popular
                       </span>
@@ -194,19 +150,18 @@ export default function PricingPage() {
                     </div>
 
                     <p className="mt-5 text-sm uppercase tracking-[0.18em] text-[#94A3B8]">
-                      {plan.label}
+                      {project.label}
                     </p>
 
                     <div className="mt-3 flex items-baseline gap-1">
-                      <span className="text-4xl font-bold text-[#F8FAFC]">{plan.price}</span>
-                      <span className="text-sm text-[#64748B]">{plan.unit}</span>
+                      <span className="text-3xl font-bold text-[#F8FAFC]">{project.price}</span>
                     </div>
 
-                    <p className="mt-1 text-sm font-medium text-[#C4B5FD]">{plan.tagline}</p>
-                    <p className="mt-4 text-sm leading-7 text-[#94A3B8]">{plan.description}</p>
+                    <p className="mt-1 text-sm font-medium text-[#C4B5FD]">{project.tagline}</p>
+                    <p className="mt-4 text-sm leading-7 text-[#94A3B8]">{project.description}</p>
 
                     <ul className="mt-5 space-y-2.5">
-                      {plan.features.map((f) => (
+                      {project.features.map((f) => (
                         <li key={f} className="flex items-start gap-2 text-sm text-[#CBD5E1]">
                           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7C3AED]" />
                           {f}
@@ -217,12 +172,12 @@ export default function PricingPage() {
                     <Link
                       href="/contact"
                       className={`mt-6 flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold transition ${
-                        plan.popular
+                        project.popular
                           ? "bg-[#7C3AED] text-white hover:bg-[#8B5CF6]"
                           : "border border-white/10 text-[#E2E8F0] hover:border-white/20"
                       }`}
                     >
-                      {plan.cta}
+                      {project.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </ModuleShell>
@@ -231,67 +186,26 @@ export default function PricingPage() {
             })}
           </div>
 
-          {/* ── Comparison strip ─────────────────────────────── */}
-          <ScrollReveal delay={0.15}>
-            <ModuleShell className="mt-10 overflow-x-auto p-0">
-              <table className="w-full min-w-[520px] text-sm">
-                <thead>
-                  <tr className="border-b border-white/[0.06]">
-                    <th className="px-6 py-4 text-left font-medium text-[#94A3B8]">Compare plans</th>
-                    <th className="px-6 py-4 text-center font-medium text-[#C4B5FD]">Growth</th>
-                    <th className="px-6 py-4 text-center font-medium text-[#94A3B8]">Scale</th>
-                  </tr>
-                </thead>
-                <tbody className="text-[#CBD5E1]">
-                  {[
-                    ["Monthly investment", "$1,499", "$2,500"],
-                    ["SEO & content", "✓", "✓"],
-                    ["Paid media management", "✓", "✓"],
-                    ["Marketing automation", "✓", "✓"],
-                    ["Monthly analytics report", "✓", "✓"],
-                    ["Weekly strategy syncs", "—", "✓"],
-                    ["Priority scheduling", "—", "✓"],
-                    ["Advanced integrations", "—", "✓"],
-                    ["Minimum commitment", "Month-to-month", "Month-to-month"],
-                    ["Cancellation notice", "30 days", "30 days"],
-                  ].map(([feature, growth, scale]) => (
-                    <tr key={feature} className="border-b border-white/[0.04] last:border-0">
-                      <td className="px-6 py-3 text-[#94A3B8]">{feature}</td>
-                      <td className="px-6 py-3 text-center">{growth}</td>
-                      <td className="px-6 py-3 text-center">{scale}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </ModuleShell>
-          </ScrollReveal>
-
-          {/* ── What's included ──────────────────────────────── */}
+          {/* ── Add-ons ──────────────────────────────────────── */}
           <div className="mt-16">
             <SectionHeader
-              eyebrow="What you get"
-              title="Full-stack execution, one operator"
-              subtitle="Every retainer covers the same service areas. The tier determines depth of execution and strategic support."
+              eyebrow="Add-ons"
+              title="Ongoing services & add-ons"
+              subtitle="Layer these onto any project — or start with them standalone."
             />
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {serviceAreas.map((area, i) => {
-                const Icon = area.icon;
+            <div className="grid gap-6 sm:grid-cols-3">
+              {addOns.map((addon, i) => {
+                const Icon = addon.icon;
                 return (
-                  <ScrollReveal key={area.title} delay={i * 0.06}>
+                  <ScrollReveal key={addon.label} delay={i * 0.06}>
                     <ModuleShell className="h-full p-6">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04] text-[#C4B5FD]">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h3 className="mt-4 text-base font-semibold text-[#F8FAFC]">{area.title}</h3>
-                      <ul className="mt-3 space-y-2">
-                        {area.items.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-sm leading-6 text-[#94A3B8]">
-                            <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7C3AED]/60" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
+                      <h3 className="mt-4 text-base font-semibold text-[#F8FAFC]">{addon.label}</h3>
+                      <p className="mt-1 text-lg font-bold text-[#22D3EE]">{addon.price}</p>
+                      <p className="mt-3 text-sm leading-6 text-[#94A3B8]">{addon.description}</p>
                     </ModuleShell>
                   </ScrollReveal>
                 );
@@ -299,22 +213,23 @@ export default function PricingPage() {
             </div>
           </div>
 
-          {/* ── Payment & terms ──────────────────────────────── */}
+          {/* ── How it works + CTA ───────────────────────────── */}
           <div className="mt-16 grid gap-6 lg:grid-cols-2">
             <ScrollReveal>
               <ModuleShell className="h-full p-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04] text-[#C4B5FD]">
-                  <Shield className="h-5 w-5" />
-                </div>
-                <h2 className="mt-4 text-xl font-semibold text-[#F8FAFC]">Payment terms</h2>
+                <h2 className="text-xl font-semibold text-[#F8FAFC]">How pricing works</h2>
                 <ul className="mt-4 space-y-3 text-sm leading-7 text-[#94A3B8]">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#7C3AED]/60" />
-                    Invoices issued on the first business day of each month
+                    Every project starts with a discovery call to define scope
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#7C3AED]/60" />
-                    Payment due within 14 days of invoice
+                    You receive a detailed proposal with fixed pricing — no surprises
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#7C3AED]/60" />
+                    50% deposit to start, 50% on delivery
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#7C3AED]/60" />
@@ -322,11 +237,7 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#7C3AED]/60" />
-                    Month-to-month — cancel with 30 days&apos; notice
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#7C3AED]/60" />
-                    All completed work and assets delivered upon termination
+                    All source code and assets are yours upon delivery
                   </li>
                 </ul>
               </ModuleShell>
@@ -337,13 +248,13 @@ export default function PricingPage() {
                 <div>
                   <h2 className="text-xl font-semibold text-[#F8FAFC]">Ready to start?</h2>
                   <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
-                    If you already know the bottleneck, book a call. If you need help 
-                    defining the right scope first, send a note with the context and I&apos;ll 
-                    recommend the simplest useful starting point.
+                    If you already know what you need, book a call and we&apos;ll scope it
+                    together. If you&apos;re exploring options, send a message with your
+                    project details and I&apos;ll recommend the right approach.
                   </p>
                   <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
-                    Not sure which plan fits? Most clients start with the Growth retainer. 
-                    You can always scale up or switch to hourly as needs change.
+                    Most websites ship in 2–4 weeks. Web apps and complex builds are
+                    scoped individually — always with a clear timeline up front.
                   </p>
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3">
@@ -357,7 +268,7 @@ export default function PricingPage() {
                     href="/working-together"
                     className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20"
                   >
-                    See how engagements work
+                    See how projects work
                   </Link>
                 </div>
               </ModuleShell>

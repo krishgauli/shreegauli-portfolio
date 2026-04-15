@@ -231,7 +231,7 @@ export default function InvoiceDashboard() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           clientId: invoiceForm.clientId,
-          lineItems: [{ description: invoiceForm.description || 'Digital Marketing Services', qty, rate, amount: rate * qty }],
+          lineItems: [{ description: invoiceForm.description || 'Web Development & SEO Services', qty, rate, amount: rate * qty }],
           taxRate: parseFloat(invoiceForm.taxRate) || 0,
           dueInDays: parseInt(invoiceForm.dueInDays) || 15,
           notes: invoiceForm.notes,

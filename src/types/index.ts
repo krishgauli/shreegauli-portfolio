@@ -26,6 +26,8 @@ export interface CaseStudy {
   thumbnail: string;
   metrics: Metric[];
   href: string;
+  /** Live project URL */
+  url?: string;
   /* Rich detail fields (optional) */
   subtitle?: string;
   duration?: string;

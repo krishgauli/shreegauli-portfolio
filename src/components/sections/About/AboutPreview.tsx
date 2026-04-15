@@ -6,13 +6,14 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 const skills = [
-  "SEO Strategy",
-  "Google Ads",
-  "Marketing Automation",
-  "CRM Workflows",
-  "AEO/GEO",
-  "Content Systems",
-  "Growth Reporting",
+  "Next.js",
+  "React & TypeScript",
+  "WordPress",
+  "Shopify",
+  "SEO / AEO / GEO",
+  "n8n Automation",
+  "Tailwind CSS",
+  "Prisma & Supabase",
 ];
 
 export function AboutPreview() {
@@ -43,7 +44,7 @@ export function AboutPreview() {
               </div>
               <div className="p-5">
                 <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>
-                <p className="text-sm text-[#94A3B8] mt-0.5">Digital Marketing Consultant</p>
+                <p className="text-sm text-[#94A3B8] mt-0.5">Full-Stack Web Developer & SEO Consultant</p>
                 <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Serving the US and select international clients</p>
                 <div className="flex gap-3 mt-4">
                   <Link
@@ -65,13 +66,12 @@ export function AboutPreview() {
             <div className="flex flex-col gap-6">
               <div className="space-y-4 text-[#94A3B8] leading-relaxed">
                 <p>
-                  I&apos;m a Dallas-based digital marketing consultant. I specialize
-                  in the full path from search result to signed client — SEO,
-                  paid media, and the automation systems that make follow-up and
-                  reporting actually work. Most of my work is with healthcare
-                  practices and local service businesses, but I also take on
-                  select SaaS and e-commerce projects. You work directly with
-                  me. No account managers, no junior handoffs.
+                  I&apos;m a Dallas-based full-stack web developer and SEO consultant.
+                  I build custom websites, web apps, and e-commerce stores using
+                  Next.js, WordPress, and Shopify — with SEO, AEO, and performance
+                  optimization baked in from day one. I&apos;ve shipped 14+ projects
+                  across healthcare, finance, SaaS, and e-commerce. You work
+                  directly with me. No agency layers, no junior handoffs.
                 </p>
               </div>
 
