@@ -6,9 +6,12 @@ import { TestimonialCard } from "./TestimonialCard";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
+/* Show 3 cards at a time, sliding as a group */
+const VISIBLE = 3;
+
 export function TestimonialsSection() {
-  const [active, setActive] = useState(0);
-  const total = testimonials.length;
+  const [page, setPage] = useState(0);
+  const totalPages = Math.ceil(testimonials.length / VISIBLE);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const pausedRef = useRef(false);
 
@@ -16,10 +19,10 @@ export function TestimonialsSection() {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       if (!pausedRef.current) {
-        setActive((prev) => (prev + 1) % total);
+        setPage((prev) => (prev + 1) % totalPages);
       }
-    }, 5000);
-  }, [total]);
+    }, 6000);
+  }, [totalPages]);
 
   useEffect(() => {
     startTimer();
@@ -29,11 +32,17 @@ export function TestimonialsSection() {
   }, [startTimer]);
 
   const go = (dir: "left" | "right") => {
-    setActive((prev) =>
-      dir === "right" ? (prev + 1) % total : (prev - 1 + total) % total
+    setPage((prev) =>
+      dir === "right"
+        ? (prev + 1) % totalPages
+        : (prev - 1 + totalPages) % totalPages
     );
     startTimer();
   };
+
+  /* Slice visible cards for current page */
+  const start = page * VISIBLE;
+  const visible = testimonials.slice(start, start + VISIBLE);
 
   return (
     <section
@@ -59,28 +68,14 @@ export function TestimonialsSection() {
           <span className="text-sm text-[#94A3B8]">· 5 Reviews</span>
         </div>
 
-        {/* Carousel card */}
-        <div className="relative max-w-2xl mx-auto min-h-[320px]">
-          {testimonials.map((t, i) => (
-            <div
+        {/* 3-card grid with fade transition */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500">
+          {visible.map((t) => (
+            <TestimonialCard
               key={t.id}
-              className="absolute inset-0 transition-all duration-500 ease-in-out"
-              style={{
-                opacity: i === active ? 1 : 0,
-                transform: i === active
-                  ? "translateX(0) scale(1)"
-                  : i < active
-                  ? "translateX(-60px) scale(0.95)"
-                  : "translateX(60px) scale(0.95)",
-                pointerEvents: i === active ? "auto" : "none",
-              }}
-              aria-hidden={i !== active}
-            >
-              <TestimonialCard
-                testimonial={t}
-                className="min-h-[320px]"
-              />
-            </div>
+              testimonial={t}
+              className="min-h-[320px]"
+            />
           ))}
         </div>
 
@@ -88,21 +83,20 @@ export function TestimonialsSection() {
         <div className="flex items-center justify-center gap-4 mt-8">
           <button
             onClick={() => go("left")}
-            aria-label="Previous review"
+            aria-label="Previous reviews"
             className="p-2 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
-          {/* Dots */}
           <div className="flex items-center gap-2">
-            {testimonials.map((t, i) => (
+            {Array.from({ length: totalPages }).map((_, i) => (
               <button
-                key={t.id}
-                onClick={() => { setActive(i); startTimer(); }}
-                aria-label={`Go to review ${i + 1}`}
+                key={i}
+                onClick={() => { setPage(i); startTimer(); }}
+                aria-label={`Go to page ${i + 1}`}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  i === active
+                  i === page
                     ? "w-6 bg-[#7C3AED]"
                     : "w-2 bg-white/20 hover:bg-white/40"
                 }`}
@@ -112,7 +106,7 @@ export function TestimonialsSection() {
 
           <button
             onClick={() => go("right")}
-            aria-label="Next review"
+            aria-label="Next reviews"
             className="p-2 rounded-lg border border-white/[0.08] bg-white/[0.03] text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
