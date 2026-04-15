@@ -8,11 +8,11 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Marketing Newsletter | SEO, Automation, and Growth Notes",
+  title: "Dev & SEO Newsletter | Web Development, SEO, and Automation Notes",
   description:
-    "Subscribe for practical notes on SEO, paid media, automation, and conversion work from a working consultant.",
+    "Subscribe for practical notes on web development, SEO, automation, and technical strategy from a working full-stack developer.",
   path: "/newsletter",
-  keywords: ["marketing newsletter", "SEO newsletter", "paid media insights", "automation newsletter"],
+  keywords: ["web development newsletter", "SEO newsletter", "developer newsletter", "automation newsletter"],
 });
 
 export default function NewsletterPage() {
@@ -24,7 +24,7 @@ export default function NewsletterPage() {
           <SectionHeader
             eyebrow="Newsletter"
             title="Short notes for people building real growth systems"
-            subtitle="No giant digest and no recycled trend summary. Just practical lessons from SEO, paid media, automation, and conversion work."
+            subtitle="No giant digest and no recycled trend summary. Just practical lessons from web development, SEO, and automation."
           />
 
           <NewsletterSignupCard source="newsletter-page" />
@@ -47,8 +47,8 @@ export default function NewsletterPage() {
             <ModuleShell className="p-6">
               <h2 className="text-xl font-semibold text-[#F8FAFC]">Who it is for</h2>
               <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
-                Founders, operators, and lean marketing teams who want clearer
-                thinking about organic growth, paid efficiency, and automation.
+                Founders, operators, and small teams who want clearer
+                thinking about web development, SEO, and automation.
               </p>
             </ModuleShell>
           </div>

@@ -7,11 +7,11 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Contact Shree Krishna Gauli | Digital Marketing Consultant",
+  title: "Contact Shree Krishna Gauli | Full-Stack Web Developer & SEO Consultant",
   description:
-    "Get in touch for SEO, paid media, social growth, or marketing automation projects. Typical response within one business day.",
+    "Get in touch for web development, SEO, or automation projects. Next.js, WordPress, Shopify, and SEO/AEO/GEO. Typical response within one business day.",
   path: "/contact",
-  keywords: ["contact marketing consultant", "hire SEO consultant", "digital marketing inquiry"],
+  keywords: ["contact web developer", "hire SEO consultant", "web development inquiry"],
 });
 
 export default function ContactPage() {

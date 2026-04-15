@@ -28,7 +28,7 @@ export default function TermsPage() {
 
           <h2>2. Services</h2>
           <p>
-            This website provides information about digital marketing services
+            This website provides information about web development and SEO services
             offered by Shree Krishna Gauli. Any engagement for services will be
             governed by a separate agreement between you and Shree Krishna
             Gauli.

@@ -6,20 +6,21 @@ import Link from "next/link";
 
 const serviceOptions = [
   { value: "", label: "Select a service..." },
-  { value: "seo", label: "SEO & Content" },
-  { value: "paid-media", label: "Paid Media (Google / Meta Ads)" },
-  { value: "social-media", label: "Social Media Marketing" },
-  { value: "automation", label: "Marketing Automation" },
+  { value: "web-development", label: "Website / Web App (Next.js)" },
+  { value: "wordpress", label: "WordPress Development" },
+  { value: "shopify", label: "Shopify Store" },
+  { value: "seo", label: "SEO / AEO / GEO" },
+  { value: "automation", label: "Automation & AI" },
   { value: "not-sure", label: "Not sure yet" },
 ];
 
 const budgetOptions = [
   { value: "", label: "Approximate budget..." },
-  { value: "under-2k", label: "Under $2,000/month" },
-  { value: "2k-5k", label: "$2,000 – $5,000/month" },
-  { value: "5k-10k", label: "$5,000 – $10,000/month" },
-  { value: "10k-plus", label: "$10,000+/month" },
-  { value: "project", label: "One-time project" },
+  { value: "under-2k", label: "Under $2,000" },
+  { value: "2k-5k", label: "$2,000 – $5,000" },
+  { value: "5k-10k", label: "$5,000 – $10,000" },
+  { value: "10k-plus", label: "$10,000+" },
+  { value: "retainer", label: "Monthly retainer" },
 ];
 
 const inputClass =
