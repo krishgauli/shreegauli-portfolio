@@ -37,6 +37,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/blogs/category/seo",
     "/blogs/category/automation",
     "/blogs/category/aeo-geo",
+    "/blogs/category/paid-media",
+    "/blogs/category/healthcare-marketing",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({

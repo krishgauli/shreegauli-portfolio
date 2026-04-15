@@ -14,7 +14,7 @@ That model still matters. I think it matters more than some people want to admit
 
 ## Why AEO and GEO matter now
 
-Now people search through classic Google results, [AI Overviews](https://static.googleusercontent.com/media/www.google.com/en//search/howsearchworks/google-about-AI-overviews.pdf), AI-assisted Bing experiences, and tools like [ChatGPT search](https://help.openai.com/en/articles/9237897-chatgpt-search). They ask longer questions. They ask follow-ups. They compare options without always clicking the first blue link. Sometimes they barely click at all, which is uncomfortable if you grew up on CTR charts and rank trackers.
+Now people search through classic Google results, [AI Overviews](https://static.googleusercontent.com/media/www.google.com/en//search/howsearchworks/google-about-AI-overviews.pdf), AI-assisted Bing experiences, and tools like [ChatGPT search](https://openai.com/index/searchgpt-is-now-chatgpt-search/). They ask longer questions. They ask follow-ups. They compare options without always clicking the first blue link. Sometimes they barely click at all, which is uncomfortable if you grew up on CTR charts and rank trackers.
 
 That shift is why AEO and GEO started showing up everywhere.
 
@@ -48,7 +48,7 @@ The second step is to make content citation-friendly. I do not mean robotic. The
 - original examples or observations
 - links to primary sources
 
-This last part matters more than it used to. When Google explains that [AI Overviews rely on supporting web results](https://static.googleusercontent.com/media/www.google.com/en//search/howsearchworks/google-about-AI-overviews.pdf), and when OpenAI says ChatGPT search depends on relevance, reliability, and access for [OAI-SearchBot](https://help.openai.com/en/articles/9237897-chatgpt-search), the pattern is pretty clear. AI systems do not just want words. They want information they can ground.
+This last part matters more than it used to. When Google explains that [AI Overviews rely on supporting web results](https://static.googleusercontent.com/media/www.google.com/en//search/howsearchworks/google-about-AI-overviews.pdf), and when OpenAI says ChatGPT search depends on relevance, reliability, and access for [OAI-SearchBot](https://openai.com/index/searchgpt-is-now-chatgpt-search/), the pattern is pretty clear. AI systems do not just want words. They want information they can ground.
 
 ## Build trust into the page
 
@@ -84,7 +84,7 @@ If you are trying to improve AI search visibility without losing sight of real S
 
 - review your pages against [Google Search Essentials](https://developers.google.com/search/docs/essentials)
 - study Google's official advice for [AI search experiences](https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search)
-- confirm your site allows access for tools like [ChatGPT search](https://help.openai.com/en/articles/9237897-chatgpt-search)
+- confirm your site allows access for tools like [ChatGPT search](https://openai.com/index/searchgpt-is-now-chatgpt-search/)
 - tighten your page structure, citations, and [structured data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
 
 Then, if you want a practical second opinion, run the site's [free SEO audit](/seo-tools) or [book a strategy call](/lp/book-a-call). If the goal is ranking in AI-influenced search without throwing out everything that still works, that is usually the cleanest place to start.

@@ -13,6 +13,7 @@ const footerNav = {
   ],
   Resources: [
     { label: "Portfolio", href: "/work" },
+    { label: "Results", href: "/results" },
     { label: "Blog", href: "/blogs" },
     { label: "Free SEO Audit", href: "/seo-tools" },
     { label: "Newsletter", href: "/newsletter" },

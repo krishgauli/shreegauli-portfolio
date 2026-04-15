@@ -102,7 +102,7 @@ export async function generateMetadata({
     if (!staticPost) return {};
 
     return createPageMetadata({
-      title: staticPost.title,
+      title: `${staticPost.title} | Shree Gauli`,
       description: staticPost.excerpt,
       path: `/blogs/${staticPost.slug}`,
       keywords: staticPost.keywords,
@@ -110,7 +110,7 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: post.seoTitle || post.title,
+    title: `${post.seoTitle || post.title} | Shree Gauli`,
     description: post.metaDesc || post.excerpt || "",
     path: `/blogs/${post.slug}`,
     keywords: [],
