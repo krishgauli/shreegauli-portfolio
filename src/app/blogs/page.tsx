@@ -104,6 +104,7 @@ export default async function BlogPage() {
           <SectionHeader
             eyebrow="Blog"
             title="What I write about"
+            as="h1"
             subtitle="Practical takes on SEO, paid media, and marketing systems."
           />
 

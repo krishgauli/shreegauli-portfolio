@@ -3,13 +3,14 @@ import { ServiceModule } from "./ServiceModule";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
-export function ServicesSection() {
+export function ServicesSection({ headingAs }: { headingAs?: "h1" | "h2" }) {
   return (
     <section id="services" className="relative z-10 section-pad px-6">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="What I Build"
           title="Design. Develop. Optimize. Automate."
+          as={headingAs}
           subtitle="From custom Next.js web apps to WordPress sites and Shopify stores — every project ships with SEO, performance, and scalability built in."
         />
 

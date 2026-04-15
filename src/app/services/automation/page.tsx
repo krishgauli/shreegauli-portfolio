@@ -153,6 +153,7 @@ export default function AutomationServicePage() {
           <SectionHeader
             eyebrow="Automation"
             title="Stop losing leads. Automate follow-up, booking, and reviews."
+            as="h1"
             subtitle="Custom n8n workflows, AI chatbots, and automated sequences that capture leads, book appointments, collect reviews, and follow up — so nothing slips through the cracks."
           />
         </div>

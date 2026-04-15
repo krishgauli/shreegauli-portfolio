@@ -7,6 +7,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   className?: string;
   align?: "left" | "center";
+  as?: "h1" | "h2";
 }
 
 export function SectionHeader({
@@ -15,6 +16,7 @@ export function SectionHeader({
   subtitle,
   className,
   align = "center",
+  as: Tag = "h2",
 }: SectionHeaderProps) {
   return (
     <ScrollReveal
@@ -29,9 +31,9 @@ export function SectionHeader({
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F8FAFC] leading-tight">
+      <Tag className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F8FAFC] leading-tight">
         {title}
-      </h2>
+      </Tag>
       {subtitle && (
         <p className="mt-4 text-lg text-[#94A3B8] max-w-2xl mx-auto leading-relaxed">
           {subtitle}

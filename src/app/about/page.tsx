@@ -14,7 +14,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Shree Krishna Gauli | Full-Stack Web Developer & SEO Consultant — Dallas, TX",
+  title: "About Shree Gauli | Web Developer & SEO Consultant",
   description:
     "Full-stack developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation. 5 verified Acadium apprenticeships. Based in Dallas, working globally.",
   path: "/about",
@@ -170,6 +170,7 @@ export default function AboutPage() {
                 <SectionHeader
                   eyebrow="About"
                   title="The short version"
+                  as="h1"
                   align="left"
                   className="mb-6"
                 />

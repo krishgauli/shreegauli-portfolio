@@ -35,7 +35,7 @@ export default function WorkPage() {
           ),
         ]}
       />
-      <FeaturedWorkSection />
+      <FeaturedWorkSection headingAs="h1" />
       <PortfolioShowcase />
       <TestimonialsSection />
       <FinalCTASection />

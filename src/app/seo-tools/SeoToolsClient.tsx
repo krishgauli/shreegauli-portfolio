@@ -350,6 +350,7 @@ export default function SeoToolsClient() {
           <SectionHeader
             eyebrow="SEO Tools"
             title="Full SEO Audit Suite"
+            as="h1"
             subtitle="Run on-page checks, ranking keyword opportunities, backlink authority signals, and export-ready full report — directly in this page."
           />
 

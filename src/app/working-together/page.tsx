@@ -56,6 +56,7 @@ export default function WorkingTogetherPage() {
           <SectionHeader
             eyebrow="Working Together"
             title="What a project actually looks like"
+            as="h1"
             subtitle="Direct collaboration from design to launch. No account-manager layer, no inflated process. One developer handling everything."
           />
 

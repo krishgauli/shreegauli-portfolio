@@ -125,6 +125,7 @@ export default function WordPressServicePage() {
           <SectionHeader
             eyebrow="WordPress Development"
             title="Professional WordPress sites — fast, clean, and built to rank"
+            as="h1"
             subtitle="Custom themes, mobile-responsive design, and SEO optimization. No page builders, no bloat. Just clean WordPress that works for your business."
           />
         </div>

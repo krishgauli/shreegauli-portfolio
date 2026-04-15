@@ -246,7 +246,7 @@ export function aggregateRatingSchema(reviews: ReviewInput[]) {
   const avg = reviews.reduce((sum, r) => sum + r.ratingValue, 0) / reviews.length;
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
     name: "Shree Gauli — Full-Stack Web Developer & SEO Consultant",
     url: SITE_URL,
     aggregateRating: {

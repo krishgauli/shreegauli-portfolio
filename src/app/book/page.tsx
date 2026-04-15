@@ -27,6 +27,7 @@ export default function BookPage() {
           <SectionHeader
             eyebrow="Book a Call"
             title="Pick a time that works"
+            as="h1"
             subtitle="30-minute strategy call — no pitch, no pressure. We'll talk about what you're trying to grow and whether I can help."
           />
 

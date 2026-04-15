@@ -34,7 +34,7 @@ export default function ServicesPage() {
           ),
         ]}
       />
-      <ServicesSection />
+      <ServicesSection headingAs="h1" />
       <FinalCTASection />
     </PageShell>
   );

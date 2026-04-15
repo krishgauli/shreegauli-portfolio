@@ -15,10 +15,10 @@ import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection"
 import { SeoToolPromoSection } from "@/components/sections/SeoToolPromo/SeoToolPromoSection";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema, personSchema, professionalServiceSchema, websiteSearchActionSchema, faqPageSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Full-Stack Web Developer & SEO Consultant Dallas | Next.js, WordPress, Shopify",
+  title: "Full-Stack Web Developer & SEO Consultant | Dallas",
   description:
     "Dallas-based full-stack web developer building custom websites, web apps, and e-commerce stores with Next.js, WordPress, and Shopify. SEO/AEO/GEO optimization built into every project. 14+ sites shipped.",
   path: "/",
@@ -45,9 +45,6 @@ export default function Home() {
   return (
     <>
       <JsonLd data={breadcrumbSchema([])} />
-      <JsonLd data={personSchema()} />
-      <JsonLd data={professionalServiceSchema()} />
-      <JsonLd data={websiteSearchActionSchema()} />
       <JsonLd data={faqPageSchema(homepageFaqs)} />
       {/* Navigation */}
       <Navbar />

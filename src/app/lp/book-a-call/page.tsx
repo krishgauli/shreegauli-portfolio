@@ -24,6 +24,7 @@ export default function BookCallLandingPage() {
           <SectionHeader
             eyebrow="Landing Page"
             title="Book a focused strategy call"
+            as="h1"
             subtitle="Use this when you already know you want to talk through your website, tech stack, SEO, or automation needs."
           />
 

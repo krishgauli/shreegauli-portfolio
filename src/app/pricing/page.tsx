@@ -123,6 +123,7 @@ export default function PricingPage() {
           <SectionHeader
             eyebrow="Investment"
             title="Transparent, project-based pricing"
+            as="h1"
             subtitle="One developer. Design, code, SEO, and automation. No agency layers, no hourly surprises. Every project is scoped and quoted before work begins."
           />
 

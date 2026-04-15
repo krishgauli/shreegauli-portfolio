@@ -84,6 +84,8 @@ export default function PersonSchema() {
     '@id': SERVICE_ID,
     name: 'Shree Krishna Gauli - Web Development & SEO Consulting',
     url: SITE_URL,
+    telephone: '+1-409-995-2521',
+    email: 'hello@shreegauli.com',
     serviceType: [
       'Custom Web Application Development',
       'WordPress Development',

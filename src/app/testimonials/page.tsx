@@ -40,6 +40,7 @@ export default function TestimonialsPage() {
           <SectionHeader
             eyebrow="Testimonials"
             title="What clients say after the work starts moving"
+            as="h1"
             subtitle="Feedback is most useful when it reflects how the work felt, how communication worked, and what changed after implementation."
           />
 

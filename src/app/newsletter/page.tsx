@@ -24,6 +24,7 @@ export default function NewsletterPage() {
           <SectionHeader
             eyebrow="Newsletter"
             title="Short notes for people building real growth systems"
+            as="h1"
             subtitle="No giant digest and no recycled trend summary. Just practical lessons from web development, SEO, and automation."
           />
 

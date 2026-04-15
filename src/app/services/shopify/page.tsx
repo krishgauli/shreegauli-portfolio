@@ -118,6 +118,7 @@ export default function ShopifyServicePage() {
           <SectionHeader
             eyebrow="Shopify Development"
             title="E-commerce stores that sell — not just display"
+            as="h1"
             subtitle="Custom Shopify themes, optimized product pages, and conversion-focused checkout. Built to look great, load fast, and rank on Google."
           />
         </div>

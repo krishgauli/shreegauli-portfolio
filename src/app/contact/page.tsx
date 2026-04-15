@@ -23,6 +23,7 @@ export default function ContactPage() {
           <SectionHeader
             eyebrow="Contact"
             title="Let's build something that performs"
+            as="h1"
             subtitle="Tell me what you're trying to grow and where the bottleneck is. I typically respond within one business day."
           />
 

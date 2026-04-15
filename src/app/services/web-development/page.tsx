@@ -127,6 +127,7 @@ export default function WebDevelopmentPage() {
           <SectionHeader
             eyebrow="Web Development"
             title="Custom websites and web apps built to perform"
+            as="h1"
             subtitle="Next.js, React, TypeScript, Tailwind CSS — full-stack development with SEO, authentication, dashboards, and everything your business needs. No templates. No page builders."
           />
         </div>

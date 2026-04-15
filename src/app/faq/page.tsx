@@ -95,6 +95,7 @@ export default function FaqPage() {
           <SectionHeader
             eyebrow="FAQ"
             title="Questions that usually come up before we start"
+            as="h1"
             subtitle="If you are deciding whether this is the right fit, these are the answers most buyers want before booking a call."
           />
 

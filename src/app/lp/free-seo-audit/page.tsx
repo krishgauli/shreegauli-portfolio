@@ -25,6 +25,7 @@ export default function FreeSeoAuditLandingPage() {
           <SectionHeader
             eyebrow="Landing Page"
             title="Run a free SEO audit and see what needs fixing first"
+            as="h1"
             subtitle="Use the tool to surface on-page issues, weak metadata, and quick technical wins before you commit to a deeper project."
           />
 

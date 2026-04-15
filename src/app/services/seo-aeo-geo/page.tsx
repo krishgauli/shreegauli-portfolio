@@ -126,6 +126,7 @@ export default function SeoAeoGeoServicePage() {
           <SectionHeader
             eyebrow="SEO / AEO / GEO"
             title="Rank on Google. Get cited by AI. Dominate local search."
+            as="h1"
             subtitle="Technical SEO, AI answer engine optimization, and geo-targeted search strategies — built to get your business found on every search platform that matters, from Google to ChatGPT."
           />
         </div>

@@ -1,8 +1,9 @@
 # Allow all bots to crawl the entire site
 User-agent: *
 Allow: /
+Allow: /_next/static/
 Disallow: /api/
-Disallow: /_next/
+Disallow: /_next/data/
 Disallow: /.next/
 Disallow: /dashboard/
 Disallow: /login
@@ -13,16 +14,18 @@ Disallow: /reset-password
 # Googlebot
 User-agent: Googlebot
 Allow: /
+Allow: /_next/static/
 Disallow: /api/
-Disallow: /_next/
+Disallow: /_next/data/
 Disallow: /.next/
 Disallow: /dashboard/
 
 # Bingbot
 User-agent: Bingbot
 Allow: /
+Allow: /_next/static/
 Disallow: /api/
-Disallow: /_next/
+Disallow: /_next/data/
 Disallow: /.next/
 Disallow: /dashboard/
 
