@@ -128,6 +128,9 @@ export interface PageAuditResult {
 
   // Errors during fetch / parse
   fetchError: string | null;
+
+  // JS rendering detection
+  likelyJsRendered: boolean;
 }
 
 /* ─── An affected page within an issue ─── */
@@ -175,3 +178,41 @@ export interface AuditCompleteEvent {
 }
 
 export type AuditSSEEvent = AuditProgressEvent | AuditCompleteEvent;
+
+/* ─── Core Web Vitals (from Google PageSpeed Insights) ─── */
+
+export interface CoreWebVitals {
+  performanceScore: number;      // 0–100
+  fcp: number;                   // First Contentful Paint (ms)
+  lcp: number;                   // Largest Contentful Paint (ms)
+  cls: number;                   // Cumulative Layout Shift
+  tbt: number;                   // Total Blocking Time (ms) — proxy for INP
+  si: number;                    // Speed Index (ms)
+  tti: number;                   // Time to Interactive (ms)
+  serverResponseTime: number;    // TTFB (ms)
+  accessibilityScore: number;    // 0–100
+  seoScore: number;              // 0–100
+  bestPracticesScore: number;    // 0–100
+}
+
+export interface CruxFieldMetric {
+  p75: number;
+  rating: 'good' | 'needs-improvement' | 'poor';
+}
+
+export interface CruxFieldData {
+  lcp: CruxFieldMetric | null;
+  cls: CruxFieldMetric | null;
+  inp: CruxFieldMetric | null;
+  fcp: CruxFieldMetric | null;
+  ttfb: CruxFieldMetric | null;
+  hasData: boolean;
+}
+
+export interface PagePerformanceResult {
+  url: string;
+  strategy: 'mobile' | 'desktop';
+  lab: CoreWebVitals;
+  field: CruxFieldData;
+  fetchedAt: string;
+}

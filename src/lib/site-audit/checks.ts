@@ -314,6 +314,16 @@ export function runAllChecks(pages: PageAuditResult[]): SiteAuditIssue[] {
     htmlPages.filter((p) => !p.doctype).map((p) => ({ url: p.url, detail: 'No DOCTYPE declaration' })),
   );
 
+  // JavaScript-rendered (SPA) pages
+  push(issues, 'js-rendered', 'content', 'warning',
+    'JavaScript-rendered pages detected',
+    'These pages appear to render content primarily via client-side JavaScript. Search engine crawlers may not see the full content. Consider server-side rendering (SSR) or static generation for better SEO.',
+    htmlPages.filter((p) => p.likelyJsRendered).map((p) => ({
+      url: p.url,
+      detail: `${p.wordCount} words in raw HTML, ${p.resources.filter((r) => r.type === 'script').length} script files`,
+    })),
+  );
+
   // Missing viewport
   push(issues, 'missing-viewport', 'content', 'error',
     'Viewport not configured',

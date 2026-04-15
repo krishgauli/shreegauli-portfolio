@@ -63,6 +63,7 @@ function pageToRow(page: PageAuditResult): string[] {
     page.headers['cache-control'] || '',
     page.headers['strict-transport-security'] || '',
     `${page.semanticElements.score}/7`,
+    page.likelyJsRendered ? 'Yes' : 'No',
     page.fetchError || '',
   ];
 }
@@ -111,6 +112,7 @@ const CSV_HEADERS = [
   'Cache-Control',
   'HSTS',
   'Semantic Score',
+  'JS Rendered',
   'Fetch Error',
 ];
 

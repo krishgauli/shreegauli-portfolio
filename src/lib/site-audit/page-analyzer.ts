@@ -80,6 +80,7 @@ export function analyzePage(crawl: CrawlPageData): PageAuditResult {
       score: 0,
     },
     fetchError: crawl.fetchError,
+    likelyJsRendered: false,
   };
 
   if (!$ || crawl.fetchError) return emptyResult;
@@ -221,6 +222,20 @@ export function analyzePage(crawl: CrawlPageData): PageAuditResult {
     semanticElements.hasFooter,
   ].filter(Boolean).length;
 
+  // ─── JS rendering detection ───
+  const scriptCount = $('script[src]').length;
+  const likelyJsRendered = (() => {
+    // Very low visible content but many external scripts = likely client-rendered SPA
+    if (wordCount < 50 && scriptCount > 3) return true;
+    // Common SPA root containers with minimal server-rendered content
+    const appRoot = $('#root, #app, #__app');
+    if (appRoot.length > 0 && appRoot.children().length < 3 && wordCount < 100) return true;
+    // Detect empty noscript fallback pattern (React/Vue/Angular SPAs)
+    const noscript = $('noscript').text().toLowerCase();
+    if (noscript.includes('enable javascript') && wordCount < 100) return true;
+    return false;
+  })();
+
   return {
     url: crawl.url,
     statusCode: crawl.statusCode,
@@ -262,5 +277,6 @@ export function analyzePage(crawl: CrawlPageData): PageAuditResult {
     headers: crawl.headers,
     semanticElements,
     fetchError: crawl.fetchError,
+    likelyJsRendered,
   };
 }

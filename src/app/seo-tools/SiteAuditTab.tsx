@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   AlertTriangle,
   ArrowDownToLine,
@@ -9,10 +9,13 @@ import {
   ChevronRight,
   Globe,
   Loader2,
+  Monitor,
   Printer,
   Search,
   ShieldAlert,
+  Smartphone,
   XCircle,
+  Zap,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type {
@@ -21,6 +24,7 @@ import type {
   IssueSeverity,
   SiteAuditIssue,
   SiteAuditResult,
+  PagePerformanceResult,
 } from '@/types/site-audit';
 
 /* ─────── Severity styling ─────── */
@@ -53,24 +57,25 @@ const CATEGORY_INFO: Record<IssueCategory, { label: string; emoji: string }> = {
 
 /* ─────── Score Donut ─────── */
 
-function ScoreDonut({ score }: { score: number }) {
-  const r = 54;
+function ScoreDonut({ score, small }: { score: number; small?: boolean }) {
+  const dim = small ? 100 : 120;
+  const r = small ? 40 : 54;
   const c = 2 * Math.PI * r;
   const offset = c - (score / 100) * c;
   const color =
     score >= 80 ? '#10B981' : score >= 60 ? '#F59E0B' : '#EF4444';
 
   return (
-    <div className="relative mx-auto h-36 w-36">
-      <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90">
-        <circle cx="60" cy="60" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="8" />
+    <div className={cn('relative mx-auto', small ? 'h-20 w-20' : 'h-36 w-36')}>
+      <svg viewBox={`0 0 ${dim} ${dim}`} className="h-full w-full -rotate-90">
+        <circle cx={dim / 2} cy={dim / 2} r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth={small ? 6 : 8} />
         <circle
-          cx="60"
-          cy="60"
+          cx={dim / 2}
+          cy={dim / 2}
           r={r}
           fill="none"
           stroke={color}
-          strokeWidth="8"
+          strokeWidth={small ? 6 : 8}
           strokeLinecap="round"
           strokeDasharray={c}
           strokeDashoffset={offset}
@@ -78,8 +83,8 @@ function ScoreDonut({ score }: { score: number }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-3xl font-bold text-white">{score}</span>
-        <span className="text-xs text-[#64748B]">/ 100</span>
+        <span className={cn('font-bold text-white', small ? 'text-lg' : 'text-3xl')}>{score}</span>
+        {!small && <span className="text-xs text-[#64748B]">/ 100</span>}
       </div>
     </div>
   );
@@ -149,6 +154,60 @@ function IssueRow({ issue }: { issue: SiteAuditIssue }) {
   );
 }
 
+/* ─────── CWV Metric Thresholds (from Google) ─────── */
+
+const CWV_THRESHOLDS: Record<string, { good: number; poor: number; unit: string; label: string }> = {
+  lcp:  { good: 2500, poor: 4000, unit: 'ms', label: 'Largest Contentful Paint' },
+  fcp:  { good: 1800, poor: 3000, unit: 'ms', label: 'First Contentful Paint' },
+  cls:  { good: 0.1,  poor: 0.25, unit: '',   label: 'Cumulative Layout Shift' },
+  tbt:  { good: 200,  poor: 600,  unit: 'ms', label: 'Total Blocking Time' },
+  si:   { good: 3400, poor: 5800, unit: 'ms', label: 'Speed Index' },
+  ttfb: { good: 800,  poor: 1800, unit: 'ms', label: 'Server Response Time' },
+};
+
+function getCwvRating(value: number, metric: string): 'good' | 'needs-improvement' | 'poor' {
+  const t = CWV_THRESHOLDS[metric];
+  if (!t) return 'good';
+  if (value <= t.good) return 'good';
+  if (value <= t.poor) return 'needs-improvement';
+  return 'poor';
+}
+
+const RATING_STYLES: Record<string, string> = {
+  good: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
+  'needs-improvement': 'text-amber-400 border-amber-500/30 bg-amber-500/10',
+  poor: 'text-red-400 border-red-500/30 bg-red-500/10',
+};
+
+function formatCwvValue(value: number, metric: string): string {
+  if (metric === 'cls') return value.toFixed(3);
+  if (value >= 1000) return `${(value / 1000).toFixed(1)} s`;
+  return `${Math.round(value)} ms`;
+}
+
+function CwvMetricCard({ label, value, metric }: { label: string; value: number; metric: string }) {
+  const rating = getCwvRating(value, metric);
+  return (
+    <div className={cn('rounded-xl border p-4 text-center', RATING_STYLES[rating])}>
+      <p className="text-2xl font-bold">{formatCwvValue(value, metric)}</p>
+      <p className="mt-1 text-[11px] opacity-80">{label}</p>
+    </div>
+  );
+}
+
+function FieldDataRow({ label, metric }: { label: string; metric: { p75: number; rating: string } | null }) {
+  if (!metric) return null;
+  const style = RATING_STYLES[metric.rating] || RATING_STYLES.good;
+  return (
+    <div className="flex items-center gap-2">
+      <span className={cn('inline-block h-2 w-2 rounded-full', metric.rating === 'good' ? 'bg-emerald-400' : metric.rating === 'needs-improvement' ? 'bg-amber-400' : 'bg-red-400')} />
+      <span className="text-xs text-[#CBD5E1]">{label}:</span>
+      <span className={cn('text-xs font-semibold', style.split(' ')[0])}>{metric.p75}</span>
+      <span className="text-[10px] text-[#64748B]">({metric.rating.replace('-', ' ')})</span>
+    </div>
+  );
+}
+
 /* ─────── Main Tab Component ─────── */
 
 export default function SiteAuditTab() {
@@ -162,6 +221,61 @@ export default function SiteAuditTab() {
   const [filterCat, setFilterCat] = useState<IssueCategory | 'all'>('all');
   const abortRef = useRef<AbortController | null>(null);
 
+  /* CWV state */
+  const [cwvLoading, setCwvLoading] = useState(false);
+  const [cwvResults, setCwvResults] = useState<PagePerformanceResult[]>([]);
+  const [cwvError, setCwvError] = useState('');
+  const [cwvStrategy, setCwvStrategy] = useState<'mobile' | 'desktop'>('mobile');
+
+  /* Analyze Core Web Vitals via our PSI proxy */
+  const analyzeCWV = useCallback(async (siteUrl: string) => {
+    setCwvLoading(true);
+    setCwvError('');
+    setCwvResults([]);
+
+    for (const strategy of ['mobile', 'desktop'] as const) {
+      try {
+        const resp = await fetch(
+          `/api/seo-tools/psi?url=${encodeURIComponent(siteUrl)}&strategy=${strategy}`,
+        );
+
+        if (!resp.ok) {
+          const data = await resp.json().catch(() => ({}));
+          if (resp.status === 429) {
+            setCwvError('Rate limited — try again in a minute');
+            break;
+          }
+          throw new Error(data.error || `PSI error: ${resp.status}`);
+        }
+
+        const psi = await resp.json();
+        setCwvResults((prev) => [
+          ...prev,
+          {
+            url: psi.url,
+            strategy: psi.strategy,
+            lab: psi.lab,
+            field: psi.field,
+            fetchedAt: psi.fetchedAt,
+          },
+        ]);
+      } catch (err) {
+        setCwvError(err instanceof Error ? err.message : 'CWV analysis failed');
+      }
+    }
+
+    setCwvLoading(false);
+  }, []);
+
+  /* Auto-run CWV when audit completes */
+  const cwvDomainRef = useRef('');
+  useEffect(() => {
+    if (!result) return;
+    if (cwvDomainRef.current === result.domain) return;
+    cwvDomainRef.current = result.domain;
+    analyzeCWV(`https://${result.domain}`);
+  }, [result, analyzeCWV]);
+
   /* Start audit */
   const startAudit = useCallback(async () => {
     const cleaned = domain.trim();
@@ -171,6 +285,9 @@ export default function SiteAuditTab() {
     setResult(null);
     setError('');
     setProgress(null);
+    setCwvResults([]);
+    setCwvError('');
+    cwvDomainRef.current = '';
 
     abortRef.current = new AbortController();
 
@@ -322,7 +439,7 @@ export default function SiteAuditTab() {
             )}
           </button>
         </form>
-        <p className="mt-3 text-[11px] text-[#64748B]">100% free • No signup • No paywall • Crawls every page • 50+ checks per page • CSV export included</p>
+        <p className="mt-3 text-[11px] text-[#64748B]">100% free • No signup • No paywall • Crawls every page • Core Web Vitals • 50+ checks per page • CSV export included</p>
 
         {error && (
           <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</div>
@@ -360,14 +477,16 @@ export default function SiteAuditTab() {
           <p className="mt-2 text-sm text-[#94A3B8] max-w-lg mx-auto">
             Other tools charge $100+/mo and cap you at a handful of pages. We crawl your <strong className="text-white">entire</strong> site —
             100, 500, even 1,000+ pages — and run <strong className="text-white">50+ SEO checks</strong> on every single one.
+            Plus real <strong className="text-white">Core Web Vitals</strong> from Google PageSpeed Insights.
             Crawlability, content, links, performance, schema, and social tags. Then export the full report as CSV.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4 text-xs text-[#64748B]">
             <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />No page limit</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />Core Web Vitals</span>
             <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />50+ checks per page</span>
             <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />CSV export</span>
             <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />No signup required</span>
-            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />Real-time progress</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />JS rendering detection</span>
           </div>
         </div>
       )}
@@ -400,6 +519,128 @@ export default function SiteAuditTab() {
               <p className="text-3xl font-bold text-blue-400">{result.noticeCount}</p>
               <p className="text-xs text-[#64748B]">Notices</p>
             </div>
+          </div>
+
+          {/* ── Core Web Vitals (Google PageSpeed Insights) ── */}
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 space-y-5">
+            <div className="flex items-center justify-between flex-wrap gap-3">
+              <div className="flex items-center gap-2">
+                <Zap className="h-4 w-4 text-[#7C3AED]" />
+                <div>
+                  <p className="text-sm font-semibold text-white">Core Web Vitals</p>
+                  <p className="text-[11px] text-[#64748B]">Powered by Google PageSpeed Insights</p>
+                </div>
+              </div>
+              {cwvResults.length > 0 && (
+                <div className="flex rounded-lg border border-white/[0.12] overflow-hidden text-xs">
+                  <button
+                    type="button"
+                    onClick={() => setCwvStrategy('mobile')}
+                    className={cn(
+                      'flex items-center gap-1.5 px-3 py-1.5 transition',
+                      cwvStrategy === 'mobile' ? 'bg-[#7C3AED] text-white' : 'text-[#64748B] hover:text-white',
+                    )}
+                  >
+                    <Smartphone className="h-3.5 w-3.5" />
+                    Mobile
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCwvStrategy('desktop')}
+                    className={cn(
+                      'flex items-center gap-1.5 px-3 py-1.5 transition',
+                      cwvStrategy === 'desktop' ? 'bg-[#7C3AED] text-white' : 'text-[#64748B] hover:text-white',
+                    )}
+                  >
+                    <Monitor className="h-3.5 w-3.5" />
+                    Desktop
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {cwvLoading && cwvResults.length === 0 && (
+              <div className="flex items-center gap-3 py-4">
+                <Loader2 className="h-5 w-5 animate-spin text-[#7C3AED]" />
+                <div>
+                  <p className="text-sm text-white">Running Lighthouse analysis…</p>
+                  <p className="text-xs text-[#64748B]">This takes 15–30 seconds</p>
+                </div>
+              </div>
+            )}
+
+            {cwvError && !cwvResults.length && (
+              <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-300">
+                {cwvError}
+              </div>
+            )}
+
+            {(() => {
+              const current = cwvResults.find((r) => r.strategy === cwvStrategy);
+              if (!current) return null;
+              const { lab, field } = current;
+
+              return (
+                <>
+                  {/* Lighthouse category scores */}
+                  <div className="grid gap-4 grid-cols-2 sm:grid-cols-4">
+                    <div className="flex flex-col items-center gap-1">
+                      <ScoreDonut score={lab.performanceScore} small />
+                      <p className="text-[11px] text-[#64748B]">Performance</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <ScoreDonut score={lab.accessibilityScore} small />
+                      <p className="text-[11px] text-[#64748B]">Accessibility</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <ScoreDonut score={lab.seoScore} small />
+                      <p className="text-[11px] text-[#64748B]">SEO</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <ScoreDonut score={lab.bestPracticesScore} small />
+                      <p className="text-[11px] text-[#64748B]">Best Practices</p>
+                    </div>
+                  </div>
+
+                  {/* CWV metric cards */}
+                  <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+                    <CwvMetricCard label="LCP" value={lab.lcp} metric="lcp" />
+                    <CwvMetricCard label="FCP" value={lab.fcp} metric="fcp" />
+                    <CwvMetricCard label="CLS" value={lab.cls} metric="cls" />
+                    <CwvMetricCard label="TBT" value={lab.tbt} metric="tbt" />
+                    <CwvMetricCard label="Speed Index" value={lab.si} metric="si" />
+                    <CwvMetricCard label="TTFB" value={lab.serverResponseTime} metric="ttfb" />
+                  </div>
+
+                  {/* Chrome UX Report field data */}
+                  {field.hasData && (
+                    <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+                      <p className="text-xs font-semibold text-white mb-2">Real User Data (Chrome UX Report — 28-day p75)</p>
+                      <div className="flex flex-wrap gap-x-6 gap-y-2">
+                        <FieldDataRow label="LCP" metric={field.lcp} />
+                        <FieldDataRow label="FCP" metric={field.fcp} />
+                        <FieldDataRow label="CLS" metric={field.cls} />
+                        <FieldDataRow label="INP" metric={field.inp} />
+                        <FieldDataRow label="TTFB" metric={field.ttfb} />
+                      </div>
+                    </div>
+                  )}
+
+                  {!field.hasData && (
+                    <p className="text-[11px] text-[#475569]">
+                      No Chrome UX Report data available — site may not have enough traffic for field metrics.
+                    </p>
+                  )}
+
+                  {cwvLoading && cwvResults.length === 1 && (
+                    <div className="flex items-center gap-2 text-xs text-[#64748B]">
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      Loading {cwvStrategy === 'mobile' ? 'desktop' : 'mobile'} results…
+                    </div>
+                  )}
+                </>
+              );
+            })()}
           </div>
 
           {/* ── Category breakdown ── */}
