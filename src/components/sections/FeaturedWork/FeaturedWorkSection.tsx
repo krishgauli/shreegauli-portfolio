@@ -3,8 +3,8 @@ import { CaseStudyCard } from "./CaseStudyCard";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
-/* Show only the 3 strongest, most-differentiated case studies on the homepage */
-const featuredIds = ["lead-conversion-fix", "seo-website-launch", "ai-call-centre"];
+/* Show the 3 strongest, most-differentiated case studies on the homepage */
+const featuredIds = ["tacklers-consulting", "olivia-tanghulu", "seo-website-launch"];
 const featured = featuredIds
   .map((id) => caseStudies.find((cs) => cs.id === id))
   .filter(Boolean) as typeof caseStudies;

@@ -1,27 +1,33 @@
 import Link from "next/link";
-import { Search, TrendingUp, Users, Zap, ArrowRight } from "lucide-react";
+import { Search, TrendingUp, Users, Zap, ArrowRight, Code, Globe, ShoppingCart, Bot } from "lucide-react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import type { Service } from "@/types";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, React.ElementType> = {
+  Code,
+  Globe,
+  ShoppingCart,
   Search,
+  Bot,
+  Zap,
   TrendingUp,
   Users,
-  Zap,
 };
 
 const colorMap: Record<string, string> = {
-  seo: "#22D3EE",
-  paid: "#7C3AED",
-  social: "#F59E0B",
-  automation: "#34D399",
+  "web-development": "#7C3AED",
+  wordpress: "#22D3EE",
+  shopify: "#34D399",
+  "seo-aeo-geo": "#F59E0B",
+  automation: "#A855F7",
 };
 
 const hrefMap: Record<string, string> = {
-  seo: "/services/seo",
-  paid: "/services/paid-media",
-  social: "/services/social-media",
+  "web-development": "/services/web-development",
+  wordpress: "/services/wordpress",
+  shopify: "/services/shopify",
+  "seo-aeo-geo": "/services/seo-aeo-geo",
   automation: "/services/automation",
 };
 

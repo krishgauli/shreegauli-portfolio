@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/Hero/HeroSection";
 import { TrustBar } from "@/components/sections/TrustBar/TrustBar";
 import { FeaturedWorkSection } from "@/components/sections/FeaturedWork/FeaturedWorkSection";
+import { PortfolioShowcase } from "@/components/sections/PortfolioShowcase/PortfolioShowcase";
 import { ServicesSection } from "@/components/sections/Services/ServicesSection";
 import { ResultsStrip } from "@/components/sections/ResultsStrip/ResultsStrip";
 import { WhoThisIsForSection } from "@/components/sections/WhoThisIsFor/WhoThisIsForSection";
@@ -70,7 +71,10 @@ export default function Home() {
         {/* 6. Featured Work */}
         <FeaturedWorkSection />
 
-        {/* 7. Testimonials */}
+        {/* 7. Portfolio — all 10 live websites */}
+        <PortfolioShowcase />
+
+        {/* 8. Testimonials */}
         <TestimonialsSection />
 
         {/* 8. SEO Tool Promo */}
