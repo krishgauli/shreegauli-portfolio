@@ -1,7 +1,7 @@
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import type { Testimonial } from "@/types";
 import { cn } from "@/lib/utils";
-import { Stethoscope, ShoppingCart, Building2, BarChart3 } from "lucide-react";
+import { Star, Stethoscope, ShoppingCart, Building2, BarChart3 } from "lucide-react";
 
 const industryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   healthcare: Stethoscope,
@@ -30,6 +30,23 @@ export function TestimonialCard({
           <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]">
             {testimonial.result}
           </span>
+        </div>
+      )}
+
+      {/* Star rating */}
+      {testimonial.stars && (
+        <div className="flex items-center gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star
+              key={i}
+              className={cn(
+                "h-4 w-4",
+                i < testimonial.stars
+                  ? "fill-amber-400 text-amber-400"
+                  : "fill-transparent text-white/20"
+              )}
+            />
+          ))}
         </div>
       )}
 
