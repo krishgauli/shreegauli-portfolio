@@ -19,10 +19,11 @@ import {
 import { PageShell } from '@/components/layout/PageShell';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { cn } from '@/lib/utils';
+import SiteAuditTab from './SiteAuditTab';
 
 type Status = 'pass' | 'warn' | 'fail';
 type Impact = 'critical' | 'high' | 'medium' | 'low';
-type SeoTab = 'onpage' | 'keywords' | 'backlinks' | 'report';
+type SeoTab = 'audit' | 'onpage' | 'keywords' | 'backlinks' | 'report';
 
 interface SeoCheck {
   id: string;
@@ -81,6 +82,7 @@ interface SeoResult {
 }
 
 const TAB_ITEMS: Array<{ id: SeoTab; label: string; icon: React.ComponentType<{ className?: string }> }> = [
+  { id: 'audit', label: 'Site Audit', icon: Globe },
   { id: 'onpage', label: 'On-Page', icon: Search },
   { id: 'keywords', label: 'Keywords', icon: KeyRound },
   { id: 'backlinks', label: 'Backlinks', icon: Link2 },
@@ -170,7 +172,7 @@ function KeywordTable({ title, rows, tip }: { title: string; rows: KeywordRow[];
 
 export default function SeoToolsClient() {
   const [url, setUrl] = useState('');
-  const [activeTab, setActiveTab] = useState<SeoTab>('onpage');
+  const [activeTab, setActiveTab] = useState<SeoTab>('audit');
   const [loadingAnalyze, setLoadingAnalyze] = useState(false);
   const [loadingKeywords, setLoadingKeywords] = useState(false);
   const [error, setError] = useState('');
@@ -408,11 +410,18 @@ export default function SeoToolsClient() {
             {error && <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</div>}
           </div>
 
-          {!result ? (
+          {/* Site Audit tab — independent of single-page result */}
+          {activeTab === 'audit' && (
+            <div className="mt-8">
+              <SiteAuditTab />
+            </div>
+          )}
+
+          {activeTab !== 'audit' && !result ? (
             <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 text-sm text-[#94A3B8]">
               Run an audit to unlock On-Page, Keywords, Backlinks, and Full Report tabs.
             </div>
-          ) : (
+          ) : activeTab !== 'audit' && result ? (
             <div className="mt-8 space-y-6">
               {activeTab === 'onpage' && (
                 <>
@@ -608,7 +617,7 @@ export default function SeoToolsClient() {
                 </>
               )}
 
-              {activeTab === 'report' && (
+              {activeTab === 'report' && result && (
                 <div className="space-y-5 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
@@ -656,7 +665,7 @@ export default function SeoToolsClient() {
                 </div>
               )}
             </div>
-          )}
+          ) : null}
 
           {/* Post-audit CTA */}
           {result && (
