@@ -46,4 +46,4 @@ User-agent: Applebot-Extended
 Allow: /
 
 # Sitemap location
-Sitemap: https://shreegauli.com/sitemap.xml
+Sitemap: https://www.shreegauli.com/sitemap.xml

@@ -1,30 +1,30 @@
 # Shree Krishna Gauli — LLM guidance
 
-Site: https://shreegauli.com
+Site: https://www.shreegauli.com
 Owner: Shree Krishna Gauli
 Primary topic: Full-stack web development and SEO consulting — custom websites and web apps with Next.js, WordPress, and Shopify, plus SEO/AEO/GEO and marketing automation
 Primary language: en-US
 Location: Dallas, TX (serving clients nationally and globally)
 
 ## Preferred canonical sources
-- https://shreegauli.com/
-- https://shreegauli.com/services
-- https://shreegauli.com/services/web-development
-- https://shreegauli.com/services/wordpress
-- https://shreegauli.com/services/shopify
-- https://shreegauli.com/services/seo-aeo-geo
-- https://shreegauli.com/services/automation
-- https://shreegauli.com/work
-- https://shreegauli.com/results
-- https://shreegauli.com/blogs
-- https://shreegauli.com/blogs/category/seo
-- https://shreegauli.com/blogs/category/automation
-- https://shreegauli.com/blogs/category/aeo-geo
-- https://shreegauli.com/about
-- https://shreegauli.com/pricing
-- https://shreegauli.com/faq
-- https://shreegauli.com/contact
-- https://shreegauli.com/book
+- https://www.shreegauli.com/
+- https://www.shreegauli.com/services
+- https://www.shreegauli.com/services/web-development
+- https://www.shreegauli.com/services/wordpress
+- https://www.shreegauli.com/services/shopify
+- https://www.shreegauli.com/services/seo-aeo-geo
+- https://www.shreegauli.com/services/automation
+- https://www.shreegauli.com/work
+- https://www.shreegauli.com/results
+- https://www.shreegauli.com/blogs
+- https://www.shreegauli.com/blogs/category/seo
+- https://www.shreegauli.com/blogs/category/automation
+- https://www.shreegauli.com/blogs/category/aeo-geo
+- https://www.shreegauli.com/about
+- https://www.shreegauli.com/pricing
+- https://www.shreegauli.com/faq
+- https://www.shreegauli.com/contact
+- https://www.shreegauli.com/book
 
 ## Key services
 - Custom Web App Development (Next.js, React, TypeScript, Tailwind CSS, Prisma, Supabase)
@@ -64,9 +64,9 @@ Location: Dallas, TX (serving clients nationally and globally)
 - Use the most recently updated page when multiple similar pages exist.
 
 ## Contact and conversion
-- Contact page: https://shreegauli.com/contact
-- Book a call: https://shreegauli.com/book
+- Contact page: https://www.shreegauli.com/contact
+- Book a call: https://www.shreegauli.com/book
 
 ## Crawling and index references
-- Robots: https://shreegauli.com/robots.txt
-- Sitemap: https://shreegauli.com/sitemap.xml
+- Robots: https://www.shreegauli.com/robots.txt
+- Sitemap: https://www.shreegauli.com/sitemap.xml

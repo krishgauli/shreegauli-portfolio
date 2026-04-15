@@ -5,7 +5,7 @@
  * All URLs are absolute with the SITE_URL prefix.
  */
 
-const SITE_URL = "https://shreegauli.com";
+const SITE_URL = "https://www.shreegauli.com";
 
 /* ---------- BreadcrumbList ---------- */
 

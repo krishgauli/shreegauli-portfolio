@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     "Shree Krishna Gauli",
     "Dallas",
   ],
-  authors: [{ name: "Shree Krishna Gauli", url: "https://shreegauli.com" }],
+  authors: [{ name: "Shree Krishna Gauli", url: "https://www.shreegauli.com" }],
   creator: "Shree Krishna Gauli",
-  metadataBase: new URL("https://shreegauli.com"),
+  metadataBase: new URL("https://www.shreegauli.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://shreegauli.com",
+    url: "https://www.shreegauli.com",
     siteName: "Shree Krishna Gauli",
     title: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
     description:

@@ -1,5 +1,5 @@
 export default function PersonSchema() {
-  const SITE_URL = 'https://shreegauli.com';
+  const SITE_URL = 'https://www.shreegauli.com';
   const PERSON_ID = `${SITE_URL}/#person`;
   const WEBSITE_ID = `${SITE_URL}/#website`;
   const ORG_ID = `${SITE_URL}/#organization`;
