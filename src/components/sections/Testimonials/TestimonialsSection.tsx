@@ -68,8 +68,11 @@ export function TestimonialsSection() {
           <span className="text-sm text-[#94A3B8]">· 5 Reviews</span>
         </div>
 
-        {/* 3-card grid with fade transition */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500">
+        {/* 3-card grid — key forces re-mount for fade-in animation */}
+        <div
+          key={`testimonial-page-${page}`}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-up"
+        >
           {visible.map((t) => (
             <TestimonialCard
               key={t.id}

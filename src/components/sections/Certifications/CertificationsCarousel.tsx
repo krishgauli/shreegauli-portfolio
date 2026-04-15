@@ -107,8 +107,11 @@ export function CertificationsCarousel() {
           </span>
         </div>
 
-        {/* 3-card iframe grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* 3-card iframe grid — key forces re-mount for fade-in animation */}
+        <div
+          key={`cert-page-${page}`}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-up"
+        >
           {visible.map((cert) => (
             <div key={cert.id}>
               <ModuleShell className="overflow-hidden" enableHoverLift>
