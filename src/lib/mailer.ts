@@ -14,7 +14,7 @@ import nodemailer from 'nodemailer';
 const SMTP_USER = process.env.SMTP_USER || '';
 const SMTP_APP_PASSWORD = process.env.SMTP_APP_PASSWORD || '';
 const ADMIN_EMAIL = process.env.SMTP_ADMIN_EMAIL || SMTP_USER;
-const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
+const SITE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 const BRAND = {
   name: 'Shree Gauli',
   tagline: 'Full-Stack Web Developer & SEO Consultant',

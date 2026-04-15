@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const siteUrl = "https://shreegauli.com";
+const siteUrl = "https://www.shreegauli.com";
 const siteName = "Shree Krishna Gauli";
 const defaultImage = "/og-image.jpg";
 
