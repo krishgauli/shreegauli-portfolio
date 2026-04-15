@@ -4,9 +4,11 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
+import { CertificationsCarousel } from "@/components/sections/Certifications/CertificationsCarousel";
+import { apprenticeships } from "@/lib/credentials";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, credentialListSchema } from "@/lib/schema";
 import { Linkedin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,9 +16,9 @@ import Image from "next/image";
 export const metadata: Metadata = createPageMetadata({
   title: "About Shree Krishna Gauli | Full-Stack Web Developer & SEO Consultant — Dallas, TX",
   description:
-    "Full-stack developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation. Based in Dallas, working globally.",
+    "Full-stack developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation. 5 verified Acadium apprenticeships. Based in Dallas, working globally.",
   path: "/about",
-  keywords: ["about shree gauli", "full-stack web developer dallas", "Next.js developer", "SEO consultant dallas"],
+  keywords: ["about shree gauli", "full-stack web developer dallas", "Next.js developer", "SEO consultant dallas", "acadium certified", "web developer certifications"],
 });
 
 const timeline = [
@@ -60,13 +62,6 @@ const tools = [
   { name: "ChatGPT / Claude", category: "AI" },
 ];
 
-const certifications = [
-  "Google Analytics Certified",
-  "Google Ads Search Certified",
-  "Google Ads Display Certified",
-  "HubSpot Inbound Marketing",
-];
-
 const education = [
   {
     school: "University of the People",
@@ -90,6 +85,17 @@ export default function AboutPage() {
   return (
     <PageShell>
       <JsonLd data={breadcrumbSchema([{ name: "About", path: "/about" }])} />
+      {credentialListSchema(
+        apprenticeships.map((c) => ({
+          name: c.title,
+          focus: c.focus,
+          issuer: c.issuer,
+          dateISO: c.dateISO,
+          verifyUrl: c.verifyUrl,
+        }))
+      ).map((schema, i) => (
+        <JsonLd key={`cred-${i}`} data={schema} />
+      ))}
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">
@@ -238,42 +244,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Tools & Certifications */}
+      {/* Tools */}
       <section className="relative z-10 pb-20 px-6">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-          {/* Tools */}
-          <div>
-            <h2 className="text-xl font-bold text-[#F8FAFC] mb-4">Tools</h2>
-            <ModuleShell className="p-6">
-              <div className="flex flex-wrap gap-2">
-                {tools.map((tool) => (
-                  <span
-                    key={tool.name}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/[0.08] bg-white/[0.03] text-[#94A3B8]"
-                  >
-                    {tool.name}
-                  </span>
-                ))}
-              </div>
-            </ModuleShell>
-          </div>
-
-          {/* Certifications */}
-          <div>
-            <h2 className="text-xl font-bold text-[#F8FAFC] mb-4">Certifications</h2>
-            <ModuleShell className="p-6">
-              <ul className="flex flex-col gap-3">
-                {certifications.map((cert) => (
-                  <li key={cert} className="flex items-center gap-3 text-sm text-[#94A3B8]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] shrink-0" />
-                    {cert}
-                  </li>
-                ))}
-              </ul>
-            </ModuleShell>
-          </div>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-[#F8FAFC] mb-4">Tools</h2>
+          <ModuleShell className="p-6">
+            <div className="flex flex-wrap gap-2">
+              {tools.map((tool) => (
+                <span
+                  key={tool.name}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/[0.08] bg-white/[0.03] text-[#94A3B8]"
+                >
+                  {tool.name}
+                </span>
+              ))}
+            </div>
+          </ModuleShell>
         </div>
       </section>
+
+      {/* Certifications Carousel */}
+      <CertificationsCarousel />
 
       {/* Personal */}
       <section className="relative z-10 pb-20 px-6">

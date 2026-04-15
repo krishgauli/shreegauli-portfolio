@@ -384,3 +384,35 @@ export function professionalServiceSchema() {
     },
   };
 }
+
+/* ---------- EducationalOccupationalCredential ---------- */
+
+export interface CredentialInput {
+  name: string;
+  focus: string;
+  issuer: string;
+  dateISO: string;
+  verifyUrl: string;
+}
+
+export function credentialListSchema(credentials: CredentialInput[]) {
+  return credentials.map((c) => ({
+    "@context": "https://schema.org",
+    "@type": "EducationalOccupationalCredential",
+    name: `${c.name} — ${c.focus}`,
+    description: `Acadium apprenticeship completion certificate for ${c.focus}. 3-month mentored engagement delivering real client projects.`,
+    credentialCategory: "certificate",
+    recognizedBy: {
+      "@type": "Organization",
+      name: c.issuer,
+      url: "https://acadium.com",
+    },
+    dateCreated: c.dateISO,
+    url: c.verifyUrl,
+    about: {
+      "@type": "Person",
+      name: "Shree Krishna Gauli",
+      url: SITE_URL,
+    },
+  }));
+}
