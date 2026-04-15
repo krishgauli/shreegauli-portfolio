@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import {
   Award,
@@ -10,21 +11,47 @@ import {
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Embed URLs for all 5 Acadium certificates                          */
+/*  Certificate image data — Accredible API images                     */
 /* ------------------------------------------------------------------ */
 
 const certificates = [
-  { id: "cert-1", embedUrl: "https://www.credential.net/embed/2e879ad2-f032-49be-ab7e-0b3ffc7bccf2", focus: "SEO / AEO / GEO" },
-  { id: "cert-2", embedUrl: "https://www.credential.net/embed/c08e06c8-70b3-4c28-8a0f-f093dade3825", focus: "Web Dev & SEO" },
-  { id: "cert-3", embedUrl: "https://www.credential.net/embed/9a2798ac-21ca-4b83-aee9-e7486d82dfb9", focus: "Website Building" },
-  { id: "cert-4", embedUrl: "https://www.credential.net/embed/75e9638b-1006-42bd-8512-14bd8916692a", focus: "Web App Consulting" },
-  { id: "cert-5", embedUrl: "https://www.credential.net/embed/671c71b9-f3fb-4c4e-a0b7-6d3d5188b45d", focus: "SEO & Marketing" },
+  {
+    id: "cert-1",
+    imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/133025251",
+    verifyUrl: "https://www.credential.net/2e879ad2-f032-49be-ab7e-0b3ffc7bccf2",
+    focus: "SEO / AEO / GEO",
+  },
+  {
+    id: "cert-2",
+    imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/144155015",
+    verifyUrl: "https://www.credential.net/c08e06c8-70b3-4c28-8a0f-f093dade3825",
+    focus: "Web Dev & SEO",
+  },
+  {
+    id: "cert-3",
+    imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/156510197",
+    verifyUrl: "https://www.credential.net/9a2798ac-21ca-4b83-aee9-e7486d82dfb9",
+    focus: "Website Building",
+  },
+  {
+    id: "cert-4",
+    imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/179582523",
+    verifyUrl: "https://www.credential.net/75e9638b-1006-42bd-8512-14bd8916692a",
+    focus: "Web App Consulting",
+  },
+  {
+    id: "cert-5",
+    imageUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/179580597",
+    badgeUrl: "https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/179580597",
+    verifyUrl: "https://www.credential.net/671c71b9-f3fb-4c4e-a0b7-6d3d5188b45d",
+    focus: "SEO & Marketing",
+  },
 ];
 
 const VISIBLE = 3;
 
 /* ------------------------------------------------------------------ */
-/*  Carousel — 3 embedded certificate iframes at a time                */
+/*  Carousel — 3 certificate images at a time                          */
 /* ------------------------------------------------------------------ */
 
 export function CertificationsCarousel() {
@@ -107,25 +134,39 @@ export function CertificationsCarousel() {
           </span>
         </div>
 
-        {/* 3-card iframe grid — key forces re-mount for fade-in animation */}
+        {/* 3-card image grid — key forces re-mount for fade-in animation */}
         <div
           key={`cert-page-${page}`}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-up"
         >
           {visible.map((cert) => (
-            <div key={cert.id}>
+            <a
+              key={cert.id}
+              href={cert.verifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
               <ModuleShell className="overflow-hidden" enableHoverLift>
-                <div className="relative w-full" style={{ paddingBottom: "75%" }}>
-                  <iframe
-                    src={cert.embedUrl}
-                    title={`Certificate — ${cert.focus}`}
-                    className="absolute inset-0 w-full h-full border-0"
-                    loading="lazy"
-                    allowFullScreen
+                <div className="relative w-full aspect-[4/3]">
+                  <Image
+                    src={cert.imageUrl}
+                    alt={`Certificate — ${cert.focus}`}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
+                <div className="px-4 py-3 border-t border-white/[0.06]">
+                  <p className="text-xs font-medium text-[#F8FAFC] group-hover:text-[#C4B5FD] transition-colors">
+                    {cert.focus}
+                  </p>
+                  <p className="text-[10px] text-[#94A3B8] mt-0.5">
+                    Click to verify on Credential.net
+                  </p>
+                </div>
               </ModuleShell>
-            </div>
+            </a>
           ))}
         </div>
 
