@@ -79,7 +79,7 @@ export function Navbar() {
           mobileOpen
             ? "bg-[#070B14]/96 backdrop-blur-xl border border-white/[0.12] shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
             : scrolled
-            ? "glass shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+            ? "bg-[#070B14]/90 backdrop-blur-xl border border-white/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
             : "bg-[#070B14]/55 backdrop-blur-sm border border-white/[0.06]"
         )}
       >
