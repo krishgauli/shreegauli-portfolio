@@ -10,6 +10,7 @@ import { ResultsStrip } from "@/components/sections/ResultsStrip/ResultsStrip";
 import { WhoThisIsForSection } from "@/components/sections/WhoThisIsFor/WhoThisIsForSection";
 import { AboutPreview } from "@/components/sections/About/AboutPreview";
 import { TestimonialsSection } from "@/components/sections/Testimonials/TestimonialsSection";
+import { CertificationsCarousel } from "@/components/sections/Certifications/CertificationsCarousel";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { SeoToolPromoSection } from "@/components/sections/SeoToolPromo/SeoToolPromoSection";
 import { createPageMetadata } from "@/lib/seo";
@@ -77,7 +78,10 @@ export default function Home() {
         {/* 8. Testimonials */}
         <TestimonialsSection />
 
-        {/* 8. SEO Tool Promo */}
+        {/* 9. Certifications */}
+        <CertificationsCarousel />
+
+        {/* 10. SEO Tool Promo */}
         <SeoToolPromoSection />
 
         {/* 9. About Preview */}
