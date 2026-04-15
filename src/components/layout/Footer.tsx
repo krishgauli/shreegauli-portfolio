@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, Phone } from "lucide-react";
 import Logo from "@/components/Logo";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
@@ -79,6 +79,14 @@ export function Footer() {
             >
               <Mail className="h-4 w-4" />
             </Link>
+            <a
+              href="tel:+14099952521"
+              className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors flex items-center gap-1.5"
+              aria-label="Phone"
+            >
+              <Phone className="h-4 w-4" />
+              <span className="text-xs hidden sm:inline">(409) 995-2521</span>
+            </a>
             <Link
               href="https://www.linkedin.com/in/gauli/"
               target="_blank"
