@@ -23,22 +23,52 @@ export const metadata: Metadata = createPageMetadata({
 
 const timeline = [
   {
-    period: "2024 — Present",
-    role: "Full-Stack Web Developer & SEO Consultant",
+    period: "Sep 2025 — Present",
+    role: "Senior Marketing Officer — FOCUS",
     description:
-      "Building custom websites and web apps with Next.js, WordPress, and Shopify for healthcare, finance, SaaS, and e-commerce businesses. Handling design, development, SEO, and automation end-to-end. 14+ projects shipped.",
+      "Working as an agency serving local healthcare, B2B, and B2C clients. Leading digital marketing strategy, SEO campaigns, and web development projects.",
   },
   {
-    period: "2022 — 2024",
-    role: "Web Developer & SEO Specialist",
+    period: "Sep 2025 — Present",
+    role: "Digital Marketing Consultant — Focus Health",
     description:
-      "Built WordPress sites for multi-location healthcare practices. Developed SEO strategies that drove 340% organic growth. Created n8n automation workflows saving 20+ hours weekly. Began transitioning to full-stack JavaScript.",
+      "Providing full-service digital marketing consulting for a healthcare organization — managing web properties, SEO, and patient acquisition campaigns.",
   },
   {
-    period: "2020 — 2022",
-    role: "Marketing & Web Foundations",
+    period: "May 2025 — Nov 2025",
+    role: "Senior Marketing Officer — SwiftFin Global Consulting",
     description:
-      "Developed core skills in SEO, web development, Google Analytics, CRM management, and marketing technology. Started building WordPress sites and learning React/Next.js.",
+      "Led a marketing team across content, paid media, SEO, email, and social. Implemented automation, A/B testing, and analytics to improve campaign ROI. Built operational SOPs for scalability.",
+  },
+  {
+    period: "May 2025 — Aug 2025",
+    role: "Sr Marketing Officer — Total Point Healthcare Inc.",
+    description:
+      "Supervised blog publishing and SEO across WordPress sites. Managed Google My Business reviews, multi-channel campaigns via eClinic ECW, and collaborated with developers on site performance.",
+  },
+  {
+    period: "Mar 2025 — Jun 2025",
+    role: "IT Project Manager — Webpoint Solutions, LLC",
+    description:
+      "Led cross-functional teams to deliver software solutions on time and within budget. Coordinated Agile sprints and Waterfall projects, managed stakeholder communications and risk strategies.",
+  },
+  {
+    period: "Feb 2025 — May 2025",
+    role: "Project Manager & Marketing Mentor — Max Advanced Solutions",
+    description:
+      "Managed client projects from kickoff to delivery. Mentored junior marketing associates in SEO strategies and PPC campaigns. Drafted SEO-optimized blogs and website content.",
+  },
+  {
+    period: "Feb 2025 — Dec 2025",
+    role: "Social Media Manager — The Integrity Game®",
+    description:
+      "Developed social media strategies to increase brand awareness. Conducted keyword research for SEO, created graphic design content, and managed cross-platform publishing.",
+  },
+  {
+    period: "Oct 2024 — Feb 2025",
+    role: "SEO & Content Marketing Specialist — Rock and Soul",
+    description:
+      "Implemented SEO strategies and keyword research to improve website ranking. Managed Shopify Plus e-commerce listings, executed paid and organic campaigns across Meta Ads and Google Ads.",
   },
 ];
 
@@ -114,8 +144,9 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-5">
-                  <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>
+                  <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli, BBA</p>
                   <p className="text-sm text-[#94A3B8] mt-0.5">Full-Stack Web Developer &amp; SEO Consultant</p>
+                  <p className="text-xs text-[#94A3B8]/70 mt-0.5">Diploma in Information Technology</p>
                   <p className="text-xs text-[#94A3B8]/80 mt-1">14+ Websites Shipped</p>
                   <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Working globally</p>
                   <div className="flex gap-3 mt-4">
