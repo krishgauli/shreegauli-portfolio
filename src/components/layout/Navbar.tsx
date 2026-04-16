@@ -26,7 +26,7 @@ export function Navbar() {
   const userMenuRef = useRef<HTMLDivElement>(null);
   const { user, logout } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);

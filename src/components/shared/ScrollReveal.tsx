@@ -48,6 +48,11 @@ export function ScrollReveal({
       return;
     }
 
+    if (typeof window === "undefined" || typeof window.IntersectionObserver !== "function") {
+      setIsVisible(true);
+      return;
+    }
+
     const element = ref.current;
     if (!element) return;
 

@@ -34,6 +34,9 @@ export const ModuleShell = forwardRef<HTMLDivElement, ModuleShellProps>(
   ) => {
     const prefersReducedMotion = useReducedMotion();
     const tilt = useMouseTilt(6);
+    const perspective = "perspective(1000px)";
+    const transformTemplate = useMotionTemplate`${perspective} rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`;
+    const shouldTilt = enableTilt && !prefersReducedMotion;
 
     const glowStyles: Record<string, string> = {
       violet: "hover:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6),0_0_30px_rgba(124,58,237,0.2)]",
@@ -42,10 +45,7 @@ export const ModuleShell = forwardRef<HTMLDivElement, ModuleShellProps>(
       none: "hover:shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)]",
     };
 
-    if (enableTilt && !prefersReducedMotion) {
-      const perspective = "perspective(1000px)";
-      const transformTemplate = useMotionTemplate`${perspective} rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`;
-
+    if (shouldTilt) {
       return (
         <motion.div
           ref={tilt.ref}

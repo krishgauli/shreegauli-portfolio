@@ -30,7 +30,7 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '';
 
   const shouldHydrateAuth = useMemo(() => {
     return (
