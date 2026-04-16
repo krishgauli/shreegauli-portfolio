@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!study) return {};
 
   return createPageMetadata({
-    title: `${study.result.length > 50 ? study.result.slice(0, 47) + '...' : study.result} | Case Study`,
+    title: `${study.result.length > 47 ? study.result.slice(0, 44) + '...' : study.result} | Case Study`,
     description: `${study.problem} See how ${study.result.toLowerCase()} was achieved through focused ${study.tags.join(", ").toLowerCase()} work.`,
     path: `/work/${study.id}`,
     keywords: study.tags,

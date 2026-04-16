@@ -11,7 +11,7 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "SEO, AEO & GEO Services | Rank on Google and AI Search Engines",
+  title: "SEO, AEO & GEO Services | Rank on Google & AI",
   description:
     "Technical SEO audits, AI search optimization (AEO), and geo-targeted search strategies (GEO). Get found on Google, ChatGPT, Perplexity, and every search engine that matters.",
   path: "/services/seo-aeo-geo",

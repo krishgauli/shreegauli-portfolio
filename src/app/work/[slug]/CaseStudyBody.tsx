@@ -332,7 +332,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                   <div className="absolute inset-0 opacity-[0.04]">
                     <img
                       src={study.thumbnail}
-                      alt=""
+                      alt={`${study.title} project thumbnail`}
                       className="w-full h-full object-cover"
                     />
                   </div>

@@ -11,7 +11,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "SEO Strategy Guide | Articles on Technical SEO, Local SEO & Content",
+  title: "SEO Strategy Guide | Technical & Local SEO Tips",
   description:
     "In-depth articles on technical SEO, local SEO, content strategy, and search optimization for healthcare practices and service businesses.",
   path: "/blogs/category/seo",

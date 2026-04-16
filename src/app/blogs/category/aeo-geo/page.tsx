@@ -11,7 +11,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "AEO & GEO Guide | Answer Engine & Generative Engine Optimization",
+  title: "AEO & GEO Guide | AI Search Optimization",
   description:
     "Articles on Answer Engine Optimization (AEO), Generative Engine Optimization (GEO), and how to get your brand cited by AI search engines like ChatGPT and Perplexity.",
   path: "/blogs/category/aeo-geo",

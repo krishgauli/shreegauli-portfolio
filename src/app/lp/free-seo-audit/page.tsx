@@ -90,6 +90,12 @@ export default function FreeSeoAuditLandingPage() {
                 the audit first. If the bottleneck is broader than on-page SEO, book
                 a strategy call and we can scope the problem properly.
               </p>
+              <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+                The tool checks more than thirty on-page factors including title tags, heading hierarchy,
+                canonical configuration, structured data, image accessibility, internal link distribution,
+                and page speed indicators. Results are exportable so you can share them with your team
+                or bring them to a follow-up review.
+              </p>
             </ModuleShell>
           </div>
         </div>

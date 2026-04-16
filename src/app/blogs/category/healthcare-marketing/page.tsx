@@ -11,7 +11,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Healthcare Marketing Blog | SEO, Ads & Patient Acquisition Articles",
+  title: "Healthcare Marketing Blog | SEO & Patient Growth",
   description:
     "Marketing articles for healthcare practices, clinics, and medical businesses — covering SEO, Google Ads, patient acquisition, and lead conversion.",
   path: "/blogs/category/healthcare-marketing",

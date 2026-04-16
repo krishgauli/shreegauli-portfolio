@@ -101,24 +101,51 @@ export async function generateMetadata({
     const staticPost = getStaticWritingPostBySlug(slug);
     if (!staticPost) return {};
 
+    const suffix = ' | Shree Gauli';
+    const staticTitle = staticPost.title.length + suffix.length <= 60
+      ? `${staticPost.title}${suffix}`
+      : staticPost.title;
+
     return createPageMetadata({
-      title: `${staticPost.title} | Shree Gauli`,
+      title: staticTitle,
       description: staticPost.excerpt,
       path: `/blogs/${staticPost.slug}`,
       keywords: staticPost.keywords,
     });
   }
 
+  const blogTitle = post.seoTitle || post.title;
+  const suffix = ' | Shree Gauli';
+  const fullTitle = blogTitle.length + suffix.length <= 60
+    ? `${blogTitle}${suffix}`
+    : blogTitle;
+
   return createPageMetadata({
-    title: `${post.seoTitle || post.title} | Shree Gauli`,
+    title: fullTitle,
     description: post.metaDesc || post.excerpt || "",
     path: `/blogs/${post.slug}`,
     keywords: [],
   });
 }
 
-export function generateStaticParams() {
-  return staticWritingPosts.map((post) => ({ slug: post.slug }));
+/* ISR: cache rendered page for 1 hour, revalidate in background */
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  /* Pre-render static markdown posts */
+  const staticParams = staticWritingPosts.map((post) => ({ slug: post.slug }));
+
+  /* Also pre-render DB posts at build time */
+  try {
+    const dbPosts = await prisma.post.findMany({
+      where: { status: "PUBLISHED" },
+      select: { slug: true },
+    });
+    const dbParams = dbPosts.map((p) => ({ slug: p.slug }));
+    return [...staticParams, ...dbParams];
+  } catch {
+    return staticParams;
+  }
 }
 
 /* ---------- page ---------- */

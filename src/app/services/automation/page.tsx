@@ -11,7 +11,7 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Marketing Automation & AI Follow-Up Systems | n8n, CRM & AI Bots",
+  title: "Marketing Automation & AI Follow-Up | n8n & CRM",
   description:
     "Custom n8n workflows, AI chatbot lead capture, automated appointment reminders, review collection, and CRM integration — so you never lose a lead again.",
   path: "/services/automation",

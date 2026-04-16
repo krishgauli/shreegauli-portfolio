@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Dev & SEO Newsletter | Web Development, SEO, and Automation Notes",
+  title: "Dev & SEO Newsletter | Web Dev & Automation Notes",
   description:
     "Subscribe for practical notes on web development, SEO, automation, and technical strategy from a working full-stack developer.",
   path: "/newsletter",
@@ -52,6 +52,17 @@ export default function NewsletterPage() {
                 thinking about web development, SEO, and automation.
               </p>
             </ModuleShell>
+          </div>
+
+          <div className="mt-10 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8">
+            <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Topics you will see</h2>
+            <p className="text-sm leading-7 text-[#94A3B8]">
+              Recent issues have covered technical SEO patterns that move rankings without new content,
+              n8n automation workflows for lead follow-up and appointment reminders, Next.js performance
+              tuning for Core Web Vitals, structured data strategies for AI search engines, and
+              real-world case breakdowns showing exactly what changed and what the outcome was.
+              Each send focuses on one idea you can act on the same week.
+            </p>
           </div>
         </div>
       </section>

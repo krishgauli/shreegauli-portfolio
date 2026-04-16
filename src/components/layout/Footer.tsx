@@ -79,6 +79,7 @@ export function Footer() {
               aria-label="Contact"
             >
               <Mail className="h-4 w-4" />
+              <span className="sr-only">Contact</span>
             </Link>
             <a
               href="tel:+14099952521"
@@ -87,6 +88,7 @@ export function Footer() {
             >
               <Phone className="h-4 w-4" />
               <span className="text-xs hidden sm:inline">(409) 995-2521</span>
+              <span className="sr-only sm:hidden">Call (409) 995-2521</span>
             </a>
             <Link
               href="https://www.linkedin.com/in/gauli/"
@@ -96,6 +98,7 @@ export function Footer() {
               aria-label="LinkedIn"
             >
               <Linkedin className="h-4 w-4" />
+              <span className="sr-only">LinkedIn</span>
             </Link>
           </div>
 

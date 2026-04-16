@@ -132,6 +132,7 @@ export default function ResultsPage() {
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-5xl">
           <SectionHeader
+            as="h1"
             eyebrow="Proof"
             title="Results that speak for themselves"
             subtitle="Every number on this page comes from a real engagement with a real business. No hypothetical projections. No vanity metrics. Just outcomes that moved revenue."
