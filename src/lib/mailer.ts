@@ -172,6 +172,17 @@ interface LeadData {
   createdAt?: Date;
 }
 
+interface SiteAuditEmailData {
+  email: string;
+  domain: string;
+  healthScore: number;
+  pagesScanned: number;
+  errorCount: number;
+  warningCount: number;
+  noticeCount: number;
+  topIssues: Array<{ title: string; severity: string; affectedPages: number }>;
+}
+
 function detailRow(label: string, value?: string | null) {
   if (!value) return '';
   return `
@@ -324,6 +335,80 @@ function adminNewSubscriberHtml(email: string, source: string) {
   `);
 }
 
+function userSiteAuditReportHtml(data: SiteAuditEmailData) {
+  const topIssuesHtml = data.topIssues.length
+    ? data.topIssues
+        .slice(0, 8)
+        .map(
+          (issue) => `
+      <tr>
+        <td style="padding:10px 12px;color:#0f172a;font-size:14px;border-bottom:1px solid #f1f5f9;">${esc(issue.title)}</td>
+        <td style="padding:10px 12px;color:#64748b;font-size:12px;text-transform:uppercase;border-bottom:1px solid #f1f5f9;">${esc(issue.severity)}</td>
+        <td style="padding:10px 12px;color:#334155;font-size:14px;text-align:right;border-bottom:1px solid #f1f5f9;">${issue.affectedPages}</td>
+      </tr>`,
+        )
+        .join('')
+    : '<tr><td colspan="3" style="padding:10px 12px;color:#334155;font-size:14px;">No critical issues found.</td></tr>';
+
+  return emailShell(`
+    <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7c3aed;font-weight:700;">SITE AUDIT REPORT</p>
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#0f172a;">Your SEO Audit for ${esc(data.domain)}</h1>
+    <p style="margin:0 0 24px;font-size:14px;color:#64748b;">Generated ${formatDate(new Date())}</p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+      ${detailRow('Domain', data.domain)}
+      ${detailRow('Health Score', `${data.healthScore}/100`)}
+      ${detailRow('Pages Scanned', String(data.pagesScanned))}
+      ${detailRow('Errors', String(data.errorCount))}
+      ${detailRow('Warnings', String(data.warningCount))}
+      ${detailRow('Notices', String(data.noticeCount))}
+    </table>
+
+    <p style="margin:0 0 12px;font-size:14px;color:#64748b;">Top issues by impact:</p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+      <tr>
+        <th align="left" style="padding:10px 12px;font-size:12px;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;">Issue</th>
+        <th align="left" style="padding:10px 12px;font-size:12px;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;">Severity</th>
+        <th align="right" style="padding:10px 12px;font-size:12px;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;">Pages</th>
+      </tr>
+      ${topIssuesHtml}
+    </table>
+
+    <p style="margin:0;font-size:14px;color:#334155;line-height:1.7;">
+      Want help fixing these issues? Reply to this email and we can prioritize the fastest wins.
+    </p>
+  `);
+}
+
+function adminSiteAuditNotificationHtml(data: SiteAuditEmailData) {
+  const topIssue = data.topIssues[0];
+
+  return emailShell(`
+    <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7c3aed;font-weight:700;">NEW SITE AUDIT LEAD</p>
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#0f172a;">${esc(data.email)} ran a site audit</h1>
+    <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Received ${formatDate(new Date())}</p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+      ${detailRow('Email', data.email)}
+      ${detailRow('Domain', data.domain)}
+      ${detailRow('Health Score', `${data.healthScore}/100`)}
+      ${detailRow('Pages Scanned', String(data.pagesScanned))}
+      ${detailRow('Errors', String(data.errorCount))}
+      ${detailRow('Warnings', String(data.warningCount))}
+      ${detailRow('Notices', String(data.noticeCount))}
+      ${detailRow('Top Issue', topIssue ? `${topIssue.title} (${topIssue.affectedPages} pages)` : 'None')}
+    </table>
+
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+      <tr>
+        <td style="border-radius:12px;background:#7c3aed;text-align:center;">
+          <a href="${esc(BRAND.url)}/dashboard/admin/leads" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;">Open Leads Pipeline →</a>
+        </td>
+      </tr>
+    </table>
+  `);
+}
+
 /* ── Public API ────────────────────────────────────────────────────── */
 
 export interface ContactEmailResult {
@@ -413,6 +498,48 @@ export async function sendNewsletterEmails(email: string, source: string = 'unkn
   }
 
   if (errors.length) console.error('[Mailer:Newsletter]', errors.join(' | '));
+
+  return {
+    adminSent: adminResult.status === 'fulfilled',
+    userSent: userResult.status === 'fulfilled',
+    errors,
+  };
+}
+
+export async function sendSiteAuditReportEmails(data: SiteAuditEmailData): Promise<ContactEmailResult> {
+  if (!isMailerConfigured()) {
+    return { userSent: false, adminSent: false, errors: ['SMTP not configured'] };
+  }
+
+  const transporter = getTransporter();
+  const from = `${BRAND.name} <${SMTP_USER}>`;
+
+  const [adminResult, userResult] = await Promise.allSettled([
+    transporter.sendMail({
+      from,
+      to: ADMIN_EMAIL,
+      replyTo: data.email,
+      subject: `New site audit lead: ${data.domain}`,
+      html: adminSiteAuditNotificationHtml(data),
+    }),
+    transporter.sendMail({
+      from,
+      to: data.email,
+      replyTo: SMTP_USER,
+      subject: `Your SEO Audit Report for ${data.domain}`,
+      html: userSiteAuditReportHtml(data),
+    }),
+  ]);
+
+  const errors: string[] = [];
+  if (adminResult.status === 'rejected') {
+    errors.push(`Admin email failed: ${adminResult.reason instanceof Error ? adminResult.reason.message : 'Unknown'}`);
+  }
+  if (userResult.status === 'rejected') {
+    errors.push(`User report email failed: ${userResult.reason instanceof Error ? userResult.reason.message : 'Unknown'}`);
+  }
+
+  if (errors.length) console.error('[Mailer:SiteAudit]', errors.join(' | '));
 
   return {
     adminSent: adminResult.status === 'fulfilled',

@@ -192,12 +192,12 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.08] mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.08] mb-6">
             {study.title}
           </h1>
 
           {study.subtitle && (
-            <p className="text-xl md:text-2xl text-[#94A3B8] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-[#94A3B8] max-w-3xl mx-auto leading-relaxed">
               {study.subtitle}
             </p>
           )}
@@ -581,24 +581,6 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                     </p>
                   )}
 
-                  <div
-                    className={`mt-6 pt-6 border-t border-white/5 flex items-center gap-2 ${a.titleSpan} font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                  >
-                    <span>View Details</span>
-                    <svg
-                      className="w-3.5 h-3.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </div>
                 </motion.div>
               );
             })}
@@ -660,7 +642,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
           />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight text-[#F8FAFC] leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-6 tracking-tight text-[#F8FAFC] leading-tight">
               Ready to scale your{" "}
               <span className={`${a.titleSpan} italic`}>
                 organic visibility?

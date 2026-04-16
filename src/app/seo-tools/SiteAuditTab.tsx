@@ -213,6 +213,10 @@ function FieldDataRow({ label, metric }: { label: string; metric: { p75: number;
 export default function SiteAuditTab() {
   const [domain, setDomain] = useState('');
   const [maxPages, setMaxPages] = useState(500);
+  const [leadEmail, setLeadEmail] = useState('');
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [pendingRun, setPendingRun] = useState(false);
+  const [reportStatus, setReportStatus] = useState<'' | 'sent' | 'partial' | 'failed'>('');
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<AuditProgressEvent | null>(null);
   const [result, setResult] = useState<SiteAuditResult | null>(null);
@@ -226,6 +230,51 @@ export default function SiteAuditTab() {
   const [cwvResults, setCwvResults] = useState<PagePerformanceResult[]>([]);
   const [cwvError, setCwvError] = useState('');
   const [cwvStrategy, setCwvStrategy] = useState<'mobile' | 'desktop'>('mobile');
+
+  const isValidLeadEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+  const submitAuditLead = useCallback(async (auditResult: SiteAuditResult, email: string) => {
+    const topIssues = [...auditResult.issues]
+      .sort((a, b) => b.affectedPages.length - a.affectedPages.length)
+      .slice(0, 8)
+      .map((issue) => ({
+        title: issue.title,
+        severity: issue.severity,
+        affectedPages: issue.affectedPages.length,
+      }));
+
+    try {
+      const response = await fetch('/api/seo-tools/site-audit/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.trim().toLowerCase(),
+          url: domain.trim(),
+          summary: {
+            healthScore: auditResult.healthScore,
+            pagesScanned: auditResult.pagesScanned,
+            errorCount: auditResult.errorCount,
+            warningCount: auditResult.warningCount,
+            noticeCount: auditResult.noticeCount,
+            topIssues,
+          },
+        }),
+      });
+
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setReportStatus('failed');
+        return;
+      }
+
+      if (payload.emailStatus === 'sent') setReportStatus('sent');
+      else if (payload.emailStatus === 'partial') setReportStatus('partial');
+      else if (payload.emailStatus === 'failed') setReportStatus('failed');
+      else setReportStatus('partial');
+    } catch {
+      setReportStatus('failed');
+    }
+  }, [domain]);
 
   /* Analyze Core Web Vitals via our PSI proxy */
   const analyzeCWV = useCallback(async (siteUrl: string) => {
@@ -284,6 +333,7 @@ export default function SiteAuditTab() {
     setLoading(true);
     setResult(null);
     setError('');
+    setReportStatus('');
     setProgress(null);
     setCwvResults([]);
     setCwvError('');
@@ -326,7 +376,11 @@ export default function SiteAuditTab() {
             if (event.type === 'progress') {
               setProgress(event as AuditProgressEvent);
             } else if (event.type === 'complete') {
-              setResult(event.result as SiteAuditResult);
+              const completedResult = event.result as SiteAuditResult;
+              setResult(completedResult);
+              if (leadEmail.trim()) {
+                void submitAuditLead(completedResult, leadEmail);
+              }
             } else if (event.type === 'error') {
               setError(event.message || 'Audit failed');
             }
@@ -342,7 +396,7 @@ export default function SiteAuditTab() {
     } finally {
       setLoading(false);
     }
-  }, [domain, maxPages]);
+  }, [domain, maxPages, leadEmail, submitAuditLead]);
 
   /* Cancel */
   const cancelAudit = useCallback(() => {
@@ -390,7 +444,10 @@ export default function SiteAuditTab() {
           onSubmit={(e) => {
             e.preventDefault();
             if (loading) cancelAudit();
-            else startAudit();
+            else {
+              setPendingRun(true);
+              setShowEmailModal(true);
+            }
           }}
           className="flex flex-col gap-3 sm:flex-row"
         >
@@ -441,10 +498,86 @@ export default function SiteAuditTab() {
         </form>
         <p className="mt-3 text-[11px] text-[#64748B]">100% free • No signup • No paywall • Crawls every page • Core Web Vitals • 50+ checks per page • CSV export included</p>
 
+        {reportStatus === 'sent' && (
+          <div className="mt-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300">
+            Audit report sent to your email and added to our lead pipeline.
+          </div>
+        )}
+        {reportStatus === 'partial' && (
+          <div className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-300">
+            Audit completed and lead saved. Email delivery is partially successful.
+          </div>
+        )}
+        {reportStatus === 'failed' && (
+          <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+            Audit completed, but report email failed. Lead is still captured.
+          </div>
+        )}
+
         {error && (
           <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</div>
         )}
       </div>
+
+      {showEmailModal && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center px-4">
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/70"
+            onClick={() => {
+              setShowEmailModal(false);
+              setPendingRun(false);
+            }}
+            aria-label="Close"
+          />
+          <div className="relative w-full max-w-md rounded-2xl border border-white/[0.12] bg-[#0B1120] p-6 shadow-2xl">
+            <h3 className="text-lg font-bold text-white">Send audit report to email</h3>
+            <p className="mt-2 text-sm text-[#94A3B8]">
+              We will email your full audit summary and add this request to our admin lead pipeline.
+            </p>
+            <div className="mt-4">
+              <label htmlFor="audit-email" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#94A3B8]">
+                Email address
+              </label>
+              <input
+                id="audit-email"
+                type="email"
+                value={leadEmail}
+                onChange={(e) => setLeadEmail(e.target.value)}
+                placeholder="you@company.com"
+                className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-[#475569] outline-none focus:border-[#7C3AED]/60"
+              />
+            </div>
+            <div className="mt-5 flex items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowEmailModal(false);
+                  setPendingRun(false);
+                }}
+                className="rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-[#CBD5E1] hover:text-white"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={!isValidLeadEmail(leadEmail)}
+                onClick={() => {
+                  if (!isValidLeadEmail(leadEmail)) return;
+                  setShowEmailModal(false);
+                  if (pendingRun) {
+                    setPendingRun(false);
+                    void startAudit();
+                  }
+                }}
+                className="rounded-lg bg-[#7C3AED] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Send Report & Run Audit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Progress */}
       {loading && progress && (

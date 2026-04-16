@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Linkedin, Mail, Phone } from "lucide-react";
 import Logo from "@/components/Logo";
@@ -30,8 +32,14 @@ const footerNav = {
 };
 
 export function Footer() {
+  const openCookieSettings = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("open-cookie-settings"));
+    }
+  };
+
   return (
-    <footer className="relative z-10 border-t border-white/[0.08] bg-[#070B14]/80 backdrop-blur-sm">
+    <footer className="relative z-10 border-t border-white/8 bg-bg-base/80 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-6 py-14">
         {/* Top grid */}
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] mb-12">
@@ -40,7 +48,7 @@ export function Footer() {
             <div className="mb-4">
               <Logo showText={true} iconSize={48} darkText={false} compact={true} />
             </div>
-            <p className="text-sm text-[#94A3B8] mt-1 leading-relaxed">
+            <p className="mt-1 text-sm leading-relaxed text-content-muted">
               Full-Stack Web Developer &amp; SEO Consultant — Dallas, TX · Building websites that rank, convert, and scale.
             </p>
 
@@ -51,7 +59,7 @@ export function Footer() {
           {/* Nav columns */}
           {Object.entries(footerNav).map(([heading, links]) => (
             <div key={heading}>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-content-muted">
                 {heading}
               </p>
               <ul className="flex flex-col gap-2">
@@ -59,7 +67,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+                      className="text-sm text-content-muted transition-colors hover:text-content-primary"
                     >
                       {link.label}
                     </Link>
@@ -71,11 +79,11 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.06]">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/6 pt-8 sm:flex-row">
           <div className="flex items-center gap-4">
             <Link
               href="/contact"
-              className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors"
+              className="text-content-muted transition-colors hover:text-brand-cyan"
               aria-label="Contact"
             >
               <Mail className="h-4 w-4" />
@@ -83,7 +91,7 @@ export function Footer() {
             </Link>
             <a
               href="tel:+14099952521"
-              className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors flex items-center gap-1.5"
+              className="flex items-center gap-1.5 text-content-muted transition-colors hover:text-brand-cyan"
               aria-label="Phone"
             >
               <Phone className="h-4 w-4" />
@@ -94,7 +102,7 @@ export function Footer() {
               href="https://www.linkedin.com/in/gauli/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors"
+              className="text-content-muted transition-colors hover:text-brand-cyan"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-4 w-4" />
@@ -102,11 +110,24 @@ export function Footer() {
             </Link>
           </div>
 
-          <div className="flex items-center gap-4 text-xs text-[#94A3B8]/60">
-            <Link href="/privacy" className="hover:text-[#94A3B8] transition-colors">
+          <div className="flex items-center gap-4 text-xs text-content-muted/60">
+            <Link href="/privacy" className="transition-colors hover:text-content-muted">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-[#94A3B8] transition-colors">
+            <Link href="/cookie-policy" className="transition-colors hover:text-content-muted">
+              Cookies
+            </Link>
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="transition-colors hover:text-content-muted"
+            >
+              Cookie Settings
+            </button>
+            <Link href="/privacy-choices" className="transition-colors hover:text-content-muted">
+              Privacy Choices
+            </Link>
+            <Link href="/terms" className="transition-colors hover:text-content-muted">
               Terms
             </Link>
             <span>© {new Date().getFullYear()} Shree Krishna Gauli</span>

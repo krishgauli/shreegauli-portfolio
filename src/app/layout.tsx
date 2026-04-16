@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import PersonSchema from "@/components/PersonSchema";
+import CookieConsent from "@/components/CookieConsent";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 
@@ -92,6 +93,7 @@ export default function RootLayout({
           </a>
           <PersonSchema />
           {children}
+          <CookieConsent />
         </Providers>
       </body>
     </html>
