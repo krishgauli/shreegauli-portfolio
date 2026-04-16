@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import { AdminContext, AdminPreferences, AdminTheme } from '@/lib/admin-context';
+import { readLocalStorage, writeLocalStorage } from '@/lib/browser-storage';
 import { AdminLanguage } from '@/lib/admin-translations';
 
 const ADMIN_PREFS_KEY = 'admin-preferences';
@@ -17,7 +18,7 @@ export function AdminPreferencesProvider({ children }: { children: ReactNode }) 
 
   // Load preferences from localStorage on mount
   useEffect(() => {
-    const saved = localStorage.getItem(ADMIN_PREFS_KEY);
+    const saved = readLocalStorage(ADMIN_PREFS_KEY);
     if (saved) {
       try {
         setPreferences(JSON.parse(saved));
@@ -34,36 +35,40 @@ export function AdminPreferencesProvider({ children }: { children: ReactNode }) 
 
     let theme = preferences.theme;
     if (theme === 'auto') {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark = typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+        ? window.matchMedia('(prefers-color-scheme: dark)').matches
+        : false;
       theme = prefersDark ? 'dark' : 'light';
     }
 
     setIsDarkMode(theme === 'dark');
 
     // Update document element
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    if (typeof document !== 'undefined') {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     }
   }, [preferences.theme, mounted]);
 
   const setTheme = (theme: AdminTheme) => {
     const updated = { ...preferences, theme };
     setPreferences(updated);
-    localStorage.setItem(ADMIN_PREFS_KEY, JSON.stringify(updated));
+    writeLocalStorage(ADMIN_PREFS_KEY, JSON.stringify(updated));
   };
 
   const setLanguage = (language: AdminLanguage) => {
     const updated = { ...preferences, language };
     setPreferences(updated);
-    localStorage.setItem(ADMIN_PREFS_KEY, JSON.stringify(updated));
+    writeLocalStorage(ADMIN_PREFS_KEY, JSON.stringify(updated));
   };
 
   const setSidebarCollapsed = (collapsed: boolean) => {
     const updated = { ...preferences, sidebarCollapsed: collapsed };
     setPreferences(updated);
-    localStorage.setItem(ADMIN_PREFS_KEY, JSON.stringify(updated));
+    writeLocalStorage(ADMIN_PREFS_KEY, JSON.stringify(updated));
   };
 
   return (

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Bot, User, Loader2, Sparkles, ArrowLeft, ExternalLink } from 'lucide-react';
+import { readLocalStorage, writeLocalStorage } from '@/lib/browser-storage';
 import { useSitePreferences } from '@/components/SitePreferencesProvider';
 
 interface Source {
@@ -126,14 +127,14 @@ export default function ChatBot() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const existingSessionId = localStorage.getItem('chat_session_id');
-    const existingVisitorId = localStorage.getItem('chat_visitor_id');
+    const existingSessionId = readLocalStorage('chat_session_id');
+    const existingVisitorId = readLocalStorage('chat_visitor_id');
 
     const newSessionId = existingSessionId || `session-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
     const newVisitorId = existingVisitorId || `visitor-${Math.random().toString(36).slice(2, 10)}`;
 
-    localStorage.setItem('chat_session_id', newSessionId);
-    localStorage.setItem('chat_visitor_id', newVisitorId);
+    writeLocalStorage('chat_session_id', newSessionId);
+    writeLocalStorage('chat_visitor_id', newVisitorId);
 
     setSessionId(newSessionId);
     setVisitorId(newVisitorId);

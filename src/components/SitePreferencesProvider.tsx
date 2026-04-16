@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { readLocalStorage, writeLocalStorage } from '@/lib/browser-storage';
 import { translateText, type Language } from '@/lib/translations';
 
 type Theme = 'light' | 'dark';
@@ -24,8 +25,8 @@ export function SitePreferencesProvider({ children }: { children: React.ReactNod
   const t = useCallback((text: string) => translateText(language, text), [language]);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem(LANGUAGE_KEY);
-    const storedTheme = localStorage.getItem(THEME_KEY);
+    const storedLanguage = readLocalStorage(LANGUAGE_KEY);
+    const storedTheme = readLocalStorage(THEME_KEY);
 
     if (storedLanguage === 'en' || storedLanguage === 'es') {
       setLanguage(storedLanguage);
@@ -37,16 +38,22 @@ export function SitePreferencesProvider({ children }: { children: React.ReactNod
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LANGUAGE_KEY, language);
-    document.documentElement.lang = language;
+    writeLocalStorage(LANGUAGE_KEY, language);
+
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = language;
+    }
   }, [language]);
 
   useEffect(() => {
-    localStorage.setItem(THEME_KEY, theme);
-    document.documentElement.classList.remove('theme-light', 'theme-dark', 'dark');
-    document.documentElement.classList.add(theme === 'dark' ? 'theme-dark' : 'theme-light');
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
+    writeLocalStorage(THEME_KEY, theme);
+
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.remove('theme-light', 'theme-dark', 'dark');
+      document.documentElement.classList.add(theme === 'dark' ? 'theme-dark' : 'theme-light');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
     }
   }, [theme]);
 

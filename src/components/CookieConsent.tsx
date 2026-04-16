@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Cookie } from 'lucide-react';
 import Link from 'next/link';
+import { readLocalStorage, writeLocalStorage } from '@/lib/browser-storage';
 import { useSitePreferences } from '@/components/SitePreferencesProvider';
 
 export default function CookieConsent() {
@@ -13,7 +14,7 @@ export default function CookieConsent() {
 
   useEffect(() => {
     // Check if user has already consented
-    const hasConsented = localStorage.getItem('cookieConsent');
+    const hasConsented = readLocalStorage('cookieConsent');
     if (!hasConsented) {
       // Delay so it appears after the initial loading animation
       const timer = setTimeout(() => {
@@ -24,12 +25,12 @@ export default function CookieConsent() {
   }, []);
 
   const handleAcceptAll = () => {
-    localStorage.setItem('cookieConsent', 'all');
+    writeLocalStorage('cookieConsent', 'all');
     setIsVisible(false);
   };
 
   const handleNecessaryOnly = () => {
-    localStorage.setItem('cookieConsent', 'necessary');
+    writeLocalStorage('cookieConsent', 'necessary');
     setIsVisible(false);
   };
 
