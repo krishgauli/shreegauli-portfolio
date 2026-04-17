@@ -181,6 +181,10 @@ interface SiteAuditEmailData {
   warningCount: number;
   noticeCount: number;
   topIssues: Array<{ title: string; severity: string; affectedPages: number }>;
+  csvAttachment?: {
+    filename: string;
+    csv: string;
+  } | null;
 }
 
 function detailRow(label: string, value?: string | null) {
@@ -375,7 +379,7 @@ function userSiteAuditReportHtml(data: SiteAuditEmailData) {
     </table>
 
     <p style="margin:0;font-size:14px;color:#334155;line-height:1.7;">
-      Want help fixing these issues? Reply to this email and we can prioritize the fastest wins.
+      Your complete CSV report is attached to this email. Want help fixing these issues? Reply and we can prioritize the fastest wins.
     </p>
   `);
 }
@@ -528,6 +532,15 @@ export async function sendSiteAuditReportEmails(data: SiteAuditEmailData): Promi
       replyTo: SMTP_USER,
       subject: `Your SEO Audit Report for ${data.domain}`,
       html: userSiteAuditReportHtml(data),
+      attachments: data.csvAttachment
+        ? [
+            {
+              filename: data.csvAttachment.filename,
+              content: data.csvAttachment.csv,
+              contentType: 'text/csv; charset=utf-8',
+            },
+          ]
+        : undefined,
     }),
   ]);
 

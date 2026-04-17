@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { isMailerConfigured, sendSiteAuditReportEmails } from '@/lib/mailer';
+import { buildSiteAuditCsv } from '@/lib/site-audit/csv';
+import type { SiteAuditResult } from '@/types/site-audit';
 
 interface TopIssue {
   title: string;
@@ -47,6 +49,7 @@ export async function POST(req: NextRequest) {
     const email = getTrimmedValue(body.email).toLowerCase();
     const url = getTrimmedValue(body.url);
     const summary = (body.summary || {}) as Partial<AuditSummary>;
+    const report = body.summary?.report as SiteAuditResult | undefined;
 
     if (!email || !url) {
       return NextResponse.json({ error: 'Email and URL are required' }, { status: 400 });
@@ -95,6 +98,10 @@ export async function POST(req: NextRequest) {
 
     if (isMailerConfigured()) {
       try {
+        const csvAttachment = report?.pages?.length
+          ? buildSiteAuditCsv(report)
+          : null;
+
         const result = await sendSiteAuditReportEmails({
           email,
           domain,
@@ -104,6 +111,7 @@ export async function POST(req: NextRequest) {
           warningCount,
           noticeCount,
           topIssues,
+          csvAttachment,
         });
 
         if (result.adminSent && result.userSent) emailStatus = 'sent';

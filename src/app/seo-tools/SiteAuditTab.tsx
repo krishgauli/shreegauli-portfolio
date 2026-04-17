@@ -215,7 +215,7 @@ export default function SiteAuditTab() {
   const [maxPages, setMaxPages] = useState(500);
   const [leadEmail, setLeadEmail] = useState('');
   const [showEmailModal, setShowEmailModal] = useState(false);
-  const [pendingRun, setPendingRun] = useState(false);
+  const [sendingEmail, setSendingEmail] = useState(false);
   const [reportStatus, setReportStatus] = useState<'' | 'sent' | 'partial' | 'failed'>('');
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<AuditProgressEvent | null>(null);
@@ -233,7 +233,33 @@ export default function SiteAuditTab() {
 
   const isValidLeadEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
+  const downloadCsv = useCallback(async (auditResult?: SiteAuditResult) => {
+    const report = auditResult || result;
+    if (!report) return;
+    try {
+      const resp = await fetch('/api/seo-tools/site-audit/export', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(report),
+      });
+      if (!resp.ok) {
+        throw new Error(`Export failed: ${resp.status}`);
+      }
+
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `site-audit-${report.domain}-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      setError('CSV download failed.');
+    }
+  }, [result]);
+
   const submitAuditLead = useCallback(async (auditResult: SiteAuditResult, email: string) => {
+    setSendingEmail(true);
     const topIssues = [...auditResult.issues]
       .sort((a, b) => b.affectedPages.length - a.affectedPages.length)
       .slice(0, 8)
@@ -257,6 +283,7 @@ export default function SiteAuditTab() {
             warningCount: auditResult.warningCount,
             noticeCount: auditResult.noticeCount,
             topIssues,
+            report: auditResult,
           },
         }),
       });
@@ -273,6 +300,8 @@ export default function SiteAuditTab() {
       else setReportStatus('partial');
     } catch {
       setReportStatus('failed');
+    } finally {
+      setSendingEmail(false);
     }
   }, [domain]);
 
@@ -378,9 +407,8 @@ export default function SiteAuditTab() {
             } else if (event.type === 'complete') {
               const completedResult = event.result as SiteAuditResult;
               setResult(completedResult);
-              if (leadEmail.trim()) {
-                void submitAuditLead(completedResult, leadEmail);
-              }
+              void downloadCsv(completedResult);
+              setShowEmailModal(true);
             } else if (event.type === 'error') {
               setError(event.message || 'Audit failed');
             }
@@ -396,34 +424,13 @@ export default function SiteAuditTab() {
     } finally {
       setLoading(false);
     }
-  }, [domain, maxPages, leadEmail, submitAuditLead]);
+  }, [domain, maxPages, downloadCsv]);
 
   /* Cancel */
   const cancelAudit = useCallback(() => {
     abortRef.current?.abort();
     setLoading(false);
   }, []);
-
-  /* CSV export */
-  const downloadCsv = useCallback(async () => {
-    if (!result) return;
-    try {
-      const resp = await fetch('/api/seo-tools/site-audit/export', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result),
-      });
-      const blob = await resp.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `site-audit-${result.domain}-${new Date().toISOString().slice(0, 10)}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch {
-      setError('CSV download failed.');
-    }
-  }, [result]);
 
   /* Filtered issues */
   const filteredIssues = result
@@ -444,10 +451,7 @@ export default function SiteAuditTab() {
           onSubmit={(e) => {
             e.preventDefault();
             if (loading) cancelAudit();
-            else {
-              setPendingRun(true);
-              setShowEmailModal(true);
-            }
+            else void startAudit();
           }}
           className="flex flex-col gap-3 sm:flex-row"
         >
@@ -524,20 +528,35 @@ export default function SiteAuditTab() {
           <button
             type="button"
             className="absolute inset-0 bg-black/70"
-            onClick={() => {
-              setShowEmailModal(false);
-              setPendingRun(false);
-            }}
+            onClick={() => setShowEmailModal(false)}
             aria-label="Close"
           />
           <div className="relative w-full max-w-md rounded-2xl border border-white/[0.12] bg-[#0B1120] p-6 shadow-2xl">
-            <h3 className="text-lg font-bold text-white">Send audit report to email</h3>
+            <h3 className="text-lg font-bold text-white">Your report is ready</h3>
             <p className="mt-2 text-sm text-[#94A3B8]">
-              We will email your full audit summary and add this request to our admin lead pipeline.
+              CSV is downloaded automatically. You can also save this report as PDF and optionally get the CSV by email.
             </p>
+            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+              <button
+                type="button"
+                onClick={() => void downloadCsv()}
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-[#CBD5E1] hover:text-white"
+              >
+                <ArrowDownToLine className="h-4 w-4" />
+                Download CSV
+              </button>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-[#CBD5E1] hover:text-white"
+              >
+                <Printer className="h-4 w-4" />
+                Save as PDF
+              </button>
+            </div>
             <div className="mt-4">
               <label htmlFor="audit-email" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#94A3B8]">
-                Email address
+                Email address (optional)
               </label>
               <input
                 id="audit-email"
@@ -551,28 +570,21 @@ export default function SiteAuditTab() {
             <div className="mt-5 flex items-center justify-end gap-3">
               <button
                 type="button"
-                onClick={() => {
-                  setShowEmailModal(false);
-                  setPendingRun(false);
-                }}
+                onClick={() => setShowEmailModal(false)}
                 className="rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-[#CBD5E1] hover:text-white"
               >
-                Cancel
+                Close
               </button>
               <button
                 type="button"
-                disabled={!isValidLeadEmail(leadEmail)}
+                disabled={!result || !isValidLeadEmail(leadEmail) || sendingEmail}
                 onClick={() => {
-                  if (!isValidLeadEmail(leadEmail)) return;
-                  setShowEmailModal(false);
-                  if (pendingRun) {
-                    setPendingRun(false);
-                    void startAudit();
-                  }
+                  if (!result || !isValidLeadEmail(leadEmail) || sendingEmail) return;
+                  void submitAuditLead(result, leadEmail);
                 }}
                 className="rounded-lg bg-[#7C3AED] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Send Report & Run Audit
+                {sendingEmail ? 'Sending…' : 'Email me CSV report'}
               </button>
             </div>
           </div>
