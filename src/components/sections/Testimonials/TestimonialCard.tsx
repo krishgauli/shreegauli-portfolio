@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import type { Testimonial } from "@/types";
 import { cn } from "@/lib/utils";
@@ -17,6 +21,11 @@ export function TestimonialCard({
   className?: string;
 }) {
   const IndustryIcon = (testimonial.industry && industryIcons[testimonial.industry]) || BarChart3;
+  const [imageFailed, setImageFailed] = useState(false);
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [testimonial.id, testimonial.avatarImage]);
 
   return (
     <ModuleShell
@@ -57,12 +66,25 @@ export function TestimonialCard({
 
       {/* Author */}
       <div className="flex items-center gap-3 mt-auto">
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-          style={{ backgroundColor: testimonial.avatarColor + "33", border: `1px solid ${testimonial.avatarColor}40` }}
-        >
-          <IndustryIcon className="h-5 w-5" style={{ color: testimonial.avatarColor }} />
-        </div>
+        {testimonial.avatarImage && !imageFailed ? (
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-white/15">
+            <Image
+              src={testimonial.avatarImage}
+              alt={testimonial.name}
+              fill
+              sizes="40px"
+              className="object-cover"
+              onError={() => setImageFailed(true)}
+            />
+          </div>
+        ) : (
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+            style={{ backgroundColor: testimonial.avatarColor + "33", border: `1px solid ${testimonial.avatarColor}40` }}
+          >
+            <IndustryIcon className="h-5 w-5" style={{ color: testimonial.avatarColor }} />
+          </div>
+        )}
         <div>
           <p className="text-sm font-semibold text-[#F8FAFC]">{testimonial.name}</p>
           <p className="text-xs text-[#94A3B8]">

@@ -83,6 +83,7 @@ export interface Testimonial {
   company: string;
   avatarInitials: string;
   avatarColor: string;
+  avatarImage?: string;
   stars: number;
   result?: string;
   industry?: string;
