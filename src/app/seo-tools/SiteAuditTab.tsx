@@ -294,10 +294,19 @@ export default function SiteAuditTab() {
         return;
       }
 
-      if (payload.emailStatus === 'sent') setReportStatus('sent');
-      else if (payload.emailStatus === 'partial') setReportStatus('partial');
-      else if (payload.emailStatus === 'failed') setReportStatus('failed');
-      else setReportStatus('partial');
+      const nextStatus: 'sent' | 'partial' | 'failed' =
+        payload.emailStatus === 'sent'
+          ? 'sent'
+          : payload.emailStatus === 'partial'
+            ? 'partial'
+            : payload.emailStatus === 'failed'
+              ? 'failed'
+              : 'partial';
+
+      setReportStatus(nextStatus);
+      if (nextStatus !== 'failed') {
+        setShowEmailModal(false);
+      }
     } catch {
       setReportStatus('failed');
     } finally {
