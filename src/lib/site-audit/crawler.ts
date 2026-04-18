@@ -15,10 +15,11 @@ import type { SiteAuditConfig } from '@/types/site-audit';
 interface RobotsRules {
   disallow: string[];
   allow: string[];
+  sitemaps: string[];
 }
 
 function parseRobotsTxt(txt: string, userAgent: string): RobotsRules {
-  const rules: RobotsRules = { disallow: [], allow: [] };
+  const rules: RobotsRules = { disallow: [], allow: [], sitemaps: [] };
   let active = false;
   const lines = txt.split('\n');
 
@@ -36,6 +37,9 @@ function parseRobotsTxt(txt: string, userAgent: string): RobotsRules {
     } else if (active && lower.startsWith('allow:')) {
       const path = line.slice('allow:'.length).trim();
       if (path) rules.allow.push(path);
+    } else if (lower.startsWith('sitemap:')) {
+      const sitemapUrl = line.slice('sitemap:'.length).trim();
+      if (sitemapUrl) rules.sitemaps.push(sitemapUrl);
     }
   }
 
@@ -84,7 +88,7 @@ function normaliseUrl(rawUrl: string): string {
     const u = new URL(rawUrl);
     // strip hash, trailing slash, common tracking params
     u.hash = '';
-    let p = u.pathname.replace(/\/+$/, '') || '/';
+    const p = u.pathname.replace(/\/+$/, '') || '/';
     u.pathname = p;
     u.searchParams.delete('utm_source');
     u.searchParams.delete('utm_medium');
@@ -108,6 +112,120 @@ function isSameOrigin(url: string, origin: string): boolean {
   }
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function shouldRetryStatus(status: number): boolean {
+  return status === 408 || status === 425 || status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
+}
+
+async function fetchWithRetry(
+  url: string,
+  config: SiteAuditConfig,
+  init?: RequestInit,
+): Promise<Response> {
+  const maxAttempts = Math.max(1, config.retryCount + 1);
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const response = await fetch(url, {
+        ...init,
+        signal: AbortSignal.timeout(config.timeout),
+      });
+
+      if (!shouldRetryStatus(response.status) || attempt === maxAttempts) {
+        return response;
+      }
+
+      const delay = Math.min(config.maxRetryDelayMs, config.retryBaseDelayMs * 2 ** (attempt - 1));
+      await sleep(delay);
+    } catch (error) {
+      lastError = error;
+      if (attempt === maxAttempts) {
+        throw error;
+      }
+      const delay = Math.min(config.maxRetryDelayMs, config.retryBaseDelayMs * 2 ** (attempt - 1));
+      await sleep(delay);
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error('Fetch failed after retries');
+}
+
+function extractLocUrlsFromSitemapXml(xml: string): string[] {
+  const urls: string[] = [];
+  const locRegex = /<loc>([\s\S]*?)<\/loc>/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = locRegex.exec(xml)) !== null) {
+    const loc = match[1].trim();
+    if (loc) urls.push(loc);
+  }
+
+  return urls;
+}
+
+async function discoverSitemapUrls(
+  origin: string,
+  robots: RobotsRules,
+  config: SiteAuditConfig,
+): Promise<string[]> {
+  const initialSitemaps = new Set<string>([
+    `${origin}/sitemap.xml`,
+    ...robots.sitemaps,
+  ]);
+
+  const sitemapQueue = [...initialSitemaps];
+  const seenSitemaps = new Set<string>();
+  const discoveredUrls = new Set<string>();
+  const maxSitemapFiles = 25;
+
+  while (sitemapQueue.length > 0 && seenSitemaps.size < maxSitemapFiles) {
+    const sitemapUrl = sitemapQueue.shift();
+    if (!sitemapUrl || seenSitemaps.has(sitemapUrl)) continue;
+    seenSitemaps.add(sitemapUrl);
+
+    try {
+      const response = await fetchWithRetry(sitemapUrl, config, {
+        headers: { 'User-Agent': config.userAgent },
+      });
+
+      if (!response.ok) continue;
+
+      const xml = await response.text();
+      const locs = extractLocUrlsFromSitemapXml(xml);
+
+      for (const loc of locs) {
+        try {
+          const resolved = new URL(loc, sitemapUrl).toString();
+          const normalised = normaliseUrl(resolved);
+          const parsed = new URL(normalised);
+
+          if (parsed.origin !== origin) continue;
+
+          const isXmlLike = parsed.pathname.endsWith('.xml') || parsed.pathname.includes('sitemap');
+          if (isXmlLike && !seenSitemaps.has(normalised) && sitemapQueue.length < maxSitemapFiles) {
+            sitemapQueue.push(normalised);
+            continue;
+          }
+
+          if (!/\.(jpg|jpeg|png|gif|svg|webp|ico|pdf|zip|css|js|woff|woff2|ttf|eot|xml|json)$/i.test(parsed.pathname)) {
+            discoveredUrls.add(normalised);
+          }
+        } catch {
+          // Skip malformed entries
+        }
+      }
+    } catch {
+      // Ignore unreachable sitemap and continue
+    }
+  }
+
+  return [...discoveredUrls];
+}
+
 /* ─── Fetch a single page handling redirects manually ─── */
 
 async function fetchPage(
@@ -120,10 +238,9 @@ async function fetchPage(
   const maxRedirects = 5;
 
   while (hops < maxRedirects) {
-    const resp = await fetch(currentUrl, {
+    const resp = await fetchWithRetry(currentUrl, config, {
       headers: { 'User-Agent': config.userAgent },
       redirect: 'manual',
-      signal: AbortSignal.timeout(config.timeout),
     });
 
     const status = resp.status;
@@ -131,7 +248,6 @@ async function fetchPage(
     if (status >= 300 && status < 400) {
       const location = resp.headers.get('location');
       if (!location) {
-        // Redirect with no location — treat as final
         const buf = await resp.arrayBuffer();
         return { finalUrl: currentUrl, statusCode: status, redirectChain, html: new TextDecoder().decode(buf), headers: headersToRecord(resp.headers), size: buf.byteLength };
       }
@@ -146,7 +262,6 @@ async function fetchPage(
     return { finalUrl: currentUrl, statusCode: status, redirectChain, html: new TextDecoder().decode(buf), headers, size: buf.byteLength };
   }
 
-  // Exceeded redirect limit
   return { finalUrl: currentUrl, statusCode: 301, redirectChain, html: '', headers: {}, size: 0 };
 }
 
@@ -166,24 +281,42 @@ export async function crawlSite(
   const rootUrl = new URL(startUrl);
   const origin = rootUrl.origin;
 
-  // Fetch robots.txt
-  let robots: RobotsRules = { disallow: [], allow: [] };
+  let robots: RobotsRules = { disallow: [], allow: [], sitemaps: [] };
   try {
-    const robotsResp = await fetch(`${origin}/robots.txt`, {
+    const robotsResp = await fetchWithRetry(`${origin}/robots.txt`, config, {
       headers: { 'User-Agent': config.userAgent },
-      signal: AbortSignal.timeout(5000),
     });
     if (robotsResp.ok) {
       robots = parseRobotsTxt(await robotsResp.text(), config.userAgent);
     }
-  } catch { /* no robots.txt — allow everything */ }
+  } catch {
+    // No robots.txt or unreachable robots endpoint
+  }
 
   const visited = new Set<string>();
   const results: CrawlPageData[] = [];
 
-  // BFS queue: { url, depth }
-  const queue: Array<{ url: string; depth: number }> = [{ url: normaliseUrl(startUrl), depth: 0 }];
-  visited.add(normaliseUrl(startUrl));
+  const queue: Array<{ url: string; depth: number }> = [];
+  const addSeed = (seedUrl: string, depth: number) => {
+    const normalised = normaliseUrl(seedUrl);
+    if (visited.has(normalised)) return;
+
+    try {
+      const parsed = new URL(normalised);
+      if (!isAllowedByRobots(parsed.pathname, robots)) return;
+      visited.add(normalised);
+      queue.push({ url: normalised, depth });
+    } catch {
+      // Skip malformed seed URL
+    }
+  };
+
+  addSeed(startUrl, 0);
+  const sitemapUrls = await discoverSitemapUrls(origin, robots, config);
+  for (const sitemapUrl of sitemapUrls) {
+    addSeed(sitemapUrl, 0);
+    if (queue.length >= config.maxPages) break;
+  }
 
   while (queue.length > 0 && results.length < config.maxPages) {
     // Take a batch of up to `concurrency` items from the queue
@@ -256,6 +389,10 @@ export async function crawlSite(
     results.push(...batchResults);
 
     onProgress?.(results.length, results.length + queue.length, results[results.length - 1]?.url || '');
+
+    if (queue.length > 0 && config.crawlDelayMs > 0) {
+      await sleep(config.crawlDelayMs);
+    }
   }
 
   return results;

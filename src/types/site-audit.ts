@@ -19,6 +19,10 @@ export interface SiteAuditConfig {
   userAgent: string;
   concurrency: number;      // parallel fetches
   checkExternalLinks: boolean;
+  retryCount: number;       // retries per URL fetch
+  retryBaseDelayMs: number; // exponential backoff base delay
+  maxRetryDelayMs: number;  // cap for retry backoff delay
+  crawlDelayMs: number;     // delay between crawl batches
 }
 
 export const DEFAULT_AUDIT_CONFIG: SiteAuditConfig = {
@@ -28,6 +32,10 @@ export const DEFAULT_AUDIT_CONFIG: SiteAuditConfig = {
   userAgent: 'SiteAuditBot/1.0 (+https://www.shreegauli.com/seo-tools)',
   concurrency: 10,
   checkExternalLinks: true,
+  retryCount: 2,
+  retryBaseDelayMs: 300,
+  maxRetryDelayMs: 2_000,
+  crawlDelayMs: 50,
 };
 
 /* ─── Resource reference (script / stylesheet) ─── */

@@ -546,18 +546,17 @@ const CATEGORY_WEIGHTS: Record<IssueCategory, number> = {
 export function calculateHealthScore(issues: SiteAuditIssue[], pageCount: number): number {
   if (pageCount === 0) return 0;
 
-  // Weighted penalty per affected-page across issues
-  let totalPenalty = 0;
-  for (const issue of issues) {
-    const weight = SEVERITY_WEIGHT[issue.severity];
-    const ratio = issue.affectedPages.length / pageCount; // 0–1
-    totalPenalty += weight * ratio;
+  const categoryScores = calculateCategoryScores(issues, pageCount);
+  let weightedTotal = 0;
+  let totalWeight = 0;
+
+  for (const [category, weight] of Object.entries(CATEGORY_WEIGHTS) as [IssueCategory, number][]) {
+    weightedTotal += categoryScores[category] * weight;
+    totalWeight += weight;
   }
 
-  // Normalize: 0 penalty → 100 score, high penalty → 0
-  const maxPossiblePenalty = 50; // rough ceiling
-  const score = Math.max(0, Math.round(100 - (totalPenalty / maxPossiblePenalty) * 100));
-  return Math.min(100, score);
+  if (totalWeight === 0) return 0;
+  return Math.max(0, Math.min(100, Math.round(weightedTotal / totalWeight)));
 }
 
 export function calculateCategoryScores(
