@@ -48,9 +48,12 @@ export function TestimonialsSection() {
 
         <div
           ref={trackRef}
-          className="flex gap-6 w-max md:direction-[reverse]"
+          className="flex gap-6 w-max testimonial-marquee-track"
           style={{
-            animation: `marquee ${SPEED}s linear infinite`,
+            animationName: "marquee",
+            animationDuration: `${SPEED}s`,
+            animationTimingFunction: "linear",
+            animationIterationCount: "infinite",
             animationPlayState: paused ? "paused" : "running",
           }}
         >

@@ -120,9 +120,12 @@ export function CertificationsCarousel() {
           <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-[#070B14] to-transparent" />
 
           <div
-            className="flex gap-4 w-max md:direction-[normal]"
+            className="flex gap-4 w-max certification-marquee-track"
             style={{
-              animation: `marquee ${SPEED}s linear infinite`,
+              animationName: "marquee",
+              animationDuration: `${SPEED}s`,
+              animationTimingFunction: "linear",
+              animationIterationCount: "infinite",
               animationPlayState: paused || lightbox ? "paused" : "running",
             }}
           >

@@ -124,6 +124,16 @@
   to   { opacity: 1; transform: scale(1); }
 }
 
+@media (min-width: 768px) {
+  .testimonial-marquee-track {
+    animation-direction: reverse;
+  }
+
+  .certification-marquee-track {
+    animation-direction: normal;
+  }
+}
+
 /* ─── Utility Animations ──────────────────────────────────────────── */
 @layer utilities {
   .animate-float {
