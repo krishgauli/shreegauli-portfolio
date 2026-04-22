@@ -165,7 +165,7 @@ export async function POST(req: NextRequest) {
 
     try {
       const res = await fetch(url.toString(), {
-        headers: { 'User-Agent': 'SEOAuditBot/2.0 (+https://shreegauli.com)' },
+        headers: { 'User-Agent': 'SEOAuditBot/2.0 (+https://www.shreegauli.com)' },
         signal: AbortSignal.timeout(15000),
       });
       const buf = await res.arrayBuffer();

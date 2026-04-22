@@ -5,6 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
+import { BUSINESS_NAME, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 import {
   getStaticArticleCards,
   getStaticWritingPostBySlug,
@@ -46,11 +47,11 @@ function BlogPostingSchema({
     "@type": "BlogPosting",
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://shreegauli.com/blogs/${post.slug}`,
+      "@id": absoluteUrl(`/blogs/${post.slug}`),
     },
     headline: post.title,
     description: post.excerpt || "",
-    url: `https://shreegauli.com/blogs/${post.slug}`,
+    url: absoluteUrl(`/blogs/${post.slug}`),
     datePublished: post.createdAt.toISOString(),
     dateModified: post.updatedAt.toISOString(),
     ...(post.featuredImage && { image: post.featuredImage }),
@@ -59,13 +60,13 @@ function BlogPostingSchema({
     ...(tags?.length && { keywords: tags.map((t) => t.name).join(", ") }),
     author: {
       "@type": "Person",
-      name: post.author?.name || "Shree Krishna Gauli",
-      url: "https://shreegauli.com",
+      name: post.author?.name || SITE_NAME,
+      url: SITE_URL,
     },
     publisher: {
-      "@type": "Person",
-      name: "Shree Krishna Gauli",
-      url: "https://shreegauli.com",
+      "@type": "Organization",
+      name: BUSINESS_NAME,
+      url: SITE_URL,
     },
   };
 

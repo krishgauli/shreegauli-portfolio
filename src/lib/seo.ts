@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const siteUrl = "https://www.shreegauli.com";
-const siteName = "Shree Krishna Gauli";
 const defaultImage = "/og-image.jpg";
 
 type SeoOptions = {
@@ -17,7 +16,7 @@ export function createPageMetadata({
   path,
   keywords = [],
 }: SeoOptions): Metadata {
-  const absoluteUrl = `${siteUrl}${path}`;
+  const absolutePageUrl = `${SITE_URL}${path}`;
 
   return {
     title,
@@ -29,8 +28,8 @@ export function createPageMetadata({
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: absoluteUrl,
-      siteName,
+      url: absolutePageUrl,
+      siteName: SITE_NAME,
       title,
       description,
       images: [

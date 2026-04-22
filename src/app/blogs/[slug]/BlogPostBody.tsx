@@ -17,6 +17,7 @@ import {
   User,
 } from "lucide-react";
 import type { Article } from "@/types";
+import { SITE_URL } from "@/lib/site";
 
 interface Post {
   slug: string;
@@ -146,8 +147,8 @@ function extractResourceLinks(content: string): ResourceLink[] {
 
     if (!rawHref || !text) continue;
 
-    const normalizedHref = rawHref.startsWith("https://shreegauli.com")
-      ? rawHref.replace(/^https?:\/\/shreegauli\.com/i, "")
+    const normalizedHref = rawHref.startsWith("http")
+      ? rawHref.replace(/^https?:\/\/(?:www\.)?shreegauli\.com/i, "")
       : rawHref;
 
     if (!normalizedHref.startsWith("/")) continue;
@@ -187,7 +188,7 @@ export function BlogPostBody({
   const [activeHeading, setActiveHeading] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const canonicalUrl = `https://shreegauli.com/blogs/${post.slug}`;
+  const canonicalUrl = `${SITE_URL}/blogs/${post.slug}`;
   const shareUrl = typeof window === "undefined" ? canonicalUrl : window.location.href;
   const wordCount = stripHtml(articleHtml).split(/\s+/).filter(Boolean).length;
   const readTime = `${Math.max(4, Math.ceil(wordCount / 220))} min read`;

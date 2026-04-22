@@ -9,9 +9,9 @@ export function ServicesSection({ headingAs }: { headingAs?: "h1" | "h2" }) {
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="What I Build"
-          title="Design. Develop. Optimize. Automate."
+          title="Dallas Web Development, SEO & Automation Services"
           as={headingAs}
-          subtitle="From custom Next.js web apps to WordPress sites and Shopify stores — every project ships with SEO, performance, and scalability built in."
+          subtitle="From custom Next.js web apps to WordPress sites and Shopify stores, every build includes SEO, performance, and scalable systems from day one."
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

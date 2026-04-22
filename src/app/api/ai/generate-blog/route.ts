@@ -149,7 +149,7 @@ async function generateBlogPost(customTopic?: string) {
     throw new Error('OPENAI_API_KEY is not configured');
   }
 
-  const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
+  const SITE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 
   // ── STEP 3: Duplicate check — fetch existing titles, slugs, descriptions ──
   const existingPosts = await prisma.post.findMany({

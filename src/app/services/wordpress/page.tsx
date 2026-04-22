@@ -11,11 +11,12 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "WordPress Development | Custom Themes, SEO & Performance",
+  title: "Dallas WordPress Developer | Custom Themes & SEO",
   description:
-    "Professional WordPress websites with custom themes, performance optimization, mobile-responsive design, and SEO built in. Healthcare, business, and service industry sites delivered fast.",
+    "Dallas WordPress developer building custom themes, fast service-business sites, and SEO-ready WordPress builds for healthcare, local services, and growing brands.",
   path: "/services/wordpress",
   keywords: [
+    "dallas wordpress developer",
     "WordPress developer",
     "custom WordPress theme",
     "WordPress website development",
@@ -123,10 +124,10 @@ export default function WordPressServicePage() {
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeader
-            eyebrow="WordPress Development"
-            title="Professional WordPress sites — fast, clean, and built to rank"
+            eyebrow="Dallas WordPress Development"
+            title="Dallas WordPress Developer for Fast, SEO-Ready Sites"
             as="h1"
-            subtitle="Custom themes, mobile-responsive design, and SEO optimization. No page builders, no bloat. Just clean WordPress that works for your business."
+            subtitle="Custom themes, mobile-responsive design, and SEO optimization for Dallas businesses that need a clean WordPress build without page-builder bloat."
           />
         </div>
       </section>

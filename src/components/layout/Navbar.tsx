@@ -118,28 +118,42 @@ export function Navbar() {
                     onMouseEnter={() => setNavDropdown(link.href)}
                     onMouseLeave={() => setNavDropdown(null)}
                   >
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setNavDropdown((prev) =>
-                          prev === link.href ? null : link.href
-                        )
-                      }
-                      className={cn(
-                        "inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg",
-                        isActive
-                          ? "text-[#F8FAFC] bg-white/[0.08]"
-                          : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
-                      )}
-                    >
-                      {link.label}
-                      <ChevronDown
+                    <div className="inline-flex items-center">
+                      <Link
+                        href={link.href}
                         className={cn(
-                          "h-3.5 w-3.5 transition-transform duration-200",
-                          navDropdown === link.href && "rotate-180"
+                          "px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-l-lg",
+                          isActive
+                            ? "text-[#F8FAFC] bg-white/[0.08]"
+                            : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
                         )}
-                      />
-                    </button>
+                      >
+                        {link.label}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setNavDropdown((prev) =>
+                            prev === link.href ? null : link.href
+                          )
+                        }
+                        aria-label={`Toggle ${link.label} menu`}
+                        aria-expanded={navDropdown === link.href}
+                        className={cn(
+                          "px-2 py-2 transition-colors duration-200 rounded-r-lg",
+                          isActive
+                            ? "text-[#F8FAFC] bg-white/[0.08]"
+                            : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                        )}
+                      >
+                        <ChevronDown
+                          className={cn(
+                            "h-3.5 w-3.5 transition-transform duration-200",
+                            navDropdown === link.href && "rotate-180"
+                          )}
+                        />
+                      </button>
+                    </div>
 
                     {navDropdown === link.href && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50">
@@ -367,28 +381,43 @@ export function Navbar() {
                   if (link.children && link.children.length > 0) {
                     return (
                       <div key={link.href} className="flex flex-col">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setNavDropdown((prev) =>
-                              prev === link.href ? null : link.href
-                            )
-                          }
-                          className={cn(
-                            "flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
-                            isActive
-                              ? "text-[#F8FAFC] bg-white/[0.08]"
-                              : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
-                          )}
-                        >
-                          {link.label}
-                          <ChevronDown
+                        <div className="flex items-center gap-1">
+                          <Link
+                            href={link.href}
+                            onClick={() => setMobileOpen(false)}
                             className={cn(
-                              "h-3.5 w-3.5 transition-transform duration-200",
-                              navDropdown === link.href && "rotate-180"
+                              "flex-1 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                              isActive
+                                ? "text-[#F8FAFC] bg-white/[0.08]"
+                                : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
                             )}
-                          />
-                        </button>
+                          >
+                            {link.label}
+                          </Link>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setNavDropdown((prev) =>
+                                prev === link.href ? null : link.href
+                              )
+                            }
+                            aria-label={`Toggle ${link.label} menu`}
+                            aria-expanded={navDropdown === link.href}
+                            className={cn(
+                              "flex items-center justify-center px-3 py-2.5 rounded-lg transition-colors",
+                              isActive
+                                ? "text-[#F8FAFC] bg-white/[0.08]"
+                                : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                            )}
+                          >
+                            <ChevronDown
+                              className={cn(
+                                "h-3.5 w-3.5 transition-transform duration-200",
+                                navDropdown === link.href && "rotate-180"
+                              )}
+                            />
+                          </button>
+                        </div>
                         {navDropdown === link.href && (
                           <div className="ml-3 mt-0.5 flex flex-col gap-0.5 border-l border-white/[0.08] pl-3">
                             {link.children.map((child) => (

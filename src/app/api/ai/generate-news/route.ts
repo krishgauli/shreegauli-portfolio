@@ -139,7 +139,7 @@ async function generateNewsArticle(customTopic?: string) {
     throw new Error('OPENAI_API_KEY is not configured');
   }
 
-  const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
+  const SITE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 
   // ── STEP 3: Duplicate check — fetch existing titles ─────────────────
   const existingArticles = await prisma.newsArticle.findMany({

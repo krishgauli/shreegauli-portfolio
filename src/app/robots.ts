@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -44,6 +45,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://shreegauli.com/sitemap.xml",
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

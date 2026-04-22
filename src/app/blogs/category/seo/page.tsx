@@ -51,9 +51,9 @@ const featuredPosts = [
 ];
 
 const relatedServices = [
-  { title: "SEO & Content Strategy", href: "/services/seo", description: "Technical audits, keyword mapping, and content systems." },
-  { title: "Local SEO", href: "/services/local-seo", description: "Google Business Profile, local landing pages, and review strategy." },
-  { title: "AEO / GEO", href: "/services/aeo-geo", description: "Get cited by AI search engines like ChatGPT and Perplexity." },
+  { title: "SEO & Content Strategy", href: "/services/seo-aeo-geo", description: "Technical audits, keyword mapping, and content systems." },
+  { title: "Local SEO", href: "/services/seo-aeo-geo", description: "Google Business Profile, local landing pages, and review strategy." },
+  { title: "AEO / GEO", href: "/services/seo-aeo-geo", description: "Get cited by AI search engines like ChatGPT and Perplexity." },
 ];
 
 export default function SeoCategoryPage() {

@@ -51,15 +51,15 @@ const featuredPosts = [
 ];
 
 const relatedServices = [
-  { title: "SEO & Content Strategy", href: "/services/seo", description: "Technical audits and content systems for healthcare websites." },
-  { title: "Lead Conversion", href: "/services/lead-conversion", description: "Turn patient inquiries into booked appointments." },
-  { title: "Local SEO", href: "/services/local-seo", description: "Google Maps, local pack, and review management for clinics." },
+  { title: "SEO & Content Strategy", href: "/services/seo-aeo-geo", description: "Technical audits and content systems for healthcare websites." },
+  { title: "Lead Conversion", href: "/services/automation", description: "Turn patient inquiries into booked appointments." },
+  { title: "Local SEO", href: "/services/seo-aeo-geo", description: "Google Maps, local pack, and review management for clinics." },
 ];
 
 const relatedIndustries = [
-  { title: "Healthcare", href: "/industries/healthcare", description: "Marketing strategy for hospitals, clinics, and health systems." },
-  { title: "Dental", href: "/industries/dental", description: "SEO, ads, and patient acquisition for dental practices." },
-  { title: "Med Spas", href: "/industries/med-spas", description: "Growth marketing for medical spas and aesthetic clinics." },
+  { title: "Healthcare", href: "/work/seo-website-launch", description: "Marketing strategy for hospitals, clinics, and health systems." },
+  { title: "Dental", href: "/work/ai-call-centre", description: "SEO, ads, and patient acquisition for dental practices." },
+  { title: "Med Spas", href: "/work/irving-wellness", description: "Growth marketing for medical spas and aesthetic clinics." },
 ];
 
 export default function HealthcareMarketingCategoryPage() {

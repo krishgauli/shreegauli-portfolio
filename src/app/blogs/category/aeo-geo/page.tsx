@@ -46,8 +46,8 @@ const featuredPosts = [
 ];
 
 const relatedServices = [
-  { title: "AEO / GEO", href: "/services/aeo-geo", description: "Get cited by ChatGPT, Perplexity, and other AI search engines." },
-  { title: "SEO & Content Strategy", href: "/services/seo", description: "The structured content foundation that feeds both traditional and AI search." },
+  { title: "AEO / GEO", href: "/services/seo-aeo-geo", description: "Get cited by ChatGPT, Perplexity, and other AI search engines." },
+  { title: "SEO & Content Strategy", href: "/services/seo-aeo-geo", description: "The structured content foundation that feeds both traditional and AI search." },
 ];
 
 export default function AeoGeoCategoryPage() {

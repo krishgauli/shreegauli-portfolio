@@ -1,5 +1,66 @@
 import type { NextConfig } from "next";
 
+const legacyPageRedirects = [
+  {
+    source: "/contact-us/:path*",
+    destination: "/contact",
+    permanent: true,
+  },
+  {
+    source: "/portfolio/:path*",
+    destination: "/work",
+    permanent: true,
+  },
+];
+
+const legacyBlogRedirects = [
+  {
+    source: "/15-questions-to-ask-before-hiring-a-digital-marketing-agency",
+    destination: "/blogs/15-questions-hiring-marketing-agency",
+    permanent: true,
+  },
+  {
+    source: "/technical-seo-audit-checklist-for-service-business-websites",
+    destination: "/blogs/technical-seo-audit-checklist-service-businesses",
+    permanent: true,
+  },
+  {
+    source: "/what-your-free-seo-audit-results-actually-mean",
+    destination: "/blogs/free-seo-audit-results-explained",
+    permanent: true,
+  },
+  {
+    source: "/local-seo-priorities-for-service-businesses-that-need-more-calls",
+    destination: "/blogs/local-seo-priorities-service-businesses",
+    permanent: true,
+  },
+  {
+    source: "/seo-vs-google-ads-what-to-fix-first-when-growth-stalls",
+    destination: "/blogs/seo-vs-google-ads-what-to-fix-first",
+    permanent: true,
+  },
+  {
+    source: "/what-is-aeo-answer-engine-optimization",
+    destination: "/blogs/what-is-aeo",
+    permanent: true,
+  },
+  {
+    source: "/how-to-optimize-your-website-for-ai-search",
+    destination: "/blogs/optimize-website-ai-search",
+    permanent: true,
+  },
+  {
+    source: "/why-your-leads-arent-converting",
+    destination: "/blogs/why-leads-arent-converting",
+    permanent: true,
+  },
+  {
+    source: "/seo-services-cost-in-2025",
+    destination: "/blogs/seo-services-cost-2025",
+    permanent: true,
+  },
+];
+
 const nextConfig: NextConfig = {
   images: {
     unoptimized: false,
@@ -28,6 +89,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      ...legacyPageRedirects,
+      ...legacyBlogRedirects,
       {
         source: "/writing",
         destination: "/blogs",

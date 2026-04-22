@@ -40,8 +40,8 @@ const featuredPosts = [
 
 const relatedServices = [
   { title: "Marketing Automation", href: "/services/automation", description: "n8n workflows, CRM pipelines, and notification systems that run without babysitting." },
-  { title: "AI Follow-Up", href: "/services/ai-follow-up", description: "Automated lead response and nurture sequences powered by AI." },
-  { title: "Lead Conversion", href: "/services/lead-conversion", description: "Close the gap between inbound leads and booked revenue." },
+  { title: "AI Follow-Up", href: "/services/automation", description: "Automated lead response and nurture sequences powered by AI." },
+  { title: "Lead Conversion", href: "/services/automation", description: "Close the gap between inbound leads and booked revenue." },
 ];
 
 export default function AutomationCategoryPage() {

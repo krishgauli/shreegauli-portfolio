@@ -11,11 +11,12 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Website & Web App Development | Next.js, React, TypeScript",
+  title: "Dallas Web Developer | Next.js Websites & Web Apps",
   description:
-    "Custom Next.js websites and full-stack web applications built with React, TypeScript, Tailwind CSS, Prisma, and Supabase. SEO-optimized, performant, and production-ready.",
+    "Dallas web developer building custom Next.js websites and full-stack web apps with SEO, performance, and production-ready architecture.",
   path: "/services/web-development",
   keywords: [
+    "dallas web developer",
     "Next.js developer",
     "web app development",
     "React developer",
@@ -125,10 +126,10 @@ export default function WebDevelopmentPage() {
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeader
-            eyebrow="Web Development"
-            title="Custom websites and web apps built to perform"
+            eyebrow="Dallas Web Development"
+            title="Dallas Web Developer for Custom Websites & Web Apps"
             as="h1"
-            subtitle="Next.js, React, TypeScript, Tailwind CSS — full-stack development with SEO, authentication, dashboards, and everything your business needs. No templates. No page builders."
+            subtitle="Next.js, React, TypeScript, and full-stack development for Dallas businesses that need fast websites, custom applications, and SEO-ready architecture. No templates. No page builders."
           />
         </div>
       </section>

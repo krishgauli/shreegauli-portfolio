@@ -12,7 +12,7 @@ const BUSINESS = {
 };
 
 const PAYONEER_EMAIL = process.env.PAYONEER_EMAIL || '';
-const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
+const SITE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 
 async function requireAdminAuth(request: NextRequest) {
   const { requireAdmin } = await import('@/lib/auth');

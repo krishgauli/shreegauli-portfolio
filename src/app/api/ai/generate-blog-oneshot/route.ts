@@ -88,7 +88,7 @@ async function generateOneShotBlog(customTopic?: string) {
 
   const openaiClient = new OpenAI({ apiKey });
 
-  const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
+  const SITE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 
   // Fetch existing titles, slugs, descriptions for full dedup
   const existingPosts = await prisma.post.findMany({

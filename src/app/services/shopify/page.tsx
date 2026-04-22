@@ -11,11 +11,12 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Shopify Store Development | Custom Themes, Products & SEO",
+  title: "Dallas Shopify Developer | Custom Stores & SEO",
   description:
-    "Shopify e-commerce stores with custom themes, optimized product pages, conversion-focused checkout, and SEO built in. From setup to launch.",
+    "Dallas Shopify developer building custom storefronts, conversion-focused product pages, and SEO-ready ecommerce experiences from setup to launch.",
   path: "/services/shopify",
   keywords: [
+    "dallas shopify developer",
     "Shopify developer",
     "Shopify store development",
     "custom Shopify theme",
@@ -116,10 +117,10 @@ export default function ShopifyServicePage() {
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeader
-            eyebrow="Shopify Development"
-            title="E-commerce stores that sell — not just display"
+            eyebrow="Dallas Shopify Development"
+            title="Dallas Shopify Developer for Stores That Convert"
             as="h1"
-            subtitle="Custom Shopify themes, optimized product pages, and conversion-focused checkout. Built to look great, load fast, and rank on Google."
+            subtitle="Custom Shopify themes, optimized product pages, and conversion-focused checkout for Dallas brands that want stores built to load fast and rank on Google."
           />
         </div>
       </section>

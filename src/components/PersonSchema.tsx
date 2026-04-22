@@ -1,15 +1,23 @@
+import {
+  BUSINESS_NAME,
+  SITE_EMAIL,
+  SITE_LOCATION,
+  SITE_NAME,
+  SITE_PHONE_E164,
+  SITE_URL,
+} from "@/lib/site";
+
 export default function PersonSchema() {
-  const SITE_URL = 'https://www.shreegauli.com';
   const PERSON_ID = `${SITE_URL}/#person`;
   const WEBSITE_ID = `${SITE_URL}/#website`;
-  const ORG_ID = `${SITE_URL}/#organization`;
+  const BUSINESS_ID = `${SITE_URL}/#local-business`;
   const SERVICE_ID = `${SITE_URL}/#professional-service`;
 
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     '@id': PERSON_ID,
-    name: 'Shree Krishna Gauli',
+    name: SITE_NAME,
     jobTitle: 'Full-Stack Web Developer & SEO Consultant',
     description:
       'Full-stack web developer and SEO consultant specializing in Next.js, WordPress, Shopify, SEO/AEO/GEO, and marketing automation. Based in Dallas, TX.',
@@ -17,9 +25,9 @@ export default function PersonSchema() {
     image: `${SITE_URL}/shree-gauli.png`,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Dallas',
-      addressRegion: 'TX',
-      addressCountry: 'US',
+      addressLocality: SITE_LOCATION.city,
+      addressRegion: SITE_LOCATION.region,
+      addressCountry: SITE_LOCATION.country,
     },
     knowsAbout: [
       'Next.js',
@@ -39,7 +47,7 @@ export default function PersonSchema() {
       'https://www.linkedin.com/in/gauli/',
     ],
     worksFor: {
-      '@id': ORG_ID,
+      '@id': BUSINESS_ID,
     },
   };
 
@@ -55,26 +63,43 @@ export default function PersonSchema() {
       '@id': PERSON_ID,
     },
     publisher: {
-      '@id': ORG_ID,
+      '@id': BUSINESS_ID,
     },
     inLanguage: 'en-US',
   };
 
-  const organizationSchema = {
+  const localBusinessSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': ORG_ID,
-    name: 'Shree Krishna Gauli Consulting',
+    '@type': 'LocalBusiness',
+    '@id': BUSINESS_ID,
+    name: BUSINESS_NAME,
     url: SITE_URL,
+    image: `${SITE_URL}/shree-gauli.png`,
+    email: SITE_EMAIL,
+    telephone: SITE_PHONE_E164,
     founder: {
       '@id': PERSON_ID,
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: SITE_LOCATION.city,
+      addressRegion: SITE_LOCATION.region,
+      addressCountry: SITE_LOCATION.country,
     },
     sameAs: [
       'https://www.linkedin.com/in/gauli/',
     ],
     areaServed: {
-      '@type': 'Country',
-      name: 'US',
+      '@type': 'AdministrativeArea',
+      name: `${SITE_LOCATION.city}, ${SITE_LOCATION.region}`,
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: SITE_EMAIL,
+      telephone: SITE_PHONE_E164,
+      areaServed: 'US',
+      availableLanguage: ['en'],
     },
   };
 
@@ -84,8 +109,8 @@ export default function PersonSchema() {
     '@id': SERVICE_ID,
     name: 'Shree Krishna Gauli - Web Development & SEO Consulting',
     url: SITE_URL,
-    telephone: '+1-409-995-2521',
-    email: 'hello@shreegauli.com',
+    telephone: SITE_PHONE_E164,
+    email: SITE_EMAIL,
     serviceType: [
       'Custom Web Application Development',
       'WordPress Development',
@@ -97,11 +122,17 @@ export default function PersonSchema() {
       '@id': PERSON_ID,
     },
     brand: {
-      '@id': ORG_ID,
+      '@id': BUSINESS_ID,
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: SITE_LOCATION.city,
+      addressRegion: SITE_LOCATION.region,
+      addressCountry: SITE_LOCATION.country,
     },
     areaServed: {
-      '@type': 'Country',
-      name: 'US',
+      '@type': 'AdministrativeArea',
+      name: `${SITE_LOCATION.city}, ${SITE_LOCATION.region}`,
     },
   };
 
@@ -117,7 +148,7 @@ export default function PersonSchema() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
       <script
         type="application/ld+json"

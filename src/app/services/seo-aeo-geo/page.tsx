@@ -11,11 +11,12 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "SEO, AEO & GEO Services | Rank on Google & AI",
+  title: "Dallas SEO Consultant | SEO, AEO & GEO Services",
   description:
-    "Technical SEO audits, AI search optimization (AEO), and geo-targeted search strategies (GEO). Get found on Google, ChatGPT, Perplexity, and every search engine that matters.",
+    "Dallas SEO consultant delivering technical SEO, local SEO, AEO, GEO, schema markup, and content systems that grow qualified traffic.",
   path: "/services/seo-aeo-geo",
   keywords: [
+    "dallas seo consultant",
     "SEO consultant",
     "AEO optimization",
     "GEO search optimization",
@@ -124,10 +125,10 @@ export default function SeoAeoGeoServicePage() {
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeader
-            eyebrow="SEO / AEO / GEO"
-            title="Rank on Google. Get cited by AI. Dominate local search."
+            eyebrow="Dallas SEO / AEO / GEO"
+            title="Dallas SEO Consultant for Google, AI, and Local Search"
             as="h1"
-            subtitle="Technical SEO, AI answer engine optimization, and geo-targeted search strategies — built to get your business found on every search platform that matters, from Google to ChatGPT."
+            subtitle="Technical SEO, AI answer engine optimization, and geo-targeted search strategies built for Dallas businesses that need stronger visibility on Google, AI overviews, and local search."
           />
         </div>
       </section>

@@ -11,11 +11,12 @@ import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Marketing Automation & AI Follow-Up | n8n & CRM",
+  title: "Dallas Marketing Automation Consultant | n8n & AI",
   description:
-    "Custom n8n workflows, AI chatbot lead capture, automated appointment reminders, review collection, and CRM integration — so you never lose a lead again.",
+    "Dallas marketing automation consultant building n8n workflows, AI follow-up systems, CRM automations, and appointment reminders for service businesses.",
   path: "/services/automation",
   keywords: [
+    "dallas marketing automation consultant",
     "n8n automation",
     "marketing automation",
     "AI chatbot",
@@ -151,10 +152,10 @@ export default function AutomationServicePage() {
       <section className="relative z-10 section-pad px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeader
-            eyebrow="Automation"
-            title="Stop losing leads. Automate follow-up, booking, and reviews."
+            eyebrow="Dallas Automation"
+            title="Dallas Marketing Automation Consultant for Faster Follow-Up"
             as="h1"
-            subtitle="Custom n8n workflows, AI chatbots, and automated sequences that capture leads, book appointments, collect reviews, and follow up — so nothing slips through the cracks."
+            subtitle="Custom n8n workflows, AI chatbots, and automated sequences for Dallas businesses that need faster follow-up, cleaner booking flows, and less lead leakage."
           />
         </div>
       </section>

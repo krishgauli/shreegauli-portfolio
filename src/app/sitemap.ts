@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
 import { staticWritingPosts } from "@/lib/blogs";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600; // revalidate every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.shreegauli.com";
   const now = new Date();
 
   // Static routes
@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${SITE_URL}${route}`,
     lastModified: now,
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : 0.8,
@@ -51,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic blog posts
   let blogEntries: MetadataRoute.Sitemap = staticWritingPosts.map((post) => ({
-    url: `${baseUrl}/blogs/${post.slug}`,
+    url: `${SITE_URL}/blogs/${post.slug}`,
     lastModified: new Date(post.updatedAt),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -64,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
 
     const dynamicEntries = posts.map((post) => ({
-      url: `${baseUrl}/blogs/${post.slug}`,
+      url: `${SITE_URL}/blogs/${post.slug}`,
       lastModified: post.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.7,
@@ -93,7 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "seo-website-launch",
     "ai-call-centre",
   ].map((slug) => ({
-    url: `${baseUrl}/work/${slug}`,
+    url: `${SITE_URL}/work/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,

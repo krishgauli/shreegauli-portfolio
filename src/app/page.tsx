@@ -18,11 +18,13 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Full-Stack Web Developer & SEO Consultant | Dallas",
+  title: "Dallas Web Developer & SEO Consultant | Shree Gauli",
   description:
-    "Dallas-based full-stack web developer building custom websites, web apps, and e-commerce stores with Next.js, WordPress, and Shopify. SEO/AEO/GEO optimization built into every project. 14+ sites shipped.",
+    "Dallas web developer and SEO consultant building custom websites, web apps, and ecommerce stores with Next.js, WordPress, and Shopify. SEO, AEO, GEO, and performance are built in from day one.",
   path: "/",
   keywords: [
+    "dallas web developer",
+    "dallas seo consultant",
     "full-stack web developer dallas",
     "Next.js developer",
     "WordPress developer dallas",

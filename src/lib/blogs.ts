@@ -505,14 +505,14 @@ export const staticWritingPosts: StaticWritingPost[] = [
 
       <p>Research from InsideSales and Harvard Business Review both point to the same conclusion: responding within five minutes makes you <strong>21 times more likely</strong> to qualify the lead than responding after thirty minutes. Most service businesses respond in hours, not minutes. Some wait an entire business day. By that point the prospect has already contacted two or three competitors.</p>
 
-      <p>Speed-to-lead is the single biggest conversion lever most businesses ignore. It does not require more budget. It requires a system that routes, alerts, and follows up without waiting for someone to check a dashboard. <a href="/services/ai-follow-up">Automated AI follow-up</a> can close that gap to under sixty seconds.</p>
+      <p>Speed-to-lead is the single biggest conversion lever most businesses ignore. It does not require more budget. It requires a system that routes, alerts, and follows up without waiting for someone to check a dashboard. <a href="/services/automation">Automated AI follow-up</a> can close that gap to under sixty seconds.</p>
 
       <h2 id="crm-routing-failures">CRM routing failures</h2>
       <h3>Leads land in the wrong queue</h3>
       <p>A surprising number of CRMs route every lead to the same inbox or the same person regardless of service type, geography, or intent level. That creates a pile-up. High-intent leads sit behind low-intent form fills, and the people best equipped to respond never see the submission in time.</p>
 
       <h3>No ownership means no urgency</h3>
-      <p>When a lead has no assigned owner inside the CRM, nobody feels responsible for the follow-up. The record sits in limbo — technically visible but practically invisible. Good <a href="/services/lead-conversion">lead conversion systems</a> assign every incoming lead an owner and a next action within seconds, not hours.</p>
+      <p>When a lead has no assigned owner inside the CRM, nobody feels responsible for the follow-up. The record sits in limbo — technically visible but practically invisible. Good <a href="/services/automation">lead conversion systems</a> assign every incoming lead an owner and a next action within seconds, not hours.</p>
 
       <h2 id="landing-page-misalignment">Landing page misalignment</h2>
       <p>Sometimes the leads themselves are weak because the landing page promises something the sales process cannot deliver. If the ad says "free consultation" but the first call is a hard sales pitch, the lead feels bait-and-switched. If the form asks twelve questions, high-intent visitors abandon. The landing page needs to match the ad promise and make the next step feel like a natural continuation, not a transaction.</p>
@@ -532,7 +532,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
       <h3>What to fix first</h3>
       <p>Start with response time. Measure how long it actually takes for somebody to contact a new lead, not how long the team thinks it takes. Then fix CRM routing so the right person sees the right lead immediately. After that, align the landing page to the ad promise and layer in qualification criteria.</p>
 
-      <p>If you are spending money on ads and watching conversion rates stay flat, do not increase the budget. <a href="/services/lead-conversion">Fix the handoff layer</a> first. That single change often improves close rates more than any creative refresh or audience tweak ever will.</p>
+      <p>If you are spending money on ads and watching conversion rates stay flat, do not increase the budget. <a href="/services/automation">Fix the handoff layer</a> first. That single change often improves close rates more than any creative refresh or audience tweak ever will.</p>
     `,
   },
   {
@@ -552,7 +552,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
 
       <p>Dental practices run on appointments. Every missed call is a missed appointment, and every missed appointment is lost revenue. But most practices still rely on front-desk staff to answer phones during business hours and voicemail to catch everything else. The math does not work. Peak call volume hits when the team is busiest with patients, and after-hours demand goes entirely unserved.</p>
 
-      <p>This is the story of how one four-location dental group in the Dallas–Fort Worth area used an <a href="/services/ai-follow-up">AI follow-up system</a> to recover leads that would have otherwise disappeared into voicemail.</p>
+      <p>This is the story of how one four-location dental group in the Dallas–Fort Worth area used an <a href="/services/automation">AI follow-up system</a> to recover leads that would have otherwise disappeared into voicemail.</p>
 
       <h2 id="the-problem">The problem: 60%+ leads going to voicemail</h2>
       <ul class="toc">
@@ -594,9 +594,9 @@ export const staticWritingPosts: StaticWritingPost[] = [
       <p>More importantly, the AI agent works nights, weekends, and holidays without variance. It does not call in sick, forget the script, or get distracted by a patient at the front desk.</p>
 
       <h3>When this approach fits</h3>
-      <p>This is not a solution for every business. It works best when the inbound call volume is high enough that missed calls represent real revenue loss, and when the primary action is schedulable — appointments, consultations, callbacks. <a href="/industries/dental">Dental practices</a>, med spas, clinics, and home service companies are the strongest fit.</p>
+      <p>This is not a solution for every business. It works best when the inbound call volume is high enough that missed calls represent real revenue loss, and when the primary action is schedulable — appointments, consultations, callbacks. <a href="/work/ai-call-centre">Dental practices</a>, med spas, clinics, and home service companies are the strongest fit.</p>
 
-      <p>If your practice is losing leads to voicemail and you want to see what a recovery system looks like, <a href="/services/ai-follow-up">start with an AI follow-up audit</a>. The gap between missed and recovered is usually larger than anyone expects.</p>
+      <p>If your practice is losing leads to voicemail and you want to see what a recovery system looks like, <a href="/services/automation">start with an AI follow-up audit</a>. The gap between missed and recovered is usually larger than anyone expects.</p>
     `,
   },
   {
@@ -632,7 +632,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
       <h2 id="step-2-search-terms">Step 2: Pull the search term report</h2>
       <p>Forget what keywords you are bidding on. What queries is Google actually matching you to? Open the search term report for the last 30 days and sort by spend. You will almost certainly find irrelevant terms eating budget — informational queries, competitor names, geographic mismatches, or entirely unrelated searches that broad match dragged in.</p>
 
-      <p>If more than 20% of spend is going to terms that could never convert, the account has a match type and negative keyword problem, not a budget problem. <a href="/services/paid-media">Tightening query control</a> is one of the fastest ways to recover wasted spend.</p>
+      <p>If more than 20% of spend is going to terms that could never convert, the account has a match type and negative keyword problem, not a budget problem. <a href="/services">Tightening query control</a> is one of the fastest ways to recover wasted spend.</p>
 
       <h2 id="step-3-landing-page">Step 3: Check landing page alignment</h2>
       <h3>Does the page match the ad promise?</h3>
@@ -695,7 +695,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
 
       <h2 id="what-aeo-requires">What AEO requires beyond traditional SEO</h2>
       <h3>Entity-first content</h3>
-      <p>AI models build internal representations of entities — people, businesses, concepts. If your brand is not clearly defined across your site, your Google Business Profile, structured data, and third-party mentions, the model may not associate your expertise with the topics you want to own. <a href="/services/aeo-geo">AEO and GEO services</a> start with building that entity layer.</p>
+      <p>AI models build internal representations of entities — people, businesses, concepts. If your brand is not clearly defined across your site, your Google Business Profile, structured data, and third-party mentions, the model may not associate your expertise with the topics you want to own. <a href="/services/seo-aeo-geo">AEO and GEO services</a> start with building that entity layer.</p>
 
       <h3>Concise answer blocks</h3>
       <p>Traditional SEO content often buries the answer under long introductions. AI models prefer content that states the answer clearly near the top, then expands with supporting detail. Think of it like writing for a senior professional who wants the conclusion first and the evidence second.</p>
@@ -716,7 +716,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
         <li>Build topical authority by linking related pages together with descriptive anchor text</li>
       </ul>
 
-      <p>AEO does not replace <a href="/services/seo">traditional SEO</a>. It builds on top of it. The businesses that start optimizing for AI search engines now will have a compounding advantage as these platforms absorb more of the search market. The ones that wait will find themselves invisible in the answers that matter most.</p>
+      <p>AEO does not replace <a href="/services/seo-aeo-geo">traditional SEO</a>. It builds on top of it. The businesses that start optimizing for AI search engines now will have a compounding advantage as these platforms absorb more of the search market. The ones that wait will find themselves invisible in the answers that matter most.</p>
     `,
   },
   {
@@ -756,7 +756,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
       <p>AI answer engines love question-and-answer pairs because they map directly to user queries. A well-structured FAQ page with FAQ schema gives the model a clean, trustworthy source to pull from. Each question should be a real query your customers ask, and each answer should be a self-contained, concise response.</p>
 
       <h3>Implementation</h3>
-      <p>Add FAQPage schema markup to every FAQ section on your site. Keep answers between two and four sentences — detailed enough to be useful, concise enough to be extractable. Link each answer to the relevant service or resource page for deeper context. <a href="/services/aeo-geo">AEO and GEO optimization</a> starts with getting this layer right.</p>
+      <p>Add FAQPage schema markup to every FAQ section on your site. Keep answers between two and four sentences — detailed enough to be useful, concise enough to be extractable. Link each answer to the relevant service or resource page for deeper context. <a href="/services/seo-aeo-geo">AEO and GEO optimization</a> starts with getting this layer right.</p>
 
       <h2 id="answer-blocks">Use concise answer blocks</h2>
       <p>Every important page on your site should include a 2–3 sentence block near the top that directly answers the core question the page addresses. Think of this as the paragraph an AI model would extract if it could only take one block from the page. Place it right after the H1 or the first H2. Bold the key conclusion.</p>
@@ -782,7 +782,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
         <li>Link internally to supporting pages with descriptive anchor text</li>
       </ul>
 
-      <p>The shift to AI search is already happening. Businesses that restructure their content for extraction and citation now will build visibility that compounds as these platforms grow. Start with your highest-traffic pages, add schema, write answer blocks, and make every page easy for a language model to quote. That is how <a href="/services/seo">modern SEO</a> becomes AI-search-ready.</p>
+      <p>The shift to AI search is already happening. Businesses that restructure their content for extraction and citation now will build visibility that compounds as these platforms grow. Start with your highest-traffic pages, add schema, write answer blocks, and make every page easy for a language model to quote. That is how <a href="/services/seo-aeo-geo">modern SEO</a> becomes AI-search-ready.</p>
     `,
   },
   {
@@ -835,7 +835,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
         <li><strong>Escalation to human:</strong> A handoff to the right team member with full context, triggered either by a qualified response or a time-based rule</li>
       </ul>
 
-      <p>For businesses with high call volume, an <a href="/services/ai-follow-up">AI follow-up agent</a> can make the first outbound call within minutes, handle basic scheduling, and route complex conversations to staff. The combination of SMS + AI voice covers both digital-first and phone-first leads.</p>
+      <p>For businesses with high call volume, an <a href="/services/automation">AI follow-up agent</a> can make the first outbound call within minutes, handle basic scheduling, and route complex conversations to staff. The combination of SMS + AI voice covers both digital-first and phone-first leads.</p>
 
       <h2 id="practical-setup">Practical setup steps</h2>
       <ul>
@@ -846,7 +846,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
         <li><strong>Step 5:</strong> Review response time weekly as a team metric. Make it visible on a dashboard, not buried in reports.</li>
       </ul>
 
-      <p>The <a href="/services/lead-conversion">lead follow-up problem</a> is not a technology problem. It is an awareness problem. Most businesses do not know how slow they are, and by the time they realize it, the lead has already booked with someone who answered faster. Fix the first five minutes and the rest of the funnel gets dramatically easier.</p>
+      <p>The <a href="/services/automation">lead follow-up problem</a> is not a technology problem. It is an awareness problem. Most businesses do not know how slow they are, and by the time they realize it, the lead has already booked with someone who answered faster. Fix the first five minutes and the rest of the funnel gets dramatically easier.</p>
     `,
   },
   {
@@ -878,7 +878,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
       <p>At this level you are typically working with an individual who handles a focused scope — technical audits, on-page optimization, content briefs, or local SEO management. The upside is direct communication and senior-level attention. The downside is limited bandwidth. A strong freelancer at $1,500/month can move faster than a $5K agency if the scope is tight.</p>
 
       <h3>Consultant: $2,000–$5,000/month</h3>
-      <p>An experienced <a href="/services/seo">SEO consultant</a> at this tier usually owns strategy, execution, and reporting. You get a technical audit, keyword mapping, content direction, internal linking strategy, and monthly reporting tied to business outcomes. This is where most service businesses with revenue between $500K and $5M get the best leverage — senior thinking without agency overhead.</p>
+      <p>An experienced <a href="/services/seo-aeo-geo">SEO consultant</a> at this tier usually owns strategy, execution, and reporting. You get a technical audit, keyword mapping, content direction, internal linking strategy, and monthly reporting tied to business outcomes. This is where most service businesses with revenue between $500K and $5M get the best leverage — senior thinking without agency overhead.</p>
 
       <h3>Agency: $3,000–$10,000+/month</h3>
       <p>Agencies at this tier bring a team — strategist, content writer, link builder, technical specialist, and an account manager. The value is bandwidth and breadth. The risk is that the senior person you met on the sales call hands your account to a junior team, and the quality of thinking degrades. At $7K+ per month, you should expect measurable pipeline impact within six months, not just traffic graphs.</p>
@@ -889,7 +889,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
       <ul>
         <li><strong>$500–$1K range:</strong> Technical fixes, Google Business Profile optimization, basic on-page work. No content production, no link building. Suitable for local businesses with a small site that needs cleanup.</li>
         <li><strong>$1K–$3K range:</strong> Technical audit + content strategy + 2–4 optimized pages per month + reporting. This is the sweet spot for service businesses that need to build organic visibility on their money pages.</li>
-        <li><strong>$3K–$5K range:</strong> Full-service SEO — technical, content production (4–8 pieces/month), internal linking, <a href="/services/local-seo">local SEO</a>, and competitive gap analysis. Expect a real content calendar and monthly strategy calls.</li>
+        <li><strong>$3K–$5K range:</strong> Full-service SEO — technical, content production (4–8 pieces/month), internal linking, <a href="/services/seo-aeo-geo">local SEO</a>, and competitive gap analysis. Expect a real content calendar and monthly strategy calls.</li>
         <li><strong>$5K–$10K+ range:</strong> Enterprise-level SEO with dedicated resources, link acquisition, content hubs, conversion optimization, and detailed attribution reporting. Only worth it if the site has enough scale and the business can act on the insights.</li>
       </ul>
 
@@ -901,7 +901,7 @@ export const staticWritingPosts: StaticWritingPost[] = [
       <p>Do not spread a thin budget across twenty blog posts. Focus on 3–5 service pages that drive revenue. Optimize titles, meta descriptions, headings, page content, and internal links. One well-optimized service page can outperform ten generic blog posts.</p>
 
       <h3>Add local SEO if you serve a geographic area</h3>
-      <p>Google Business Profile optimization, consistent NAP data, and local landing pages often produce faster results than broad organic campaigns. For many service businesses, <a href="/services/local-seo">local SEO</a> delivers the highest ROI per dollar spent.</p>
+      <p>Google Business Profile optimization, consistent NAP data, and local landing pages often produce faster results than broad organic campaigns. For many service businesses, <a href="/services/seo-aeo-geo">local SEO</a> delivers the highest ROI per dollar spent.</p>
 
       <h2 id="red-flags">Red flags in SEO pricing</h2>
       <ul>

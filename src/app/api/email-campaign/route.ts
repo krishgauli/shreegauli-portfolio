@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
 
   const SMTP_USER = process.env.SMTP_USER || '';
   const SMTP_APP_PASSWORD = process.env.SMTP_APP_PASSWORD || '';
-  const SITE_URL = process.env.APP_URL || 'https://shreegauli.com';
+  const SITE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',

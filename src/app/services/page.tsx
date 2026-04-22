@@ -7,11 +7,11 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Web Development & SEO Services | Next.js, WordPress, Shopify",
+  title: "Dallas Web Development, SEO & Automation Services",
   description:
-    "Custom websites, web apps, e-commerce stores, SEO, and automation from a full-stack developer who handles design, code, and optimization.",
+    "Dallas web development, SEO, Shopify, WordPress, and automation services from one hands-on builder handling strategy, design, code, and optimization.",
   path: "/services",
-  keywords: ["web development services", "Next.js developer", "WordPress developer", "Shopify developer", "SEO consultant", "marketing automation"],
+  keywords: ["dallas web development services", "Next.js developer", "WordPress developer dallas", "Shopify developer dallas", "SEO consultant dallas", "marketing automation dallas"],
 });
 
 export default function ServicesPage() {

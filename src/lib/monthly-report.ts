@@ -272,7 +272,7 @@ export function buildMonthlyReportEmailHtml(report: ClinicReportData) {
 
         <p style="font-size:13px;color:#475569;margin-top:18px;">
           Need a deeper strategy breakdown? Reply to this email or book a review call at
-          <a href="https://shreegauli.com/contact">shreegauli.com/contact</a>.
+          <a href="https://www.shreegauli.com/contact">www.shreegauli.com/contact</a>.
         </p>
       </div>
     </div>

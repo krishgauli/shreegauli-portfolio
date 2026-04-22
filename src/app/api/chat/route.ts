@@ -32,16 +32,16 @@ ${langInstructions}
 KNOWLEDGE RULES:
 1. Answer ONLY from the RETRIEVED WEBSITE CONTENT below. Do NOT make up information.
 2. If the retrieved content contains the answer, give a clear, helpful response and cite the source page URL.
-3. If the retrieved content does NOT contain the answer, say: "I'm not fully sure about that, but I can help! Try visiting https://shreegauli.com/contact or ask me something else."
+3. If the retrieved content does NOT contain the answer, say: "I'm not fully sure about that, but I can help! Try visiting https://www.shreegauli.com/contact or ask me something else."
 4. Never fabricate pricing, service details, features, or statistics.
-5. When mentioning pages from the site, include the full URL (e.g., https://shreegauli.com/services).
+5. When mentioning pages from the site, include the full URL (e.g., https://www.shreegauli.com/services).
 
 LEAD HANDLING:
 - When users ask about services or projects → guide them to:
-  • Book a free strategy call: https://shreegauli.com/book
-  • Get in touch: https://shreegauli.com/contact
-  • Learn about services: https://shreegauli.com/services
-  • Try the free SEO tool: https://shreegauli.com/seo-tools
+  • Book a free strategy call: https://www.shreegauli.com/book
+  • Get in touch: https://www.shreegauli.com/contact
+  • Learn about services: https://www.shreegauli.com/services
+  • Try the free SEO tool: https://www.shreegauli.com/seo-tools
 - Shree specializes in SEO, paid media (Google Ads, Meta Ads), social media management, and marketing automation
 
 OFF-TOPIC HANDLING:
@@ -134,8 +134,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Los precios dependen del alcance del proyecto. Por favor agenda una llamada para discutir tus necesidades 👉 https://shreegauli.com/book'
-        : "Pricing depends on the scope of work. Let's hop on a quick call so I can understand your needs and give you a clear quote: https://shreegauli.com/book",
+        ? 'Los precios dependen del alcance del proyecto. Por favor agenda una llamada para discutir tus necesidades 👉 https://www.shreegauli.com/book'
+        : "Pricing depends on the scope of work. Let's hop on a quick call so I can understand your needs and give you a clear quote: https://www.shreegauli.com/book",
     };
   }
 
@@ -143,8 +143,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Shree ofrece SEO, Google & Meta Ads, gestión de redes sociales y automatización de marketing. Más detalles en https://shreegauli.com/services'
-        : "Shree specializes in **SEO**, **Google & Meta Ads**, **social media management**, and **marketing automation**. See the full list: https://shreegauli.com/services. What's your biggest marketing challenge right now?",
+        ? 'Shree ofrece SEO, Google & Meta Ads, gestión de redes sociales y automatización de marketing. Más detalles en https://www.shreegauli.com/services'
+        : "Shree specializes in **SEO**, **Google & Meta Ads**, **social media management**, and **marketing automation**. See the full list: https://www.shreegauli.com/services. What's your biggest marketing challenge right now?",
     };
   }
 
@@ -152,8 +152,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Puedes agendar una consulta estratégica gratuita aquí 👉 https://shreegauli.com/book. ¡Será un placer ayudarte!'
-        : "You can book a **free 30-minute strategy call** right here: https://shreegauli.com/book. Available Mon, Thu, Fri, Sat & Sun mornings (9 AM – 1 PM CT).",
+        ? 'Puedes agendar una consulta estratégica gratuita aquí 👉 https://www.shreegauli.com/book. ¡Será un placer ayudarte!'
+        : "You can book a **free 30-minute strategy call** right here: https://www.shreegauli.com/book. Available Mon, Thu, Fri, Sat & Sun mornings (9 AM – 1 PM CT).",
     };
   }
 
@@ -161,8 +161,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'El dashboard unificado pone todos los datos de marketing en un solo lugar — Google Ads, SEO, redes sociales. Agenda una demo: https://shreegauli.com/book'
-        : "The **unified analytics dashboard** puts all your marketing data in one place — Google Ads, Meta, SEO, social metrics. Want to see it? Book a call: https://shreegauli.com/book",
+        ? 'El dashboard unificado pone todos los datos de marketing en un solo lugar — Google Ads, SEO, redes sociales. Agenda una demo: https://www.shreegauli.com/book'
+        : "The **unified analytics dashboard** puts all your marketing data in one place — Google Ads, Meta, SEO, social metrics. Want to see it? Book a call: https://www.shreegauli.com/book",
     };
   }
 
@@ -170,8 +170,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Shree trabaja con empresas de diversos sectores, especialmente en salud, servicios profesionales y e-commerce. Más info: https://shreegauli.com/services'
-        : "Shree works with businesses across various industries including **healthcare, professional services, and e-commerce**. Each strategy is tailored to your niche. Learn more: https://shreegauli.com/services",
+        ? 'Shree trabaja con empresas de diversos sectores, especialmente en salud, servicios profesionales y e-commerce. Más info: https://www.shreegauli.com/services'
+        : "Shree works with businesses across various industries including **healthcare, professional services, and e-commerce**. Each strategy is tailored to your niche. Learn more: https://www.shreegauli.com/services",
     };
   }
 
@@ -179,8 +179,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Puedes ver casos de éxito y resultados en https://shreegauli.com/work. ¿Qué objetivos de crecimiento tienes en mente?'
-        : "Check out the case studies and proven results at https://shreegauli.com/work. What growth goals do you have in mind?",
+        ? 'Puedes ver casos de éxito y resultados en https://www.shreegauli.com/work. ¿Qué objetivos de crecimiento tienes en mente?'
+        : "Check out the case studies and proven results at https://www.shreegauli.com/work. What growth goals do you have in mind?",
     };
   }
 
@@ -188,8 +188,8 @@ function fallbackReply(
     return {
       matchedIntent: true,
       reply: isEs
-        ? 'Shree Krishna Gauli es un especialista en marketing digital con sede en Dallas, TX. Se enfoca en SEO, publicidad digital, redes sociales y automatización. Conócelo en https://shreegauli.com/about'
-        : "Shree Krishna Gauli is a **digital marketing specialist** based in Dallas, TX. He focuses on SEO, paid media, social media, and marketing automation. Learn more at https://shreegauli.com/about",
+        ? 'Shree Krishna Gauli es un especialista en marketing digital con sede en Dallas, TX. Se enfoca en SEO, publicidad digital, redes sociales y automatización. Conócelo en https://www.shreegauli.com/about'
+        : "Shree Krishna Gauli is a **digital marketing specialist** based in Dallas, TX. He focuses on SEO, paid media, social media, and marketing automation. Learn more at https://www.shreegauli.com/about",
     };
   }
 
@@ -429,6 +429,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ reply, sources, fallback: usedFallback, unanswered: isUnanswered });
   } catch (error) {
     console.error('Chat API error:', error);
-    return NextResponse.json({ reply: "Oops, I hit a small snag! Please try again, or reach out at https://shreegauli.com/contact. 😊", sources: [], fallback: true, unanswered: false });
+    return NextResponse.json({ reply: "Oops, I hit a small snag! Please try again, or reach out at https://www.shreegauli.com/contact. 😊", sources: [], fallback: true, unanswered: false });
   }
 }

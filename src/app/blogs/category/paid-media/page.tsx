@@ -45,8 +45,8 @@ const featuredPosts = [
 ];
 
 const relatedServices = [
-  { title: "Paid Media & Google Ads", href: "/services/paid-media", description: "Campaign builds, query sculpting, and conversion tracking that ties to revenue." },
-  { title: "Lead Conversion", href: "/services/lead-conversion", description: "Fix the gap between ad clicks and actual booked calls." },
+  { title: "Growth Services", href: "/services", description: "Strategy, SEO, web development, and automation systems that support better paid-media performance." },
+  { title: "Lead Conversion", href: "/services/automation", description: "Fix the gap between ad clicks and actual booked calls." },
 ];
 
 export default function PaidMediaCategoryPage() {

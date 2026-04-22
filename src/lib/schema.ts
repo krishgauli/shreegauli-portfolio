@@ -5,7 +5,14 @@
  * All URLs are absolute with the SITE_URL prefix.
  */
 
-const SITE_URL = "https://www.shreegauli.com";
+import {
+  BUSINESS_NAME,
+  SITE_EMAIL,
+  SITE_LOCATION,
+  SITE_NAME,
+  SITE_PHONE_E164,
+  SITE_URL,
+} from "@/lib/site";
 
 /* ---------- BreadcrumbList ---------- */
 
@@ -67,14 +74,24 @@ export function serviceSchema({ name, description, path }: ServiceInput) {
     name,
     description,
     url: `${SITE_URL}${path}`,
+    serviceType: name,
     provider: {
-      "@type": "Person",
-      name: "Shree Krishna Gauli",
+      "@type": "LocalBusiness",
+      "@id": `${SITE_URL}/#local-business`,
+      name: BUSINESS_NAME,
       url: SITE_URL,
+      telephone: SITE_PHONE_E164,
+      email: SITE_EMAIL,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: SITE_LOCATION.city,
+        addressRegion: SITE_LOCATION.region,
+        addressCountry: SITE_LOCATION.country,
+      },
     },
     areaServed: {
-      "@type": "Country",
-      name: "US",
+      "@type": "AdministrativeArea",
+      name: `${SITE_LOCATION.city}, ${SITE_LOCATION.region}`,
     },
   };
 }
@@ -117,20 +134,20 @@ export function personSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Shree Krishna Gauli",
+    name: SITE_NAME,
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
     jobTitle: "Full-Stack Web Developer & SEO Consultant",
     worksFor: {
       "@type": "Organization",
-      name: "Shree Gauli Consulting",
+      name: BUSINESS_NAME,
       url: SITE_URL,
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Dallas",
-      addressRegion: "TX",
-      addressCountry: "US",
+      addressLocality: SITE_LOCATION.city,
+      addressRegion: SITE_LOCATION.region,
+      addressCountry: SITE_LOCATION.country,
     },
     sameAs: ["https://www.linkedin.com/in/gauli/"],
     knowsAbout: [
@@ -199,14 +216,14 @@ export function articleSchema(input: ArticleSchemaInput) {
     ...(input.keywords?.length && { keywords: input.keywords.join(", ") }),
     author: {
       "@type": "Person",
-      name: "Shree Krishna Gauli",
+      name: SITE_NAME,
       url: SITE_URL,
       jobTitle: "Full-Stack Web Developer & SEO Consultant",
       sameAs: ["https://www.linkedin.com/in/gauli/"],
     },
     publisher: {
-      "@type": "Person",
-      name: "Shree Krishna Gauli",
+      "@type": "Organization",
+      name: BUSINESS_NAME,
       url: SITE_URL,
     },
   };

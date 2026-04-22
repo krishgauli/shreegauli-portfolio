@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import PersonSchema from "@/components/PersonSchema";
 import CookieConsent from "@/components/CookieConsent";
 import { Providers } from "@/components/Providers";
+import { BRAND_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -24,9 +25,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
+  title: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
   description:
-    "Custom websites, web apps, and e-commerce stores built with Next.js, WordPress, and Shopify. SEO, AEO, and performance optimization baked in. 14+ projects shipped.",
+    "Dallas web developer and SEO consultant building custom Next.js, WordPress, and Shopify websites with SEO, AEO, and automation baked in.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -40,34 +41,38 @@ export const metadata: Metadata = {
     "Shopify developer",
     "web app development",
     "AEO GEO optimization",
-    "Shree Krishna Gauli",
-    "Dallas",
+    "Dallas web developer",
+    "Dallas SEO consultant",
+    SITE_NAME,
   ],
-  authors: [{ name: "Shree Krishna Gauli", url: "https://www.shreegauli.com" }],
-  creator: "Shree Krishna Gauli",
-  metadataBase: new URL("https://www.shreegauli.com"),
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.shreegauli.com",
-    siteName: "Shree Krishna Gauli",
-    title: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
     description:
-      "Custom websites, web apps, and e-commerce stores built with Next.js, WordPress, and Shopify. SEO, AEO, and performance optimization baked in.",
+      "Dallas web developer and SEO consultant building custom Next.js, WordPress, and Shopify websites with SEO, AEO, and automation baked in.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
+        alt: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shree Krishna Gauli — Full-Stack Web Developer & SEO Consultant",
+    title: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
     description:
-      "Custom websites, web apps, and e-commerce stores built with Next.js, WordPress, and Shopify. SEO, AEO, and performance optimization baked in.",
+      "Dallas web developer and SEO consultant building custom Next.js, WordPress, and Shopify websites with SEO, AEO, and automation baked in.",
     images: ["/og-image.jpg"],
   },
   robots: {

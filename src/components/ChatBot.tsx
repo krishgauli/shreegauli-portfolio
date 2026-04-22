@@ -206,8 +206,8 @@ export default function ChatBot() {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
           content: language === 'es'
-            ? 'Lo siento, no pude conectarme. Por favor contáctenos en https://shreegauli.com/contact'
-            : "Sorry, I couldn't connect. Please reach out at https://shreegauli.com/contact",
+            ? 'Lo siento, no pude conectarme. Por favor contáctenos en https://www.shreegauli.com/contact'
+            : "Sorry, I couldn't connect. Please reach out at https://www.shreegauli.com/contact",
           timestamp: new Date(),
         },
       ]);

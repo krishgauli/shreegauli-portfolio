@@ -10,7 +10,7 @@ export const maxDuration = 60; // allow up to 60s for crawling
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 const CRON_SECRET = process.env.CRON_SECRET || '';
 const EMBED_MODEL = 'text-embedding-3-small';
-const BASE_URL = process.env.APP_URL || 'https://shreegauli.com';
+const BASE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 const OUTPUT_DIR = join(process.cwd(), 'data');
 const OUTPUT_FILE = join(OUTPUT_DIR, 'knowledge-base.json');
 
