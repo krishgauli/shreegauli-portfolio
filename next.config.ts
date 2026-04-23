@@ -89,6 +89,14 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Canonical host: apex → www. Vercel usually handles this at the edge,
+      // but keep a Next-level fallback so split indexing can't regress.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "shreegauli.com" }],
+        destination: "https://www.shreegauli.com/:path*",
+        permanent: true,
+      },
       ...legacyPageRedirects,
       ...legacyBlogRedirects,
       {
