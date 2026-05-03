@@ -9,7 +9,6 @@ import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, collectionPageSchema } from "@/lib/schema";
 import {
-  getStaticArticleCards,
   resolveBlogImage,
   resolveBlogImageAlt,
 } from "@/lib/blogs";
@@ -24,7 +23,6 @@ export const metadata: Metadata = createPageMetadata({
   keywords: ["digital marketing blog", "SEO articles", "paid media insights", "automation blog"],
 });
 
-const fallbackArticles = getStaticArticleCards();
 const gradients = [
   "from-violet-900/40 to-purple-900/20",
   "from-cyan-900/40 to-teal-900/20",
@@ -52,7 +50,7 @@ async function getArticles(): Promise<Article[]> {
       take: 30,
     });
 
-    const dbArticles = posts.map((post, i) => ({
+    return posts.map((post, i) => ({
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || "",
@@ -67,15 +65,8 @@ async function getArticles(): Promise<Article[]> {
       image: resolveBlogImage(post.coverImage, post.slug),
       imageAlt: resolveBlogImageAlt(post.coverImageAlt, post.title),
     }));
-
-    if (dbArticles.length >= 9) return dbArticles;
-
-    const seen = new Set(dbArticles.map((article) => article.href));
-    const supplemental = fallbackArticles.filter((article) => !seen.has(article.href));
-    return [...dbArticles, ...supplemental].slice(0, 12);
   } catch {
-    // Database may not be available — fall back to static data
-    return fallbackArticles;
+    return [];
   }
 }
 

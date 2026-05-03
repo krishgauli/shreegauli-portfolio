@@ -7,11 +7,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { BUSINESS_NAME, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 import {
-  getStaticArticleCards,
-  getStaticWritingPostBySlug,
   resolveBlogImage,
   resolveBlogImageAlt,
-  staticWritingPosts,
 } from "@/lib/blogs";
 import { BlogPostBody } from "./BlogPostBody";
 import type { Article } from "@/types";
@@ -99,20 +96,7 @@ export async function generateMetadata({
   }
 
   if (!post) {
-    const staticPost = getStaticWritingPostBySlug(slug);
-    if (!staticPost) return {};
-
-    const suffix = ' | Shree Gauli';
-    const staticTitle = staticPost.title.length + suffix.length <= 60
-      ? `${staticPost.title}${suffix}`
-      : staticPost.title;
-
-    return createPageMetadata({
-      title: staticTitle,
-      description: staticPost.excerpt,
-      path: `/blogs/${staticPost.slug}`,
-      keywords: staticPost.keywords,
-    });
+    return {};
   }
 
   const blogTitle = post.seoTitle || post.title;
@@ -133,19 +117,15 @@ export async function generateMetadata({
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  /* Pre-render static markdown posts */
-  const staticParams = staticWritingPosts.map((post) => ({ slug: post.slug }));
-
-  /* Also pre-render DB posts at build time */
+  /* Pre-render DB posts at build time */
   try {
     const dbPosts = await prisma.post.findMany({
-      where: { status: "PUBLISHED" },
+      where: { publishedAt: { not: null } },
       select: { slug: true },
     });
-    const dbParams = dbPosts.map((p) => ({ slug: p.slug }));
-    return [...staticParams, ...dbParams];
+    return dbPosts.map((p) => ({ slug: p.slug }));
   } catch {
-    return staticParams;
+    return [];
   }
 }
 
@@ -224,44 +204,9 @@ export default async function BlogPostPage({
     pagePost = null;
   }
 
-  if (!post || !pagePost) {
-    const staticPost = getStaticWritingPostBySlug(slug);
-    if (!staticPost) notFound();
+  if (!post || !pagePost) notFound();
 
-    const publishedAt = new Date(staticPost.publishedAt);
-    const updatedAt = new Date(staticPost.updatedAt);
-
-    post = {
-      title: staticPost.title,
-      slug: staticPost.slug,
-      excerpt: staticPost.excerpt,
-      createdAt: publishedAt,
-      updatedAt,
-      featuredImage: staticPost.coverImage || null,
-      author: { name: "Shree Krishna Gauli" },
-    };
-
-    pagePost = {
-      slug: staticPost.slug,
-      title: staticPost.title,
-      content: staticPost.content,
-      excerpt: staticPost.excerpt,
-      coverImage: staticPost.coverImage || null,
-      coverImageAlt: staticPost.coverImageAlt || staticPost.title,
-      publishedAt,
-      updatedAt,
-      author: { name: "Shree Krishna Gauli", avatar: null },
-      categories: [{ id: 1, name: staticPost.category }],
-      tags: staticPost.keywords.map((keyword, index) => ({
-        id: index + 1,
-        name: keyword,
-      })),
-    };
-  }
-
-  let relatedPosts: Article[] = getStaticArticleCards()
-    .filter((article) => article.href !== `/blogs/${slug}`)
-    .slice(0, 3);
+  let relatedPosts: Article[] = [];
 
   try {
     const posts = await prisma.post.findMany({
@@ -306,9 +251,7 @@ export default async function BlogPostPage({
         ...relatedPosts.filter((article) => !seen.has(article.href)),
       ].slice(0, 3);
     }
-  } catch {
-    // Fall back to static related posts when the database is unavailable
-  }
+  } catch {}
 
   return (
     <PageShell>

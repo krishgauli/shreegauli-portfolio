@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
-import { staticWritingPosts } from "@/lib/blogs";
 import { caseStudies } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
 
@@ -50,13 +49,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  // Dynamic blog posts
-  let blogEntries: MetadataRoute.Sitemap = staticWritingPosts.map((post) => ({
-    url: `${SITE_URL}/blogs/${post.slug}`,
-    lastModified: new Date(post.updatedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  // Dynamic blog posts (DB-backed, admin editable)
+  let blogEntries: MetadataRoute.Sitemap = [];
   try {
     const posts = await prisma.post.findMany({
       where: { publishedAt: { not: null } },
@@ -71,19 +65,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-    const seen = new Set(dynamicEntries.map((entry) => entry.url));
-    blogEntries = [...dynamicEntries, ...blogEntries.filter((entry) => !seen.has(entry.url))];
+    blogEntries = dynamicEntries;
   } catch {
     // Database may not be available during build — continue with static routes only
   }
 
-  // Case study pages (derived from source of truth)
-  const caseStudyEntries: MetadataRoute.Sitemap = caseStudies.map((study) => ({
+  // Case study pages (admin-backed NewsArticle + legacy static pages)
+  let caseStudyEntries: MetadataRoute.Sitemap = caseStudies.map((study) => ({
     url: `${SITE_URL}/work/${study.id}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
+
+  try {
+    const articles = await prisma.newsArticle.findMany({
+      where: { publishedAt: { not: null } },
+      select: { slug: true, updatedAt: true },
+      orderBy: { updatedAt: "desc" },
+    });
+
+    const dynamicCaseStudies = articles.map((article) => ({
+      url: `${SITE_URL}/work/${article.slug}`,
+      lastModified: article.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+
+    const seen = new Set(dynamicCaseStudies.map((entry) => entry.url));
+    caseStudyEntries = [...dynamicCaseStudies, ...caseStudyEntries.filter((entry) => !seen.has(entry.url))];
+  } catch {
+    // Keep static entries when DB is unavailable
+  }
 
   return [...staticEntries, ...blogEntries, ...caseStudyEntries];
 }
