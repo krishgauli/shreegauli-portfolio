@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
 import { staticWritingPosts } from "@/lib/blogs";
+import { caseStudies } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -76,24 +77,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Database may not be available during build — continue with static routes only
   }
 
-  // Case study pages
-  const caseStudyEntries: MetadataRoute.Sitemap = [
-    "tacklers-consulting",
-    "focus-your-finance",
-    "get-focus-health",
-    "focus-data",
-    "naperville-hwc",
-    "erof-white-rock",
-    "erof-lufkin",
-    "erof-irving",
-    "irving-wellness",
-    "olivia-tanghulu",
-    "seo-growth",
-    "automation",
-    "seo-website-launch",
-    "ai-call-centre",
-  ].map((slug) => ({
-    url: `${SITE_URL}/work/${slug}`,
+  // Case study pages (derived from source of truth)
+  const caseStudyEntries: MetadataRoute.Sitemap = caseStudies.map((study) => ({
+    url: `${SITE_URL}/work/${study.id}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
