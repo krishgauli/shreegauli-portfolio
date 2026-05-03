@@ -4,7 +4,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 /* Show the 3 strongest, most-differentiated case studies on the homepage */
-const featuredIds = ["tacklers-consulting", "olivia-tanghulu", "seo-website-launch"];
+const featuredIds = ["healthcare-booking-system-stripe-google-calendar-sync", "tacklers-consulting", "seo-website-launch"];
 const featured = featuredIds
   .map((id) => caseStudies.find((cs) => cs.id === id))
   .filter(Boolean) as typeof caseStudies;
