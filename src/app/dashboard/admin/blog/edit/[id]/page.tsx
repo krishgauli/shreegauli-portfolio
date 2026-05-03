@@ -99,6 +99,7 @@ export default function EditBlogPost() {
       const saveRes = await fetch(`/api/admin/posts/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ coverImage: newUrl, coverImageAlt: newAlt }),
       });
       if (!saveRes.ok) throw new Error('Failed to save cover image');
@@ -125,6 +126,7 @@ export default function EditBlogPost() {
       const res = await fetch(`/api/admin/posts/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Save failed');

@@ -53,14 +53,20 @@ export default function NewBlogPost() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch('/api/posts', {
+    const res = await fetch('/api/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify({
         ...form,
         publishedAt: form.publishedAt ? new Date(form.publishedAt).toISOString() : null,
       }),
     });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      alert(data.error || 'Failed to create blog post.');
+      return;
+    }
     router.push('/dashboard/admin?view=blog-management');
   };
 

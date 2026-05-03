@@ -91,6 +91,7 @@ export default function EditNewsArticle() {
       const saveRes = await fetch(`/api/admin/news/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ coverImage: newUrl }),
       });
       if (!saveRes.ok) throw new Error('Failed to save cover image');
@@ -122,10 +123,11 @@ export default function EditNewsArticle() {
       const res = await fetch(`/api/admin/news/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Save failed');
-      router.push('/dashboard/admin?view=news-management');
+      router.push('/dashboard/admin?view=case-studies');
     } catch {
       alert('Failed to save article');
     } finally {
@@ -141,13 +143,13 @@ export default function EditNewsArticle() {
       <PageHeader
         title="Edit News Article"
         subtitle="Update article content and metadata"
-        backHref="/dashboard/admin?view=news-management"
+        backHref="/dashboard/admin?view=case-studies"
         backLabel="Back"
         isPublished={isPublished}
         saving={saving}
         onSave={() => handleSubmit()}
         onPublish={() => handleSubmit(true)}
-        onCancel={() => router.push('/dashboard/admin?view=news-management')}
+        onCancel={() => router.push('/dashboard/admin?view=case-studies')}
       />
 
       <div className="space-y-6">

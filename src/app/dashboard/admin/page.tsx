@@ -746,6 +746,7 @@ function AdminDashboardContent() {
   const toSectionLabel = (view: string | null) => {
     if (!view) return null;
     if (view === 'staff-management') return 'User Management';
+    if (view === 'news-management') return 'Case Studies';
     return ADMIN_SECTIONS.find((label) => toViewValue(label) === view) || null;
   };
 
@@ -4494,7 +4495,7 @@ function BlogManagementSection({
   const confirmDelete = async () => {
     setDeleteModal(prev => ({ ...prev, isLoading: true }));
     try {
-      await fetch(`/api/admin/posts/${deleteModal.postId}`, { method: 'DELETE' });
+      await fetch(`/api/admin/posts/${deleteModal.postId}`, { method: 'DELETE', credentials: 'include' });
       setPosts(posts.filter(p => p.id !== deleteModal.postId));
       setDeleteModal({ isOpen: false, postId: 0, postTitle: '', isLoading: false });
     } catch (error) {
@@ -4511,6 +4512,7 @@ function BlogManagementSection({
       const res = await fetch(`/api/admin/posts/${postId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ publishedAt: newStatus }),
       });
       if (!res.ok) throw new Error('Failed to update status');
@@ -4537,6 +4539,7 @@ function BlogManagementSection({
       const res = await fetch(`/api/admin/posts/${postId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ publishedAt: new Date(newDate).toISOString() }),
       });
       if (!res.ok) throw new Error('Failed to update date');
@@ -4886,7 +4889,7 @@ function NewsManagementSection({
   const confirmDelete = async () => {
     setDeleteModal(prev => ({ ...prev, isLoading: true }));
     try {
-      await fetch(`/api/admin/news/${deleteModal.articleId}`, { method: 'DELETE' });
+      await fetch(`/api/admin/news/${deleteModal.articleId}`, { method: 'DELETE', credentials: 'include' });
       setArticles(articles.filter(a => a.id !== deleteModal.articleId));
       setDeleteModal({ isOpen: false, articleId: 0, articleTitle: '', isLoading: false });
     } catch (error) {
@@ -4903,6 +4906,7 @@ function NewsManagementSection({
       const res = await fetch(`/api/admin/news/${articleId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ publishedAt: newStatus }),
       });
       if (!res.ok) throw new Error('Failed to update status');
@@ -4928,6 +4932,7 @@ function NewsManagementSection({
       const res = await fetch(`/api/admin/news/${articleId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ publishedAt: new Date(newDate).toISOString() }),
       });
       if (!res.ok) throw new Error('Failed to update date');
