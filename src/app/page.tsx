@@ -15,12 +15,12 @@ import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection"
 import { SeoToolPromoSection } from "@/components/sections/SeoToolPromo/SeoToolPromoSection";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqPageSchema, personSchema, websiteSearchActionSchema, professionalServiceSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Dallas Web Developer & SEO Consultant | Shree Gauli",
+  title: "Dallas Digital Marketing Consultant & Product Manager | Shree Gauli",
   description:
-    "Dallas web developer and SEO consultant building custom websites, web apps, and ecommerce stores with Next.js, WordPress, and Shopify. SEO, AEO, GEO, and performance are built in from day one.",
+    "Dallas-based Digital Marketing Consultant, Automation Strategist, and Product Manager. SEO, AEO/GEO, paid media, and automation for 15+ clients across the US.",
   path: "/",
   keywords: [
     "dallas digital marketing consultant",
@@ -36,17 +36,20 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Home() {
   const homepageFaqs = [
-    { question: "What tech stack do you use?", answer: "I primarily build with Next.js (React, TypeScript, Tailwind CSS) for custom websites and web apps, WordPress for content-driven business sites, and Shopify for e-commerce stores. Backend work uses Prisma, Supabase, and PostgreSQL." },
-    { question: "Do you build WordPress and Shopify sites too?", answer: "Yes. I\'ve built 4+ WordPress healthcare sites and a Shopify e-commerce store. WordPress is great for content-heavy businesses that need CMS flexibility. Shopify is ideal for product-based businesses that need optimized e-commerce infrastructure." },
-    { question: "How does SEO/AEO/GEO work with web development?", answer: "Every site I build has SEO baked in from day one — semantic HTML, structured data (JSON-LD), dynamic sitemaps, meta tags, Core Web Vitals optimization, and schema markup. AEO (Answer Engine Optimization) ensures your site gets cited by AI search engines like ChatGPT and Perplexity. GEO targets local search visibility." },
-    { question: "What\'s your development process?", answer: "Discovery → Design → Development → Launch & Optimize. I start with a deep dive into your business goals, build a wireframe plan, develop with modern tools, and launch with SEO, performance, and analytics in place. Most projects ship in 2–6 weeks." },
-    { question: "How long does a project take?", answer: "A standard website takes 1–3 weeks. A full-stack web app with auth, dashboards, and APIs takes 3–6 weeks. SEO retainers run monthly with measurable progress each month. Shopify and WordPress builds typically ship in 1–2 weeks." },
+    { question: "What do you specialize in?", answer: "Digital marketing strategy, SEO/AEO/GEO, marketing automation (n8n), paid media, product management, and web development. I help businesses grow through data-driven campaigns and automation systems that save 20+ hours per week." },
+    { question: "Do you build websites too?", answer: "Yes. I build websites with Next.js, WordPress, and Shopify. Every project ships with SEO, structured data, and performance optimization baked in from day one." },
+    { question: "How does SEO/AEO/GEO work?", answer: "SEO targets traditional search. AEO (Answer Engine Optimization) ensures your content is cited by AI engines like ChatGPT and Perplexity. GEO targets local search visibility. Every engagement includes all three — structured data (JSON-LD), technical SEO, and AI-citation optimization." },
+    { question: "What\'s your consulting process?", answer: "Discovery → Strategy → Execution → Reporting. I start with a deep dive into your goals, build a strategy roadmap, execute campaigns or systems, and report on measurable outcomes monthly." },
+    { question: "How long does a project take?", answer: "A marketing strategy audit takes 1–2 weeks. Automation system builds take 2–4 weeks. SEO retainers run monthly with compounding results. Web projects ship in 1–6 weeks depending on scope." },
   ];
 
   return (
     <>
       <JsonLd data={breadcrumbSchema([])} />
       <JsonLd data={faqPageSchema(homepageFaqs)} />
+      <JsonLd data={personSchema()} />
+      <JsonLd data={websiteSearchActionSchema()} />
+      <JsonLd data={professionalServiceSchema()} />
       {/* Navigation */}
       <Navbar />
 

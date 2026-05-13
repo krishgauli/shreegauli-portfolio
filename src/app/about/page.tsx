@@ -8,13 +8,13 @@ import { CertificationsCarousel } from "@/components/sections/Certifications/Cer
 import { apprenticeships } from "@/lib/credentials";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema, credentialListSchema } from "@/lib/schema";
+import { breadcrumbSchema, credentialListSchema, personSchema } from "@/lib/schema";
 import { Linkedin, Facebook, Twitter } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Shree Gauli | Web Developer & SEO Consultant",
+  title: "About Shree Gauli | Digital Marketing Consultant & Product Manager",
   description:
     "Digital Marketing Consultant, Automation Strategist, and Product Manager — helping 15+ clients grow through SEO, AEO/GEO, paid media, and automation. Based in Dallas, working globally.",
   path: "/about",
@@ -115,6 +115,7 @@ export default function AboutPage() {
   return (
     <PageShell>
       <JsonLd data={breadcrumbSchema([{ name: "About", path: "/about" }])} />
+      <JsonLd data={personSchema()} />
       {credentialListSchema(
         apprenticeships.map((c) => ({
           name: c.title,

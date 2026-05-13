@@ -25,9 +25,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
+  title: `Dallas Digital Marketing Consultant & Product Manager | ${BRAND_NAME}`,
   description:
-    "Dallas web developer and SEO consultant building custom Next.js, WordPress, and Shopify websites with SEO, AEO, and automation baked in.",
+    "Dallas Digital Marketing Consultant, Automation Strategist, and Product Manager. SEO, AEO/GEO, paid media, and automation for 15+ clients across the US.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -54,23 +54,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
+    title: `Dallas Digital Marketing Consultant & Product Manager | ${BRAND_NAME}`,
     description:
-      "Dallas web developer and SEO consultant building custom Next.js, WordPress, and Shopify websites with SEO, AEO, and automation baked in.",
+      "Dallas Digital Marketing Consultant, Automation Strategist, and Product Manager. SEO, AEO/GEO, paid media, and automation for 15+ clients across the US.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
+        alt: `Dallas Digital Marketing Consultant & Product Manager | ${BRAND_NAME}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Dallas Web Developer & SEO Consultant | ${BRAND_NAME}`,
+    title: `Dallas Digital Marketing Consultant & Product Manager | ${BRAND_NAME}`,
     description:
-      "Dallas web developer and SEO consultant building custom Next.js, WordPress, and Shopify websites with SEO, AEO, and automation baked in.",
+      "Dallas Digital Marketing Consultant, Automation Strategist, and Product Manager. SEO, AEO/GEO, paid media, and automation for 15+ clients across the US.",
     images: ["/og-image.jpg"],
   },
   robots: {

@@ -10,11 +10,11 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "How It Works | Working With a Full-Stack Developer",
+  title: "How It Works | Working With a Digital Marketing Consultant",
   description:
-    "See how discovery, design, development, and launch work when you hire Shree directly as your web developer and SEO consultant.",
+    "See how discovery, strategy, execution, and reporting work when you hire Shree directly as your digital marketing consultant and automation strategist.",
   path: "/working-together",
-  keywords: ["working with a web developer", "web development process", "project engagement model"],
+  keywords: ["working with a digital marketing consultant", "marketing consulting process", "project engagement model"],
 });
 
 const steps = [

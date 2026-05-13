@@ -17,11 +17,11 @@ const industryIcons: Record<string, React.ComponentType<{ className?: string }>>
 };
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Client Testimonials | Web Development & SEO Reviews",
+  title: "Client Testimonials | Digital Marketing & SEO Reviews",
   description:
-    "Verified reviews from business owners who hired Shree for web development, SEO, and automation projects. 4.9 average rating.",
+    "Verified reviews from business owners who hired Shree for digital marketing, SEO, automation, and web projects. 4.9 average rating.",
   path: "/testimonials",
-  keywords: ["web developer testimonials", "SEO consultant reviews", "client reviews web development"],
+  keywords: ["digital marketing consultant testimonials", "SEO consultant reviews dallas", "client reviews marketing automation"],
 });
 
 export default function TestimonialsPage() {
