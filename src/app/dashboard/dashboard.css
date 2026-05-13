@@ -131,17 +131,17 @@
 
 /* ─── Dashboard-scope bg overrides (OUTSIDE @layer to beat Tailwind utilities) ─── */
 .dashboard-scope .bg-white,
-.dashboard-scope .bg-[#FDFAF5],
+.dashboard-scope .bg-\[\#FDFAF5\],
 .dashboard-scope .bg-slate-100 {
   background-color: rgba(245, 240, 232, 0.85) !important;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
-.dashboard-scope .hover\:bg-[#FDFAF5]:hover,
+.dashboard-scope .hover\:bg-\[\#FDFAF5\]:hover,
 .dashboard-scope .hover\:bg-slate-100:hover,
 .dashboard-scope .hover\:bg-white:hover,
-.dashboard-scope .dark\:hover\:bg-[#EDE8DF]:hover,
-.dashboard-scope .dark\:hover\:bg-[#D8D0C5]:hover {
+.dashboard-scope .dark\:hover\:bg-\[\#EDE8DF\]:hover,
+.dashboard-scope .dark\:hover\:bg-\[\#D8D0C5\]:hover {
   background-color: rgba(0, 0, 0, 0.06) !important;
 }
 .dashboard-scope .bg-gradient-to-br.from-emerald-50 {
@@ -177,9 +177,9 @@
 .dashboard-scope .bg-white\/80,
 .dashboard-scope .bg-white\/70,
 .dashboard-scope .bg-white\/50,
-.dashboard-scope .bg-[#EDE8DF]\/80,
-.dashboard-scope .bg-[#F5F0E8]\/50,
-.dashboard-scope .bg-[#F5F0E8]\/40 {
+.dashboard-scope .bg-\[\#EDE8DF\]\/80,
+.dashboard-scope .bg-\[\#F5F0E8\]\/50,
+.dashboard-scope .bg-\[\#F5F0E8\]\/40 {
   background-color: rgba(245, 240, 232, 0.75) !important;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
