@@ -653,7 +653,7 @@ export const services: Service[] = [
 ];
 
 export const stats: Stat[] = [
-  { value: 14, suffix: "+", label: "Websites Shipped", sublabel: "Next.js, WordPress, and Shopify projects delivered" },
+  { value: 15, suffix: "+", label: "Clients Served", sublabel: "Healthcare, finance, SaaS, and e-commerce across the US" },
   { value: 5, suffix: "", label: "Next.js Web Apps", sublabel: "Full-stack applications with auth, dashboards, and APIs" },
   { value: 340, suffix: "%", label: "Organic Growth", sublabel: "from near-zero to top-10 rankings" },
   { value: 20, suffix: "+", label: "Hours Saved / Week", sublabel: "via n8n automation systems" },

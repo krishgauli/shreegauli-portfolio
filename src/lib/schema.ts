@@ -137,7 +137,7 @@ export function personSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
-    jobTitle: "Full-Stack Web Developer & SEO Consultant",
+    jobTitle: "Digital Marketing Consultant | Automation Strategist | Product Manager",
     worksFor: {
       "@type": "Organization",
       name: BUSINESS_NAME,
@@ -172,10 +172,10 @@ export function websiteSearchActionSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Shree Gauli — Full-Stack Web Developer & SEO Consultant",
+    name: "Shree Gauli — Digital Marketing Consultant & Product Manager",
     url: SITE_URL,
     description:
-      "Full-stack web developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation for businesses across the US.",
+      "Digital Marketing Consultant, Automation Strategist, and Product Manager specializing in SEO, AEO/GEO, paid media, and team leadership. Trusted by 15+ clients across the US.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -218,7 +218,7 @@ export function articleSchema(input: ArticleSchemaInput) {
       "@type": "Person",
       name: SITE_NAME,
       url: SITE_URL,
-      jobTitle: "Full-Stack Web Developer & SEO Consultant",
+      jobTitle: "Digital Marketing Consultant | Automation Strategist | Product Manager",
       sameAs: ["https://www.linkedin.com/in/gauli/", "https://www.facebook.com/profile.php?id=61582408185149", "https://x.com/ShreeGauli"],
     },
     publisher: {
@@ -264,7 +264,7 @@ export function aggregateRatingSchema(reviews: ReviewInput[]) {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Shree Gauli — Full-Stack Web Developer & SEO Consultant",
+    name: "Shree Gauli — Digital Marketing Consultant & Product Manager",
     url: SITE_URL,
     aggregateRating: {
       "@type": "AggregateRating",
@@ -326,11 +326,11 @@ export function professionalServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Shree Gauli — Full-Stack Web Developer & SEO Consultant",
+    name: "Shree Gauli — Digital Marketing Consultant & Product Manager",
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
     description:
-      "Full-stack web developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation for businesses across the US.",
+      "Digital Marketing Consultant, Automation Strategist, and Product Manager specializing in SEO, AEO/GEO, paid media, and team leadership. Trusted by 15+ clients across the US.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dallas",

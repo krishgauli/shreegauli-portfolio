@@ -23,15 +23,14 @@ export const metadata: Metadata = createPageMetadata({
     "Dallas web developer and SEO consultant building custom websites, web apps, and ecommerce stores with Next.js, WordPress, and Shopify. SEO, AEO, GEO, and performance are built in from day one.",
   path: "/",
   keywords: [
-    "dallas web developer",
+    "dallas digital marketing consultant",
     "dallas seo consultant",
-    "full-stack web developer dallas",
-    "Next.js developer",
-    "WordPress developer dallas",
-    "Shopify developer",
+    "automation strategist dallas",
+    "product manager dallas",
+    "paid media specialist",
     "SEO consultant dallas",
-    "web app development",
     "AEO GEO optimization",
+    "marketing automation",
   ],
 });
 

@@ -17,7 +17,7 @@ const ADMIN_EMAIL = process.env.SMTP_ADMIN_EMAIL || SMTP_USER;
 const SITE_URL = process.env.APP_URL || 'https://www.shreegauli.com';
 const BRAND = {
   name: 'Shree Gauli',
-  tagline: 'Full-Stack Web Developer & SEO Consultant',
+  tagline: 'Digital Marketing Consultant | Automation Strategist | Product Manager',
   email: SMTP_USER || 'hello@shreegauli.com',
   address: '3001 Skyway Cir N, Irving, TX 75038',
   phone: '972-848-1153',

@@ -44,7 +44,7 @@ export function AboutPreview() {
               </div>
               <div className="p-5">
                 <p className="text-base font-bold text-[#1A1A1A]">Shree Krishna Gauli</p>
-                <p className="text-sm text-[#6B7280] mt-0.5">Full-Stack Web Developer & SEO Consultant</p>
+                <p className="text-sm text-[#6B7280] mt-0.5">Digital Marketing Consultant & Product Manager</p>
                 <p className="text-xs text-[#6B7280]/60 mt-1">Dallas, TX · Serving the US and select international clients</p>
                 <div className="flex gap-3 mt-4">
                   <Link
@@ -84,12 +84,9 @@ export function AboutPreview() {
             <div className="flex flex-col gap-6">
               <div className="space-y-4 text-[#6B7280] leading-relaxed">
                 <p>
-                  I&apos;m a Dallas-based full-stack web developer and SEO consultant.
-                  I build custom websites, web apps, and e-commerce stores using
-                  Next.js, WordPress, and Shopify — with SEO, AEO, and performance
-                  optimization baked in from day one. I&apos;ve shipped 14+ projects
-                  across healthcare, finance, SaaS, and e-commerce. You work
-                  directly with me. No agency layers, no junior handoffs.
+                  I&apos;m a Dallas-based Digital Marketing Consultant, Automation Strategist, and Product Manager.
+                  I help businesses grow through SEO, AEO/GEO, paid media, and intelligent automation
+                  — with 15+ clients served across healthcare, finance, SaaS, and e-commerce.
                 </p>
               </div>
 

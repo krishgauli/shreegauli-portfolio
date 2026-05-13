@@ -18,9 +18,9 @@ export default function PersonSchema() {
     '@type': 'Person',
     '@id': PERSON_ID,
     name: SITE_NAME,
-    jobTitle: 'Full-Stack Web Developer & SEO Consultant',
+    jobTitle: 'Digital Marketing Consultant | Automation Strategist | Product Manager',
     description:
-      'Full-stack web developer and SEO consultant specializing in Next.js, WordPress, Shopify, SEO/AEO/GEO, and marketing automation. Based in Dallas, TX.',
+      'Digital Marketing Consultant, Automation Strategist, and Product Manager. SEO, AEO/GEO, paid media, and team leadership for 15+ clients. Based in Dallas, TX.',
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
     address: {

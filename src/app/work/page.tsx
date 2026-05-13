@@ -14,7 +14,7 @@ import { caseStudies } from "@/lib/data";
 export const metadata: Metadata = createPageMetadata({
   title: "Portfolio | Next.js, WordPress & Shopify Projects",
   description:
-    "14+ live websites and web apps built with Next.js, WordPress, and Shopify — with SEO, automation, and measurable results for every project.",
+    "Portfolio of digital marketing strategy, automation systems, SEO campaigns, and web projects for 15+ clients. Results-driven work across healthcare, finance, SaaS, and e-commerce.",
   path: "/work",
   keywords: ["web development portfolio", "Next.js projects", "WordPress projects", "Shopify projects", "SEO case studies"],
 });
@@ -45,7 +45,7 @@ export default function WorkPage() {
           breadcrumbSchema([{ name: "Portfolio", path: "/work" }]),
           collectionPageSchema(
             "Web Development Portfolio",
-            "14+ live websites and web apps built with Next.js, WordPress, and Shopify — with SEO, automation, and measurable results.",
+            "Digital Marketing & Web Portfolio — 15+ clients served across healthcare, finance, SaaS, and e-commerce with SEO, automation, and measurable results.",
             "/work",
             caseStudies.map((item, index) => ({
               position: index + 1,

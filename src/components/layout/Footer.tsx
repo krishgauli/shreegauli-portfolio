@@ -49,7 +49,7 @@ export function Footer() {
               <Logo showText={true} iconSize={48} darkText={false} compact={true} />
             </div>
             <p className="mt-1 text-sm leading-relaxed text-content-muted">
-              Full-Stack Web Developer &amp; SEO Consultant — Dallas, TX · Building websites that rank, convert, and scale.
+              Digital Marketing Consultant | Automation Strategist | Product Manager — Dallas, TX · SEO, AEO/GEO, paid media, and automation for 15+ clients.
             </p>
 
             {/* Newsletter */}

@@ -668,7 +668,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               </Link>
             </div>
             <p className="mt-10 text-gray-500 text-sm font-medium tracking-wide">
-              Trusted by 14+ brands across 5 industries
+              Trusted by 15+ clients across 5 industries
             </p>
           </div>
         </motion.section>

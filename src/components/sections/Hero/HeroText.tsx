@@ -33,10 +33,7 @@ export function HeroText() {
 
       {/* Sub */}
       <p className="text-base sm:text-lg text-[#6B7280] leading-relaxed">
-        Dallas-based custom websites, full-stack web apps, and ecommerce stores
-        built with Next.js, WordPress, and Shopify. Every project ships with
-        SEO, AEO, GEO, and performance baked in from day one. 14+ projects
-        delivered across healthcare, finance, SaaS, and ecommerce.
+        Digital Marketing Consultant and Automation Strategist helping businesses grow through SEO, AEO/GEO, paid media, and automation. Product Manager with 15+ clients across healthcare, finance, SaaS, and e-commerce.
       </p>
 
       {/* CTAs */}

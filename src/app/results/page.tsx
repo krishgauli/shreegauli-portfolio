@@ -13,7 +13,7 @@ import { ArrowRight, TrendingUp, Zap, Clock, Globe, Code2, BarChart3 } from "luc
 export const metadata: Metadata = createPageMetadata({
   title: "Results & Case Studies | Websites Built, Rankings Earned",
   description:
-    "Real results from real projects: 14+ websites shipped, 5 Next.js web apps, 340% organic growth, and 20+ hours saved weekly through automation.",
+    "Real results from 15+ clients: SEO growth up to 340%, 20+ hours saved weekly through automation, and digital campaigns driving measurable revenue outcomes.",
   path: "/results",
   keywords: [
     "web development results",
@@ -28,9 +28,9 @@ export const metadata: Metadata = createPageMetadata({
 const headlineStats = [
   {
     icon: Code2,
-    value: "14+",
-    label: "Websites Shipped",
-    detail: "Next.js, WordPress, and Shopify sites — designed, developed, and deployed.",
+    value: "15+",
+    label: "Clients Served",
+    detail: "Healthcare, finance, SaaS, and e-commerce — strategy, execution, and measurable results.",
     color: "#7C3AED",
   },
   {

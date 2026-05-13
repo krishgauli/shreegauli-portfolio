@@ -16,9 +16,9 @@ import Image from "next/image";
 export const metadata: Metadata = createPageMetadata({
   title: "About Shree Gauli | Web Developer & SEO Consultant",
   description:
-    "Full-stack developer building custom websites and web apps with Next.js, WordPress, and Shopify — plus SEO, AEO/GEO, and automation. 5 verified Acadium apprenticeships. Based in Dallas, working globally.",
+    "Digital Marketing Consultant, Automation Strategist, and Product Manager — helping 15+ clients grow through SEO, AEO/GEO, paid media, and automation. Based in Dallas, working globally.",
   path: "/about",
-  keywords: ["about shree gauli", "full-stack web developer dallas", "Next.js developer", "SEO consultant dallas", "acadium certified", "web developer certifications"],
+  keywords: ["about shree gauli", "digital marketing consultant dallas", "automation strategist", "product manager dallas", "SEO consultant dallas", "acadium certified"],
 });
 
 const timeline = [
@@ -145,9 +145,9 @@ export default function AboutPage() {
                 </div>
                 <div className="p-5">
                   <p className="text-base font-bold text-[#1A1A1A]">Shree Krishna Gauli, BBA</p>
-                  <p className="text-sm text-[#6B7280] mt-0.5">Full-Stack Web Developer &amp; SEO Consultant</p>
+                  <p className="text-sm text-[#6B7280] mt-0.5">Digital Marketing Consultant &amp; Product Manager</p>
                   <p className="text-xs text-[#6B7280]/70 mt-0.5">Diploma in Information Technology</p>
-                  <p className="text-xs text-[#6B7280]/80 mt-1">14+ Websites Shipped</p>
+                  <p className="text-xs text-[#6B7280]/80 mt-1">15+ Clients Served</p>
                   <p className="text-xs text-[#6B7280]/60 mt-1">Dallas, TX · Working globally</p>
                   <div className="flex gap-3 mt-4">
                     <Link
@@ -194,17 +194,15 @@ export default function AboutPage() {
                 />
                 <div className="space-y-4 text-[#6B7280] leading-relaxed">
                   <p>
-                    I&apos;m a full-stack web developer and SEO consultant who builds
-                    custom websites, web apps, and e-commerce stores with Next.js,
-                    WordPress, and Shopify. Every project ships with SEO baked in
-                    from day one — structured data, technical optimization, and
-                    content strategy included.
+                    I&apos;m a Dallas-based Digital Marketing Consultant, Automation Strategist, and Product Manager.
+                    I help businesses grow through SEO, AEO/GEO, paid media, and intelligent automation —
+                    turning strategy into measurable outcomes.
                   </p>
                   <p>
-                    I&apos;ve shipped 14+ projects for healthcare, finance, SaaS, and
-                    e-commerce businesses across the US. My stack is React,
-                    TypeScript, Tailwind CSS, Prisma, and Supabase for web apps —
-                    plus WordPress and Shopify when they&apos;re the right tool.
+                    I&apos;ve worked with 15+ clients across healthcare, finance, SaaS, and
+                    e-commerce businesses across the US. I bring cross-functional
+                    leadership: product scoping, team management, SEO, content, paid ads,
+                    and marketing automation — all under one roof.
                   </p>
                   <p>
                     I work directly with founders and business owners. No account
