@@ -87,6 +87,21 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["framer-motion", "lucide-react"],
   },
+  async headers() {
+    return [
+      {
+        // Apply to all public pages — skip API, _next internals, and static assets
+        source: "/((?!api|_next/static|_next/image|favicon.*|google.*\\.html|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|woff2?|ttf|eot)).*)",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "index, follow, max-snippet: -1, max-image-preview: large, max-video-preview: -1",
+          },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // Canonical host: apex → www. Vercel usually handles this at the edge,
