@@ -9,7 +9,7 @@ import { apprenticeships } from "@/lib/credentials";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, credentialListSchema } from "@/lib/schema";
-import { Linkedin } from "lucide-react";
+import { Linkedin, Facebook, Twitter } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -158,6 +158,24 @@ export default function AboutPage() {
                       aria-label="LinkedIn"
                     >
                       <Linkedin className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      href="https://www.facebook.com/profile.php?id=61582408185149"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#6B7280] hover:text-[#22D3EE] transition-colors"
+                      aria-label="Facebook"
+                    >
+                      <Facebook className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      href="https://x.com/ShreeGauli"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#6B7280] hover:text-[#22D3EE] transition-colors"
+                      aria-label="X (Twitter)"
+                    >
+                      <Twitter className="h-4 w-4" />
                     </Link>
                   </div>
                 </div>

@@ -30,8 +30,9 @@ export default function LandingFooter() {
           <p className={`text-sm ${isDark ? 'text-gray-600' : 'text-slate-600'}`}>1234 Marketing Ave<br/>Irving, TX</p>
           <p className={`text-sm ${isDark ? 'text-gray-600' : 'text-slate-600'}`}>(214) 555-0123</p>
           <div className="flex gap-3">
-            <a href="#" className={`transition-colors ${isDark ? 'text-gray-600 hover:text-gray-900' : 'text-slate-600 hover:text-emerald-600'}`}>Twitter</a>
             <a href="https://www.linkedin.com/in/gauli/" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'text-gray-600 hover:text-gray-900' : 'text-slate-600 hover:text-emerald-600'}`}>LinkedIn</a>
+            <a href="https://www.facebook.com/profile.php?id=61582408185149" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'text-gray-600 hover:text-gray-900' : 'text-slate-600 hover:text-emerald-600'}`}>Facebook</a>
+            <a href="https://x.com/ShreeGauli" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'text-gray-600 hover:text-gray-900' : 'text-slate-600 hover:text-emerald-600'}`}>X</a>
           </div>
         </div>
       </div>

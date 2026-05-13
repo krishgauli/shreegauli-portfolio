@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { Calendar, Linkedin, Send, CheckCircle2, X } from "lucide-react";
+import { Calendar, Linkedin, Send, CheckCircle2, X, Facebook, Twitter } from "lucide-react";
 import Link from "next/link";
 
 const serviceOptions = [
@@ -270,6 +270,24 @@ export function ContactForm() {
             >
               <Linkedin className="h-4 w-4 text-[#22D3EE]" />
               Connect on LinkedIn
+            </Link>
+            <Link
+              href="https://www.facebook.com/profile.php?id=61582408185149"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 rounded-xl border border-black/10 bg-black/[0.04] px-4 py-3 text-sm text-[#6B7280] hover:text-[#1A1A1A] hover:border-black/12 transition-colors"
+            >
+              <Facebook className="h-4 w-4 text-[#22D3EE]" />
+              Follow on Facebook
+            </Link>
+            <Link
+              href="https://x.com/ShreeGauli"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 rounded-xl border border-black/10 bg-black/[0.04] px-4 py-3 text-sm text-[#6B7280] hover:text-[#1A1A1A] hover:border-black/12 transition-colors"
+            >
+              <Twitter className="h-4 w-4 text-[#22D3EE]" />
+              Follow on X
             </Link>
           </div>
         </div>

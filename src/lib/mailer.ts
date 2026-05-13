@@ -24,6 +24,8 @@ const BRAND = {
   url: SITE_URL,
   linkedin: 'https://www.linkedin.com/in/gauli/',
   facebook: 'https://www.facebook.com/profile.php?id=61582408185149',
+  twitter: 'https://x.com/ShreeGauli',
+  facebook: 'https://www.facebook.com/profile.php?id=61582408185149',
 };
 
 /* ── Transporter (singleton) ──────────────────────────────────────── */

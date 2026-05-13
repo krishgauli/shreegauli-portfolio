@@ -89,6 +89,8 @@ export async function POST(request: NextRequest) {
     address: '3001 Skyway Cir N, Irving, TX 75038',
     linkedin: 'https://www.linkedin.com/in/gauli/',
     facebook: 'https://www.facebook.com/profile.php?id=61582408185149',
+    twitter: 'https://x.com/ShreeGauli',
+    facebook: 'https://www.facebook.com/profile.php?id=61582408185149',
     url: SITE_URL,
   };
 

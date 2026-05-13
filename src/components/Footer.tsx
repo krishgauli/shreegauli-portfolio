@@ -1,6 +1,6 @@
 'use client';
 
-import { MapPin, Mail, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { MapPin, Mail, Linkedin, Instagram, Facebook, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useSitePreferences } from '@/components/SitePreferencesProvider';
@@ -80,7 +80,8 @@ export default function Footer() {
             <div className="flex gap-4">
               <Link href="https://instagram.com" aria-label="Instagram" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-[#EDE8DF] hover:bg-[#D8D0C5]' : 'bg-slate-200 hover:bg-slate-300'}`}><Instagram className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
               <Link href="https://www.linkedin.com/in/gauli/" aria-label="LinkedIn" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-[#EDE8DF] hover:bg-[#D8D0C5]' : 'bg-slate-200 hover:bg-slate-300'}`}><Linkedin className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
-              <Link href="https://facebook.com" aria-label="Facebook" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-[#EDE8DF] hover:bg-[#D8D0C5]' : 'bg-slate-200 hover:bg-slate-300'}`}><Facebook className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
+              <Link href="https://www.facebook.com/profile.php?id=61582408185149" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-[#EDE8DF] hover:bg-[#D8D0C5]' : 'bg-slate-200 hover:bg-slate-300'}`}><Facebook className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
+              <Link href="https://x.com/ShreeGauli" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-[#EDE8DF] hover:bg-[#D8D0C5]' : 'bg-slate-200 hover:bg-slate-300'}`}><Twitter className={`h-5 w-5 ${isDark ? 'text-white' : 'text-slate-700'}`} /></Link>
             </div>
           </div>
 

@@ -45,6 +45,8 @@ export default function PersonSchema() {
     ],
     sameAs: [
       'https://www.linkedin.com/in/gauli/',
+      'https://www.facebook.com/profile.php?id=61582408185149',
+      'https://x.com/ShreeGauli',
     ],
     worksFor: {
       '@id': BUSINESS_ID,
@@ -88,6 +90,8 @@ export default function PersonSchema() {
     },
     sameAs: [
       'https://www.linkedin.com/in/gauli/',
+      'https://www.facebook.com/profile.php?id=61582408185149',
+      'https://x.com/ShreeGauli',
     ],
     areaServed: {
       '@type': 'AdministrativeArea',

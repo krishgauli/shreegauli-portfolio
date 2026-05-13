@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Linkedin, Mail, Phone } from "lucide-react";
+import { Linkedin, Mail, Phone, Facebook, Twitter } from "lucide-react";
 import Logo from "@/components/Logo";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
@@ -107,6 +107,26 @@ export function Footer() {
             >
               <Linkedin className="h-4 w-4" />
               <span className="sr-only">LinkedIn</span>
+            </Link>
+            <Link
+              href="https://www.facebook.com/profile.php?id=61582408185149"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-content-muted transition-colors hover:text-brand-cyan"
+              aria-label="Facebook"
+            >
+              <Facebook className="h-4 w-4" />
+              <span className="sr-only">Facebook</span>
+            </Link>
+            <Link
+              href="https://x.com/ShreeGauli"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-content-muted transition-colors hover:text-brand-cyan"
+              aria-label="X (Twitter)"
+            >
+              <Twitter className="h-4 w-4" />
+              <span className="sr-only">X (Twitter)</span>
             </Link>
           </div>
 

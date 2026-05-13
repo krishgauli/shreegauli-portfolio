@@ -149,7 +149,7 @@ export function personSchema() {
       addressRegion: SITE_LOCATION.region,
       addressCountry: SITE_LOCATION.country,
     },
-    sameAs: ["https://www.linkedin.com/in/gauli/"],
+    sameAs: ["https://www.linkedin.com/in/gauli/", "https://www.facebook.com/profile.php?id=61582408185149", "https://x.com/ShreeGauli"],
     knowsAbout: [
       "Next.js",
       "React",
@@ -219,7 +219,7 @@ export function articleSchema(input: ArticleSchemaInput) {
       name: SITE_NAME,
       url: SITE_URL,
       jobTitle: "Full-Stack Web Developer & SEO Consultant",
-      sameAs: ["https://www.linkedin.com/in/gauli/"],
+      sameAs: ["https://www.linkedin.com/in/gauli/", "https://www.facebook.com/profile.php?id=61582408185149", "https://x.com/ShreeGauli"],
     },
     publisher: {
       "@type": "Organization",

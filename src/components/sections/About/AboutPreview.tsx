@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Linkedin } from "lucide-react";
+import { ArrowRight, Linkedin, Facebook, Twitter } from "lucide-react";
 import { ModuleShell } from "@/components/shared/ModuleShell";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -55,6 +55,24 @@ export function AboutPreview() {
                     aria-label="LinkedIn"
                   >
                     <Linkedin className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="https://www.facebook.com/profile.php?id=61582408185149"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#6B7280] hover:text-[#22D3EE] transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="https://x.com/ShreeGauli"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#6B7280] hover:text-[#22D3EE] transition-colors"
+                    aria-label="X (Twitter)"
+                  >
+                    <Twitter className="h-4 w-4" />
                   </Link>
                 </div>
               </div>
