@@ -82,7 +82,7 @@ export default function PricingPlans() {
   const isDark = theme === 'dark';
 
   return (
-    <section className={`py-24 ${isDark ? 'bg-slate-900' : 'bg-slate-50'}`}>
+    <section className={`py-24 ${isDark ? 'bg-[#F5F0E8]' : 'bg-[#FDFAF5]'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -93,7 +93,7 @@ export default function PricingPlans() {
           <h2 className={`text-3xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
             {t('Choose Your Plan')}
           </h2>
-          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
             {t('Transparent pricing. No contracts. No fluff.')}
           </p>
         </motion.div>

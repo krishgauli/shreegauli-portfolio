@@ -43,15 +43,15 @@ export function AboutPreview() {
                 />
               </div>
               <div className="p-5">
-                <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli</p>
-                <p className="text-sm text-[#94A3B8] mt-0.5">Full-Stack Web Developer & SEO Consultant</p>
-                <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Serving the US and select international clients</p>
+                <p className="text-base font-bold text-[#1A1A1A]">Shree Krishna Gauli</p>
+                <p className="text-sm text-[#6B7280] mt-0.5">Full-Stack Web Developer & SEO Consultant</p>
+                <p className="text-xs text-[#6B7280]/60 mt-1">Dallas, TX · Serving the US and select international clients</p>
                 <div className="flex gap-3 mt-4">
                   <Link
                     href="https://www.linkedin.com/in/gauli/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors"
+                    className="text-[#6B7280] hover:text-[#22D3EE] transition-colors"
                     aria-label="LinkedIn"
                   >
                     <Linkedin className="h-4 w-4" />
@@ -64,7 +64,7 @@ export function AboutPreview() {
           {/* Bio */}
           <ScrollReveal direction="right">
             <div className="flex flex-col gap-6">
-              <div className="space-y-4 text-[#94A3B8] leading-relaxed">
+              <div className="space-y-4 text-[#6B7280] leading-relaxed">
                 <p>
                   I&apos;m a Dallas-based full-stack web developer and SEO consultant.
                   I build custom websites, web apps, and e-commerce stores using
@@ -77,14 +77,14 @@ export function AboutPreview() {
 
               {/* Skills */}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#6B7280] mb-3">
                   Core Skills
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] text-xs text-[#F8FAFC] font-medium"
+                      className="px-3 py-1 rounded-full border border-black/[0.08] bg-black/[0.04] text-xs text-[#1A1A1A] font-medium"
                     >
                       {skill}
                     </span>
@@ -95,7 +95,7 @@ export function AboutPreview() {
               {/* CTA */}
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#7C3AED] hover:text-[#F8FAFC] transition-colors group"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#7C3AED] hover:text-[#1A1A1A] transition-colors group"
               >
                 Let&apos;s work together
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -39,14 +39,14 @@ export default class ClientErrorBoundary extends React.Component<ClientErrorBoun
 
     const isDark = !!this.props.isDark;
     return (
-      <div className={`rounded-2xl border p-8 text-center ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+      <div className={`rounded-2xl border p-8 text-center ${isDark ? 'bg-[#EDE8DF] border-stone-300' : 'bg-white border-slate-200'}`}>
         <div className="h-14 w-14 rounded-2xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center mx-auto mb-4">
           <AlertTriangle className="h-7 w-7 text-red-500" />
         </div>
         <h3 className={`text-lg font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
           {this.props.title || 'Something went wrong'}
         </h3>
-        <p className={`text-sm max-w-md mx-auto mb-5 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+        <p className={`text-sm max-w-md mx-auto mb-5 ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
           {this.props.description || 'A client-side error occurred while rendering this section. You can retry without leaving the page.'}
         </p>
         <button

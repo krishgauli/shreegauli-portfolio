@@ -62,7 +62,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
             <h1 className={`text-2xl sm:text-3xl font-extrabold tracking-tight mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>
               {t('Expert')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-blue-500">{t('Insights')}</span>
             </h1>
-            <p className={`text-lg sm:text-xl max-w-3xl mx-auto ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-lg sm:text-xl max-w-3xl mx-auto ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
               {t('Stay ahead with expert strategies, industry trends, and proven tactics to grow your medical practice.')}
             </p>
           </motion.div>
@@ -78,10 +78,10 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
               { icon: BookOpen, label: t('Articles'), value: `${posts.length}+` },
               { icon: TrendingUp, label: t('Topics'), value: t('Healthcare') },
             ].map((item, i) => (
-              <div key={i} className={`flex items-center gap-3 px-5 py-3 rounded-2xl ${isDark ? 'bg-white/5 border border-white/10' : 'bg-white border border-slate-200 shadow-sm'}`}>
+              <div key={i} className={`flex items-center gap-3 px-5 py-3 rounded-2xl ${isDark ? 'bg-black/[0.05] border border-black/10' : 'bg-white border border-slate-200 shadow-sm'}`}>
                 <item.icon className="h-5 w-5 text-emerald-500" />
                 <div className="text-left">
-                  <div className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.label}</div>
+                  <div className={`text-xs font-medium ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>{item.label}</div>
                   <div className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{item.value}</div>
                 </div>
               </div>
@@ -91,10 +91,10 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
       </section>
 
       {/* Blog Content */}
-      <section id="posts" className={`py-20 ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`}>
+      <section id="posts" className={`py-20 ${isDark ? 'bg-slate-950' : 'bg-[#FDFAF5]'}`}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {posts.length === 0 ? (
-            <div className={`text-center py-20 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <div className={`text-center py-20 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
               <BookOpen className="h-16 w-16 mx-auto mb-4 opacity-30" />
               <p className="text-xl">{t('No blog posts yet. Check back soon!')}</p>
             </div>
@@ -110,7 +110,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
                   className="mb-16"
                 >
                   <Link href={`/blogs/${featured.slug}`}>
-                    <div className={`group relative rounded-3xl overflow-hidden border transition-all hover:shadow-2xl ${isDark ? 'bg-slate-900/50 border-slate-800 hover:border-emerald-500/30' : 'bg-white border-slate-200 hover:border-emerald-300'}`}>
+                    <div className={`group relative rounded-3xl overflow-hidden border transition-all hover:shadow-2xl ${isDark ? 'bg-[#F5F0E8]/50 border-stone-200 hover:border-emerald-500/30' : 'bg-white border-slate-200 hover:border-emerald-300'}`}>
                       <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="relative h-64 lg:h-96 overflow-hidden">
                           <img
@@ -129,11 +129,11 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
                             <h2 className={`text-xl lg:text-2xl font-extrabold mb-4 group-hover:text-emerald-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>
                             {featured.seoTitle || featured.title}
                           </h2>
-                          <p className={`text-base leading-relaxed mb-6 line-clamp-3 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                          <p className={`text-base leading-relaxed mb-6 line-clamp-3 ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
                             {featured.metaDesc || featured.excerpt}
                           </p>
                           <div className="flex items-center justify-between">
-                            <div className={`flex items-center gap-2 text-sm ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                            <div className={`flex items-center gap-2 text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
                               <Clock className="h-4 w-4" />
                               {featured.publishedAt && new Date(featured.publishedAt).toLocaleDateString(dateLocale, { month: 'long', day: 'numeric', year: 'numeric' })}
                             </div>
@@ -166,7 +166,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
                         key={post.id}
                         variants={fadeUp}
                         custom={idx}
-                        className={`group rounded-3xl overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1 ${isDark ? 'bg-slate-900/50 border-slate-800 hover:border-emerald-500/30' : 'bg-white border-slate-200 hover:border-emerald-300'}`}
+                        className={`group rounded-3xl overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1 ${isDark ? 'bg-[#F5F0E8]/50 border-stone-200 hover:border-emerald-500/30' : 'bg-white border-slate-200 hover:border-emerald-300'}`}
                       >
                         <Link href={`/blogs/${post.slug}`} className="block">
                           <div className="relative h-52 overflow-hidden">
@@ -179,14 +179,14 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                           </div>
                           <div className="p-6">
-                            <div className={`flex items-center gap-2 text-xs mb-3 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                            <div className={`flex items-center gap-2 text-xs mb-3 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
                               <Clock className="h-3.5 w-3.5" />
                               {post.publishedAt && new Date(post.publishedAt).toLocaleDateString(dateLocale, { month: 'short', day: 'numeric', year: 'numeric' })}
                             </div>
                             <h3 className={`text-lg font-bold mb-3 line-clamp-2 group-hover:text-emerald-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>
                               {post.seoTitle || post.title}
                             </h3>
-                            <p className={`text-sm line-clamp-3 mb-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                            <p className={`text-sm line-clamp-3 mb-4 ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
                               {post.metaDesc || post.excerpt}
                             </p>
                             <span className="inline-flex items-center gap-1 text-emerald-500 font-semibold text-sm group-hover:gap-2 transition-all">

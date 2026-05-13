@@ -94,7 +94,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
 
   const navClass = (scrolled || shouldUseSolidNav)
     ? theme === 'dark'
-      ? 'bg-slate-900/90 backdrop-blur-xl border-b border-slate-700 shadow-sm'
+      ? 'bg-[#F5F0E8]/95 backdrop-blur-xl border-b border-stone-300 shadow-sm'
       : 'bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm'
     : theme === 'dark'
       ? 'bg-transparent'
@@ -102,10 +102,10 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
 
   const desktopLinkClass = (scrolled || shouldUseSolidNav)
     ? theme === 'dark'
-      ? 'text-slate-200 hover:text-white'
+      ? 'text-gray-700 hover:text-gray-900'
       : 'text-slate-600 hover:text-slate-900'
     : theme === 'dark'
-      ? 'text-white/80 hover:text-white'
+      ? 'text-white/80 hover:text-gray-900'
       : 'text-slate-700 hover:text-slate-900';
 
   useEffect(() => {
@@ -154,14 +154,14 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                     transition={{ duration: 0.2, type: 'spring', stiffness: 300 }}
                     onMouseLeave={() => setResourcesOpen(false)}
                     className={`absolute left-0 mt-2 w-56 rounded-xl shadow-lg overflow-hidden z-50 ${
-                      theme === 'dark' ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-slate-200'
+                      theme === 'dark' ? 'bg-[#EDE8DF] border border-stone-300' : 'bg-white border border-slate-200'
                     }`}
                   >
                     <Link
                       href="/blogs"
                       className={`block px-4 py-3 font-medium transition-colors ${
                         theme === 'dark'
-                          ? 'text-slate-300 hover:bg-slate-700 hover:text-white'
+                          ? 'text-gray-600 hover:bg-[#D8D0C5] hover:text-gray-900'
                           : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                       }`}
                       onClick={() => setResourcesOpen(false)}
@@ -172,7 +172,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                       href="/work"
                       className={`block px-4 py-3 font-medium transition-colors border-t ${
                         theme === 'dark'
-                          ? 'border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
+                          ? 'border-stone-300 text-gray-600 hover:bg-[#D8D0C5] hover:text-gray-900'
                           : 'border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                       }`}
                       onClick={() => setResourcesOpen(false)}
@@ -183,7 +183,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                       href="/seo-tools"
                       className={`block px-4 py-3 font-medium transition-colors border-t ${
                         theme === 'dark'
-                          ? 'border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
+                          ? 'border-stone-300 text-gray-600 hover:bg-[#D8D0C5] hover:text-gray-900'
                           : 'border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                       }`}
                       onClick={() => setResourcesOpen(false)}
@@ -194,7 +194,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                       href={user ? (user.role === 'admin' ? '/dashboard/admin' : '/dashboard/client?view=membership') : '/pricing'}
                       className={`block px-4 py-3 font-medium transition-colors border-t ${
                         theme === 'dark'
-                          ? 'border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
+                          ? 'border-stone-300 text-gray-600 hover:bg-[#D8D0C5] hover:text-gray-900'
                           : 'border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                       }`}
                       onClick={() => setResourcesOpen(false)}
@@ -214,11 +214,11 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                   className={`inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-sm font-semibold transition-all transform hover:scale-105 relative ${
                     scrolled
                       ? theme === 'dark'
-                        ? 'border border-slate-600 text-slate-200 hover:border-emerald-500 hover:text-emerald-400 bg-slate-800/40 hover:bg-slate-800/80'
-                        : 'border border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/40 hover:bg-white/80'
+                        ? 'border border-stone-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-400 bg-[#EDE8DF]/40 hover:bg-[#EDE8DF]/80'
+                        : 'border border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/40 hover:bg-black/50'
                       : theme === 'dark'
-                        ? 'border border-white/30 text-white/90 hover:text-white hover:border-white/60 bg-white/10 hover:bg-white/20'
-                        : 'border border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/60 hover:bg-white/80'
+                        ? 'border border-black/20 text-white/90 hover:text-gray-900 hover:border-white/60 bg-black/5 hover:bg-white/20'
+                        : 'border border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/60 hover:bg-black/50'
                   } ${userMenuOpen ? (scrolled ? (theme === 'dark' ? 'border-emerald-500 text-emerald-400 bg-emerald-500/10' : 'border-emerald-500 text-emerald-600 bg-emerald-500/10') : theme === 'dark' ? 'border-white/60 text-white bg-white/20' : 'border-emerald-500 text-emerald-600 bg-emerald-500/10') : ''}`}
                 >
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ring-2 transition-all ${
@@ -246,14 +246,14 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                       exit={{ opacity: 0, y: -15, scale: 0.95 }}
                       transition={{ duration: 0.25, type: 'spring', stiffness: 300 }}
                       className={`absolute right-0 mt-3 w-80 rounded-2xl shadow-2xl overflow-hidden z-50 ${
-                        theme === 'dark' ? 'bg-gradient-to-b from-slate-800 to-slate-900/95 backdrop-blur-xl border border-slate-700' : 'bg-gradient-to-b from-white to-slate-50/95 backdrop-blur-xl border border-slate-300'
+                        theme === 'dark' ? 'bg-gradient-to-b from-slate-800 to-slate-900/95 backdrop-blur-xl border border-stone-300' : 'bg-gradient-to-b from-white to-slate-50/95 backdrop-blur-xl border border-slate-300'
                       }`}
                     >
-                      <div className={`px-4 py-4 border-b ${theme === 'dark' ? 'border-slate-700 bg-gradient-to-r from-emerald-500/20 via-transparent to-transparent' : 'border-slate-200 bg-gradient-to-r from-emerald-400/10 via-transparent to-transparent'}`}>
+                      <div className={`px-4 py-4 border-b ${theme === 'dark' ? 'border-stone-300 bg-gradient-to-r from-emerald-500/20 via-transparent to-transparent' : 'border-slate-200 bg-gradient-to-r from-emerald-400/10 via-transparent to-transparent'}`}>
                         <div className="flex items-center gap-2 mb-2 min-w-0">
                           <div className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${
                             theme === 'dark' ? 'bg-gradient-to-br from-emerald-400 to-emerald-600' : 'bg-gradient-to-br from-emerald-400 to-emerald-500'
-                          } text-white shadow-lg`}>
+                          } text-gray-900 shadow-lg`}>
                             {user.avatar ? (
                               <Image src={user.avatar} alt={user.name} width={48} height={48} className="rounded-full" />
                             ) : (
@@ -261,8 +261,8 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                             )}
                           </div>
                           <div className="flex-1 overflow-hidden">
-                            <p className={`text-xs font-bold truncate leading-none ${theme === 'dark' ? 'text-slate-100' : 'text-slate-900'}`}>{user.name}</p>
-                            <p className={`text-[8px] truncate leading-none overflow-hidden ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>{user.email}</p>
+                            <p className={`text-xs font-bold truncate leading-none ${theme === 'dark' ? 'text-gray-800' : 'text-slate-900'}`}>{user.name}</p>
+                            <p className={`text-[8px] truncate leading-none overflow-hidden ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>{user.email}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-2 mt-3 flex-wrap">
@@ -292,7 +292,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                           onClick={() => setUserMenuOpen(false)}
                           className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                             theme === 'dark' 
-                              ? 'text-slate-200 hover:bg-slate-700/60 hover:text-emerald-400' 
+                              ? 'text-gray-700 hover:bg-[#D8D0C5]/60 hover:text-emerald-400' 
                               : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600'
                           }`}
                         >
@@ -304,14 +304,14 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                           onClick={() => setUserMenuOpen(false)}
                           className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                             theme === 'dark' 
-                              ? 'text-slate-200 hover:bg-slate-700/60 hover:text-blue-400' 
+                              ? 'text-gray-700 hover:bg-[#D8D0C5]/60 hover:text-blue-400' 
                               : 'text-slate-700 hover:bg-slate-100 hover:text-blue-600'
                           }`}
                         >
                           <User className="h-5 w-5" />
                           <span>My Profile</span>
                         </Link>
-                        <div className={`border-t ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'} my-1`} />
+                        <div className={`border-t ${theme === 'dark' ? 'border-stone-300' : 'border-slate-200'} my-1`} />
                         <button
                           onClick={handleLogout}
                           className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
@@ -335,10 +335,10 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                 className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all transform hover:scale-105 ${
                   scrolled
                     ? theme === 'dark'
-                      ? 'border border-slate-600 text-slate-200 hover:border-emerald-500 hover:text-emerald-400 bg-slate-800/40 hover:bg-slate-800/80'
-                      : 'border border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/40 hover:bg-white/80'
+                      ? 'border border-stone-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-400 bg-[#EDE8DF]/40 hover:bg-[#EDE8DF]/80'
+                      : 'border border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/40 hover:bg-black/50'
                     : theme === 'dark'
-                      ? 'border border-white/30 text-white/90 hover:text-white hover:border-white/60 bg-white/10 hover:bg-white/20'
+                      ? 'border border-black/20 text-white/90 hover:text-gray-900 hover:border-white/60 bg-black/5 hover:bg-white/20'
                       : 'border border-slate-300/80 text-slate-700 hover:text-emerald-600 hover:border-emerald-500 bg-white/70 hover:bg-white/90'
                 }`}
               >
@@ -367,10 +367,10 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                 className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition-all ${
                   scrolled
                     ? theme === 'dark'
-                      ? 'border-slate-700 text-slate-200 hover:border-emerald-500 hover:text-emerald-400 bg-slate-800/50'
-                      : 'border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600 bg-white/50'
+                      ? 'border-stone-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-400 bg-[#EDE8DF]/50'
+                      : 'border-slate-200 text-slate-600 hover:border-emerald-500 hover:text-emerald-600 bg-black/[0.05]0'
                     : theme === 'dark'
-                      ? 'border-white/20 text-white/80 hover:text-white hover:border-white/40 bg-white/10'
+                      ? 'border-black/12 text-gray-700 hover:text-gray-900 hover:border-white/40 bg-black/5'
                       : 'border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/60'
                 } ${settingsOpen ? (scrolled ? (theme === 'dark' ? 'border-emerald-500 text-emerald-400' : 'border-emerald-500 text-emerald-600') : theme === 'dark' ? 'border-white/40 text-white' : 'border-emerald-500 text-emerald-600') : ''}`}
                 aria-label="Settings"
@@ -388,13 +388,13 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                     transition={{ duration: 0.15 }}
                     className={`absolute right-0 mt-2 w-64 rounded-2xl border p-4 shadow-xl backdrop-blur-xl z-50 ${
                       theme === 'dark'
-                        ? 'bg-slate-900/95 border-slate-700'
+                        ? 'bg-[#FDFAF5]/98 border-stone-300'
                         : 'bg-white/95 border-slate-200'
                     }`}
                   >
                     {/* Language Section */}
                     <div className="mb-4">
-                      <div className={`flex items-center gap-2 mb-3 text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
+                      <div className={`flex items-center gap-2 mb-3 text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>
                         <Globe className="h-3.5 w-3.5" />
                         {text.language}
                       </div>
@@ -403,9 +403,9 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                           onClick={() => setLanguage('en')}
                           className={`flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
                             language === 'en'
-                              ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/25'
+                              ? 'bg-emerald-500 text-gray-900 shadow-md shadow-emerald-500/25'
                               : theme === 'dark'
-                                ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
+                                ? 'bg-[#EDE8DF] text-gray-600 hover:bg-[#D8D0C5] hover:text-gray-900'
                                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
                           }`}
                         >
@@ -415,9 +415,9 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                           onClick={() => setLanguage('es')}
                           className={`flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
                             language === 'es'
-                              ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/25'
+                              ? 'bg-emerald-500 text-gray-900 shadow-md shadow-emerald-500/25'
                               : theme === 'dark'
-                                ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
+                                ? 'bg-[#EDE8DF] text-gray-600 hover:bg-[#D8D0C5] hover:text-gray-900'
                                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
                           }`}
                         >
@@ -427,11 +427,11 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                     </div>
 
                     {/* Divider */}
-                    <div className={`border-t mb-4 ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'}`} />
+                    <div className={`border-t mb-4 ${theme === 'dark' ? 'border-stone-300' : 'border-slate-200'}`} />
 
                     {/* Theme Section */}
                     <div>
-                      <div className={`flex items-center gap-2 mb-3 text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
+                      <div className={`flex items-center gap-2 mb-3 text-xs font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>
                         {theme === 'dark' ? <Moon className="h-3.5 w-3.5" /> : <Sun className="h-3.5 w-3.5" />}
                         {text.theme}
                       </div>
@@ -442,7 +442,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                             theme === 'light'
                               ? 'bg-amber-400 text-amber-950 shadow-md shadow-amber-400/25'
                               : theme === 'dark'
-                                ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
+                                ? 'bg-[#EDE8DF] text-gray-600 hover:bg-[#D8D0C5] hover:text-gray-900'
                                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
                           }`}
                         >
@@ -452,7 +452,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                           onClick={() => setTheme('dark')}
                           className={`flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
                             theme === 'dark'
-                              ? 'bg-indigo-500 text-white shadow-md shadow-indigo-500/25'
+                              ? 'bg-indigo-500 text-gray-900 shadow-md shadow-indigo-500/25'
                               : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
                           }`}
                         >
@@ -472,7 +472,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} aria-label={isOpen ? 'Close menu' : 'Open menu'} className={scrolled ? (theme === 'dark' ? 'text-slate-200 hover:text-white' : 'text-slate-600 hover:text-slate-900') : theme === 'dark' ? 'text-white hover:text-white/80' : 'text-slate-700 hover:text-slate-900'}>
+            <button onClick={() => setIsOpen(!isOpen)} aria-label={isOpen ? 'Close menu' : 'Open menu'} className={scrolled ? (theme === 'dark' ? 'text-gray-700 hover:text-gray-900' : 'text-slate-600 hover:text-slate-900') : theme === 'dark' ? 'text-white hover:text-gray-900/80' : 'text-slate-700 hover:text-slate-900'}>
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -486,27 +486,27 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
           animate={{ opacity: 1, y: 0 }}
           className={`md:hidden border-b px-4 py-6 space-y-4 shadow-lg ${
             theme === 'dark'
-              ? 'bg-slate-900 border-slate-700'
+              ? 'bg-[#F5F0E8] border-stone-300'
               : 'bg-white border-slate-200'
           }`}
         >
-          <Link href="/services" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.services}</Link>
-          <Link href="/work" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.caseStudies}</Link>
-          <Link href="/about" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.about}</Link>
-          <Link href="/blogs" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.blog}</Link>
-          <Link href="/seo-tools" className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>SEO Tools</Link>
+          <Link href="/services" className={`block font-medium ${theme === 'dark' ? 'text-gray-700 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.services}</Link>
+          <Link href="/work" className={`block font-medium ${theme === 'dark' ? 'text-gray-700 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.caseStudies}</Link>
+          <Link href="/about" className={`block font-medium ${theme === 'dark' ? 'text-gray-700 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.about}</Link>
+          <Link href="/blogs" className={`block font-medium ${theme === 'dark' ? 'text-gray-700 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>{text.blog}</Link>
+          <Link href="/seo-tools" className={`block font-medium ${theme === 'dark' ? 'text-gray-700 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}>SEO Tools</Link>
           <Link 
             href={user ? (user.role === 'admin' ? '/dashboard/admin' : '/dashboard/client?view=membership') : '/pricing'} 
-            className={`block font-medium ${theme === 'dark' ? 'text-slate-200 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}
+            className={`block font-medium ${theme === 'dark' ? 'text-gray-700 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-600'}`}
           >
             {text.pricing}
           </Link>
           
           {/* User Menu or Login for Mobile */}
           {user ? (
-            <div className={`border-t pt-4 ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'}`}>
+            <div className={`border-t pt-4 ${theme === 'dark' ? 'border-stone-300' : 'border-slate-200'}`}>
               <div className={`flex items-center gap-3 px-3 py-4 rounded-2xl mb-3 bg-gradient-to-r ${
-                theme === 'dark' ? 'from-slate-800/60 to-slate-700/40 border border-slate-700' : 'from-slate-50 to-white border border-slate-200'
+                theme === 'dark' ? 'from-slate-800/60 to-slate-700/40 border border-stone-300' : 'from-slate-50 to-white border border-slate-200'
               }`}>
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold ring-2 transition-all ${
                   theme === 'dark' ? 'bg-gradient-to-br from-emerald-400 to-emerald-600 ring-emerald-500/30' : 'bg-gradient-to-br from-emerald-400 to-emerald-500 ring-emerald-400/30'
@@ -518,8 +518,8 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                   )}
                 </div>
                 <div className="flex-1">
-                  <p className={`text-sm font-bold ${theme === 'dark' ? 'text-slate-100' : 'text-slate-900'}`}>{user.name}</p>
-                  <p className={`text-xs ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>{user.email}</p>
+                  <p className={`text-sm font-bold ${theme === 'dark' ? 'text-gray-800' : 'text-slate-900'}`}>{user.name}</p>
+                  <p className={`text-xs ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>{user.email}</p>
                   <p className={`text-[11px] font-bold uppercase tracking-wide mt-1 ${user.role === 'admin' ? 'text-purple-400' : 'text-emerald-400'}`}>{user.role}</p>
                 </div>
               </div>
@@ -528,7 +528,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                   href={user.role === 'admin' ? '/dashboard/admin' : '/dashboard/client'}
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                    theme === 'dark' ? 'text-slate-200 hover:bg-emerald-500/20 hover:text-emerald-300' : 'text-slate-700 hover:bg-emerald-50 hover:text-emerald-600'
+                    theme === 'dark' ? 'text-gray-700 hover:bg-emerald-500/20 hover:text-emerald-300' : 'text-slate-700 hover:bg-emerald-50 hover:text-emerald-600'
                   }`}
                 >
                   <LayoutDashboard className="h-5 w-5" />
@@ -538,7 +538,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                   href={user.role === 'admin' ? '/dashboard/admin?view=profile' : '/dashboard/client?view=profile'}
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                    theme === 'dark' ? 'text-slate-200 hover:bg-blue-500/20 hover:text-blue-300' : 'text-slate-700 hover:bg-blue-50 hover:text-blue-600'
+                    theme === 'dark' ? 'text-gray-700 hover:bg-blue-500/20 hover:text-blue-300' : 'text-slate-700 hover:bg-blue-50 hover:text-blue-600'
                   }`}
                 >
                   <User className="h-5 w-5" />
@@ -564,8 +564,8 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
               aria-label={text.login}
               className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all border ${
                 theme === 'dark'
-                  ? 'border-slate-600 text-slate-200 hover:border-emerald-500 hover:text-emerald-400 bg-slate-800/40 hover:bg-slate-800/80'
-                  : 'border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/40 hover:bg-white/80'
+                  ? 'border-stone-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-400 bg-[#EDE8DF]/40 hover:bg-[#EDE8DF]/80'
+                  : 'border-slate-300 text-slate-700 hover:border-emerald-500 hover:text-emerald-600 bg-white/40 hover:bg-black/50'
               }`}
             >
               <motion.span
@@ -583,7 +583,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
           <div className="grid grid-cols-2 gap-3 pt-2">
             {/* Language Toggle */}
             <div>
-              <div className={`flex items-center gap-1.5 mb-2 text-[11px] font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
+              <div className={`flex items-center gap-1.5 mb-2 text-[11px] font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>
                 <Globe className="h-3 w-3" /> {text.language}
               </div>
               <div className="grid grid-cols-2 gap-1">
@@ -592,7 +592,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                   className={`rounded-lg px-2 py-2 text-xs font-medium transition-all ${
                     language === 'en'
                       ? 'bg-emerald-500 text-white'
-                      : theme === 'dark' ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-600'
+                      : theme === 'dark' ? 'bg-[#EDE8DF] text-gray-600' : 'bg-slate-100 text-slate-600'
                   }`}
                 >
                   🇺🇸 EN
@@ -602,7 +602,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                   className={`rounded-lg px-2 py-2 text-xs font-medium transition-all ${
                     language === 'es'
                       ? 'bg-emerald-500 text-white'
-                      : theme === 'dark' ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-600'
+                      : theme === 'dark' ? 'bg-[#EDE8DF] text-gray-600' : 'bg-slate-100 text-slate-600'
                   }`}
                 >
                   🇪🇸 ES
@@ -611,7 +611,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
             </div>
             {/* Theme Toggle */}
             <div>
-              <div className={`flex items-center gap-1.5 mb-2 text-[11px] font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
+              <div className={`flex items-center gap-1.5 mb-2 text-[11px] font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>
                 {theme === 'dark' ? <Moon className="h-3 w-3" /> : <Sun className="h-3 w-3" />} {text.theme}
               </div>
               <div className="grid grid-cols-2 gap-1">
@@ -620,7 +620,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                   className={`flex items-center justify-center gap-1 rounded-lg px-2 py-2 text-xs font-medium transition-all ${
                     theme === 'light'
                       ? 'bg-amber-400 text-amber-950'
-                      : 'bg-slate-800 text-slate-300'
+                      : 'bg-[#EDE8DF] text-gray-600'
                   }`}
                 >
                   <Sun className="h-3 w-3" /> {text.light}

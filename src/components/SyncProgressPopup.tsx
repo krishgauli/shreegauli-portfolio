@@ -69,10 +69,10 @@ export default function SyncProgressPopup({
             fixed bottom-6 right-6 z-[80] flex items-center gap-2 px-3.5 py-2 rounded-full shadow-2xl border
             backdrop-blur-sm cursor-pointer transition-all hover:scale-105 active:scale-95
             ${state.status === 'syncing'
-              ? 'bg-white/95 dark:bg-slate-900/95 border-blue-300 dark:border-blue-700 shadow-blue-200/30 dark:shadow-blue-900/30'
+              ? 'bg-white/95 dark:bg-[#FDFAF5]/98 border-blue-300 dark:border-blue-700 shadow-blue-200/30 dark:shadow-blue-900/30'
               : state.status === 'success'
-              ? 'bg-white/95 dark:bg-slate-900/95 border-emerald-300 dark:border-emerald-700 shadow-emerald-200/30 dark:shadow-emerald-900/30'
-              : 'bg-white/95 dark:bg-slate-900/95 border-red-300 dark:border-red-700 shadow-red-200/30 dark:shadow-red-900/30'
+              ? 'bg-white/95 dark:bg-[#FDFAF5]/98 border-emerald-300 dark:border-emerald-700 shadow-emerald-200/30 dark:shadow-emerald-900/30'
+              : 'bg-white/95 dark:bg-[#FDFAF5]/98 border-red-300 dark:border-red-700 shadow-red-200/30 dark:shadow-red-900/30'
             }
           `}
         >
@@ -94,7 +94,7 @@ export default function SyncProgressPopup({
               <span className="text-sm font-bold text-red-600 dark:text-red-400">Sync Failed</span>
             </>
           )}
-          <Maximize2 className="h-3.5 w-3.5 text-slate-400 ml-0.5" />
+          <Maximize2 className="h-3.5 w-3.5 text-gray-500 ml-0.5" />
         </motion.button>
       </AnimatePresence>
     );
@@ -113,10 +113,10 @@ export default function SyncProgressPopup({
           fixed bottom-6 right-6 z-[80] w-[380px] rounded-2xl shadow-2xl border p-5
           backdrop-blur-sm
           ${state.status === 'syncing'
-            ? 'bg-white/95 dark:bg-slate-900/95 border-blue-200 dark:border-blue-800 shadow-blue-200/20 dark:shadow-blue-900/20'
+            ? 'bg-white/95 dark:bg-[#FDFAF5]/98 border-blue-200 dark:border-blue-800 shadow-blue-200/20 dark:shadow-blue-900/20'
             : state.status === 'success'
-            ? 'bg-white/95 dark:bg-slate-900/95 border-emerald-200 dark:border-emerald-800 shadow-emerald-200/20 dark:shadow-emerald-900/20'
-            : 'bg-white/95 dark:bg-slate-900/95 border-red-200 dark:border-red-800 shadow-red-200/20 dark:shadow-red-900/20'
+            ? 'bg-white/95 dark:bg-[#FDFAF5]/98 border-emerald-200 dark:border-emerald-800 shadow-emerald-200/20 dark:shadow-emerald-900/20'
+            : 'bg-white/95 dark:bg-[#FDFAF5]/98 border-red-200 dark:border-red-800 shadow-red-200/20 dark:shadow-red-900/20'
           }
         `}
       >
@@ -143,7 +143,7 @@ export default function SyncProgressPopup({
                 {state.status === 'syncing' ? 'Syncing Data' : state.status === 'success' ? 'Sync Complete' : 'Sync Failed'}
               </p>
               {state.status === 'syncing' && (
-                <p className="text-[11px] text-slate-400 dark:text-slate-500">Elapsed: {elapsedLabel}</p>
+                <p className="text-[11px] text-gray-500 dark:text-gray-500">Elapsed: {elapsedLabel}</p>
               )}
             </div>
           </div>
@@ -152,27 +152,27 @@ export default function SyncProgressPopup({
             {state.status === 'syncing' && (
               <button
                 onClick={onMinimize}
-                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-[#EDE8DF] transition-colors"
                 title="Minimize — sync continues in background"
               >
-                <Minimize2 className="h-3.5 w-3.5 text-slate-400" />
+                <Minimize2 className="h-3.5 w-3.5 text-gray-500" />
               </button>
             )}
             {state.status === 'syncing' ? (
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-[#EDE8DF] transition-colors"
                 title="Close popup — sync continues in background"
               >
-                <X className="h-3.5 w-3.5 text-slate-400" />
+                <X className="h-3.5 w-3.5 text-gray-500" />
               </button>
             ) : (
               <button
                 onClick={onDismiss}
-                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-[#EDE8DF] transition-colors"
                 title="Dismiss"
               >
-                <X className="h-3.5 w-3.5 text-slate-400" />
+                <X className="h-3.5 w-3.5 text-gray-500" />
               </button>
             )}
           </div>
@@ -181,13 +181,13 @@ export default function SyncProgressPopup({
         {/* Content */}
         {state.status === 'syncing' && (
           <div className="space-y-3">
-            <p className="text-xs font-medium text-slate-600 dark:text-slate-400">{state.label}</p>
+            <p className="text-xs font-medium text-slate-600 dark:text-gray-500">{state.label}</p>
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Progress</span>
+                <span className="text-[11px] font-bold text-gray-500 dark:text-gray-500 uppercase tracking-wider">Progress</span>
                 <span className="text-sm font-black tabular-nums text-blue-600 dark:text-blue-400">{state.progress}%</span>
               </div>
-              <div className="h-2.5 w-full rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <div className="h-2.5 w-full rounded-full overflow-hidden bg-slate-100 dark:bg-[#EDE8DF]">
                 <motion.div
                   className="h-full rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
                   initial={{ width: 0 }}
@@ -196,7 +196,7 @@ export default function SyncProgressPopup({
                 />
               </div>
             </div>
-            <p className="text-[11px] text-slate-400 dark:text-slate-500">
+            <p className="text-[11px] text-gray-500 dark:text-gray-500">
               You can minimize or close this popup. The sync will continue in the background.
             </p>
           </div>

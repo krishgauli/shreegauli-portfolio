@@ -53,14 +53,14 @@ export function NewsletterSignupCard({
   }
 
   return (
-    <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
+    <div className="rounded-[32px] border border-black/10 bg-black/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
       <div className="flex items-start gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#7C3AED]/30 bg-[#7C3AED]/10 text-[#C4B5FD]">
           <Mail className="h-5 w-5" />
         </div>
         <div>
-          <h3 className="text-2xl font-semibold text-[#F8FAFC]">{title}</h3>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-[#94A3B8]">{subtitle}</p>
+          <h3 className="text-2xl font-semibold text-[#1A1A1A]">{title}</h3>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-[#6B7280]">{subtitle}</p>
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export function NewsletterSignupCard({
           onChange={(event) => setEmail(event.target.value)}
           placeholder="you@company.com"
           required
-          className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 placeholder:text-[#64748B]"
+          className="min-w-0 flex-1 rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 placeholder:text-[#64748B]"
         />
         <button
           type="submit"

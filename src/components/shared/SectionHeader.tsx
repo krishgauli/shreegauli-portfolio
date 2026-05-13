@@ -31,11 +31,11 @@ export function SectionHeader({
           {eyebrow}
         </p>
       )}
-      <Tag className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F8FAFC] leading-tight">
+      <Tag className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight">
         {title}
       </Tag>
       {subtitle && (
-        <p className="mt-4 text-lg text-[#94A3B8] max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-4 text-lg text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
           {subtitle}
         </p>
       )}

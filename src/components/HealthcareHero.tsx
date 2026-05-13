@@ -248,8 +248,8 @@ const HealthcareHero = ({
       
       if (!canvas) return;
 
-      // Clean background (--background: #f8fafc)
-      ctx.fillStyle = '#f8fafc'; 
+      // Clean background (--background: #1A1A1A)
+      ctx.fillStyle = '#1A1A1A'; 
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // 1. Draw Marketing Growth / Analytics Trends in the background
@@ -294,7 +294,7 @@ const HealthcareHero = ({
   }, []);
 
   return (
-    <header ref={containerRef} className={`relative overflow-hidden ${isDark ? 'bg-slate-900' : 'bg-slate-50'}`}>
+    <header ref={containerRef} className={`relative overflow-hidden ${isDark ? 'bg-[#F5F0E8]' : 'bg-[#FDFAF5]'}`}>
       {/* Background Canvas (Pure Animation: Marketing Growth + Health Network) */}
       <canvas 
         ref={canvasRef} 
@@ -316,7 +316,7 @@ const HealthcareHero = ({
                 <span className={`${isDark ? 'text-emerald-400' : 'text-emerald-500'}`}>Relentlessly.</span>
               </h1>
               
-              <p className={`mt-6 text-lg sm:text-xl max-w-2xl mx-auto ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+              <p className={`mt-6 text-lg sm:text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>
                 Premium digital marketing for ERs, MedSpas, and urgent care centers.
               </p>
 
@@ -325,9 +325,9 @@ const HealthcareHero = ({
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className={`mt-12 mb-12 py-8 px-6 rounded-2xl backdrop-blur ${isDark ? 'bg-white/10 border border-white/20' : 'bg-slate-900/5 border border-slate-900/20'}`}
+                className={`mt-12 mb-12 py-8 px-6 rounded-2xl backdrop-blur ${isDark ? 'bg-black/5 border border-black/12' : 'bg-[#F5F0E8]/5 border border-stone-200/20'}`}
               >
-                <p className={`text-base sm:text-lg ${isDark ? 'text-slate-400' : 'text-slate-600'} mb-3 font-medium`}>
+                <p className={`text-base sm:text-lg ${isDark ? 'text-gray-500' : 'text-slate-600'} mb-3 font-medium`}>
                   {prefixText}
                 </p>
                 <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight ${isDark ? 'text-emerald-300' : 'text-emerald-600'}`}>
@@ -346,15 +346,15 @@ const HealthcareHero = ({
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pointer-events-auto mb-10"
               >
-                <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-white/10 border border-white/20' : 'bg-slate-900/10 border border-slate-900/20'}`}>
+                <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-black/5 border border-black/12' : 'bg-[#F5F0E8]/10 border border-stone-200/20'}`}>
                   <FaGoogle className="h-5 w-5 text-[#4285F4]" />
                   <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>Google Partner</span>
                 </div>
-                <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-white/10 border border-white/20' : 'bg-slate-900/10 border border-slate-900/20'}`}>
+                <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-black/5 border border-black/12' : 'bg-[#F5F0E8]/10 border border-stone-200/20'}`}>
                   <FaMeta className="h-5 w-5 text-[#0082FB]" />
                   <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>Meta Certified</span>
                 </div>
-                <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-white/10 border border-white/20' : 'bg-slate-900/10 border border-slate-900/20'}`}>
+                <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-black/5 border border-black/12' : 'bg-[#F5F0E8]/10 border border-stone-200/20'}`}>
                   <FaShieldHalved className={`h-5 w-5 ${isDark ? 'text-emerald-400' : 'text-emerald-500'}`} />
                   <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>HIPAA Aware</span>
                 </div>
@@ -375,7 +375,7 @@ const HealthcareHero = ({
                 </Link>
                 <Link 
                   href="/case-studies" 
-                  className={`inline-flex items-center px-8 py-4 font-bold rounded-full transition-all border ${isDark ? 'bg-white/10 text-white border-white/20 hover:bg-white/20' : 'bg-white text-slate-900 border-slate-300 hover:bg-slate-100'}`}
+                  className={`inline-flex items-center px-8 py-4 font-bold rounded-full transition-all border ${isDark ? 'bg-black/5 text-white border-black/12 hover:bg-white/20' : 'bg-white text-slate-900 border-slate-300 hover:bg-slate-100'}`}
                 >
                   See our work
                 </Link>
@@ -394,7 +394,7 @@ const HealthcareHero = ({
                 { value: '$10M+', label: 'Ad spend managed' },
                 { value: '3×', label: 'Average ROI' },
               ].map((stat, idx) => (
-                <div key={idx} className={`backdrop-blur rounded-2xl p-6 border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-900/5 border-slate-900/20'}`}>
+                <div key={idx} className={`backdrop-blur rounded-2xl p-6 border ${isDark ? 'bg-black/[0.05] border-black/10' : 'bg-[#F5F0E8]/5 border-stone-200/20'}`}>
                   <div className={`text-3xl sm:text-4xl font-black ${isDark ? 'text-emerald-400' : 'text-emerald-500'}`}>{stat.value}</div>
                   <div className={`mt-2 text-sm sm:text-base ${isDark ? 'text-white/80' : 'text-slate-700'}`}>{stat.label}</div>
                 </div>

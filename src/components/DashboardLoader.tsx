@@ -68,7 +68,7 @@ export default function DashboardLoader({
         ))}
       </div>
       {label && (variant === 'card' || variant === 'page') && (
-        <p className="mt-3 text-sm font-medium text-[#94A3B8]">
+        <p className="mt-3 text-sm font-medium text-[#6B7280]">
           {label}
         </p>
       )}

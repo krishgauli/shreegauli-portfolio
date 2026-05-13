@@ -32,9 +32,9 @@ export function SitePreferencesProvider({ children }: { children: React.ReactNod
       setLanguage(storedLanguage);
     }
 
-    if (storedTheme === 'light' || storedTheme === 'dark') {
-      setTheme(storedTheme);
-    }
+    // Theme is always light — cream design system
+    setTheme('light');
+    writeLocalStorage(THEME_KEY, 'light');
   }, []);
 
   useEffect(() => {

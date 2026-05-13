@@ -22,7 +22,7 @@ const categories: Record<string, { title: string; desc: string }[]> = {
 export default function Industries() {
   const [active, setActive] = useState<'Startups'|'SMBs'|'Innovation Teams'>('Startups');
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-20 bg-[#FDFAF5]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-slate-900 mb-4">Who We Work With</h2>
         <div className="flex gap-4 mb-8">

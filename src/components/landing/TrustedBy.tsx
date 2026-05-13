@@ -98,7 +98,7 @@ export default function TrustedBy() {
   }, []);
 
   return (
-    <section className={`py-24 ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
+    <section className={`py-24 ${isDark ? 'bg-[#F5F0E8]' : 'bg-white'}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ export default function TrustedBy() {
           className="text-center mb-16"
         >
           <h2 className={`text-3xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Trusted by healthcare leaders')}</h2>
-          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
             {t('Join the practices that have transformed their patient acquisition with NexHealth.')}
           </p>
         </motion.div>
@@ -147,7 +147,7 @@ export default function TrustedBy() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`relative rounded-3xl p-8 md:p-12 ${isDark ? 'bg-slate-800' : 'bg-slate-50'}`}
+          className={`relative rounded-3xl p-8 md:p-12 ${isDark ? 'bg-[#EDE8DF]' : 'bg-[#FDFAF5]'}`}
         >
           <div className={`absolute top-4 left-8 text-8xl font-serif ${isDark ? 'text-slate-700' : 'text-emerald-200'}`}>"</div>
           
@@ -159,7 +159,7 @@ export default function TrustedBy() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <p className={`text-2xl md:text-3xl font-medium leading-relaxed mb-8 ${isDark ? 'text-slate-300' : 'text-slate-900'}`}>
+              <p className={`text-2xl md:text-3xl font-medium leading-relaxed mb-8 ${isDark ? 'text-gray-600' : 'text-slate-900'}`}>
                 {localizedTestimonials[currentTestimonial].quote}
               </p>
               <div className="flex items-center justify-center gap-4">
@@ -173,7 +173,7 @@ export default function TrustedBy() {
                 />
                 <div className="text-left">
                   <div className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{localizedTestimonials[currentTestimonial].author}</div>
-                  <div className={isDark ? 'text-slate-400' : 'text-slate-600'}>{localizedTestimonials[currentTestimonial].title}</div>
+                  <div className={isDark ? 'text-gray-500' : 'text-slate-600'}>{localizedTestimonials[currentTestimonial].title}</div>
                 </div>
               </div>
             </motion.div>
@@ -217,13 +217,13 @@ export default function TrustedBy() {
                 onClick={() => setSelectedLogo(null)}
               >
                 <div
-                  className={`relative rounded-2xl shadow-2xl max-w-lg w-full ${isDark ? 'bg-slate-800' : 'bg-white'}`}
+                  className={`relative rounded-2xl shadow-2xl max-w-lg w-full ${isDark ? 'bg-[#EDE8DF]' : 'bg-white'}`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
                   <button
                     onClick={() => setSelectedLogo(null)}
-                    className={`absolute top-4 right-4 z-10 p-2 rounded-full transition-colors ${isDark ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
+                    className={`absolute top-4 right-4 z-10 p-2 rounded-full transition-colors ${isDark ? 'bg-[#D8D0C5] hover:bg-slate-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
                     aria-label="Close modal"
                   >
                     <X className="h-5 w-5" />
@@ -243,11 +243,11 @@ export default function TrustedBy() {
                   {/* Quote Section */}
                   <div className="p-8">
                     <div className={`text-5xl font-serif mb-4 ${isDark ? 'text-slate-600' : 'text-emerald-200'}`}>"</div>
-                    <p className={`text-lg md:text-xl font-medium leading-relaxed ${isDark ? 'text-slate-200' : 'text-slate-900'}`}>
+                    <p className={`text-lg md:text-xl font-medium leading-relaxed ${isDark ? 'text-gray-700' : 'text-slate-900'}`}>
                       {localizedLogos[selectedLogo].quote}
                     </p>
-                    <div className={`mt-6 pt-6 border-t ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
-                      <p className={`text-sm font-semibold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                    <div className={`mt-6 pt-6 border-t ${isDark ? 'border-stone-300' : 'border-slate-200'}`}>
+                      <p className={`text-sm font-semibold ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
                         — {localizedLogos[selectedLogo].name}
                       </p>
                     </div>

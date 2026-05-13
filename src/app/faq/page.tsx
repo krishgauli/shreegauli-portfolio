@@ -103,8 +103,8 @@ export default function FaqPage() {
             {faqs.map((faq, index) => (
               <ScrollReveal key={faq.question} delay={index * 0.04}>
                 <ModuleShell className="p-6">
-                  <h2 className="text-xl font-semibold text-[#F8FAFC]">{faq.question}</h2>
-                  <p className="mt-4 text-sm leading-7 text-[#94A3B8]">{faq.answer}</p>
+                  <h2 className="text-xl font-semibold text-[#1A1A1A]">{faq.question}</h2>
+                  <p className="mt-4 text-sm leading-7 text-[#6B7280]">{faq.answer}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -119,7 +119,7 @@ export default function FaqPage() {
             </Link>
             <Link
               href="/contact"
-              className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20"
+              className="rounded-2xl border border-black/10 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-black/12"
             >
               Ask a specific question
             </Link>

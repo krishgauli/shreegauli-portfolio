@@ -151,7 +151,7 @@ export function FinalCTASection() {
 
         <ScrollReveal delay={0.1}>
           <div className="text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#F8FAFC] leading-tight mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] leading-tight mb-6">
               Ready to fix the{" "}
               <span className="text-gradient-brand">bottleneck</span>?
             </h2>
@@ -160,7 +160,7 @@ export function FinalCTASection() {
 
         <ScrollReveal delay={0.2}>
           <div className="text-center">
-            <p className="text-lg text-[#94A3B8] leading-relaxed mb-10 max-w-xl mx-auto">
+            <p className="text-lg text-[#6B7280] leading-relaxed mb-10 max-w-xl mx-auto">
               Tell me what you&apos;re trying to grow, what&apos;s blocking progress,
               and what kind of help you need. I&apos;ll review it and follow up
               within one business day.
@@ -182,28 +182,28 @@ export function FinalCTASection() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.4}>
-          <div className="mt-14 rounded-[32px] border border-white/10 bg-white/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
+          <div className="mt-14 rounded-[32px] border border-black/10 bg-black/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
             <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
               <div className="text-left">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7C3AED]">
                   Start Here
                 </p>
-                <h3 className="mt-4 text-2xl md:text-3xl font-semibold text-[#F8FAFC]">
+                <h3 className="mt-4 text-2xl md:text-3xl font-semibold text-[#1A1A1A]">
                   Send a quick note and I&apos;ll get back to you.
                 </h3>
-                <p className="mt-4 max-w-md text-sm md:text-base leading-7 text-[#94A3B8]">
+                <p className="mt-4 max-w-md text-sm md:text-base leading-7 text-[#6B7280]">
                   Share what you&apos;re trying to grow, what&apos;s blocking progress, and
                   what kind of help you need. I&apos;ll review it and follow up within one
                   business day.
                 </p>
-                <p className="mt-6 text-xs uppercase tracking-[0.16em] text-[#94A3B8]/70">
+                <p className="mt-6 text-xs uppercase tracking-[0.16em] text-[#6B7280]/70">
                   Typical response time: under 24 hours on business days.
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="grid gap-4">
                 <div className="grid gap-4 md:grid-cols-2">
-                  <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                  <label className="grid gap-2 text-sm text-gray-700">
                     Name
                     <input
                       type="text"
@@ -212,12 +212,12 @@ export function FinalCTASection() {
                       onChange={handleFieldChange}
                       required
                       autoComplete="name"
-                      className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                      className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                       placeholder="Your name"
                     />
                   </label>
 
-                  <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                  <label className="grid gap-2 text-sm text-gray-700">
                     Email
                     <input
                       type="email"
@@ -226,13 +226,13 @@ export function FinalCTASection() {
                       onChange={handleFieldChange}
                       required
                       autoComplete="email"
-                      className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                      className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                       placeholder="you@company.com"
                     />
                   </label>
                 </div>
 
-                <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                <label className="grid gap-2 text-sm text-gray-700">
                   Phone
                   <input
                     type="tel"
@@ -240,12 +240,12 @@ export function FinalCTASection() {
                     value={formData.phone}
                     onChange={handleFieldChange}
                     autoComplete="tel"
-                    className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                    className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                     placeholder="+1 (555) 123-4567"
                   />
                 </label>
 
-                <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                <label className="grid gap-2 text-sm text-gray-700">
                   Project details
                   <textarea
                     name="message"
@@ -253,7 +253,7 @@ export function FinalCTASection() {
                     onChange={handleFieldChange}
                     rows={5}
                     required
-                    className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                    className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                     placeholder="What are you trying to grow, fix, or launch?"
                   />
                 </label>
@@ -284,7 +284,7 @@ export function FinalCTASection() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.5}>
-          <p className="mt-8 text-center text-xs text-[#94A3B8]/60">
+          <p className="mt-8 text-center text-xs text-[#6B7280]/60">
             Most engagements start with a 30-minute diagnostic call.
           </p>
         </ScrollReveal>

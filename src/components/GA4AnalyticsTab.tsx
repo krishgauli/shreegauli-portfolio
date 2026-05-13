@@ -81,7 +81,7 @@ export default function GA4AnalyticsTab({ clinicId, isDark = false }: GA4Analyti
               <BarChart3 className="h-9 w-9 text-orange-500" />
             </div>
           </div>
-          <p className="text-xl font-extrabold text-slate-900 dark:text-white mb-2">GA4 Not Connected</p>
+          <p className="text-xl font-extrabold text-slate-900 dark:text-gray-900 mb-2">GA4 Not Connected</p>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
             Your administrator hasn&apos;t connected a Google Analytics property for this clinic yet.
           </p>
@@ -119,7 +119,7 @@ export default function GA4AnalyticsTab({ clinicId, isDark = false }: GA4Analyti
         <PeriodSelector period={period} onChange={setPeriod} isDark={isDark} />
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-slate-200/60 dark:border-slate-700/60 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 p-14 text-center">
           <BarChart3 className="h-10 w-10 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-          <p className="text-lg font-bold text-slate-900 dark:text-white mb-2">No GA4 Data Yet</p>
+          <p className="text-lg font-bold text-slate-900 dark:text-gray-900 mb-2">No GA4 Data Yet</p>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
             No analytics data has been synced for this period. Click <strong>Refresh</strong> or check back soon.
           </p>
@@ -153,7 +153,7 @@ export default function GA4AnalyticsTab({ clinicId, isDark = false }: GA4Analyti
 
   const glassCard = `rounded-3xl p-6 border backdrop-blur-sm shadow-sm ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white/80 border-slate-200/60'}`;
   const headingClass = `text-[15px] font-bold mb-5 flex items-center gap-2.5 ${isDark ? 'text-white' : 'text-slate-900'}`;
-  const tooltipStyle = { backgroundColor: isDark ? '#0f172a' : '#ffffff', border: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`, borderRadius: '16px', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', padding: '12px 16px' };
+  const tooltipStyle = { backgroundColor: isDark ? '#F5F0E8' : '#ffffff', border: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`, borderRadius: '16px', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', padding: '12px 16px' };
 
   const kpis = [
     { label: 'Active Users', value: totals.activeUsers.toLocaleString(), icon: <Users className="h-5 w-5" />, color: 'emerald' },
@@ -219,8 +219,8 @@ export default function GA4AnalyticsTab({ clinicId, isDark = false }: GA4Analyti
               <linearGradient id="colorSessions" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#3b82f6" stopOpacity={0.2}/><stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/></linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1e293b' : '#f1f5f9'} />
-            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-            <YAxis stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Legend wrapperStyle={{ fontSize: '12px', fontWeight: 600 }} />
             <Area type="monotone" dataKey="activeUsers" name="Active Users" stroke="#10b981" strokeWidth={2.5} fill="url(#colorUsers)" dot={false} activeDot={{ r: 5, fill: '#10b981', stroke: '#fff', strokeWidth: 2 }} />
@@ -236,8 +236,8 @@ export default function GA4AnalyticsTab({ clinicId, isDark = false }: GA4Analyti
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1e293b' : '#f1f5f9'} />
-              <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-              <YAxis stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
+              <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+              <YAxis stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
               <Tooltip contentStyle={tooltipStyle} />
               <Legend wrapperStyle={{ fontSize: '12px', fontWeight: 600 }} />
               <Line type="monotone" dataKey="bounceRate" name="Bounce %" stroke="#ef4444" strokeWidth={2.5} dot={false} activeDot={{ r: 5, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} />
@@ -272,8 +272,8 @@ export default function GA4AnalyticsTab({ clinicId, isDark = false }: GA4Analyti
               <linearGradient id="colorPV" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f59e0b" stopOpacity={0.2}/><stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/></linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1e293b' : '#f1f5f9'} />
-            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-            <YAxis stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Area type="monotone" dataKey="pageViews" name="Page Views" stroke="#f59e0b" strokeWidth={2.5} fill="url(#colorPV)" dot={false} activeDot={{ r: 5, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} />
           </AreaChart>

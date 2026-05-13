@@ -54,13 +54,13 @@ export function ServiceModule({ service }: { service: Service }) {
 
       {/* Content */}
       <div className="flex flex-col gap-3 flex-1">
-        <h3 className="text-base font-bold text-[#F8FAFC]">{service.title}</h3>
-        <p className="text-sm text-[#94A3B8] leading-relaxed">{service.description}</p>
+        <h3 className="text-base font-bold text-[#1A1A1A]">{service.title}</h3>
+        <p className="text-sm text-[#6B7280] leading-relaxed">{service.description}</p>
 
         {/* Outcomes */}
         <ul className="flex flex-col gap-1.5 mt-1">
           {service.outcomes.map((outcome) => (
-            <li key={outcome} className="flex items-start gap-2 text-xs text-[#94A3B8]">
+            <li key={outcome} className="flex items-start gap-2 text-xs text-[#6B7280]">
               <span
                 className="w-1 h-1 rounded-full mt-1.5 shrink-0"
                 style={{ backgroundColor: color }}

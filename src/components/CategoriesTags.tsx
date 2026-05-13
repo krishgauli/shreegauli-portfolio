@@ -10,7 +10,7 @@ export default function CategoriesTags({ categories = [], tags = [] }: Props) {
   if (categories.length === 0 && tags.length === 0) return null;
 
   return (
-    <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-700 dark:text-slate-200">
+    <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-700 dark:text-gray-700">
       {categories.length > 0 && (
         <div className="flex items-center">
           <strong className="mr-1">Categories:</strong>

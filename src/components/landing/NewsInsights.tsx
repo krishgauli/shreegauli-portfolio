@@ -40,7 +40,7 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
   };
 
   return (
-    <section className={`py-24 ${isDark ? 'bg-slate-800' : 'bg-white'}`}>
+    <section className={`py-24 ${isDark ? 'bg-[#EDE8DF]' : 'bg-white'}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,7 +53,7 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
             <span className="text-blue-600 text-sm font-bold uppercase tracking-wide">{t('Case Studies')}</span>
           </div>
           <h2 className={`text-4xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Case Studies')}</h2>
-          <p className={`text-lg max-w-2xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-lg max-w-2xl ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
             {t('Real results from our client engagements.')}
           </p>
         </motion.div>
@@ -68,7 +68,7 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 className={`group relative rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
-                  isDark ? 'bg-slate-700 border border-slate-600' : 'bg-slate-50 border border-slate-200'
+                  isDark ? 'bg-[#D8D0C5] border border-stone-300' : 'bg-[#FDFAF5] border border-slate-200'
                 }`}
               >
                 {/* Image Container */}
@@ -90,7 +90,7 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
                     />
                   ) : (
                     <div className={`w-full h-full flex items-center justify-center ${isDark ? 'bg-slate-600' : 'bg-slate-300'}`}>
-                      <TrendingUp className={`h-8 w-8 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
+                      <TrendingUp className={`h-8 w-8 ${isDark ? 'text-gray-500' : 'text-gray-500'}`} />
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -114,13 +114,13 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
 
                   {/* Excerpt */}
                   {article.excerpt && (
-                    <p className={`text-sm mb-4 line-clamp-2 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                    <p className={`text-sm mb-4 line-clamp-2 ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
                       {article.excerpt}
                     </p>
                   )}
 
                   {/* Date */}
-                  <div className={`flex items-center gap-2 text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  <div className={`flex items-center gap-2 text-sm ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
                     <Calendar className="h-4 w-4" />
                     {formatDate(article.publishedAt)}
                   </div>
@@ -140,8 +140,8 @@ export default function NewsInsights({ articles }: NewsInsightsProps) {
             ))}
           </div>
         ) : (
-          <div className={`text-center py-12 rounded-2xl ${isDark ? 'bg-slate-800' : 'bg-slate-100'}`}>
-            <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>{t('No case studies available.')}</p>
+          <div className={`text-center py-12 rounded-2xl ${isDark ? 'bg-[#EDE8DF]' : 'bg-slate-100'}`}>
+            <p className={isDark ? 'text-gray-500' : 'text-slate-600'}>{t('No case studies available.')}</p>
           </div>
         )}
 

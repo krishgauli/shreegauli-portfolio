@@ -136,7 +136,7 @@ export default function SeoAeoGeoServicePage() {
       {/* Three Pillars */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Three pillars of modern search</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Three pillars of modern search</h2>
           <div className="grid sm:grid-cols-3 gap-5">
             {[
               { title: "SEO", sub: "Search Engine Optimization", desc: "Technical audits, keyword strategy, content systems, and link building to rank on Google for the terms your buyers search." },
@@ -146,8 +146,8 @@ export default function SeoAeoGeoServicePage() {
               <ScrollReveal key={pillar.title} delay={i * 0.08}>
                 <ModuleShell className="p-6 h-full">
                   <span className="text-xs font-bold text-[#22D3EE]">{pillar.sub}</span>
-                  <h3 className="text-lg font-bold text-[#F8FAFC] mt-1">{pillar.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{pillar.desc}</p>
+                  <h3 className="text-lg font-bold text-[#1A1A1A] mt-1">{pillar.title}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{pillar.desc}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -158,14 +158,14 @@ export default function SeoAeoGeoServicePage() {
       {/* Process */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">How it works</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">How it works</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {process.map((item, i) => (
               <ScrollReveal key={item.step} delay={i * 0.06}>
                 <ModuleShell className="p-6 h-full">
                   <span className="text-xs font-bold text-[#22D3EE]">{item.step}</span>
-                  <h3 className="text-base font-bold text-[#F8FAFC] mt-2">{item.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
+                  <h3 className="text-base font-bold text-[#1A1A1A] mt-2">{item.title}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{item.description}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -176,11 +176,11 @@ export default function SeoAeoGeoServicePage() {
       {/* Deliverables */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">What you get</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">What you get</h2>
           <ModuleShell className="p-6">
             <ul className="grid sm:grid-cols-2 gap-3">
               {deliverables.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-[#94A3B8]">
+                <li key={item} className="flex items-start gap-3 text-sm text-[#6B7280]">
                   <CheckCircle2 className="h-4 w-4 text-[#22D3EE] mt-0.5 shrink-0" />
                   {item}
                 </li>
@@ -193,12 +193,12 @@ export default function SeoAeoGeoServicePage() {
       {/* FAQ */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Frequently asked questions</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">Frequently asked questions</h2>
           <div className="grid gap-4">
             {faqs.map((faq) => (
               <ModuleShell key={faq.q} className="p-6">
-                <h3 className="text-base font-bold text-[#F8FAFC]">{faq.q}</h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{faq.a}</p>
+                <h3 className="text-base font-bold text-[#1A1A1A]">{faq.q}</h3>
+                <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{faq.a}</p>
               </ModuleShell>
             ))}
           </div>
@@ -208,7 +208,7 @@ export default function SeoAeoGeoServicePage() {
       {/* Related Services */}
       <section className="relative z-10 pb-20 px-6">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Related services</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Related services</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               { title: "Web App Development", description: "Custom Next.js sites built with SEO from day one.", href: "/services/web-development" },
@@ -218,8 +218,8 @@ export default function SeoAeoGeoServicePage() {
             ].map((svc) => (
               <Link key={svc.title} href={svc.href}>
                 <ModuleShell className="p-5 h-full" enableHoverLift>
-                  <h3 className="text-sm font-semibold text-[#F8FAFC]">{svc.title}</h3>
-                  <p className="text-xs text-[#94A3B8] mt-1">{svc.description}</p>
+                  <h3 className="text-sm font-semibold text-[#1A1A1A]">{svc.title}</h3>
+                  <p className="text-xs text-[#6B7280] mt-1">{svc.description}</p>
                 </ModuleShell>
               </Link>
             ))}

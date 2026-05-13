@@ -36,7 +36,7 @@ export function HeroMarketingBackdrop() {
           transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.span
-            className="absolute -top-[5px] h-3 w-3 rounded-full bg-[#F8FAFC] shadow-[0_0_16px_rgba(248,250,252,0.95)]"
+            className="absolute -top-[5px] h-3 w-3 rounded-full bg-[#1A1A1A] shadow-[0_0_16px_rgba(248,250,252,0.95)]"
             animate={
               prefersReducedMotion
                 ? undefined
@@ -88,7 +88,7 @@ export function HeroMarketingBackdrop() {
         ))}
       </div>
 
-      <div className="absolute right-[8%] top-[18%] hidden xl:flex items-center gap-4 rounded-full border border-white/10 bg-[#0F172A]/55 px-5 py-3 backdrop-blur-xl">
+      <div className="absolute right-[8%] top-[18%] hidden xl:flex items-center gap-4 rounded-full border border-black/10 bg-[#F5F0E8]/55 px-5 py-3 backdrop-blur-xl">
         {funnelSteps.map((step, index) => (
           <div key={step.label} className="flex items-center gap-4">
             <div className="flex items-center gap-2">
@@ -99,7 +99,7 @@ export function HeroMarketingBackdrop() {
                   boxShadow: `0 0 14px ${step.color}`,
                 }}
               />
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#CBD5E1]">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-600">
                 {step.label}
               </span>
             </div>
@@ -113,7 +113,7 @@ export function HeroMarketingBackdrop() {
       {floatingMetrics.map((metric) => (
         <motion.div
           key={metric.label}
-          className="absolute hidden md:block rounded-2xl border border-white/10 bg-[#0F172A]/55 px-4 py-3 backdrop-blur-xl shadow-[0_20px_50px_-30px_rgba(2,6,23,0.9)]"
+          className="absolute hidden md:block rounded-2xl border border-black/10 bg-[#F5F0E8]/55 px-4 py-3 backdrop-blur-xl shadow-[0_20px_50px_-30px_rgba(2,6,23,0.9)]"
           style={{ top: metric.top, left: metric.left }}
           animate={
             prefersReducedMotion
@@ -127,7 +127,7 @@ export function HeroMarketingBackdrop() {
             delay: metric.delay,
           }}
         >
-          <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#94A3B8]">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#6B7280]">
             {metric.label}
           </div>
           <div className="mt-1 text-sm font-bold" style={{ color: metric.color }}>
@@ -136,7 +136,7 @@ export function HeroMarketingBackdrop() {
         </motion.div>
       ))}
 
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#FDFAF5] via-[#FDFAF5]/20 to-transparent" />
     </div>
   );
 }

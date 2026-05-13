@@ -31,10 +31,10 @@ export default function BackgroundTaskNotification({ tasks, onDismiss }: Backgro
             className={`
               rounded-xl border shadow-lg backdrop-blur-sm p-4 min-w-[320px]
               ${task.status === 'running' 
-                ? 'bg-white/95 dark:bg-slate-900/95 border-blue-200 dark:border-blue-800' 
+                ? 'bg-white/95 dark:bg-[#FDFAF5]/98 border-blue-200 dark:border-blue-800' 
                 : task.status === 'success'
-                ? 'bg-white/95 dark:bg-slate-900/95 border-emerald-200 dark:border-emerald-800'
-                : 'bg-white/95 dark:bg-slate-900/95 border-red-200 dark:border-red-800'
+                ? 'bg-white/95 dark:bg-[#FDFAF5]/98 border-emerald-200 dark:border-emerald-800'
+                : 'bg-white/95 dark:bg-[#FDFAF5]/98 border-red-200 dark:border-red-800'
               }
             `}
           >
@@ -65,7 +65,7 @@ export default function BackgroundTaskNotification({ tasks, onDismiss }: Backgro
                   {task.message}
                 </p>
                 {task.details && (
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                  <p className="text-xs text-slate-600 dark:text-gray-500 mt-1">
                     {task.details}
                   </p>
                 )}
@@ -74,9 +74,9 @@ export default function BackgroundTaskNotification({ tasks, onDismiss }: Backgro
               {task.status !== 'running' && (
                 <button
                   onClick={() => onDismiss(task.id)}
-                  className="flex-shrink-0 p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded transition-colors"
+                  className="flex-shrink-0 p-1 hover:bg-slate-100 dark:hover:bg-[#EDE8DF] rounded transition-colors"
                 >
-                  <X className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                  <X className="h-4 w-4 text-gray-500 dark:text-gray-500" />
                 </button>
               )}
             </div>

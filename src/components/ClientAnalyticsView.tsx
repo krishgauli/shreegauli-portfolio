@@ -205,7 +205,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
     borderRadius: '12px',
     color: isDark ? '#e2e8f0' : '#334155',
   };
-  const axisStroke = isDark ? '#94a3b8' : '#64748b';
+  const axisStroke = isDark ? '#6B7280' : '#64748b';
   const gridStroke = isDark ? '#334155' : '#e2e8f0';
 
   if (loading) {
@@ -427,7 +427,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
           {/* GA4 Users / Sessions / Page Views Chart */}
           {ga4ChartData.length > 0 && (
             <div className="rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">📈 Website Traffic (Daily)</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-gray-900 mb-4">📈 Website Traffic (Daily)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart data={ga4ChartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
@@ -447,7 +447,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
           {trafficSources.length > 0 && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">🎯 Traffic Sources</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-gray-900 mb-4">🎯 Traffic Sources</h3>
                 <ResponsiveContainer width="100%" height={280}>
                   <PieChart>
                     <Pie
@@ -470,7 +470,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
 
               {/* Traffic Sources Table */}
               <div className="rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">📊 Session Breakdown</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-gray-900 mb-4">📊 Session Breakdown</h3>
                 <table className="w-full text-sm text-slate-600 dark:text-slate-300">
                   <thead>
                     <tr className="border-b border-slate-200 dark:border-slate-700">
@@ -533,7 +533,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
           {/* SC Clicks & Impressions Chart */}
           {scChartData.length > 0 && (
             <div className="rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">🔍 Search Performance (Daily)</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-gray-900 mb-4">🔍 Search Performance (Daily)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={scChartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
@@ -553,7 +553,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {topPages.length > 0 && (
               <div className="rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-x-auto">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">📄 Top Visited Pages</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-gray-900 mb-4">📄 Top Visited Pages</h3>
                 <table className="w-full text-sm text-slate-600 dark:text-slate-300">
                   <thead>
                     <tr className="border-b border-slate-200 dark:border-slate-700">
@@ -581,7 +581,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
             )}
             {topQueries.length > 0 && (
               <div className="rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-x-auto">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">🔎 Top Search Queries</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-gray-900 mb-4">🔎 Top Search Queries</h3>
                 <table className="w-full text-sm text-slate-600 dark:text-slate-300">
                   <thead>
                     <tr className="border-b border-slate-200 dark:border-slate-700">
@@ -674,7 +674,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
                   </div>
                 </div>
                 <div className="rounded-2xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Daily Ad Spend & Clicks</h3>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-gray-900 mb-4">Daily Ad Spend & Clicks</h3>
                   <ResponsiveContainer width="100%" height={280}>
                     <AreaChart data={adsData}>
                       <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
@@ -782,7 +782,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
 
           {/* Weekly Detailed Table */}
           <div className="rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-x-auto">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">📊 Weekly Breakdown</h3>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-gray-900 mb-4">📊 Weekly Breakdown</h3>
             <table className="w-full text-sm text-slate-600 dark:text-slate-300">
               <thead>
                 <tr className="border-b border-slate-200 dark:border-slate-700">

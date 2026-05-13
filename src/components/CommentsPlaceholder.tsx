@@ -210,7 +210,7 @@ export default function CommentsPlaceholder() {
   };
 
   return (
-    <section className="mt-10 rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm p-5 sm:p-8">
+    <section className="mt-10 rounded-3xl border border-slate-200 dark:border-stone-300 bg-white dark:bg-[#EDE8DF] shadow-sm p-5 sm:p-8">
       {/* Header */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
@@ -221,7 +221,7 @@ export default function CommentsPlaceholder() {
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
               Comments
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500">
               {isLoading ? 'Loading...' : `${comments.length} ${comments.length === 1 ? 'comment' : 'comments'}`}
             </p>
           </div>
@@ -283,7 +283,7 @@ export default function CommentsPlaceholder() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="text-sm text-slate-600 dark:text-slate-300 mt-6"
+            className="text-sm text-slate-600 dark:text-gray-600 mt-6"
           >
             No comments yet. Be the first to share your thoughts!
           </motion.p>
@@ -295,18 +295,18 @@ export default function CommentsPlaceholder() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 p-4 hover:shadow-md transition-shadow"
+                className="rounded-2xl border border-slate-200 dark:border-stone-300 bg-[#FDFAF5] dark:bg-[#F5F0E8]/60 p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-gray-800">
                       {comment.author}
                     </p>
-                    <p className="text-sm text-slate-700 dark:text-slate-300 mt-2 whitespace-pre-wrap break-words">
+                    <p className="text-sm text-slate-700 dark:text-gray-600 mt-2 whitespace-pre-wrap break-words">
                       {comment.content}
                     </p>
                     <div className="flex items-center gap-3 mt-3">
-                      <time className="text-xs text-slate-500 dark:text-slate-400">
+                      <time className="text-xs text-gray-500 dark:text-gray-500">
                         {new Date(comment.publishedAt).toLocaleString()}
                       </time>
                       <motion.button
@@ -318,26 +318,26 @@ export default function CommentsPlaceholder() {
                       </motion.button>
                     </div>
                   </div>
-                  <Reply className="h-4 w-4 text-slate-400 dark:text-slate-500 flex-shrink-0 mt-1" />
+                  <Reply className="h-4 w-4 text-gray-500 dark:text-gray-500 flex-shrink-0 mt-1" />
                 </div>
 
                 {/* Replies */}
                 {comment.replies.length > 0 && (
-                  <ul className="mt-4 space-y-3 pl-4 sm:pl-6 border-l-2 border-slate-200 dark:border-slate-700">
+                  <ul className="mt-4 space-y-3 pl-4 sm:pl-6 border-l-2 border-slate-200 dark:border-stone-300">
                     {comment.replies.map((reply) => (
                       <motion.li
                         key={reply.id}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-3"
+                        className="rounded-xl border border-slate-200 dark:border-stone-300 bg-white dark:bg-[#EDE8DF] p-3"
                       >
-                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                        <p className="text-sm font-semibold text-slate-900 dark:text-gray-800">
                           {reply.author}
                         </p>
-                        <p className="text-sm text-slate-700 dark:text-slate-300 mt-1 whitespace-pre-wrap break-words">
+                        <p className="text-sm text-slate-700 dark:text-gray-600 mt-1 whitespace-pre-wrap break-words">
                           {reply.content}
                         </p>
-                        <time className="text-xs text-slate-500 dark:text-slate-400 mt-2 block">
+                        <time className="text-xs text-gray-500 dark:text-gray-500 mt-2 block">
                           {new Date(reply.publishedAt).toLocaleString()}
                         </time>
                       </motion.li>
@@ -370,14 +370,14 @@ export default function CommentsPlaceholder() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative z-10 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-2xl"
+              className="relative z-10 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-stone-300 bg-white dark:bg-[#F5F0E8] p-5 sm:p-6 shadow-2xl"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     {replyTo ? `Reply to ${replyTo.author}` : 'Write a comment'}
                   </h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
                     {replyTo
                       ? 'Your reply will appear under this comment right away.'
                       : 'Share your thoughts with the community.'}
@@ -387,7 +387,7 @@ export default function CommentsPlaceholder() {
                   onClick={() => setIsModalOpen(false)}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="rounded-lg p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  className="rounded-lg p-2 text-gray-500 hover:text-slate-800 dark:text-gray-500 dark:hover:text-gray-800 hover:bg-slate-100 dark:hover:bg-[#EDE8DF]"
                 >
                   <X className="h-5 w-5" />
                 </motion.button>
@@ -398,12 +398,12 @@ export default function CommentsPlaceholder() {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   placeholder={replyTo ? 'Write your reply...' : 'Share your thoughts...'}
-                  className="w-full min-h-32 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 resize-none"
+                  className="w-full min-h-32 rounded-xl border border-slate-300 dark:border-stone-300 bg-white dark:bg-[#EDE8DF] px-4 py-3 text-slate-900 dark:text-gray-800 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 resize-none"
                   required
                   maxLength={2000}
                 />
                 <div className="flex items-center justify-between">
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-gray-500">
                     {content.length}/2000 characters
                   </p>
                   <div className="flex items-center justify-end gap-3">
@@ -412,7 +412,7 @@ export default function CommentsPlaceholder() {
                       onClick={() => setIsModalOpen(false)}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="rounded-xl px-4 py-2.5 text-sm font-semibold border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                      className="rounded-xl px-4 py-2.5 text-sm font-semibold border border-slate-300 dark:border-stone-300 text-slate-700 dark:text-gray-700 hover:bg-slate-100 dark:hover:bg-[#EDE8DF] transition-colors"
                     >
                       Cancel
                     </motion.button>

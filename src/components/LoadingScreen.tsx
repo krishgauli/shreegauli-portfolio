@@ -113,7 +113,7 @@ export default function LoadingScreen({ durationMs = 400, onComplete, active }: 
 
             {/* Progress bar + percentage */}
             <div className="w-64 sm:w-80 flex flex-col items-center gap-3">
-              <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div className="w-full h-1.5 rounded-full bg-[#EDE8DF] overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
                   style={{

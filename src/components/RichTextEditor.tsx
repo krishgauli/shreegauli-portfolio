@@ -648,12 +648,12 @@ export default function RichTextEditor({
 
       <style jsx>{`
         [contenteditable] {
-          color: #0f172a;
-          caret-color: #0f172a;
+          color: #F5F0E8;
+          caret-color: #F5F0E8;
         }
         [contenteditable]:empty:before {
           content: attr(data-placeholder);
-          color: #94a3b8;
+          color: #6B7280;
           pointer-events: none;
         }
         [contenteditable] h1 {
@@ -738,7 +738,7 @@ export default function RichTextEditor({
         }
         :global(.dark) [contenteditable] blockquote,
         :global(.theme-dark) [contenteditable] blockquote {
-          color: #94a3b8;
+          color: #6B7280;
         }
         :global(.dark) [contenteditable] code,
         :global(.theme-dark) [contenteditable] code {

@@ -111,8 +111,8 @@ function Toast({ type, message, onClose }: { type: 'success' | 'error'; message:
       exit={{ opacity: 0, y: -20, x: '-50%' }}
       className={`fixed top-6 left-1/2 z-50 flex items-center gap-3 px-6 py-4 rounded-2xl shadow-2xl border backdrop-blur-xl ${
         type === 'success'
-          ? 'bg-[#0F172A]/95 border-cyan-400/30 text-[#E0F2FE]'
-          : 'bg-[#0F172A]/95 border-red-500/30 text-[#FEE2E2]'
+          ? 'bg-[#F5F0E8]/95 border-cyan-400/30 text-[#E0F2FE]'
+          : 'bg-[#F5F0E8]/95 border-red-500/30 text-[#FEE2E2]'
       }`}
     >
       {type === 'success' ? <CheckCircle2 className="h-5 w-5 text-[#22D3EE]" /> : <XCircle className="h-5 w-5 text-red-400" />}
@@ -127,7 +127,7 @@ function Toast({ type, message, onClose }: { type: 'success' | 'error'; message:
 /* ─── Dashboard Component ─── */
 export default function ClientDashboardPage() {
   return (
-    <Suspense fallback={<div className="dark dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading dashboard..." className="text-[#22D3EE]" /></div>}>
+    <Suspense fallback={<div className="dark dashboard-shell min-h-screen text-[#1A1A1A] flex items-center justify-center"><DashboardLoader variant="page" label="Loading dashboard..." className="text-[#22D3EE]" /></div>}>
       <ClientDashboard />
     </Suspense>
   );
@@ -408,7 +408,7 @@ function ClientDashboard() {
     }
   };
 
-  if (!user) return <div className="dark dashboard-shell min-h-screen text-[#F8FAFC] flex items-center justify-center"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
+  if (!user) return <div className="dark dashboard-shell min-h-screen text-[#1A1A1A] flex items-center justify-center"><DashboardLoader variant="page" label="Loading..." className="text-[#22D3EE]" /></div>;
 
   const currentPlanIdRaw = subStatus?.planId || null;
   const currentPlanId = currentPlanIdRaw === 'platinum' ? 'premium' : currentPlanIdRaw;
@@ -475,12 +475,12 @@ function ClientDashboard() {
 
       {/* Sidebar */}
       <aside className="dashboard-sidebar dashboard-inner hidden w-72 shrink-0 lg:flex lg:flex-col rounded-[2rem] m-4 mr-0 px-4 py-5">
-        <div className="rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/8 via-white/[0.03] to-transparent px-4 py-5 shadow-[0_20px_40px_-30px_rgba(34,211,238,0.45)]">
+        <div className="rounded-[1.75rem] border border-black/10 bg-gradient-to-br from-white/8 via-white/[0.03] to-transparent px-4 py-5 shadow-[0_20px_40px_-30px_rgba(34,211,238,0.45)]">
           <div className="dashboard-kicker mb-3">Client Portal</div>
           <div className="flex items-start justify-between gap-3">
             <div>
               <h2 className="text-xl font-bold text-white">Growth Control</h2>
-              <p className="mt-2 text-sm text-[#94A3B8]">
+              <p className="mt-2 text-sm text-[#6B7280]">
                 Track performance, billing, and next steps without leaving the brand system.
               </p>
             </div>
@@ -522,7 +522,7 @@ function ClientDashboard() {
         <div className="rounded-[1.5rem] border border-cyan-400/10 bg-cyan-400/5 px-4 py-4">
           <div className="dashboard-kicker mb-2">Workspace status</div>
           <p className="text-sm font-semibold text-white">Everything you need is connected.</p>
-          <p className="mt-2 text-sm text-[#94A3B8]">Use the analytics, billing, and performance tabs to move faster from insight to action.</p>
+          <p className="mt-2 text-sm text-[#6B7280]">Use the analytics, billing, and performance tabs to move faster from insight to action.</p>
         </div>
       </aside>
 
@@ -545,7 +545,7 @@ function ClientDashboard() {
             </div>
             <button className="dashboard-ghost-button relative rounded-2xl p-2.5">
               <Bell className="h-5 w-5 text-slate-600 dark:text-slate-300" />
-              <div className="absolute top-2 right-2 w-2 h-2 bg-[#22D3EE] rounded-full ring-2 ring-[#0F172A]" />
+              <div className="absolute top-2 right-2 w-2 h-2 bg-[#22D3EE] rounded-full ring-2 ring-[#F5F0E8]" />
             </button>
             
             {/* User Menu Dropdown */}
@@ -765,8 +765,8 @@ function ClientDashboard() {
                       <Sparkles className="h-6 w-6 text-violet-500" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2 text-[#f8fafc]">Premium AI Analytics is available on Scale</h3>
-                      <p className="text-[#94a3b8] mb-6 max-w-3xl">
+                      <h3 className="text-2xl font-bold mb-2 text-[#1A1A1A]">Premium AI Analytics is available on Scale</h3>
+                      <p className="text-[#6B7280] mb-6 max-w-3xl">
                         Get an AI assistant that uses your real dashboard data to answer performance questions, compare accounts, and recommend next actions.
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -1226,16 +1226,16 @@ function OverviewView({
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.15)" />
                     {patientBarData.length > 3 ? (
                       <>
-                        <XAxis type="number" fontSize={12} tick={{ fill: '#94a3b8' }} />
-                        <YAxis type="category" dataKey="name" fontSize={11} width={130} tick={{ fill: '#94a3b8' }} />
+                        <XAxis type="number" fontSize={12} tick={{ fill: '#6B7280' }} />
+                        <YAxis type="category" dataKey="name" fontSize={11} width={130} tick={{ fill: '#6B7280' }} />
                       </>
                     ) : (
                       <>
-                        <XAxis dataKey="name" fontSize={12} tick={{ fill: '#94a3b8' }} />
-                        <YAxis fontSize={12} tick={{ fill: '#94a3b8' }} />
+                        <XAxis dataKey="name" fontSize={12} tick={{ fill: '#6B7280' }} />
+                        <YAxis fontSize={12} tick={{ fill: '#6B7280' }} />
                       </>
                     )}
-                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#f8fafc' }} />
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#1A1A1A' }} />
                     <Legend />
                     <Bar dataKey="patients" fill="#10b981" name="Lead Count" radius={[4, 4, 4, 4]} />
                     <Bar dataKey="traffic" fill="#3b82f6" name="Traffic" radius={[4, 4, 4, 4]} />
@@ -1265,7 +1265,7 @@ function OverviewView({
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#f8fafc' }} />
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#1A1A1A' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -1280,10 +1280,10 @@ function OverviewView({
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={growthBarData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.15)" />
-                  <XAxis dataKey="name" fontSize={11} tick={{ fill: '#94a3b8' }} />
-                  <YAxis fontSize={12} tickFormatter={(v: number) => `${v}%`} tick={{ fill: '#94a3b8' }} />
+                  <XAxis dataKey="name" fontSize={11} tick={{ fill: '#6B7280' }} />
+                  <YAxis fontSize={12} tickFormatter={(v: number) => `${v}%`} tick={{ fill: '#6B7280' }} />
                   <Tooltip
-                    contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#f8fafc' }}
+                    contentStyle={{ borderRadius: '12px', border: '1px solid rgba(148,163,184,0.2)', backgroundColor: 'rgba(15,23,42,0.95)', color: '#1A1A1A' }}
                     formatter={(value: any, name: any) => {
                       if (name === 'Growth %') return [`${value}%`, name];
                       return [value, name];
@@ -1305,7 +1305,7 @@ function OverviewView({
 function NavItem({ icon: Icon, label, active = false, onClick, badge }: { icon: any; label: string; active?: boolean; onClick?: () => void; badge?: string }) {
   const getBadgeClasses = (badgeText?: string) => {
     if (!badgeText) return 'bg-white/10 text-white';
-    if (badgeText === 'Coming Soon') return 'bg-white/6 text-[#94A3B8] border border-white/8';
+    if (badgeText === 'Coming Soon') return 'bg-white/6 text-[#6B7280] border border-white/8';
     if (badgeText === 'Custom') return 'bg-gradient-to-r from-purple-500/20 to-cyan-500/20 text-purple-200 border border-purple-400/20';
     if (badgeText === 'Scale') return 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-200 border border-amber-400/20';
     if (badgeText === 'Growth') return 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-200 border border-cyan-400/20';
@@ -1320,7 +1320,7 @@ function NavItem({ icon: Icon, label, active = false, onClick, badge }: { icon: 
       className={`group relative w-full flex items-center gap-3 px-3 py-3 rounded-2xl transition-all text-left ${
         active
           ? 'bg-white/10 border border-cyan-400/18 text-white shadow-[0_18px_36px_-24px_rgba(34,211,238,0.6)] font-bold'
-          : 'text-[#94A3B8] hover:text-white hover:bg-white/6 border border-transparent'
+          : 'text-[#6B7280] hover:text-white hover:bg-white/6 border border-transparent'
       }`}
     >
       {active && <div className="absolute left-0 top-1/2 -translate-y-1/2 h-7 w-1 rounded-r-full bg-gradient-to-b from-[#7C3AED] to-[#22D3EE]" />}
@@ -1653,7 +1653,7 @@ function SettingsView({ role, setToast }: { role: 'client' | 'admin'; setToast: 
                 type={showCurrentPassword ? 'text' : 'password'}
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#f8fafc] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#1A1A1A] placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 required
               />
               <button
@@ -1673,7 +1673,7 @@ function SettingsView({ role, setToast }: { role: 'client' | 'admin'; setToast: 
                 type={showNewPassword ? 'text' : 'password'}
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#f8fafc] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#1A1A1A] placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 minLength={6}
                 required
               />
@@ -1694,7 +1694,7 @@ function SettingsView({ role, setToast }: { role: 'client' | 'admin'; setToast: 
                 type={showConfirmPassword ? 'text' : 'password'}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#f8fafc] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-4 py-3 pr-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-[#1A1A1A] placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 minLength={6}
                 required
               />

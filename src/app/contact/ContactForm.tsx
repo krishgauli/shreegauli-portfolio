@@ -24,10 +24,10 @@ const budgetOptions = [
 ];
 
 const inputClass =
-  "w-full rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 placeholder:text-[#64748B]";
+  "w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 placeholder:text-[#64748B]";
 
 const selectClass =
-  "w-full rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 appearance-none";
+  "w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 appearance-none";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -87,15 +87,15 @@ export function ContactForm() {
       {/* ── Success Popup Overlay ── */}
       {submitState === "success" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-bg-panel p-0 text-center shadow-[0_40px_120px_rgba(2,6,23,0.8)]">
-            <div className="border-b border-white/10 bg-[#0B1533] px-8 py-6">
+          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-black/10 bg-bg-panel p-0 text-center shadow-[0_40px_120px_rgba(2,6,23,0.8)]">
+            <div className="border-b border-black/10 bg-[#0B1533] px-8 py-6">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-violet text-sm font-bold text-white">SG</div>
               <p className="text-xs uppercase tracking-[0.2em] text-[#C4B5FD]">Shree Gauli</p>
             </div>
             <div className="relative p-8">
             <button
               onClick={() => setSubmitState("idle")}
-              className="absolute right-4 top-4 text-content-muted hover:text-white transition-colors"
+              className="absolute right-4 top-4 text-content-muted hover:text-gray-900 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -116,10 +116,10 @@ export function ContactForm() {
       )}
 
       {/* Left column — form */}
-      <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
+      <div className="rounded-[32px] border border-black/10 bg-black/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
         <form onSubmit={handleSubmit} className="grid gap-4">
             <div className="grid gap-4 md:grid-cols-2">
-              <label className="grid gap-2 text-sm text-[#E2E8F0]">
+              <label className="grid gap-2 text-sm text-gray-700">
                 Name *
                 <input
                   type="text"
@@ -132,7 +132,7 @@ export function ContactForm() {
                   placeholder="Your name"
                 />
               </label>
-              <label className="grid gap-2 text-sm text-[#E2E8F0]">
+              <label className="grid gap-2 text-sm text-gray-700">
                 Email *
                 <input
                   type="email"
@@ -147,7 +147,7 @@ export function ContactForm() {
               </label>
             </div>
 
-            <label className="grid gap-2 text-sm text-[#E2E8F0]">
+            <label className="grid gap-2 text-sm text-gray-700">
               Phone
               <input
                 type="tel"
@@ -161,7 +161,7 @@ export function ContactForm() {
             </label>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <label className="grid gap-2 text-sm text-[#E2E8F0]">
+              <label className="grid gap-2 text-sm text-gray-700">
                 Service interest
                 <select
                   name="businessType"
@@ -170,13 +170,13 @@ export function ContactForm() {
                   className={selectClass}
                 >
                   {serviceOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value} className="bg-[#0F172A]">
+                    <option key={opt.value} value={opt.value} className="bg-[#F5F0E8]">
                       {opt.label}
                     </option>
                   ))}
                 </select>
               </label>
-              <label className="grid gap-2 text-sm text-[#E2E8F0]">
+              <label className="grid gap-2 text-sm text-gray-700">
                 Budget range
                 <select
                   name="budget"
@@ -185,7 +185,7 @@ export function ContactForm() {
                   className={selectClass}
                 >
                   {budgetOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value} className="bg-[#0F172A]">
+                    <option key={opt.value} value={opt.value} className="bg-[#F5F0E8]">
                       {opt.label}
                     </option>
                   ))}
@@ -193,7 +193,7 @@ export function ContactForm() {
               </label>
             </div>
 
-            <label className="grid gap-2 text-sm text-[#E2E8F0]">
+            <label className="grid gap-2 text-sm text-gray-700">
               Project details *
               <textarea
                 name="message"
@@ -229,11 +229,11 @@ export function ContactForm() {
       {/* Right column — info & quick actions */}
       <div className="flex flex-col gap-6">
         {/* What happens next */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+        <div className="rounded-2xl border border-black/10 bg-black/[0.04] p-6 backdrop-blur-xl">
           <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-[#7C3AED] mb-4">
             What happens next
           </h3>
-          <ol className="space-y-3 text-sm text-[#94A3B8]">
+          <ol className="space-y-3 text-sm text-[#6B7280]">
             <li className="flex gap-3">
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#7C3AED]/20 text-xs font-bold text-[#C4B5FD]">1</span>
               <span>You fill out the form with your project details.</span>
@@ -250,14 +250,14 @@ export function ContactForm() {
         </div>
 
         {/* Quick actions */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+        <div className="rounded-2xl border border-black/10 bg-black/[0.04] p-6 backdrop-blur-xl">
           <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-[#7C3AED] mb-4">
             Prefer a direct approach?
           </h3>
           <div className="grid gap-3">
             <Link
               href="/book"
-              className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#94A3B8] hover:text-[#F8FAFC] hover:border-white/20 transition-colors"
+              className="inline-flex items-center gap-3 rounded-xl border border-black/10 bg-black/[0.04] px-4 py-3 text-sm text-[#6B7280] hover:text-[#1A1A1A] hover:border-black/12 transition-colors"
             >
               <Calendar className="h-4 w-4 text-[#22D3EE]" />
               Book a call
@@ -266,7 +266,7 @@ export function ContactForm() {
               href="https://www.linkedin.com/in/gauli/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#94A3B8] hover:text-[#F8FAFC] hover:border-white/20 transition-colors"
+              className="inline-flex items-center gap-3 rounded-xl border border-black/10 bg-black/[0.04] px-4 py-3 text-sm text-[#6B7280] hover:text-[#1A1A1A] hover:border-black/12 transition-colors"
             >
               <Linkedin className="h-4 w-4 text-[#22D3EE]" />
               Connect on LinkedIn
@@ -275,7 +275,7 @@ export function ContactForm() {
         </div>
 
         {/* Location */}
-        <p className="text-xs text-[#94A3B8]/60 text-center lg:text-left">
+        <p className="text-xs text-[#6B7280]/60 text-center lg:text-left">
           Based in Dallas, TX (CST). Available for remote work nationwide.
         </p>
       </div>

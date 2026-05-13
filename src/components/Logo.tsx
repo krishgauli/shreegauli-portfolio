@@ -93,7 +93,7 @@ export default function Logo({
           font-size: ${taglineSize};
           letter-spacing: ${taglineSpacing};
           text-transform: uppercase;
-          color: #94a3b8;
+          color: #6B7280;
         }
 
         @media (max-width: 768px) {
@@ -183,7 +183,7 @@ export default function Logo({
         {showText && (
           <div>
             <div className="sg-brand-name" style={{ margin: 0 }}>
-              <span style={{ color: darkText ? '#0f172a' : '#F8FAFC' }}>Shree</span>{' '}
+              <span style={{ color: darkText ? '#F5F0E8' : '#1A1A1A' }}>Shree</span>{' '}
               <span
                 style={{
                   background: 'linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%)',

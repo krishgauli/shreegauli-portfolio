@@ -387,7 +387,7 @@ export default function InvoiceDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 rounded-lg border border-slate-200 bg-slate-100/80 p-1 dark:border-white/10 dark:bg-white/5 w-fit">
+      <div className="flex gap-1 rounded-lg border border-slate-200 bg-slate-100/80 p-1 dark:border-black/10 dark:bg-black/[0.05] w-fit">
         {(['invoices', 'clients', 'create'] as Tab[]).map((t) => (
           <button
             key={t}
@@ -395,7 +395,7 @@ export default function InvoiceDashboard() {
             className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 ${
               tab === t
                 ? 'bg-violet-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-white/10 hover:text-[#f8fafc] dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white'
+                : 'text-slate-600 hover:bg-white/10 hover:text-[#1A1A1A] dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white'
             }`}
           >
             {t === 'create' ? 'Create New' : t}
@@ -405,10 +405,10 @@ export default function InvoiceDashboard() {
 
       {/* ── Invoices Tab ─────────────────────────────────────────────── */}
       {tab === 'invoices' && (
-        <div className="rounded-xl border border-slate-200 bg-white overflow-hidden dark:border-white/10 dark:bg-white/5">
+        <div className="rounded-xl border border-slate-200 bg-white overflow-hidden dark:border-black/10 dark:bg-black/[0.05]">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-200 text-left text-slate-600 dark:border-white/10 dark:text-slate-300">
+              <tr className="border-b border-slate-200 text-left text-slate-600 dark:border-black/10 dark:text-slate-300">
                 <th className="px-4 py-3 font-medium">Invoice #</th>
                 <th className="px-4 py-3 font-medium">Client</th>
                 <th className="px-4 py-3 font-medium">Amount</th>
@@ -527,10 +527,10 @@ export default function InvoiceDashboard() {
 
       {/* ── Clients Tab ──────────────────────────────────────────────── */}
       {tab === 'clients' && (
-        <div className="rounded-xl border border-slate-200 bg-white overflow-hidden dark:border-white/10 dark:bg-white/5">
+        <div className="rounded-xl border border-slate-200 bg-white overflow-hidden dark:border-black/10 dark:bg-black/[0.05]">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-200 text-left text-slate-600 dark:border-white/10 dark:text-slate-300">
+              <tr className="border-b border-slate-200 text-left text-slate-600 dark:border-black/10 dark:text-slate-300">
                 <th className="px-4 py-3 font-medium">Name</th>
                 <th className="px-4 py-3 font-medium">Email</th>
                 <th className="px-4 py-3 font-medium">Company</th>
@@ -584,7 +584,7 @@ export default function InvoiceDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
           {/* Create Client Form */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-black/10 dark:bg-black/[0.05]">
             <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Add Client</h2>
             <form onSubmit={handleCreateClient} className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
@@ -619,7 +619,7 @@ export default function InvoiceDashboard() {
           </div>
 
           {/* Create Invoice Form */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-black/10 dark:bg-black/[0.05]">
             <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Create Invoice</h2>
             <form onSubmit={handleCreateInvoice} className="space-y-3">
               <div>

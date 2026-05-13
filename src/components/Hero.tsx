@@ -67,7 +67,7 @@ export default function Hero({
               {heading || defaultHeading}
             </h1>
 
-            <p className={`mx-auto max-w-3xl text-xl md:text-2xl mb-12 leading-relaxed font-medium ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+            <p className={`mx-auto max-w-3xl text-xl md:text-2xl mb-12 leading-relaxed font-medium ${isDark ? 'text-gray-600' : 'text-slate-600'}`}>
               {subheading || defaultSub}
             </p>
           </motion.div>
@@ -92,7 +92,7 @@ export default function Hero({
               <a
                 href={secondaryCTA.href || '#'}
                 onClick={secondaryCTA.onClick}
-                className={`flex items-center gap-3 rounded-full border backdrop-blur-sm px-10 py-5 text-lg font-bold transition-all active:scale-95 ${isDark ? 'border-white/20 bg-white/5 text-white hover:bg-white/10' : 'border-slate-300 bg-white/70 text-slate-900 hover:bg-white'}`}
+                className={`flex items-center gap-3 rounded-full border backdrop-blur-sm px-10 py-5 text-lg font-bold transition-all active:scale-95 ${isDark ? 'border-black/12 bg-black/[0.05] text-white hover:bg-black/5' : 'border-slate-300 bg-white/70 text-slate-900 hover:bg-white'}`}
               >
                 <Play className={`h-5 w-5 ${isDark ? 'fill-white' : 'fill-slate-700'}`} /> {secondaryCTA.label}
               </a>
@@ -110,28 +110,28 @@ export default function Hero({
               transition={{ delay: 0.4, duration: 0.8 }}
               className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20"
             >
-              <div className={`backdrop-blur-sm p-8 rounded-3xl border transition-colors group ${isDark ? 'bg-white/5 border-white/10 hover:border-emerald-500/30' : 'bg-white/80 border-slate-200 hover:border-emerald-500/30 shadow-lg'}`}>
+              <div className={`backdrop-blur-sm p-8 rounded-3xl border transition-colors group ${isDark ? 'bg-black/[0.05] border-black/10 hover:border-emerald-500/30' : 'bg-black/50 border-slate-200 hover:border-emerald-500/30 shadow-lg'}`}>
                 <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:bg-emerald-500 transition-colors">
-                  <Search className="h-6 w-6 text-emerald-400 group-hover:text-white transition-colors" />
+                  <Search className="h-6 w-6 text-emerald-400 group-hover:text-gray-900 transition-colors" />
                 </div>
                 <h3 className={`text-2xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Local SEO Mastery</h3>
-                <p className={`leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Dominate &apos;near me&apos; searches in your Texas municipality with clinical precision.</p>
+                <p className={`leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>Dominate &apos;near me&apos; searches in your Texas municipality with clinical precision.</p>
               </div>
               
-              <div className={`backdrop-blur-sm p-8 rounded-3xl border transition-colors group ${isDark ? 'bg-white/5 border-white/10 hover:border-blue-500/30' : 'bg-white/80 border-slate-200 hover:border-blue-500/30 shadow-lg'}`}>
+              <div className={`backdrop-blur-sm p-8 rounded-3xl border transition-colors group ${isDark ? 'bg-black/[0.05] border-black/10 hover:border-blue-500/30' : 'bg-black/50 border-slate-200 hover:border-blue-500/30 shadow-lg'}`}>
                 <div className="h-12 w-12 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:bg-blue-500 transition-colors">
-                  <Activity className="h-6 w-6 text-blue-400 group-hover:text-white transition-colors" />
+                  <Activity className="h-6 w-6 text-blue-400 group-hover:text-gray-900 transition-colors" />
                 </div>
                 <h3 className={`text-2xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Intake Automation</h3>
-                <p className={`leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>24/7 AI agents that verify insurance and schedule patients directly into your EHR.</p>
+                <p className={`leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>24/7 AI agents that verify insurance and schedule patients directly into your EHR.</p>
               </div>
 
-              <div className={`backdrop-blur-sm p-8 rounded-3xl border transition-colors group ${isDark ? 'bg-white/5 border-white/10 hover:border-purple-500/30' : 'bg-white/80 border-slate-200 hover:border-purple-500/30 shadow-lg'}`}>
+              <div className={`backdrop-blur-sm p-8 rounded-3xl border transition-colors group ${isDark ? 'bg-black/[0.05] border-black/10 hover:border-purple-500/30' : 'bg-black/50 border-slate-200 hover:border-purple-500/30 shadow-lg'}`}>
                 <div className="h-12 w-12 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:bg-purple-500 transition-colors">
-                  <BarChart3 className="h-6 w-6 text-purple-400 group-hover:text-white transition-colors" />
+                  <BarChart3 className="h-6 w-6 text-purple-400 group-hover:text-gray-900 transition-colors" />
                 </div>
                 <h3 className={`text-2xl font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>Predictable ROI</h3>
-                <p className={`leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Transparent dashboards showing exactly how your ad spend converts to revenue.</p>
+                <p className={`leading-relaxed ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>Transparent dashboards showing exactly how your ad spend converts to revenue.</p>
               </div>
             </motion.div>
 
@@ -140,7 +140,7 @@ export default function Hero({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1 }}
-              className={`mt-24 pt-12 border-t flex flex-wrap justify-center items-center gap-12 ${isDark ? 'border-white/10 text-white/40' : 'border-slate-200 text-slate-400'}`}
+              className={`mt-24 pt-12 border-t flex flex-wrap justify-center items-center gap-12 ${isDark ? 'border-black/10 text-white/40' : 'border-slate-200 text-gray-500'}`}
             >
               <div className="flex items-center gap-2 font-bold text-xl tracking-tighter">
                 <ShieldCheck className="h-6 w-6 text-emerald-500/50" /> HIPAA COMPLIANT

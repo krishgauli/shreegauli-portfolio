@@ -326,7 +326,7 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
     backgroundColor: isDark ? '#1e293b' : '#ffffff',
     border: `1px solid ${isDark ? '#475569' : '#e2e8f0'}`,
     borderRadius: '12px',
-    color: isDark ? '#f8fafc' : '#1e293b',
+    color: isDark ? '#1A1A1A' : '#1e293b',
   };
 
   return (
@@ -429,8 +429,8 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={chartGA4}>
               <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-              <XAxis dataKey="label" stroke={isDark ? '#94a3b8' : '#64748b'} fontSize={12} />
-              <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+              <XAxis dataKey="label" stroke={isDark ? '#6B7280' : '#64748b'} fontSize={12} />
+              <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
               <Tooltip contentStyle={tooltipStyle} />
               <Legend />
               <Line type="monotone" dataKey="activeUsers" name="Active Users" stroke="#10b981" strokeWidth={3} dot={{ fill: '#10b981', r: 4 }} />
@@ -452,8 +452,8 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
             <ResponsiveContainer width="100%" height={250}>
               <AreaChart data={chartGA4}>
                 <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-                <XAxis dataKey="label" stroke={isDark ? '#94a3b8' : '#64748b'} fontSize={12} />
-                <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+                <XAxis dataKey="label" stroke={isDark ? '#6B7280' : '#64748b'} fontSize={12} />
+                <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
                 <Tooltip contentStyle={tooltipStyle} />
                 <Area type="monotone" dataKey="engagementRate" name="Engagement" fill="#10b98133" stroke="#10b981" strokeWidth={2} />
               </AreaChart>
@@ -508,9 +508,9 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartSC}>
               <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-              <XAxis dataKey="label" stroke={isDark ? '#94a3b8' : '#64748b'} fontSize={12} />
-              <YAxis yAxisId="left" stroke={isDark ? '#94a3b8' : '#64748b'} />
-              <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#94a3b8' : '#64748b'} />
+              <XAxis dataKey="label" stroke={isDark ? '#6B7280' : '#64748b'} fontSize={12} />
+              <YAxis yAxisId="left" stroke={isDark ? '#6B7280' : '#64748b'} />
+              <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#6B7280' : '#64748b'} />
               <Tooltip contentStyle={tooltipStyle} />
               <Legend />
               <Bar yAxisId="left" dataKey="clicks" name="Clicks" fill="#10b981" radius={[6, 6, 0, 0]} />
@@ -537,8 +537,8 @@ export default function GoogleAnalyticsView({ clinicId, isDark = false, isClient
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartGMB}>
               <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-              <XAxis dataKey="label" stroke={isDark ? '#94a3b8' : '#64748b'} fontSize={12} />
-              <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+              <XAxis dataKey="label" stroke={isDark ? '#6B7280' : '#64748b'} fontSize={12} />
+              <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
               <Tooltip contentStyle={tooltipStyle} />
               <Legend />
               <Bar dataKey="views" name="Profile Views" fill="#f43f5e" radius={[6, 6, 0, 0]} />

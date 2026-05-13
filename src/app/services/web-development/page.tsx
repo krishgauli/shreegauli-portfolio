@@ -137,13 +137,13 @@ export default function WebDevelopmentPage() {
       {/* Projects Built */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Projects I&apos;ve built with Next.js</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Projects I&apos;ve built with Next.js</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((p) => (
               <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer">
                 <ModuleShell className="p-5 h-full" enableHoverLift>
-                  <h3 className="text-sm font-semibold text-[#F8FAFC]">{p.name}</h3>
-                  <p className="text-xs text-[#94A3B8] mt-1">{p.desc}</p>
+                  <h3 className="text-sm font-semibold text-[#1A1A1A]">{p.name}</h3>
+                  <p className="text-xs text-[#6B7280] mt-1">{p.desc}</p>
                   <p className="text-xs text-[#22D3EE] mt-2">{p.url.replace(/https?:\/\//, '').replace(/\/$/, '')} →</p>
                 </ModuleShell>
               </a>
@@ -155,14 +155,14 @@ export default function WebDevelopmentPage() {
       {/* Process */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Development process</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">Development process</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {process.map((item, i) => (
               <ScrollReveal key={item.step} delay={i * 0.06}>
                 <ModuleShell className="p-6 h-full">
                   <span className="text-xs font-bold text-[#22D3EE]">{item.step}</span>
-                  <h3 className="text-base font-bold text-[#F8FAFC] mt-2">{item.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
+                  <h3 className="text-base font-bold text-[#1A1A1A] mt-2">{item.title}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{item.description}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -173,11 +173,11 @@ export default function WebDevelopmentPage() {
       {/* Deliverables */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">What you get</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">What you get</h2>
           <ModuleShell className="p-6">
             <ul className="grid sm:grid-cols-2 gap-3">
               {deliverables.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-[#94A3B8]">
+                <li key={item} className="flex items-start gap-3 text-sm text-[#6B7280]">
                   <CheckCircle2 className="h-4 w-4 text-[#22D3EE] mt-0.5 shrink-0" />
                   {item}
                 </li>
@@ -190,11 +190,11 @@ export default function WebDevelopmentPage() {
       {/* Tech Stack */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Tech stack</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Tech stack</h2>
           <ModuleShell className="p-6">
             <div className="flex flex-wrap gap-2">
               {["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Supabase", "Vercel", "Node.js", "Framer Motion", "shadcn/ui", "Stripe", "OpenAI SDK"].map((tech) => (
-                <span key={tech} className="px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] text-xs text-[#F8FAFC] font-medium">
+                <span key={tech} className="px-3 py-1 rounded-full border border-black/[0.08] bg-black/[0.04] text-xs text-[#1A1A1A] font-medium">
                   {tech}
                 </span>
               ))}
@@ -206,12 +206,12 @@ export default function WebDevelopmentPage() {
       {/* FAQ */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Frequently asked questions</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">Frequently asked questions</h2>
           <div className="grid gap-4">
             {faqs.map((faq) => (
               <ModuleShell key={faq.q} className="p-6">
-                <h3 className="text-base font-bold text-[#F8FAFC]">{faq.q}</h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{faq.a}</p>
+                <h3 className="text-base font-bold text-[#1A1A1A]">{faq.q}</h3>
+                <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{faq.a}</p>
               </ModuleShell>
             ))}
           </div>
@@ -221,7 +221,7 @@ export default function WebDevelopmentPage() {
       {/* Related Services */}
       <section className="relative z-10 pb-20 px-6">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Related services</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Related services</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               { title: "WordPress Development", description: "Professional WordPress sites for content-driven businesses.", href: "/services/wordpress" },
@@ -231,8 +231,8 @@ export default function WebDevelopmentPage() {
             ].map((svc) => (
               <Link key={svc.title} href={svc.href}>
                 <ModuleShell className="p-5 h-full" enableHoverLift>
-                  <h3 className="text-sm font-semibold text-[#F8FAFC]">{svc.title}</h3>
-                  <p className="text-xs text-[#94A3B8] mt-1">{svc.description}</p>
+                  <h3 className="text-sm font-semibold text-[#1A1A1A]">{svc.title}</h3>
+                  <p className="text-xs text-[#6B7280] mt-1">{svc.description}</p>
                 </ModuleShell>
               </Link>
             ))}

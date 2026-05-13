@@ -22,17 +22,17 @@ export function HeroText() {
       </div>
 
       {/* Headline */}
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-[#F8FAFC]">
+      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-[#1A1A1A]">
         Dallas Web Developer{" "}
         <span className="text-gradient-brand">& SEO Consultant</span>
       </h1>
 
-      <p className="text-lg sm:text-xl text-[#F8FAFC]/85 leading-relaxed">
+      <p className="text-lg sm:text-xl text-[#1A1A1A]/85 leading-relaxed">
         Websites that rank, convert, and scale.
       </p>
 
       {/* Sub */}
-      <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
+      <p className="text-base sm:text-lg text-[#6B7280] leading-relaxed">
         Dallas-based custom websites, full-stack web apps, and ecommerce stores
         built with Next.js, WordPress, and Shopify. Every project ships with
         SEO, AEO, GEO, and performance baked in from day one. 14+ projects
@@ -52,7 +52,7 @@ export function HeroText() {
         {proofChips.map(({ icon: Icon, label }) => (
           <span
             key={label}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs text-[#94A3B8] font-medium"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/[0.04] border border-black/[0.08] text-xs text-[#6B7280] font-medium"
           >
             <Icon className="h-3 w-3 text-[#7C3AED]" />
             {label}
@@ -61,7 +61,7 @@ export function HeroText() {
       </div>
 
       {/* Social proof micro-line */}
-      <p className="text-xs text-[#94A3B8]/60">
+      <p className="text-xs text-[#6B7280]/60">
         Based in Dallas, TX. Building for healthcare, finance, SaaS, and ecommerce teams across the US.
       </p>
     </div>

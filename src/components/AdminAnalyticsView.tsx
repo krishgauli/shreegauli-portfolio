@@ -687,8 +687,8 @@ export default function AdminAnalyticsView({ isDark, refreshTrigger }: AdminAnal
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart data={ga4Data.map((d: any) => ({ date: d.date?.slice?.(5) || d.date, users: d.activeUsers, sessions: d.sessions, pageViews: d.pageViews }))}>
                   <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-                  <XAxis dataKey="date" stroke={isDark ? '#94a3b8' : '#64748b'} fontSize={11} />
-                  <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+                  <XAxis dataKey="date" stroke={isDark ? '#6B7280' : '#64748b'} fontSize={11} />
+                  <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
                   <Tooltip contentStyle={{ backgroundColor: isDark ? '#1e293b' : '#fff', border: `1px solid ${isDark ? '#475569' : '#e2e8f0'}`, borderRadius: '12px' }} />
                   <Legend />
                   <Area type="monotone" dataKey="users" name="Active Users" stroke="#10b981" fill="#10b981" fillOpacity={0.3} />
@@ -849,8 +849,8 @@ export default function AdminAnalyticsView({ isDark, refreshTrigger }: AdminAnal
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={gmbData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-            <XAxis dataKey="week" stroke={isDark ? '#94a3b8' : '#64748b'} />
-            <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+            <XAxis dataKey="week" stroke={isDark ? '#6B7280' : '#64748b'} />
+            <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
             <Tooltip
               contentStyle={{
                 backgroundColor: isDark ? '#1e293b' : '#ffffff',
@@ -898,9 +898,9 @@ export default function AdminAnalyticsView({ isDark, refreshTrigger }: AdminAnal
               <ResponsiveContainer width="100%" height={280}>
                 <AreaChart data={googleAdsApiData}>
                   <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-                  <XAxis dataKey="date" stroke={isDark ? '#94a3b8' : '#64748b'} tick={{ fontSize: 11 }} />
-                  <YAxis yAxisId="left" stroke={isDark ? '#94a3b8' : '#64748b'} />
-                  <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#94a3b8' : '#64748b'} />
+                  <XAxis dataKey="date" stroke={isDark ? '#6B7280' : '#64748b'} tick={{ fontSize: 11 }} />
+                  <YAxis yAxisId="left" stroke={isDark ? '#6B7280' : '#64748b'} />
+                  <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#6B7280' : '#64748b'} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: isDark ? '#1e293b' : '#ffffff',
@@ -934,8 +934,8 @@ export default function AdminAnalyticsView({ isDark, refreshTrigger }: AdminAnal
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={adsData}>
               <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-              <XAxis dataKey="week" stroke={isDark ? '#94a3b8' : '#64748b'} />
-              <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+              <XAxis dataKey="week" stroke={isDark ? '#6B7280' : '#64748b'} />
+              <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
               <Tooltip
                 contentStyle={{
                   backgroundColor: isDark ? '#1e293b' : '#ffffff',
@@ -1004,8 +1004,8 @@ export default function AdminAnalyticsView({ isDark, refreshTrigger }: AdminAnal
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={socialData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-            <XAxis dataKey="week" stroke={isDark ? '#94a3b8' : '#64748b'} />
-            <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+            <XAxis dataKey="week" stroke={isDark ? '#6B7280' : '#64748b'} />
+            <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
             <Tooltip
               contentStyle={{
                 backgroundColor: isDark ? '#1e293b' : '#ffffff',

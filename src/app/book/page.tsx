@@ -34,17 +34,17 @@ export default function BookPage() {
           <BookingClient />
 
           <div className="mt-12 space-y-6">
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
-              <h2 className="text-base font-semibold text-[#F8FAFC]">What to expect on the call</h2>
-              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">
+            <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
+              <h2 className="text-base font-semibold text-[#1A1A1A]">What to expect on the call</h2>
+              <p className="mt-2 text-sm leading-7 text-[#6B7280]">
                 We will spend the first few minutes understanding your current website, tech stack, and business goals. Then I will share
                 initial observations — whether that means quick SEO wins, architectural improvements, or automation opportunities.
                 You will leave with a clear picture of what the highest-leverage next step is, even if it turns out you do not need my help.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
-              <h2 className="text-base font-semibold text-[#F8FAFC]">Who this call is for</h2>
-              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">
+            <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
+              <h2 className="text-base font-semibold text-[#1A1A1A]">Who this call is for</h2>
+              <p className="mt-2 text-sm leading-7 text-[#6B7280]">
                 Business owners, founders, and marketing teams who need a custom website, want to improve their search rankings,
                 or are looking to automate manual processes like lead follow-up, appointment reminders, or reporting.
                 Whether you need a full build or a focused sprint, the call helps us figure out the right scope together.

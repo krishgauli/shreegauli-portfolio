@@ -30,7 +30,7 @@ export default function CaseStudies() {
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
               </div>
               <div className="p-6 bg-white">
-                <div className="text-sm text-slate-500 uppercase">{s.category}</div>
+                <div className="text-sm text-gray-500 uppercase">{s.category}</div>
                 <h3 className="mt-2 text-xl font-semibold text-slate-900">{s.title}</h3>
               </div>
             </motion.div>

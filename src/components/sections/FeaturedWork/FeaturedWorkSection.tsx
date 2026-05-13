@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { caseStudies } from "@/lib/data";
 import { CaseStudyCard } from "./CaseStudyCard";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -26,6 +28,17 @@ export function FeaturedWorkSection({ headingAs }: { headingAs?: "h1" | "h2" }) 
               <CaseStudyCard cs={cs} index={i} />
             </ScrollReveal>
           ))}
+        </div>
+
+        {/* View More button */}
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 rounded-full border border-[#D4CFC8] bg-[#F5F0E8] px-7 py-3.5 text-sm font-semibold text-[#1A1A1A] transition-all duration-200 hover:border-[#7C3AED]/40 hover:bg-[#FDFAF5] hover:text-[#7C3AED] hover:shadow-[0_8px_30px_-10px_rgba(124,58,237,0.25)]"
+          >
+            View all case studies
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
       </div>
     </section>

@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
 <body style="margin:0;padding:0;background:#f1f5f9;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;">
 
 <!-- Header -->
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F0E8;">
   <tr>
     <td align="center" style="padding:28px 24px;">
       <table role="presentation" cellpadding="0" cellspacing="0">
@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
         <tr>
           <td style="padding:40px 36px 32px;">
-            <p style="margin:0 0 16px;font-size:16px;color:#0f172a;">Hi ${esc(recipientName)},</p>
+            <p style="margin:0 0 16px;font-size:16px;color:#F5F0E8;">Hi ${esc(recipientName)},</p>
             <div style="font-size:15px;line-height:1.7;color:#334155;">${htmlBody}</div>
           </td>
         </tr>
@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
         </tr>
         <tr>
           <td align="center" style="padding:0 0 24px;">
-            <a href="mailto:${esc(BRAND.email)}" style="font-size:14px;color:#0f172a;text-decoration:underline;">&#x2709; ${esc(BRAND.email)}</a>
+            <a href="mailto:${esc(BRAND.email)}" style="font-size:14px;color:#F5F0E8;text-decoration:underline;">&#x2709; ${esc(BRAND.email)}</a>
           </td>
         </tr>
       </table>
@@ -163,8 +163,8 @@ export async function POST(request: NextRequest) {
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border-top:1px solid #e2e8f0;">
         <tr>
           <td align="center" style="padding:24px 0 8px;">
-            <a href="${esc(BRAND.facebook)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#0f172a;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">f</a>
-            <a href="${esc(BRAND.linkedin)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#0f172a;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">in</a>
+            <a href="${esc(BRAND.facebook)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#F5F0E8;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">f</a>
+            <a href="${esc(BRAND.linkedin)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#F5F0E8;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">in</a>
           </td>
         </tr>
         <tr>
@@ -176,7 +176,7 @@ export async function POST(request: NextRequest) {
         </tr>
         <tr>
           <td align="center" style="padding:16px 0 32px;">
-            <p style="margin:0;font-size:12px;color:#94a3b8;">&copy; ${new Date().getFullYear()} ${esc(BRAND.name)} &middot; ${esc(BRAND.address)}</p>
+            <p style="margin:0;font-size:12px;color:#6B7280;">&copy; ${new Date().getFullYear()} ${esc(BRAND.name)} &middot; ${esc(BRAND.address)}</p>
           </td>
         </tr>
       </table>

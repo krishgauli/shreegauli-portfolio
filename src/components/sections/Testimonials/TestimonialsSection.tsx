@@ -31,8 +31,8 @@ export function TestimonialsSection() {
               <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
             ))}
           </div>
-          <span className="text-lg font-bold text-[#F8FAFC]">4.9</span>
-          <span className="text-sm text-[#94A3B8]">· 5 Reviews</span>
+          <span className="text-lg font-bold text-[#1A1A1A]">4.9</span>
+          <span className="text-sm text-[#6B7280]">· 5 Reviews</span>
         </div>
       </div>
 
@@ -43,8 +43,8 @@ export function TestimonialsSection() {
         onMouseLeave={() => setPaused(false)}
       >
         {/* Fade masks on left/right edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-[#070B14] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-[#070B14] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-[#FDFAF5] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-[#FDFAF5] to-transparent" />
 
         <div
           ref={trackRef}

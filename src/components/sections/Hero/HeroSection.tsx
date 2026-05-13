@@ -3,7 +3,7 @@ import { HeroModuleCluster } from "./HeroModuleCluster";
 
 export function HeroSection() {
   return (
-    <section className="relative z-10 overflow-hidden bg-[#070B14]">
+    <section className="relative z-10 overflow-hidden bg-[#FDFAF5]">
       {/* ── Static ambient background ─────────────────────────── */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         {/* Top-left violet glow */}
@@ -22,7 +22,7 @@ export function HeroSection() {
           }}
         />
         {/* Bottom fade to page bg */}
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#070B14] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#FDFAF5] to-transparent" />
       </div>
 
       {/* ── Content ───────────────────────────────────────────── */}

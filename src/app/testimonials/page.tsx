@@ -52,13 +52,13 @@ export default function TestimonialsPage() {
                   <ModuleShell className="h-full p-6">
                     {testimonial.result && (
                       <div className="flex items-center mb-4">
-                        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]">
+                        <span className="inline-flex items-center rounded-full border border-black/10 bg-black/[0.04] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6B7280]">
                           {testimonial.result}
                         </span>
                       </div>
                     )}
-                    <p className="text-sm leading-7 text-[#CBD5E1]">&quot;{testimonial.quote}&quot;</p>
-                    <div className="mt-6 border-t border-white/10 pt-4 flex items-center gap-3">
+                    <p className="text-sm leading-7 text-gray-600">&quot;{testimonial.quote}&quot;</p>
+                    <div className="mt-6 border-t border-black/10 pt-4 flex items-center gap-3">
                       <div
                         className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
                         style={{ backgroundColor: testimonial.avatarColor + "33", border: `1px solid ${testimonial.avatarColor}40` }}
@@ -66,8 +66,8 @@ export default function TestimonialsPage() {
                         <IndustryIcon className="h-4 w-4" style={{ color: testimonial.avatarColor }} />
                       </div>
                       <div>
-                        <p className="text-base font-semibold text-[#F8FAFC]">{testimonial.name}</p>
-                        <p className="mt-0.5 text-sm text-[#94A3B8]">
+                        <p className="text-base font-semibold text-[#1A1A1A]">{testimonial.name}</p>
+                        <p className="mt-0.5 text-sm text-[#6B7280]">
                           {testimonial.role} · {testimonial.company}
                         </p>
                       </div>
@@ -78,9 +78,9 @@ export default function TestimonialsPage() {
             })}
           </div>
 
-          <div className="mt-10 rounded-[32px] border border-white/10 bg-white/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
-            <h2 className="text-2xl font-semibold text-[#F8FAFC]">Looking for proof beyond quotes?</h2>
-            <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+          <div className="mt-10 rounded-[32px] border border-black/10 bg-black/[0.04] p-6 md:p-8 shadow-[0_30px_80px_rgba(15,23,42,0.35)] backdrop-blur-xl">
+            <h2 className="text-2xl font-semibold text-[#1A1A1A]">Looking for proof beyond quotes?</h2>
+            <p className="mt-4 text-sm leading-7 text-[#6B7280]">
               The strongest proof is usually the work itself: what changed, how it
               changed, and what the numbers looked like before and after. Use the
               case studies to see the implementation layer behind the outcome.
@@ -94,7 +94,7 @@ export default function TestimonialsPage() {
               </Link>
               <Link
                 href="/contact"
-                className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20"
+                className="rounded-2xl border border-black/10 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-black/12"
               >
                 Start a conversation
               </Link>

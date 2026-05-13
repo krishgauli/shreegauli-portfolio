@@ -27,10 +27,10 @@ export default function AdminSettings() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+        className="p-2 hover:bg-slate-100 dark:hover:bg-[#EDE8DF] rounded-lg transition-colors"
         title="Settings"
       >
-        <Settings className="h-5 w-5 text-slate-700 dark:text-slate-300" />
+        <Settings className="h-5 w-5 text-slate-700 dark:text-gray-600" />
       </button>
 
       <AnimatePresence>
@@ -46,11 +46,11 @@ export default function AdminSettings() {
               initial={{ opacity: 0, scale: 0.95, y: -10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
-              className="fixed sm:absolute top-16 sm:top-12 right-4 sm:right-0 z-[70] w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 p-6"
+              className="fixed sm:absolute top-16 sm:top-12 right-4 sm:right-0 z-[70] w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-[#F5F0E8] rounded-xl shadow-2xl border border-slate-200 dark:border-stone-300 p-6"
             >
               {/* Theme Section */}
               <div className="mb-6">
-                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">
+                <label className="block text-sm font-bold text-slate-700 dark:text-gray-600 mb-3">
                   {t('Theme', preferences.language)}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -63,7 +63,7 @@ export default function AdminSettings() {
                       className={`flex items-center justify-center gap-1 p-3 rounded-lg transition-all ${
                         preferences.theme === id
                           ? 'bg-emerald-500 text-white'
-                          : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                          : 'bg-slate-100 dark:bg-[#EDE8DF] text-slate-700 dark:text-gray-600 hover:bg-slate-200 dark:hover:bg-[#D8D0C5]'
                       }`}
                     >
                       <Icon className="h-4 w-4" />
@@ -75,7 +75,7 @@ export default function AdminSettings() {
 
               {/* Language Section */}
               <div>
-                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">
+                <label className="block text-sm font-bold text-slate-700 dark:text-gray-600 mb-3">
                   {t('Language', preferences.language)}
                 </label>
                 <div className="space-y-2">
@@ -88,7 +88,7 @@ export default function AdminSettings() {
                       className={`w-full flex items-center gap-2 p-3 rounded-lg transition-all ${
                         preferences.language === id
                           ? 'bg-emerald-500 text-white'
-                          : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                          : 'bg-slate-100 dark:bg-[#EDE8DF] text-slate-700 dark:text-gray-600 hover:bg-slate-200 dark:hover:bg-[#D8D0C5]'
                       }`}
                     >
                       <Globe className="h-4 w-4" />

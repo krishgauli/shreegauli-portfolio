@@ -171,7 +171,7 @@ function buildShareUrl(platform: "linkedin" | "copy", url: string, title: string
 
 const ctaPanelStyle = {
   background:
-    "radial-gradient(circle at top left, rgba(124,58,237,0.16), transparent 34%), radial-gradient(circle at bottom right, rgba(34,211,238,0.14), transparent 30%), #0f172a",
+    "radial-gradient(circle at top left, rgba(124,58,237,0.16), transparent 34%), radial-gradient(circle at bottom right, rgba(34,211,238,0.14), transparent 30%), #F5F0E8",
 };
 
 export function BlogPostBody({
@@ -251,7 +251,7 @@ export function BlogPostBody({
 
   return (
     <article className="relative overflow-hidden bg-[#eef2f7] text-slate-900">
-      <section className="relative isolate overflow-hidden bg-[#070B14] pb-24">
+      <section className="relative isolate overflow-hidden bg-[#FDFAF5] pb-24">
         <div className="absolute inset-0">
           {post.coverImage ? (
             <Image
@@ -262,30 +262,30 @@ export function BlogPostBody({
               className="object-cover opacity-35"
             />
           ) : null}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(124,58,237,0.45),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(34,211,238,0.24),transparent_22%),linear-gradient(180deg,rgba(7,11,20,0.2),rgba(7,11,20,0.88))]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,20,0.08)_0%,rgba(7,11,20,0.58)_38%,#0b1220_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(124,58,237,0.25),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(34,211,238,0.18),transparent_22%),linear-gradient(180deg,rgba(245,240,232,0.05),rgba(245,240,232,0.45))]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,240,232,0.0)_0%,rgba(245,240,232,0.35)_38%,#F5F0E8_100%)]" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 pt-6 sm:px-6">
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-medium text-white/80 backdrop-blur-md transition hover:border-white/30 hover:bg-white/12 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-2 text-sm font-medium text-gray-700 backdrop-blur-md transition hover:border-black/20 hover:bg-black/7 hover:text-gray-900"
           >
             <ArrowLeft className="h-4 w-4" />
             All articles
           </Link>
 
           <div className="max-w-4xl py-14 sm:py-20 lg:py-24">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#7C3AED]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-[#ddd6fe]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/30 bg-[#7C3AED]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-[#7C3AED]">
               {primaryCategory}
             </span>
 
-            <h1 className="mt-5 font-heading text-4xl font-bold leading-[1.04] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 font-heading text-4xl font-bold leading-[1.04] tracking-[-0.04em] text-gray-900 sm:text-5xl lg:text-6xl">
               {post.title}
             </h1>
 
             {post.excerpt ? (
-              <p className="mt-6 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg">
+              <p className="mt-6 max-w-3xl text-base leading-8 text-gray-700 sm:text-lg">
                 {post.excerpt}
               </p>
             ) : null}
@@ -295,7 +295,7 @@ export function BlogPostBody({
 
       <section className="relative -mt-12 px-4 pb-20 sm:px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-[28px] border border-white/80 bg-white/95 px-5 py-4 shadow-[0_22px_70px_-36px_rgba(15,23,42,0.4)] backdrop-blur-xl sm:px-7 sm:py-5">
+          <div className="rounded-[28px] border border-[#D4CFC8] bg-[#FDFAF5]/95 px-5 py-4 shadow-[0_22px_70px_-36px_rgba(15,23,42,0.15)] backdrop-blur-xl sm:px-7 sm:py-5">
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-600">
               {post.author ? (
                 <span className="inline-flex items-center gap-2">
@@ -330,7 +330,7 @@ export function BlogPostBody({
               </span>
 
               {post.tags.length > 0 ? (
-                <span className="inline-flex items-center gap-2 text-slate-500">
+                <span className="inline-flex items-center gap-2 text-gray-500">
                   <Tag className="h-4 w-4 text-[#7C3AED]" />
                   {post.tags.slice(0, 3).map((tag) => tag.name).join(" • ")}
                 </span>
@@ -341,16 +341,16 @@ export function BlogPostBody({
           <div className="mt-8 grid items-start gap-8 xl:grid-cols-[250px_minmax(0,1fr)_72px]">
             <aside className="hidden xl:block">
               {toc.length > 0 ? (
-                <div className="sticky top-28 rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-[0_18px_48px_-34px_rgba(15,23,42,0.35)] backdrop-blur-sm">
+                <div className="sticky top-28 rounded-[28px] border border-[#D4CFC8] bg-[#FDFAF5]/90 p-5 shadow-[0_18px_48px_-34px_rgba(15,23,42,0.15)] backdrop-blur-sm">
                   <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
                     <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(124,58,237,0.16),rgba(34,211,238,0.18))] text-[#7C3AED]">
                       <BookOpenText className="h-5 w-5" />
                     </span>
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
                         In this article
                       </p>
-                      <p className="text-xs text-slate-400">Jump to each section quickly</p>
+                      <p className="text-xs text-gray-500">Jump to each section quickly</p>
                     </div>
                   </div>
 
@@ -362,7 +362,7 @@ export function BlogPostBody({
                         className={`block rounded-2xl px-3 py-2 text-sm leading-5 transition ${
                           resolvedActiveHeading === item.id
                             ? "bg-[linear-gradient(135deg,rgba(124,58,237,0.16),rgba(34,211,238,0.14))] font-semibold text-slate-900"
-                            : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                            : "text-gray-500 hover:bg-[#FDFAF5] hover:text-slate-900"
                         } ${item.level >= 3 ? "ml-3" : ""} ${item.level >= 4 ? "ml-6 text-[13px]" : ""} ${item.level >= 5 ? "ml-8 text-[12px]" : ""}`}
                       >
                         {item.text}
@@ -373,7 +373,7 @@ export function BlogPostBody({
               ) : null}
 
               <div className="mt-5 rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-[0_18px_48px_-34px_rgba(15,23,42,0.35)] backdrop-blur-sm">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
                   Quick details
                 </p>
                 <div className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
@@ -399,7 +399,7 @@ export function BlogPostBody({
 
               {resourceLinks.length > 0 ? (
                 <div className="mt-5 rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-[0_18px_48px_-34px_rgba(15,23,42,0.35)] backdrop-blur-sm">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
                     Resources
                   </p>
                   <nav className="mt-4 space-y-2.5">
@@ -407,7 +407,7 @@ export function BlogPostBody({
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="block rounded-2xl px-3 py-2 text-sm leading-6 text-slate-600 transition hover:bg-slate-50 hover:text-[#7C3AED]"
+                        className="block rounded-2xl px-3 py-2 text-sm leading-6 text-slate-600 transition hover:bg-[#FDFAF5] hover:text-[#7C3AED]"
                       >
                         {link.text}
                       </Link>
@@ -417,16 +417,16 @@ export function BlogPostBody({
               ) : null}
 
               <div
-                className="mt-5 rounded-[28px] border border-[#7C3AED]/10 p-5 text-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]"
+                className="mt-5 rounded-[28px] border border-[#7C3AED]/10 p-5 text-gray-900 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]"
                 style={ctaPanelStyle}
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/85">
                   Need help with this?
                 </p>
-                <h2 className="mt-3 font-heading text-2xl font-bold tracking-[-0.03em] text-white">
+                <h2 className="mt-3 font-heading text-2xl font-bold tracking-[-0.03em] text-gray-900">
                   Turn this into an action plan
                 </h2>
-                <p className="mt-3 text-sm leading-7 text-slate-300">
+                <p className="mt-3 text-sm leading-7 text-gray-600">
                   If you want help fixing the right pages first, we can turn the audit
                   findings into a practical next step.
                 </p>
@@ -439,7 +439,7 @@ export function BlogPostBody({
                   </Link>
                   <Link
                     href="/lp/book-a-call"
-                    className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
+                    className="inline-flex items-center justify-center rounded-full border border-black/12 bg-black/5 px-5 py-3 text-sm font-semibold text-gray-900 transition hover:bg-black/8"
                   >
                     Book a strategy call
                   </Link>
@@ -449,13 +449,13 @@ export function BlogPostBody({
 
             <div className="min-w-0">
               {toc.length > 0 ? (
-                <details className="mb-5 rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-[0_16px_46px_-32px_rgba(15,23,42,0.3)] xl:hidden">
+                <details className="mb-5 rounded-[24px] border border-[#D4CFC8] bg-[#FDFAF5] px-5 py-4 shadow-[0_16px_46px_-32px_rgba(15,23,42,0.12)] xl:hidden">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-slate-800">
                     <span className="inline-flex items-center gap-2">
                       <BookOpenText className="h-4 w-4 text-[#7C3AED]" />
                       In this article
                     </span>
-                    <span className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                    <span className="text-xs uppercase tracking-[0.18em] text-gray-500">
                       Tap to open
                     </span>
                   </summary>
@@ -464,7 +464,7 @@ export function BlogPostBody({
                       <a
                         key={item.id}
                         href={`#${item.id}`}
-                        className={`block rounded-2xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 ${item.level >= 3 ? "ml-3" : ""} ${item.level >= 4 ? "ml-6 text-[13px]" : ""} ${item.level >= 5 ? "ml-8 text-[12px]" : ""}`}
+                        className={`block rounded-2xl px-3 py-2 text-sm text-slate-600 transition hover:bg-[#FDFAF5] hover:text-slate-900 ${item.level >= 3 ? "ml-3" : ""} ${item.level >= 4 ? "ml-6 text-[13px]" : ""} ${item.level >= 5 ? "ml-8 text-[12px]" : ""}`}
                       >
                         {item.text}
                       </a>
@@ -474,8 +474,8 @@ export function BlogPostBody({
               ) : null}
 
               <div className="mb-5 grid gap-5 xl:hidden md:grid-cols-2">
-                <div className="rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-[0_16px_46px_-32px_rgba(15,23,42,0.3)]">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <div className="rounded-[24px] border border-[#D4CFC8] bg-[#FDFAF5] px-5 py-4 shadow-[0_16px_46px_-32px_rgba(15,23,42,0.12)]">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
                     Quick details
                   </p>
                   <div className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
@@ -500,13 +500,13 @@ export function BlogPostBody({
                 </div>
 
                 <div
-                  className="rounded-[24px] border border-[#7C3AED]/10 px-5 py-4 text-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]"
+                  className="rounded-[24px] border border-[#7C3AED]/10 px-5 py-4 text-gray-900 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.45)]"
                   style={ctaPanelStyle}
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/85">
                     Need help with this?
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-slate-300">
+                  <p className="mt-3 text-sm leading-7 text-gray-600">
                     Run the audit or book a call if you want help prioritizing the fixes.
                   </p>
                   <div className="mt-4 flex flex-col gap-3">
@@ -518,7 +518,7 @@ export function BlogPostBody({
                     </Link>
                     <Link
                       href="/lp/book-a-call"
-                      className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
+                      className="inline-flex items-center justify-center rounded-full border border-black/12 bg-black/5 px-5 py-3 text-sm font-semibold text-gray-900 transition hover:bg-black/8"
                     >
                       Book a strategy call
                     </Link>
@@ -527,8 +527,8 @@ export function BlogPostBody({
               </div>
 
               {resourceLinks.length > 0 ? (
-                <div className="mb-5 rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-[0_16px_46px_-32px_rgba(15,23,42,0.3)] xl:hidden">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <div className="mb-5 rounded-[24px] border border-[#D4CFC8] bg-[#FDFAF5] px-5 py-4 shadow-[0_16px_46px_-32px_rgba(15,23,42,0.12)] xl:hidden">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
                     Resources
                   </p>
                   <nav className="mt-4 grid gap-2 md:grid-cols-2">
@@ -536,7 +536,7 @@ export function BlogPostBody({
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="rounded-2xl px-3 py-2 text-sm leading-6 text-slate-600 transition hover:bg-slate-50 hover:text-[#7C3AED]"
+                        className="rounded-2xl px-3 py-2 text-sm leading-6 text-slate-600 transition hover:bg-[#FDFAF5] hover:text-[#7C3AED]"
                       >
                         {link.text}
                       </Link>
@@ -545,7 +545,7 @@ export function BlogPostBody({
                 </div>
               ) : null}
 
-              <div className="overflow-hidden rounded-[32px] border border-slate-200/80 bg-white shadow-[0_24px_80px_-40px_rgba(15,23,42,0.38)]">
+              <div className="overflow-hidden rounded-[32px] border border-[#D4CFC8] bg-[#FDFAF5] shadow-[0_24px_80px_-40px_rgba(15,23,42,0.15)]">
                 <div className="px-6 py-8 sm:px-8 lg:px-12 lg:py-12">
                   <div
                     className="blog-rich-content"
@@ -553,7 +553,7 @@ export function BlogPostBody({
                   />
 
                   {/* Author byline */}
-                  <div className="mt-10 flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <div className="mt-10 flex items-start gap-4 rounded-2xl border border-slate-200 bg-[#FDFAF5] p-5">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#7C3AED,#22D3EE)] text-sm font-bold text-white">
                       SG
                     </div>
@@ -561,7 +561,7 @@ export function BlogPostBody({
                       <p className="text-sm font-semibold text-slate-900">
                         Written by {post.author?.name || "Shree Krishna Gauli"}
                       </p>
-                      <p className="mt-1 text-sm leading-6 text-slate-500">
+                      <p className="mt-1 text-sm leading-6 text-gray-500">
                         Dallas-based digital marketing consultant specializing in SEO, paid media, and marketing automation for healthcare and service businesses.
                       </p>
                     </div>
@@ -569,13 +569,13 @@ export function BlogPostBody({
 
                   {/* Last updated */}
                   {post.updatedAt && (
-                    <p className="mt-4 text-xs text-slate-400">
+                    <p className="mt-4 text-xs text-gray-500">
                       Last updated: {new Date(post.updatedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                     </p>
                   )}
 
                   <div
-                    className="mt-14 rounded-[28px] border border-[#7C3AED]/10 p-6 text-white sm:p-8"
+                    className="mt-14 rounded-[28px] border border-[#7C3AED]/10 p-6 text-gray-900 sm:p-8"
                     style={ctaPanelStyle}
                   >
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">
@@ -584,7 +584,7 @@ export function BlogPostBody({
                     <h2 className="mt-3 font-heading text-2xl font-bold tracking-[-0.03em] sm:text-3xl">
                       Turn blog insight into real marketing action
                     </h2>
-                    <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
                       If you want this kind of structure applied to your SEO, paid
                       media, or automation work, we can map the highest-leverage
                       next step together.
@@ -598,7 +598,7 @@ export function BlogPostBody({
                       </Link>
                       <Link
                         href="/seo-tools"
-                        className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
+                        className="inline-flex items-center justify-center rounded-full border border-black/12 bg-black/5 px-5 py-3 text-sm font-semibold text-gray-900 transition hover:bg-black/8"
                       >
                         Run a free SEO audit
                       </Link>
@@ -607,10 +607,10 @@ export function BlogPostBody({
 
                   <div className="mt-8 flex flex-col gap-4 border-t border-slate-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">
                         Share article
                       </p>
-                      <p className="mt-1 text-sm text-slate-500">
+                      <p className="mt-1 text-sm text-gray-500">
                         Send this to someone working through the same problem.
                       </p>
                     </div>
@@ -646,7 +646,7 @@ export function BlogPostBody({
 
             <aside className="hidden xl:block">
               <div className="sticky top-28 flex flex-col items-center gap-3">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400 [writing-mode:vertical-rl]">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-gray-500 [writing-mode:vertical-rl]">
                   Share
                 </span>
 
@@ -654,7 +654,7 @@ export function BlogPostBody({
                   href={buildShareUrl("linkedin", shareUrl, post.title)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-[0_12px_30px_-20px_rgba(15,23,42,0.35)] transition hover:border-[#7C3AED]/30 hover:text-[#7C3AED]"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D4CFC8] bg-[#FDFAF5] text-[#6B7280] shadow-[0_12px_30px_-20px_rgba(15,23,42,0.12)] transition hover:border-[#7C3AED]/30 hover:text-[#7C3AED]"
                   aria-label="Share on LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />
@@ -663,7 +663,7 @@ export function BlogPostBody({
                 <button
                   type="button"
                   onClick={handleCopyLink}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-[0_12px_30px_-20px_rgba(15,23,42,0.35)] transition hover:border-[#7C3AED]/30 hover:text-[#7C3AED]"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D4CFC8] bg-[#FDFAF5] text-[#6B7280] shadow-[0_12px_30px_-20px_rgba(15,23,42,0.12)] transition hover:border-[#7C3AED]/30 hover:text-[#7C3AED]"
                   aria-label="Copy article link"
                 >
                   {copied ? (
@@ -680,7 +680,7 @@ export function BlogPostBody({
             <div className="mt-16">
               <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
                     More from the blog
                   </p>
                   <h2 className="mt-2 font-heading text-3xl font-bold tracking-[-0.04em] text-slate-900">
@@ -701,7 +701,7 @@ export function BlogPostBody({
                   <Link
                     key={article.href}
                     href={article.href}
-                    className="group overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_-38px_rgba(15,23,42,0.3)] transition hover:-translate-y-1 hover:shadow-[0_28px_70px_-36px_rgba(15,23,42,0.38)]"
+                    className="group overflow-hidden rounded-[28px] border border-[#D4CFC8] bg-[#FDFAF5] shadow-[0_20px_60px_-38px_rgba(15,23,42,0.12)] transition hover:-translate-y-1 hover:shadow-[0_28px_70px_-36px_rgba(15,23,42,0.2)]"
                   >
                     {article.image ? (
                       <div className="relative h-44 overflow-hidden">
@@ -712,9 +712,9 @@ export function BlogPostBody({
                           sizes="(min-width: 768px) 33vw, 100vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/90 via-[#070B14]/30 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#FDFAF5]/60 via-[#FDFAF5]/30 to-transparent" />
                         <div className="absolute inset-x-0 bottom-0 p-5">
-                          <span className="rounded-full bg-[#070B14]/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                          <span className="rounded-full bg-[#FDFAF5]/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
                             {article.category}
                           </span>
                         </div>
@@ -723,7 +723,7 @@ export function BlogPostBody({
                       <div
                         className={`flex h-32 items-end bg-gradient-to-br p-5 ${article.gradient}`}
                       >
-                        <span className="rounded-full bg-[#070B14]/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                        <span className="rounded-full bg-[#FDFAF5]/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
                           {article.category}
                         </span>
                       </div>
@@ -732,12 +732,12 @@ export function BlogPostBody({
                       <h3 className="font-heading text-xl font-bold leading-snug tracking-[-0.03em] text-slate-900 transition group-hover:text-[#7C3AED]">
                         {article.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-7 text-slate-500">
+                      <p className="mt-3 text-sm leading-7 text-gray-500">
                         {article.excerpt}
                       </p>
-                      <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-4 text-xs text-slate-400">
+                      <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-4 text-xs text-gray-500">
                         <span>{article.date}</span>
-                        <span className="inline-flex items-center gap-1 text-slate-500">
+                        <span className="inline-flex items-center gap-1 text-gray-500">
                           {article.readTime}
                           <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </span>

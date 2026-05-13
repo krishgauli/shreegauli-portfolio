@@ -95,7 +95,7 @@ export default function ServicesSection() {
               transition={{ delay: idx * 0.1 }}
             >
               <Link href={service.link}>
-                <div className="group relative bg-slate-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                <div className="group relative bg-[#FDFAF5] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
                   <div className="aspect-video overflow-hidden relative">
                     <Image 
                       src={service.image} 

@@ -68,14 +68,14 @@ export default function AutomationCategoryPage() {
       {/* Featured Articles */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Featured Articles</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">Featured Articles</h2>
           <div className="grid sm:grid-cols-2 gap-5">
             {featuredPosts.map((post, i) => (
               <ScrollReveal key={post.slug} delay={i * 0.06}>
                 <Link href={`/blogs/${post.slug}`}>
                   <ModuleShell className="p-6 h-full" enableHoverLift>
-                    <h3 className="text-base font-bold text-[#F8FAFC]">{post.title}</h3>
-                    <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{post.excerpt}</p>
+                    <h3 className="text-base font-bold text-[#1A1A1A]">{post.title}</h3>
+                    <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{post.excerpt}</p>
                     <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#7C3AED] mt-4">
                       Read article <ArrowRight className="h-3 w-3" />
                     </span>
@@ -90,13 +90,13 @@ export default function AutomationCategoryPage() {
       {/* Related Services */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Related Services</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Related Services</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {relatedServices.map((svc) => (
               <Link key={svc.title} href={svc.href}>
                 <ModuleShell className="p-5 h-full" enableHoverLift>
-                  <h3 className="text-sm font-semibold text-[#F8FAFC]">{svc.title}</h3>
-                  <p className="text-xs text-[#94A3B8] mt-1">{svc.description}</p>
+                  <h3 className="text-sm font-semibold text-[#1A1A1A]">{svc.title}</h3>
+                  <p className="text-xs text-[#6B7280] mt-1">{svc.description}</p>
                 </ModuleShell>
               </Link>
             ))}

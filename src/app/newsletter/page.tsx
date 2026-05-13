@@ -32,31 +32,31 @@ export default function NewsletterPage() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             <ModuleShell className="p-6">
-              <h2 className="text-xl font-semibold text-[#F8FAFC]">What you get</h2>
-              <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
+              <h2 className="text-xl font-semibold text-[#1A1A1A]">What you get</h2>
+              <p className="mt-3 text-sm leading-7 text-[#6B7280]">
                 Practical audits, breakdowns of what changed, and examples of what
                 strong execution looks like when channels and systems work together.
               </p>
             </ModuleShell>
             <ModuleShell className="p-6">
-              <h2 className="text-xl font-semibold text-[#F8FAFC]">What you do not get</h2>
-              <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
+              <h2 className="text-xl font-semibold text-[#1A1A1A]">What you do not get</h2>
+              <p className="mt-3 text-sm leading-7 text-[#6B7280]">
                 No filler &quot;10 tips&quot; emails, no daily noise, and no constant
                 pitching. If an issue is not worth acting on, it does not get sent.
               </p>
             </ModuleShell>
             <ModuleShell className="p-6">
-              <h2 className="text-xl font-semibold text-[#F8FAFC]">Who it is for</h2>
-              <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
+              <h2 className="text-xl font-semibold text-[#1A1A1A]">Who it is for</h2>
+              <p className="mt-3 text-sm leading-7 text-[#6B7280]">
                 Founders, operators, and small teams who want clearer
                 thinking about web development, SEO, and automation.
               </p>
             </ModuleShell>
           </div>
 
-          <div className="mt-10 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8">
-            <h2 className="text-lg font-semibold text-[#F8FAFC] mb-3">Topics you will see</h2>
-            <p className="text-sm leading-7 text-[#94A3B8]">
+          <div className="mt-10 rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6 md:p-8">
+            <h2 className="text-lg font-semibold text-[#1A1A1A] mb-3">Topics you will see</h2>
+            <p className="text-sm leading-7 text-[#6B7280]">
               Recent issues have covered technical SEO patterns that move rankings without new content,
               n8n automation workflows for lead follow-up and appointment reminders, Next.js performance
               tuning for Core Web Vitals, structured data strategies for AI search engines, and

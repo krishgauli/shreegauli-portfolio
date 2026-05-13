@@ -149,14 +149,14 @@ export default function ResultsPage() {
               <ScrollReveal key={stat.label} delay={i * 0.06}>
                 <ModuleShell className="p-6 h-full" enableHoverLift>
                   <div
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border bg-white/[0.04]"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border bg-black/[0.04]"
                     style={{ borderColor: stat.color + "40", color: stat.color }}
                   >
                     <Icon className="h-5 w-5" />
                   </div>
-                  <p className="mt-4 text-3xl font-bold text-[#F8FAFC]">{stat.value}</p>
+                  <p className="mt-4 text-3xl font-bold text-[#1A1A1A]">{stat.value}</p>
                   <p className="text-sm font-medium text-[#C4B5FD] mt-1">{stat.label}</p>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{stat.detail}</p>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{stat.detail}</p>
                 </ModuleShell>
               </ScrollReveal>
             );
@@ -167,8 +167,8 @@ export default function ResultsPage() {
       {/* Case studies */}
       <section className="relative z-10 pb-20 px-6">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-2xl font-bold text-[#F8FAFC] mb-2">Case Studies</h2>
-          <p className="text-sm text-[#94A3B8] mb-10 max-w-2xl">
+          <h2 className="text-2xl font-bold text-[#1A1A1A] mb-2">Case Studies</h2>
+          <p className="text-sm text-[#6B7280] mb-10 max-w-2xl">
             Detailed breakdowns of real engagements — what was broken, what we fixed, and the measurable impact.
           </p>
 
@@ -180,19 +180,19 @@ export default function ResultsPage() {
                     <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7C3AED]">
                       {study.industry}
                     </span>
-                    <span className="text-xs text-[#94A3B8]/60">·</span>
-                    <span className="text-xs text-[#94A3B8]">{study.client}</span>
+                    <span className="text-xs text-[#6B7280]/60">·</span>
+                    <span className="text-xs text-[#6B7280]">{study.client}</span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#F8FAFC] leading-tight">
+                  <h3 className="text-lg font-bold text-[#1A1A1A] leading-tight">
                     {study.title}
                   </h3>
 
-                  <p className="inline-flex items-center mt-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#22D3EE]">
+                  <p className="inline-flex items-center mt-2 rounded-full border border-black/10 bg-black/[0.04] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#22D3EE]">
                     {study.result}
                   </p>
 
-                  <p className="mt-4 text-sm text-[#94A3B8] leading-relaxed">
+                  <p className="mt-4 text-sm text-[#6B7280] leading-relaxed">
                     {study.description}
                   </p>
 
@@ -200,7 +200,7 @@ export default function ResultsPage() {
                     {study.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-[11px] text-[#94A3B8]"
+                        className="rounded-lg border border-black/[0.08] bg-black/[0.04] px-2.5 py-1 text-[11px] text-[#6B7280]"
                       >
                         {tag}
                       </span>
@@ -224,13 +224,13 @@ export default function ResultsPage() {
       {/* Technologies */}
       <section className="relative z-10 pb-20 px-6">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Technologies I build with</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Technologies I build with</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {technologies.map((tech) => (
               <ScrollReveal key={tech.name}>
                 <Link href={tech.href}>
                   <ModuleShell className="p-5 text-center" enableHoverLift>
-                    <p className="text-sm font-semibold text-[#F8FAFC]">{tech.name}</p>
+                    <p className="text-sm font-semibold text-[#1A1A1A]">{tech.name}</p>
                   </ModuleShell>
                 </Link>
               </ScrollReveal>

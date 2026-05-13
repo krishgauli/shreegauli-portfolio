@@ -129,12 +129,12 @@ function makeSiteOrigin(input: string) {
 
 function KeywordTable({ title, rows, tip }: { title: string; rows: KeywordRow[]; tip: string }) {
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+    <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm font-semibold text-white">{title}</p>
         <span className="text-xs text-[#64748B]">{rows.length} keywords</span>
       </div>
-      <p className="mt-1 text-xs text-[#94A3B8]">{tip}</p>
+      <p className="mt-1 text-xs text-[#6B7280]">{tip}</p>
 
       {rows.length === 0 ? (
         <p className="mt-4 text-sm text-[#64748B]">No keywords in this bucket.</p>
@@ -142,7 +142,7 @@ function KeywordTable({ title, rows, tip }: { title: string; rows: KeywordRow[];
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[680px] text-left text-sm">
             <thead>
-              <tr className="border-b border-white/[0.08] text-[#64748B]">
+              <tr className="border-b border-black/[0.08] text-[#64748B]">
                 <th className="py-2 pr-3 font-medium">Keyword</th>
                 <th className="py-2 pr-3 font-medium">Position</th>
                 <th className="py-2 pr-3 font-medium">Impressions</th>
@@ -152,7 +152,7 @@ function KeywordTable({ title, rows, tip }: { title: string; rows: KeywordRow[];
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={`${title}-${row.query}`} className="border-b border-white/[0.05] text-[#CBD5E1]">
+                <tr key={`${title}-${row.query}`} className="border-b border-white/[0.05] text-gray-600">
                   <td className="py-2 pr-3 max-w-[260px] truncate">{row.query}</td>
                   <td className="py-2 pr-3">{row.position}</td>
                   <td className="py-2 pr-3">{row.impressions}</td>
@@ -354,7 +354,7 @@ export default function SeoToolsClient() {
             subtitle="Run on-page checks, ranking keyword opportunities, backlink authority signals, and export-ready full report — directly in this page."
           />
 
-          <div className="mt-10 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+          <div className="mt-10 rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
             <form
               onSubmit={(event) => {
                 event.preventDefault();
@@ -363,13 +363,13 @@ export default function SeoToolsClient() {
               className="flex flex-col gap-3 sm:flex-row"
             >
               <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#475569]" />
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
                 <input
                   type="text"
                   value={url}
                   onChange={(event) => setUrl(event.target.value)}
                   placeholder="https://example.com"
-                  className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] py-3 pl-11 pr-4 text-sm text-white placeholder:text-[#475569] outline-none focus:border-[#7C3AED]/60"
+                  className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] py-3 pl-11 pr-4 text-sm text-gray-900 placeholder:text-gray-500 outline-none focus:border-[#7C3AED]/60"
                 />
               </div>
               <button
@@ -395,7 +395,7 @@ export default function SeoToolsClient() {
                       'inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition',
                       active
                         ? 'border-[#7C3AED]/40 bg-[#7C3AED]/15 text-[#C4B5FD]'
-                        : 'border-white/[0.08] bg-white/[0.02] text-[#94A3B8] hover:text-white'
+                        : 'border-black/[0.08] bg-black/[0.04] text-[#6B7280] hover:text-gray-900'
                     )}
                   >
                     <Icon className="h-3.5 w-3.5" />
@@ -409,16 +409,16 @@ export default function SeoToolsClient() {
           </div>
 
           {!result ? (
-            <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 text-sm text-[#94A3B8]">
+            <div className="mt-8 rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6 text-sm text-[#6B7280]">
               Run an audit to unlock On-Page, Keywords, Backlinks, and Full Report tabs.
             </div>
           ) : (
             <div className="mt-8 space-y-6">
               {activeTab === 'onpage' && (
                 <>
-                  <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6">
+                  <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
                     <div className="grid gap-4 sm:grid-cols-4">
-                      <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 text-center">
+                      <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4 text-center">
                         <p className={cn('text-4xl font-bold', getScoreColor(result.score))}>{result.score}</p>
                         <p className="mt-1 text-xs text-[#64748B]">SEO Score / 100</p>
                         <p className={cn('text-sm font-semibold', getScoreColor(result.score))}>{getScoreLabel(result.score)}</p>
@@ -439,22 +439,22 @@ export default function SeoToolsClient() {
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 text-center">
+                    <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4 text-center">
                       <ShieldCheck className="mx-auto h-4 w-4 text-[#64748B]" />
                       <p className="mt-2 text-xl font-bold text-white">{result.performance.ttfb}ms</p>
                       <p className="text-xs text-[#64748B]">TTFB</p>
                     </div>
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 text-center">
+                    <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4 text-center">
                       <Globe className="mx-auto h-4 w-4 text-[#64748B]" />
                       <p className="mt-2 text-xl font-bold text-white">{result.performance.size} KB</p>
                       <p className="text-xs text-[#64748B]">HTML Size</p>
                     </div>
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 text-center">
+                    <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4 text-center">
                       <Target className="mx-auto h-4 w-4 text-[#64748B]" />
                       <p className="mt-2 text-xl font-bold text-white">{result.keywords.wordCount}</p>
                       <p className="text-xs text-[#64748B]">Indexable Words</p>
                     </div>
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 text-center">
+                    <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4 text-center">
                       <Link2 className="mx-auto h-4 w-4 text-[#64748B]" />
                       <p className="mt-2 text-xl font-bold text-white">{result.links.internal}</p>
                       <p className="text-xs text-[#64748B]">Internal Links</p>
@@ -462,7 +462,7 @@ export default function SeoToolsClient() {
                   </div>
 
                   {groupedChecks.map((bucket) => (
-                    <div key={bucket.impact} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+                    <div key={bucket.impact} className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
                       <div className="mb-4 flex items-center justify-between gap-2">
                         <span className={cn('rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wider', IMPACT_CLASSES[bucket.impact])}>
                           {IMPACT_LABEL[bucket.impact]} Impact
@@ -471,12 +471,12 @@ export default function SeoToolsClient() {
                       </div>
                       <div className="space-y-2">
                         {bucket.checks.map((check) => (
-                          <div key={check.id} className="rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
+                          <div key={check.id} className="rounded-xl border border-white/[0.07] bg-black/[0.04] px-4 py-3">
                             <div className="flex items-center gap-2">
                               <StatusIcon status={check.status} />
                               <p className="text-sm font-semibold text-white">{check.label}</p>
                             </div>
-                            <p className="mt-1 text-sm text-[#94A3B8]">{check.message}</p>
+                            <p className="mt-1 text-sm text-[#6B7280]">{check.message}</p>
                             {check.recommendation && (
                               <p className="mt-2 text-xs text-[#C4B5FD]">Fix: {check.recommendation}</p>
                             )}
@@ -491,9 +491,9 @@ export default function SeoToolsClient() {
               {activeTab === 'keywords' && (
                 <>
                   {!gscConnected && (
-                    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
+                    <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
                       <p className="text-sm font-semibold text-white">Connect Google Search Console</p>
-                      <p className="mt-2 text-sm text-[#94A3B8]">
+                      <p className="mt-2 text-sm text-[#6B7280]">
                         For keywords that already rank and opportunities to rank higher, connect your Search Console account.
                       </p>
                       <button
@@ -507,7 +507,7 @@ export default function SeoToolsClient() {
                     </div>
                   )}
 
-                  <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
+                  <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div>
                         <p className="text-sm font-semibold text-white">On-Page Extracted Keywords</p>
@@ -534,7 +534,7 @@ export default function SeoToolsClient() {
                     <button
                       type="button"
                       onClick={fetchKeywordData}
-                      className="inline-flex items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.03] px-3 py-2 text-xs font-semibold text-[#CBD5E1] hover:text-white"
+                      className="inline-flex items-center gap-2 rounded-lg border border-black/[0.12] bg-black/[0.04] px-3 py-2 text-xs font-semibold text-gray-600 hover:text-gray-900"
                       disabled={loadingKeywords}
                     >
                       {loadingKeywords ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <BarChart3 className="h-3.5 w-3.5" />}
@@ -577,28 +577,28 @@ export default function SeoToolsClient() {
               {activeTab === 'backlinks' && (
                 <>
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+                    <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
                       <p className="text-xs uppercase tracking-widest text-[#64748B]">Domain Authority (OPR)</p>
-                      <p className="mt-2 text-3xl font-bold text-white">
+                      <p className="mt-2 text-3xl font-bold text-gray-900">
                         {result.authority.rank !== null ? result.authority.rank.toFixed(2) : 'N/A'}
                       </p>
                       <p className="text-xs text-[#64748B]">Open PageRank score</p>
                     </div>
-                    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+                    <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
                       <p className="text-xs uppercase tracking-widest text-[#64748B]">Referring Domains</p>
-                      <p className="mt-2 text-3xl font-bold text-white">{result.authority.referringDomains ?? 'N/A'}</p>
+                      <p className="mt-2 text-3xl font-bold text-gray-900">{result.authority.referringDomains ?? 'N/A'}</p>
                       <p className="text-xs text-[#64748B]">Estimated by Open PageRank</p>
                     </div>
-                    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+                    <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
                       <p className="text-xs uppercase tracking-widest text-[#64748B]">Link Profile</p>
-                      <p className="mt-2 text-3xl font-bold text-white">{result.links.external}</p>
+                      <p className="mt-2 text-3xl font-bold text-gray-900">{result.links.external}</p>
                       <p className="text-xs text-[#64748B]">External links on the audited page</p>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
+                  <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
                     <p className="text-sm font-semibold text-white">Backlink & authority recommendations</p>
-                    <ul className="mt-3 space-y-2 text-sm text-[#94A3B8]">
+                    <ul className="mt-3 space-y-2 text-sm text-[#6B7280]">
                       <li>- Build topical backlinks to pages with ranking positions 4-20 first.</li>
                       <li>- Convert unlinked brand mentions into contextual links.</li>
                       <li>- Publish comparison pages to attract organic editorial backlinks.</li>
@@ -609,11 +609,11 @@ export default function SeoToolsClient() {
               )}
 
               {activeTab === 'report' && result && (
-                <div className="space-y-5 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
+                <div className="space-y-5 rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <p className="text-lg font-semibold text-white">Full SEO Audit Report</p>
-                      <p className="text-sm text-[#94A3B8]">Includes on-page checks, keyword opportunities, and backlink authority summary.</p>
+                      <p className="text-sm text-[#6B7280]">Includes on-page checks, keyword opportunities, and backlink authority summary.</p>
                     </div>
                     <button
                       type="button"
@@ -626,29 +626,29 @@ export default function SeoToolsClient() {
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-3">
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
+                    <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4">
                       <p className={cn('text-3xl font-bold', getScoreColor(result.score))}>{result.score}</p>
                       <p className="text-xs text-[#64748B]">SEO score</p>
                     </div>
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
-                      <p className="text-3xl font-bold text-white">{result.authority.rank !== null ? result.authority.rank.toFixed(2) : 'N/A'}</p>
+                    <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4">
+                      <p className="text-3xl font-bold text-gray-900">{result.authority.rank !== null ? result.authority.rank.toFixed(2) : 'N/A'}</p>
                       <p className="text-xs text-[#64748B]">Authority score</p>
                     </div>
-                    <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
-                      <p className="text-3xl font-bold text-white">{keywordData?.ranking.length ?? 0}</p>
+                    <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4">
+                      <p className="text-3xl font-bold text-gray-900">{keywordData?.ranking.length ?? 0}</p>
                       <p className="text-xs text-[#64748B]">Ranking opportunities</p>
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
+                  <div className="rounded-xl border border-black/[0.08] bg-black/[0.04] p-4">
                     <p className="text-sm font-semibold text-white">Top fixes to rank higher</p>
-                    <ul className="mt-3 space-y-2 text-sm text-[#94A3B8]">
+                    <ul className="mt-3 space-y-2 text-sm text-[#6B7280]">
                       {result.checks
                         .filter((check) => check.status !== 'pass')
                         .slice(0, 8)
                         .map((check) => (
                           <li key={`report-${check.id}`}>
-                            - <span className="text-white">{check.label}:</span> {check.recommendation || check.message}
+                            - <span className="text-gray-900">{check.label}:</span> {check.recommendation || check.message}
                           </li>
                         ))}
                     </ul>
@@ -666,18 +666,18 @@ export default function SeoToolsClient() {
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C4B5FD]">
                     Audit Review
                   </p>
-                  <p className="mt-4 text-2xl font-bold text-[#F8FAFC]">
+                  <p className="mt-4 text-2xl font-bold text-[#1A1A1A]">
                     Need help fixing these issues?
                   </p>
-                  <p className="mt-3 max-w-xl text-sm leading-7 text-[#CBD5E1]">
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-gray-600">
                     This result already tells us where the page is losing momentum.
                     If you want, send the audit through and I&apos;ll review the
                     highest-impact fixes before the next call.
                   </p>
 
                   <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-2xl border border-white/[0.10] bg-white/[0.04] p-4">
-                      <p className="text-2xl font-bold text-[#F8FAFC]">{result.score}</p>
+                    <div className="rounded-2xl border border-black/[0.10] bg-black/[0.04] p-4">
+                      <p className="text-2xl font-bold text-[#1A1A1A]">{result.score}</p>
                       <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#64748B]">Score</p>
                     </div>
                     <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-4">
@@ -699,16 +699,16 @@ export default function SeoToolsClient() {
                     </a>
                     <a
                       href="/working-together"
-                      className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] px-5 py-2.5 text-sm font-semibold text-[#E2E8F0] hover:border-white/[0.2] transition-colors"
+                      className="inline-flex items-center gap-2 rounded-xl border border-black/[0.12] px-5 py-2.5 text-sm font-semibold text-gray-700 hover:border-white/[0.2] transition-colors"
                     >
                       See how I work
                     </a>
                   </div>
                 </div>
 
-                <form onSubmit={submitLead} className="grid gap-4 rounded-[28px] border border-white/[0.10] bg-[#020617]/55 p-5">
+                <form onSubmit={submitLead} className="grid gap-4 rounded-[28px] border border-black/[0.10] bg-black/[0.05]5 p-5">
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                    <label className="grid gap-2 text-sm text-gray-700">
                       Name
                       <input
                         type="text"
@@ -716,12 +716,12 @@ export default function SeoToolsClient() {
                         onChange={(event) => setLeadData((current) => ({ ...current, name: event.target.value }))}
                         required
                         autoComplete="name"
-                        className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                        className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                         placeholder="Your name"
                       />
                     </label>
 
-                    <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                    <label className="grid gap-2 text-sm text-gray-700">
                       Email
                       <input
                         type="email"
@@ -729,19 +729,19 @@ export default function SeoToolsClient() {
                         onChange={(event) => setLeadData((current) => ({ ...current, email: event.target.value }))}
                         required
                         autoComplete="email"
-                        className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                        className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                         placeholder="you@company.com"
                       />
                     </label>
                   </div>
 
-                  <label className="grid gap-2 text-sm text-[#E2E8F0]">
+                  <label className="grid gap-2 text-sm text-gray-700">
                     What should I focus on first?
                     <textarea
                       value={leadData.message}
                       onChange={(event) => setLeadData((current) => ({ ...current, message: event.target.value }))}
                       rows={4}
-                      className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                      className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                       placeholder="Optional: tell me what matters most right now, like local rankings, low-converting service pages, or technical cleanup."
                     />
                   </label>
@@ -768,18 +768,18 @@ export default function SeoToolsClient() {
                 {/* Success Popup */}
                 {leadState === 'success' && (
                   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-                    <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0F172A] p-8 text-center shadow-2xl">
+                    <div className="relative w-full max-w-md rounded-3xl border border-black/10 bg-[#F5F0E8] p-8 text-center shadow-2xl">
                       <button
                         onClick={() => setLeadState('idle')}
-                        className="absolute right-4 top-4 text-[#94A3B8] hover:text-white transition-colors"
+                        className="absolute right-4 top-4 text-[#6B7280] hover:text-gray-900 transition-colors"
                       >
                         <X className="h-5 w-5" />
                       </button>
                       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
                         <CheckCircle2 className="h-8 w-8 text-emerald-400" />
                       </div>
-                      <h3 className="text-xl font-semibold text-[#F8FAFC] mb-2">Audit request sent!</h3>
-                      <p className="text-sm text-[#94A3B8] leading-relaxed">{leadFeedback}</p>
+                      <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">Audit request sent!</h3>
+                      <p className="text-sm text-[#6B7280] leading-relaxed">{leadFeedback}</p>
                       <button
                         onClick={() => setLeadState('idle')}
                         className="mt-6 inline-flex items-center justify-center rounded-2xl bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8B5CF6]"

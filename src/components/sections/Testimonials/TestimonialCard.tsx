@@ -36,7 +36,7 @@ export function TestimonialCard({
       {/* Result badge */}
       {testimonial.result && (
         <div className="flex items-center">
-          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]">
+          <span className="inline-flex items-center rounded-full border border-black/10 bg-black/[0.04] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6B7280]">
             {testimonial.result}
           </span>
         </div>
@@ -60,14 +60,14 @@ export function TestimonialCard({
       )}
 
       {/* Quote */}
-      <blockquote className="text-[#F8FAFC] text-base md:text-[1.05rem] leading-[1.8]">
+      <blockquote className="text-[#1A1A1A] text-base md:text-[1.05rem] leading-[1.8]">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
 
       {/* Author */}
       <div className="flex items-center gap-3 mt-auto">
         {testimonial.avatarImage && !imageFailed ? (
-          <div className="relative w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-white/15">
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-black/10">
             <Image
               src={testimonial.avatarImage}
               alt={testimonial.name}
@@ -86,8 +86,8 @@ export function TestimonialCard({
           </div>
         )}
         <div>
-          <p className="text-sm font-semibold text-[#F8FAFC]">{testimonial.name}</p>
-          <p className="text-xs text-[#94A3B8]">
+          <p className="text-sm font-semibold text-[#1A1A1A]">{testimonial.name}</p>
+          <p className="text-xs text-[#6B7280]">
             {testimonial.role} · {testimonial.company}
           </p>
         </div>

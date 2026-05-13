@@ -29,12 +29,12 @@ export function SeoToolPromoSection() {
                   <Search className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm uppercase tracking-[0.18em] text-[#94A3B8]">Best first step</p>
-                  <h3 className="mt-1 text-2xl font-semibold text-[#F8FAFC]">See the issues before you pay for the fix</h3>
+                  <p className="text-sm uppercase tracking-[0.18em] text-[#6B7280]">Best first step</p>
+                  <h3 className="mt-1 text-2xl font-semibold text-[#1A1A1A]">See the issues before you pay for the fix</h3>
                 </div>
               </div>
 
-              <ul className="mt-6 space-y-3 text-sm text-[#CBD5E1]">
+              <ul className="mt-6 space-y-3 text-sm text-gray-600">
                 {checks.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
@@ -53,7 +53,7 @@ export function SeoToolPromoSection() {
                 </Link>
                 <Link
                   href="/lp/free-seo-audit"
-                  className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20"
+                  className="rounded-2xl border border-black/10 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-black/12"
                 >
                   See the landing page version
                 </Link>
@@ -64,23 +64,23 @@ export function SeoToolPromoSection() {
           <ScrollReveal delay={0.08}>
             <ModuleShell className="h-full p-6 md:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <div className="rounded-2xl border border-black/10 bg-black/[0.04] p-5">
                   <BarChart3 className="h-5 w-5 text-[#22D3EE]" />
-                  <p className="mt-4 text-lg font-semibold text-[#F8FAFC]">Fast signal</p>
-                  <p className="mt-2 text-sm leading-7 text-[#94A3B8]">
+                  <p className="mt-4 text-lg font-semibold text-[#1A1A1A]">Fast signal</p>
+                  <p className="mt-2 text-sm leading-7 text-[#6B7280]">
                     Useful for deciding what deserves attention first instead of guessing where the site is underperforming.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <div className="rounded-2xl border border-black/10 bg-black/[0.04] p-5">
                   <Search className="h-5 w-5 text-[#C4B5FD]" />
-                  <p className="mt-4 text-lg font-semibold text-[#F8FAFC]">Real next step</p>
-                  <p className="mt-2 text-sm leading-7 text-[#94A3B8]">
+                  <p className="mt-4 text-lg font-semibold text-[#1A1A1A]">Real next step</p>
+                  <p className="mt-2 text-sm leading-7 text-[#6B7280]">
                     If the tool surfaces deeper structural issues, it flows naturally into a technical audit or strategy call.
                   </p>
                 </div>
                 <div className="sm:col-span-2 rounded-2xl border border-[#22D3EE]/20 bg-[#22D3EE]/5 p-5">
                   <p className="text-sm uppercase tracking-[0.18em] text-[#22D3EE]">Best fit</p>
-                  <p className="mt-3 text-sm leading-7 text-[#CBD5E1]">
+                  <p className="mt-3 text-sm leading-7 text-gray-600">
                     The tool is most useful for service businesses, lean marketing teams, and founders who need a quick read on on-page issues before deciding how deep the work should go.
                   </p>
                 </div>

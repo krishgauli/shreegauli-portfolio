@@ -76,7 +76,7 @@ function AnimatedStat({ stat, duration = 2 }: AnimatedStatProps) {
         {count.toLocaleString()}
         {stat.suffix}
       </div>
-      <p className="text-slate-400">{stat.label}</p>
+      <p className="text-gray-500">{stat.label}</p>
     </div>
   );
 }

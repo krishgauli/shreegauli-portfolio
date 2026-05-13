@@ -96,7 +96,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#070B14] flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen bg-[#FDFAF5] flex items-center justify-center px-4 py-16">
       {/* Background glow */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[#7C3AED]/10 blur-[120px]" />
@@ -106,16 +106,16 @@ export default function SignupPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="text-2xl font-bold text-white tracking-tight">
+            <span className="text-2xl font-bold text-gray-900 tracking-tight">
               Shree<span className="text-[#7C3AED]">.</span>
             </span>
           </Link>
-          <h1 className="mt-6 text-3xl font-bold text-white">Create your account</h1>
-          <p className="mt-2 text-sm text-[#94A3B8]">Start tracking your growth today</p>
+          <h1 className="mt-6 text-3xl font-bold text-gray-900">Create your account</h1>
+          <p className="mt-2 text-sm text-[#6B7280]">Start tracking your growth today</p>
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8">
+        <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] backdrop-blur-sm p-8">
           {error && (
             <div className="mb-5 rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-400">
               {error}
@@ -127,7 +127,7 @@ export default function SignupPage() {
             type="button"
             onClick={handleGoogle}
             disabled={googleLoading || loading}
-            className="w-full flex items-center justify-center gap-3 rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3 text-sm font-medium text-white transition hover:bg-white/[0.08] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-3 rounded-xl border border-black/[0.10] bg-black/[0.04] px-4 py-3 text-sm font-medium text-gray-900 transition hover:bg-black/[0.05] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {googleLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -138,15 +138,15 @@ export default function SignupPage() {
           </button>
 
           <div className="flex items-center gap-4 my-6">
-            <div className="h-px flex-1 bg-white/[0.07]" />
+            <div className="h-px flex-1 bg-black/[0.08]" />
             <span className="text-xs text-[#64748B]">or</span>
-            <div className="h-px flex-1 bg-white/[0.07]" />
+            <div className="h-px flex-1 bg-black/[0.08]" />
           </div>
 
           {/* Signup form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-[#94A3B8] mb-1.5">Full name</label>
+              <label className="block text-sm font-medium text-[#6B7280] mb-1.5">Full name</label>
               <input
                 type="text"
                 autoComplete="name"
@@ -154,12 +154,12 @@ export default function SignupPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Jane Smith"
-                className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-[#475569] focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
+                className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] px-4 py-3 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#94A3B8] mb-1.5">
+              <label className="block text-sm font-medium text-[#6B7280] mb-1.5">
                 Email address
               </label>
               <input
@@ -169,12 +169,12 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-[#475569] focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
+                className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] px-4 py-3 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#94A3B8] mb-1.5">Password</label>
+              <label className="block text-sm font-medium text-[#6B7280] mb-1.5">Password</label>
               <div className="relative">
                 <input
                   type={showPw ? 'text' : 'password'}
@@ -183,12 +183,12 @@ export default function SignupPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Min 6 characters"
-                  className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3 pr-11 text-sm text-white placeholder:text-[#475569] focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
+                  className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] px-4 py-3 pr-11 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPw(!showPw)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#475569] hover:text-[#94A3B8] transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#6B7280] transition-colors"
                   tabIndex={-1}
                 >
                   {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -198,9 +198,9 @@ export default function SignupPage() {
               {password.length > 0 && (
                 <div className="mt-2 space-y-1">
                   <div className="flex gap-1">
-                    <div className={`h-1 flex-1 rounded-full transition-colors ${password.length >= 1 ? (pwStrong ? 'bg-emerald-500' : pwMedium ? 'bg-amber-400' : 'bg-red-400') : 'bg-white/10'}`} />
-                    <div className={`h-1 flex-1 rounded-full transition-colors ${password.length >= 6 ? (pwStrong ? 'bg-emerald-500' : 'bg-amber-400') : 'bg-white/10'}`} />
-                    <div className={`h-1 flex-1 rounded-full transition-colors ${pwStrong ? 'bg-emerald-500' : 'bg-white/10'}`} />
+                    <div className={`h-1 flex-1 rounded-full transition-colors ${password.length >= 1 ? (pwStrong ? 'bg-emerald-500' : pwMedium ? 'bg-amber-400' : 'bg-red-400') : 'bg-black/5'}`} />
+                    <div className={`h-1 flex-1 rounded-full transition-colors ${password.length >= 6 ? (pwStrong ? 'bg-emerald-500' : 'bg-amber-400') : 'bg-black/5'}`} />
+                    <div className={`h-1 flex-1 rounded-full transition-colors ${pwStrong ? 'bg-emerald-500' : 'bg-black/5'}`} />
                   </div>
                   <div className="flex items-center gap-1 text-xs text-[#64748B]">
                     {pwStrong ? (
@@ -225,7 +225,7 @@ export default function SignupPage() {
             </button>
           </form>
 
-          <p className="mt-5 text-xs text-center text-[#475569]">
+          <p className="mt-5 text-xs text-center text-gray-500">
             By signing up you agree to our{' '}
             <Link href="/terms" className="text-[#7C3AED] hover:underline">Terms</Link>
             {' '}and{' '}

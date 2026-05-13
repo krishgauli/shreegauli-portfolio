@@ -6,7 +6,7 @@ function ProfileCard() {
   return (
     <div className="module p-5 flex items-center gap-4">
       {/* Avatar */}
-      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-[1.35rem] border border-white/10 bg-[linear-gradient(180deg,#B3873F_0%,#A97B31_100%)]">
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-[1.35rem] border border-black/10 bg-[linear-gradient(180deg,#B3873F_0%,#A97B31_100%)]">
         <Image
           src="/shree-gauli.png"
           alt="Shree Krishna Gauli"
@@ -16,8 +16,8 @@ function ProfileCard() {
         />
       </div>
       <div>
-        <p className="text-sm font-semibold text-[#F8FAFC]">Shree Krishna Gauli</p>
-        <p className="text-xs text-[#94A3B8] mt-0.5">Full-Stack Web Developer & SEO Consultant</p>
+        <p className="text-sm font-semibold text-[#1A1A1A]">Shree Krishna Gauli</p>
+        <p className="text-xs text-[#6B7280] mt-0.5">Full-Stack Web Developer & SEO Consultant</p>
       </div>
     </div>
   );
@@ -45,8 +45,8 @@ function MetricCard({
         <Icon className="h-4 w-4" style={{ color }} />
       </div>
       <div>
-        <p className="text-lg font-bold text-[#F8FAFC] leading-none">{value}</p>
-        <p className="text-xs text-[#94A3B8] mt-0.5">{label}</p>
+        <p className="text-lg font-bold text-[#1A1A1A] leading-none">{value}</p>
+        <p className="text-xs text-[#6B7280] mt-0.5">{label}</p>
       </div>
     </div>
   );
@@ -56,7 +56,7 @@ function SkillBadgeCard() {
   const skills = ["SEO", "Meta Ads", "n8n", "Google Analytics", "Content"];
   return (
     <div className="module p-4">
-      <p className="text-xs font-semibold text-[#94A3B8] mb-3 uppercase tracking-wider">
+      <p className="text-xs font-semibold text-[#6B7280] mb-3 uppercase tracking-wider">
         Core Skills
       </p>
       <div className="flex flex-wrap gap-1.5">

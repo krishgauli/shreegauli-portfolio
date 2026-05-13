@@ -150,20 +150,20 @@ export default function PricingPage() {
                       <Icon className="h-5 w-5" />
                     </div>
 
-                    <p className="mt-5 text-sm uppercase tracking-[0.18em] text-[#94A3B8]">
+                    <p className="mt-5 text-sm uppercase tracking-[0.18em] text-[#6B7280]">
                       {project.label}
                     </p>
 
                     <div className="mt-3 flex items-baseline gap-1">
-                      <span className="text-3xl font-bold text-[#F8FAFC]">{project.price}</span>
+                      <span className="text-3xl font-bold text-[#1A1A1A]">{project.price}</span>
                     </div>
 
                     <p className="mt-1 text-sm font-medium text-[#C4B5FD]">{project.tagline}</p>
-                    <p className="mt-4 text-sm leading-7 text-[#94A3B8]">{project.description}</p>
+                    <p className="mt-4 text-sm leading-7 text-[#6B7280]">{project.description}</p>
 
                     <ul className="mt-5 space-y-2.5">
                       {project.features.map((f) => (
-                        <li key={f} className="flex items-start gap-2 text-sm text-[#CBD5E1]">
+                        <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
                           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7C3AED]" />
                           {f}
                         </li>
@@ -175,7 +175,7 @@ export default function PricingPage() {
                       className={`mt-6 flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold transition ${
                         project.popular
                           ? "bg-[#7C3AED] text-white hover:bg-[#8B5CF6]"
-                          : "border border-white/10 text-[#E2E8F0] hover:border-white/20"
+                          : "border border-black/10 text-gray-700 hover:border-black/12"
                       }`}
                     >
                       {project.cta}
@@ -201,12 +201,12 @@ export default function PricingPage() {
                 return (
                   <ScrollReveal key={addon.label} delay={i * 0.06}>
                     <ModuleShell className="h-full p-6">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04] text-[#C4B5FD]">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-black/[0.08] bg-black/[0.04] text-[#C4B5FD]">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h3 className="mt-4 text-base font-semibold text-[#F8FAFC]">{addon.label}</h3>
+                      <h3 className="mt-4 text-base font-semibold text-[#1A1A1A]">{addon.label}</h3>
                       <p className="mt-1 text-lg font-bold text-[#22D3EE]">{addon.price}</p>
-                      <p className="mt-3 text-sm leading-6 text-[#94A3B8]">{addon.description}</p>
+                      <p className="mt-3 text-sm leading-6 text-[#6B7280]">{addon.description}</p>
                     </ModuleShell>
                   </ScrollReveal>
                 );
@@ -218,8 +218,8 @@ export default function PricingPage() {
           <div className="mt-16 grid gap-6 lg:grid-cols-2">
             <ScrollReveal>
               <ModuleShell className="h-full p-6">
-                <h2 className="text-xl font-semibold text-[#F8FAFC]">How pricing works</h2>
-                <ul className="mt-4 space-y-3 text-sm leading-7 text-[#94A3B8]">
+                <h2 className="text-xl font-semibold text-[#1A1A1A]">How pricing works</h2>
+                <ul className="mt-4 space-y-3 text-sm leading-7 text-[#6B7280]">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#7C3AED]/60" />
                     Every project starts with a discovery call to define scope
@@ -247,13 +247,13 @@ export default function PricingPage() {
             <ScrollReveal delay={0.08}>
               <ModuleShell className="flex h-full flex-col justify-between p-6">
                 <div>
-                  <h2 className="text-xl font-semibold text-[#F8FAFC]">Ready to start?</h2>
-                  <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+                  <h2 className="text-xl font-semibold text-[#1A1A1A]">Ready to start?</h2>
+                  <p className="mt-4 text-sm leading-7 text-[#6B7280]">
                     If you already know what you need, book a call and we&apos;ll scope it
                     together. If you&apos;re exploring options, send a message with your
                     project details and I&apos;ll recommend the right approach.
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-[#94A3B8]">
+                  <p className="mt-3 text-sm leading-7 text-[#6B7280]">
                     Most websites ship in 2–4 weeks. Web apps and complex builds are
                     scoped individually — always with a clear timeline up front.
                   </p>
@@ -267,7 +267,7 @@ export default function PricingPage() {
                   </Link>
                   <Link
                     href="/working-together"
-                    className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20"
+                    className="rounded-2xl border border-black/10 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-black/12"
                   >
                     See how projects work
                   </Link>

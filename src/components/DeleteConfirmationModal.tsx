@@ -50,17 +50,17 @@ export default function DeleteConfirmationModal({
             }}
           >
             <motion.div
-              className="w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.28)] dark:border-slate-700 dark:bg-slate-900"
+              className="w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.28)] dark:border-stone-300 dark:bg-[#F5F0E8]"
               initial={{ scale: 0.97 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="relative border-b border-slate-100 px-6 py-5 dark:border-slate-800">
+              <div className="relative border-b border-slate-100 px-6 py-5 dark:border-stone-200">
                 <button
                   onClick={onCancel}
                   disabled={isLoading}
-                  className="absolute right-4 top-4 rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                  className="absolute right-4 top-4 rounded-full p-2 text-gray-500 transition-colors hover:bg-slate-100 hover:text-slate-700 disabled:cursor-not-allowed disabled:opacity-50 dark:text-gray-500 dark:hover:bg-[#EDE8DF] dark:hover:text-gray-700"
                   aria-label="Close"
                 >
                   <X size={16} />
@@ -82,7 +82,7 @@ export default function DeleteConfirmationModal({
               </div>
 
               <div className="px-6 py-5">
-                <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{description}</p>
+                <p className="text-sm leading-6 text-slate-600 dark:text-gray-600">{description}</p>
 
                 {itemName && (
                   <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/60 dark:bg-red-950/25">
@@ -93,10 +93,10 @@ export default function DeleteConfirmationModal({
                   </div>
                 )}
 
-                <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">This deletion is permanent and cannot be reversed.</p>
+                <p className="mt-4 text-xs text-gray-500 dark:text-gray-500">This deletion is permanent and cannot be reversed.</p>
               </div>
 
-              <div className="flex items-center gap-3 border-t border-slate-100 bg-slate-50 px-6 py-4 dark:border-slate-800 dark:bg-slate-950/40">
+              <div className="flex items-center gap-3 border-t border-slate-100 bg-[#FDFAF5] px-6 py-4 dark:border-stone-200 dark:bg-slate-950/40">
                 <motion.div
                   className="flex-1"
                   whileHover={!isLoading ? { y: -1 } : {}}
@@ -105,7 +105,7 @@ export default function DeleteConfirmationModal({
                   <button
                     onClick={onCancel}
                     disabled={isLoading}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-300 dark:bg-[#F5F0E8] dark:text-gray-700 dark:hover:bg-[#EDE8DF]"
                   >
                     {cancelLabel}
                   </button>
@@ -114,7 +114,7 @@ export default function DeleteConfirmationModal({
                 <motion.button
                   onClick={onConfirm}
                   disabled={isLoading}
-                  className="relative flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-red-600 to-rose-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-red-900/20 transition-all hover:from-red-500 hover:to-rose-500 disabled:cursor-not-allowed disabled:opacity-75"
+                  className="relative flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-red-600 to-rose-600 px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-lg shadow-red-900/20 transition-all hover:from-red-500 hover:to-rose-500 disabled:cursor-not-allowed disabled:opacity-75"
                   whileHover={!isLoading ? { y: -1 } : {}}
                   whileTap={!isLoading ? { scale: 0.98 } : {}}
                 >

@@ -12,8 +12,8 @@ const features = [
     className: "md:col-span-2 md:row-span-1 bg-emerald-50 border-emerald-100",
     darkClassName: "md:col-span-2 md:row-span-1 bg-emerald-900/30 border-emerald-800",
     iconColor: "text-emerald-600",
-    descColor: "text-slate-500",
-    darkDescColor: "text-slate-400",
+    descColor: "text-gray-500",
+    darkDescColor: "text-gray-500",
   },
   {
     title: "AI Intake Agents",
@@ -22,18 +22,18 @@ const features = [
     className: "md:col-span-1 md:row-span-1 bg-blue-50 border-blue-100",
     darkClassName: "md:col-span-1 md:row-span-1 bg-blue-900/30 border-blue-800",
     iconColor: "text-blue-600",
-    descColor: "text-slate-500",
-    darkDescColor: "text-slate-400",
+    descColor: "text-gray-500",
+    darkDescColor: "text-gray-500",
   },
   {
     title: "HIPAA Secure Ops",
     description: "Every byte of data is encrypted and handled with clinical precision.",
     icon: Shield,
     className: "md:col-span-1 md:row-span-2 bg-emerald-600 border-emerald-700 text-white",
-    darkClassName: "md:col-span-1 md:row-span-2 bg-slate-900 border-slate-800 text-white",
+    darkClassName: "md:col-span-1 md:row-span-2 bg-[#F5F0E8] border-stone-200 text-white",
     iconColor: "text-emerald-400",
     descColor: "text-white/80",
-    darkDescColor: "text-slate-400",
+    darkDescColor: "text-gray-500",
   },
   {
     title: "Zero-Click Booking",
@@ -42,8 +42,8 @@ const features = [
     className: "md:col-span-1 md:row-span-1 bg-purple-50 border-purple-100",
     darkClassName: "md:col-span-1 md:row-span-1 bg-purple-900/30 border-purple-800",
     iconColor: "text-purple-600",
-    descColor: "text-slate-500",
-    darkDescColor: "text-slate-400",
+    descColor: "text-gray-500",
+    darkDescColor: "text-gray-500",
   },
   {
     title: "Real-time ROI Tracking",
@@ -52,8 +52,8 @@ const features = [
     className: "md:col-span-2 md:row-span-1 bg-orange-50 border-orange-100",
     darkClassName: "md:col-span-2 md:row-span-1 bg-orange-900/30 border-orange-800",
     iconColor: "text-orange-600",
-    descColor: "text-slate-500",
-    darkDescColor: "text-slate-400",
+    descColor: "text-gray-500",
+    darkDescColor: "text-gray-500",
   },
 ];
 
@@ -62,14 +62,14 @@ export default function BentoFeatures() {
   const isDark = theme === 'dark';
 
   return (
-    <section className={`py-32 ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
+    <section className={`py-32 ${isDark ? 'bg-[#F5F0E8]' : 'bg-white'}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-20">
           <h2 className={`h1 mb-6 tracking-tight leading-[0.85] ${isDark ? 'text-white' : ''}`}>
             THE AUTOMATION <br />
             <span className="text-emerald-500">MOAT</span>
           </h2>
-          <p className={`max-w-2xl text-xl font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+          <p className={`max-w-2xl text-xl font-medium ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
             Traditional agencies stop at the click. We integrate directly into your clinical operations 
             to ensure every lead becomes a patient.
           </p>
@@ -87,7 +87,7 @@ export default function BentoFeatures() {
             >
               <div className="relative z-10 flex h-full flex-col justify-between">
                 <div>
-                  <div className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl shadow-sm group-hover:scale-110 transition-transform ${isDark ? 'bg-slate-800' : 'bg-white'}`}>
+                  <div className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl shadow-sm group-hover:scale-110 transition-transform ${isDark ? 'bg-[#EDE8DF]' : 'bg-white'}`}>
                     <feature.icon className={`h-6 w-6 ${feature.iconColor}`} />
                   </div>
                   <h3 className="text-2xl font-black mb-3">{feature.title}</h3>
@@ -97,7 +97,7 @@ export default function BentoFeatures() {
                 </div>
               </div>
               {/* Decorative background glow */}
-              <div className="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-white/10 blur-3xl group-hover:bg-white/20 transition-all" />
+              <div className="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-black/5 blur-3xl group-hover:bg-white/20 transition-all" />
             </motion.div>
           ))}
         </div>

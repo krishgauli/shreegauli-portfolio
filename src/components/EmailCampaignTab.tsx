@@ -189,8 +189,8 @@ export default function EmailCampaignTab() {
       {/* ── Header ─────────────────────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-[#f8fafc]">Email Campaign</h2>
-          <p className="text-sm text-[#94a3b8] mt-1">
+          <h2 className="text-xl font-bold text-[#1A1A1A]">Email Campaign</h2>
+          <p className="text-sm text-[#6B7280] mt-1">
             Select leads, compose your message, and send emails one-by-one using your branded template.
           </p>
         </div>
@@ -229,7 +229,7 @@ export default function EmailCampaignTab() {
             </select>
             <button
               onClick={toggleSelectAll}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold transition border border-white/10 hover:border-cyan-400/30 hover:bg-white/5 text-slate-300"
+              className="px-4 py-2.5 rounded-xl text-xs font-semibold transition border border-black/10 hover:border-cyan-400/30 hover:bg-black/[0.05] text-slate-300"
             >
               {selected.size === filteredLeads.length && filteredLeads.length > 0
                 ? 'Deselect All'
@@ -238,10 +238,10 @@ export default function EmailCampaignTab() {
           </div>
 
           {/* Lead list */}
-          <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden max-h-[520px] overflow-y-auto">
+          <div className="rounded-xl border border-black/10 bg-black/[0.05] overflow-hidden max-h-[520px] overflow-y-auto">
             <table className="w-full text-sm">
               <thead className="sticky top-0 z-10">
-                <tr className="border-b border-white/10 text-left text-[#94a3b8] text-xs uppercase tracking-wider bg-[#0f172a]/90 backdrop-blur">
+                <tr className="border-b border-black/10 text-left text-[#6B7280] text-xs uppercase tracking-wider bg-[#F5F0E8]/90 backdrop-blur">
                   <th className="px-4 py-3 w-10">
                     <input
                       type="checkbox"
@@ -259,7 +259,7 @@ export default function EmailCampaignTab() {
               <tbody>
                 {filteredLeads.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-4 py-12 text-center text-[#94a3b8]">
+                    <td colSpan={5} className="px-4 py-12 text-center text-[#6B7280]">
                       No leads found matching your filters.
                     </td>
                   </tr>
@@ -271,7 +271,7 @@ export default function EmailCampaignTab() {
                       className={`border-b border-white/5 cursor-pointer transition-colors ${
                         selected.has(lead.id)
                           ? 'bg-violet-500/10 hover:bg-violet-500/15'
-                          : 'hover:bg-white/5'
+                          : 'hover:bg-black/[0.05]'
                       }`}
                     >
                       <td className="px-4 py-3">
@@ -283,9 +283,9 @@ export default function EmailCampaignTab() {
                           className="accent-violet-500 w-4 h-4 cursor-pointer"
                         />
                       </td>
-                      <td className="px-4 py-3 font-medium text-[#f8fafc]">{lead.name}</td>
-                      <td className="px-4 py-3 text-[#94a3b8]">{lead.email}</td>
-                      <td className="px-4 py-3 text-[#94a3b8] hidden md:table-cell">
+                      <td className="px-4 py-3 font-medium text-[#1A1A1A]">{lead.name}</td>
+                      <td className="px-4 py-3 text-[#6B7280]">{lead.email}</td>
+                      <td className="px-4 py-3 text-[#6B7280] hidden md:table-cell">
                         {lead.businessType || '—'}
                       </td>
                       <td className="px-4 py-3 hidden lg:table-cell">
@@ -313,8 +313,8 @@ export default function EmailCampaignTab() {
 
         {/* ── RIGHT: Compose & send (2 cols) ───────────────────────── */}
         <div className="xl:col-span-2 space-y-4">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
-            <h3 className="text-base font-bold text-[#f8fafc]">Compose Email</h3>
+          <div className="rounded-xl border border-black/10 bg-black/[0.05] p-5 space-y-4">
+            <h3 className="text-base font-bold text-[#1A1A1A]">Compose Email</h3>
 
             {/* Template preview info */}
             <div className="rounded-lg border border-violet-500/20 bg-violet-500/5 px-4 py-3 text-xs text-violet-300">
@@ -324,7 +324,7 @@ export default function EmailCampaignTab() {
 
             {/* Subject */}
             <div>
-              <label className="block text-xs font-medium text-[#94a3b8] mb-1.5">
+              <label className="block text-xs font-medium text-[#6B7280] mb-1.5">
                 Subject Line *
               </label>
               <input
@@ -339,7 +339,7 @@ export default function EmailCampaignTab() {
 
             {/* Body */}
             <div>
-              <label className="block text-xs font-medium text-[#94a3b8] mb-1.5">
+              <label className="block text-xs font-medium text-[#6B7280] mb-1.5">
                 Email Body *
               </label>
               <p className="text-[10px] text-[#64748b] mb-2">
@@ -366,10 +366,10 @@ Shree Gauli`}
             </div>
 
             {/* Selected recipients summary */}
-            <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-3">
+            <div className="rounded-lg border border-black/10 bg-black/[0.05] px-4 py-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-[#94a3b8]">Recipients:</span>
-                <span className="font-bold text-[#f8fafc]">{selected.size} lead(s)</span>
+                <span className="text-[#6B7280]">Recipients:</span>
+                <span className="font-bold text-[#1A1A1A]">{selected.size} lead(s)</span>
               </div>
               {selected.size > 0 && selected.size <= 8 && (
                 <div className="mt-2 flex flex-wrap gap-1">
@@ -405,7 +405,7 @@ Shree Gauli`}
                 className="w-full py-3 rounded-xl font-bold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{
                   background: 'linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%)',
-                  color: '#f8fafc',
+                  color: '#1A1A1A',
                   boxShadow: '0 16px 36px -18px rgba(124, 58, 237, 0.72)',
                 }}
               >
@@ -417,7 +417,7 @@ Shree Gauli`}
             {campaignStatus === 'sending' && (
               <div className="text-center py-4 space-y-3">
                 <div className="animate-spin h-8 w-8 border-4 border-violet-500 border-t-transparent rounded-full mx-auto" />
-                <p className="text-sm text-[#94a3b8]">
+                <p className="text-sm text-[#6B7280]">
                   Sending emails one-by-one… Please wait.
                 </p>
                 <p className="text-xs text-[#64748b]">
@@ -451,7 +451,7 @@ Shree Gauli`}
 
                 <button
                   onClick={resetCampaign}
-                  className="w-full py-2.5 rounded-xl font-bold text-sm border border-white/10 text-[#e2e8f0] hover:bg-white/5 transition"
+                  className="w-full py-2.5 rounded-xl font-bold text-sm border border-black/10 text-[#e2e8f0] hover:bg-black/[0.05] transition"
                 >
                   New Campaign
                 </button>

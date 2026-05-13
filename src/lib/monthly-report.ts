@@ -228,7 +228,7 @@ export function buildMonthlyReportEmailHtml(report: ClinicReportData) {
         `;
 
   return `
-  <div style="font-family:Arial,sans-serif;background:#f8fafc;padding:24px;color:#0f172a;">
+  <div style="font-family:Arial,sans-serif;background:#1A1A1A;padding:24px;color:#F5F0E8;">
     <div style="max-width:760px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
       <div style="background:linear-gradient(90deg,#7c3aed,#4f46e5);color:#ffffff;padding:18px 20px;">
         <h2 style="margin:0;font-size:22px;">${report.period.monthLabel} Dashboard Report</h2>

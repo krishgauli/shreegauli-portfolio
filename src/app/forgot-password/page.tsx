@@ -37,7 +37,7 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#070B14] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#FDFAF5] flex items-center justify-center px-4">
       {/* Background glow */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[#7C3AED]/10 blur-[120px]" />
@@ -47,21 +47,21 @@ export default function ForgotPasswordPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <span className="text-2xl font-bold text-white tracking-tight">
+            <span className="text-2xl font-bold text-gray-900 tracking-tight">
               Shree<span className="text-[#7C3AED]">.</span>
             </span>
           </Link>
         </div>
 
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8">
+        <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] backdrop-blur-sm p-8">
           {submitted ? (
             <div className="text-center py-4">
               <div className="mx-auto w-14 h-14 rounded-full bg-[#7C3AED]/10 flex items-center justify-center mb-4">
                 <CheckCircle2 className="w-7 h-7 text-[#7C3AED]" />
               </div>
-              <h1 className="text-xl font-bold text-[#F8FAFC] mb-2">Check your inbox</h1>
-              <p className="text-sm text-[#94A3B8] leading-relaxed mb-1">
-                If an account exists for <span className="text-[#E2E8F0] font-medium">{email}</span>,
+              <h1 className="text-xl font-bold text-[#1A1A1A] mb-2">Check your inbox</h1>
+              <p className="text-sm text-[#6B7280] leading-relaxed mb-1">
+                If an account exists for <span className="text-gray-700 font-medium">{email}</span>,
                 you&apos;ll receive a password reset link shortly.
               </p>
               <p className="text-xs text-[#64748B] mb-6">
@@ -71,7 +71,7 @@ export default function ForgotPasswordPage() {
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => { setSubmitted(false); setEmail(""); }}
-                  className="text-sm text-[#94A3B8] hover:text-white transition-colors"
+                  className="text-sm text-[#6B7280] hover:text-gray-900 transition-colors"
                 >
                   Try a different email
                 </button>
@@ -90,8 +90,8 @@ export default function ForgotPasswordPage() {
                 <div className="mx-auto w-14 h-14 rounded-full bg-[#7C3AED]/10 flex items-center justify-center mb-4">
                   <Mail className="w-7 h-7 text-[#7C3AED]" />
                 </div>
-                <h1 className="text-xl font-bold text-[#F8FAFC] mb-1">Reset your password</h1>
-                <p className="text-sm text-[#94A3B8]">
+                <h1 className="text-xl font-bold text-[#1A1A1A] mb-1">Reset your password</h1>
+                <p className="text-sm text-[#6B7280]">
                   Enter your email and we&apos;ll send you a reset link.
                 </p>
               </div>
@@ -104,7 +104,7 @@ export default function ForgotPasswordPage() {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#94A3B8] mb-1.5">
+                  <label className="block text-sm font-medium text-[#6B7280] mb-1.5">
                     Email address
                   </label>
                   <input
@@ -114,7 +114,7 @@ export default function ForgotPasswordPage() {
                     required
                     autoComplete="email"
                     placeholder="you@example.com"
-                    className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-[#475569] focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
+                    className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] px-4 py-3 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:border-[#7C3AED]/60 focus:ring-1 focus:ring-[#7C3AED]/30 transition"
                   />
                 </div>
 
@@ -131,7 +131,7 @@ export default function ForgotPasswordPage() {
               <div className="mt-6 text-center">
                 <Link
                   href="/login"
-                  className="inline-flex items-center gap-2 text-sm text-[#94A3B8] hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-[#6B7280] hover:text-gray-900 transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to login

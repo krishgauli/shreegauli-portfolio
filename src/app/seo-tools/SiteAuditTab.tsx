@@ -100,14 +100,14 @@ function CategoryBar({ category, score }: { category: IssueCategory; score: numb
   return (
     <div className="flex items-center gap-3">
       <span className="w-5 text-center">{info.emoji}</span>
-      <span className="w-28 text-xs text-[#CBD5E1]">{info.label}</span>
-      <div className="flex-1 rounded-full bg-white/[0.06] h-2.5">
+      <span className="w-28 text-xs text-gray-600">{info.label}</span>
+      <div className="flex-1 rounded-full bg-black/[0.05] h-2.5">
         <div
           className={cn('h-2.5 rounded-full transition-all duration-700', color)}
           style={{ width: `${score}%` }}
         />
       </div>
-      <span className="w-10 text-right text-xs font-semibold text-[#CBD5E1]">{score}%</span>
+      <span className="w-10 text-right text-xs font-semibold text-gray-600">{score}%</span>
     </div>
   );
 }
@@ -119,7 +119,7 @@ function IssueRow({ issue }: { issue: SiteAuditIssue }) {
   const Icon = SEV_ICON[issue.severity];
 
   return (
-    <div className="rounded-xl border border-white/[0.07] bg-white/[0.02]">
+    <div className="rounded-xl border border-white/[0.07] bg-black/[0.04]">
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -135,8 +135,8 @@ function IssueRow({ issue }: { issue: SiteAuditIssue }) {
       </button>
 
       {open && (
-        <div className="border-t border-white/[0.06] px-4 py-3 space-y-1">
-          <p className="text-xs text-[#94A3B8] mb-2">{issue.description}</p>
+        <div className="border-t border-black/[0.06] px-4 py-3 space-y-1">
+          <p className="text-xs text-[#6B7280] mb-2">{issue.description}</p>
           <div className="max-h-56 overflow-y-auto space-y-1">
             {issue.affectedPages.map((ap, i) => (
               <div key={`${ap.url}-${i}`} className="flex items-start gap-2 text-xs">
@@ -201,7 +201,7 @@ function FieldDataRow({ label, metric }: { label: string; metric: { p75: number;
   return (
     <div className="flex items-center gap-2">
       <span className={cn('inline-block h-2 w-2 rounded-full', metric.rating === 'good' ? 'bg-emerald-400' : metric.rating === 'needs-improvement' ? 'bg-amber-400' : 'bg-red-400')} />
-      <span className="text-xs text-[#CBD5E1]">{label}:</span>
+      <span className="text-xs text-gray-600">{label}:</span>
       <span className={cn('text-xs font-semibold', style.split(' ')[0])}>{metric.p75}</span>
       <span className="text-[10px] text-[#64748B]">({metric.rating.replace('-', ' ')})</span>
     </div>
@@ -455,7 +455,7 @@ export default function SiteAuditTab() {
   return (
     <div className="space-y-6">
       {/* Launch bar */}
-      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+      <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -465,20 +465,20 @@ export default function SiteAuditTab() {
           className="flex flex-col gap-3 sm:flex-row"
         >
           <div className="relative flex-1">
-            <Globe className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#475569]" />
+            <Globe className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
             <input
               type="text"
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
               placeholder="example.com"
-              className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] py-3 pl-11 pr-4 text-sm text-white placeholder:text-[#475569] outline-none focus:border-[#7C3AED]/60"
+              className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] py-3 pl-11 pr-4 text-sm text-gray-900 placeholder:text-gray-500 outline-none focus:border-[#7C3AED]/60"
             />
           </div>
           <select
             value={maxPages}
             onChange={(e) => setMaxPages(Number(e.target.value))}
             disabled={loading}
-            className="rounded-xl border border-white/[0.10] bg-white/[0.04] px-3 py-3 text-sm text-[#CBD5E1] outline-none focus:border-[#7C3AED]/60"
+            className="rounded-xl border border-black/[0.10] bg-black/[0.04] px-3 py-3 text-sm text-gray-600 outline-none focus:border-[#7C3AED]/60"
           >
             <option value={100}>100 pages</option>
             <option value={250}>250 pages</option>
@@ -490,7 +490,7 @@ export default function SiteAuditTab() {
             type="submit"
             disabled={!domain.trim() && !loading}
             className={cn(
-              'inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition',
+              'inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-gray-900 transition',
               loading
                 ? 'bg-red-500/80 hover:bg-red-500'
                 : 'bg-[#7C3AED] hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-60',
@@ -540,16 +540,16 @@ export default function SiteAuditTab() {
             onClick={() => setShowEmailModal(false)}
             aria-label="Close"
           />
-          <div className="relative w-full max-w-md rounded-2xl border border-white/[0.12] bg-[#0B1120] p-6 shadow-2xl">
+          <div className="relative w-full max-w-md rounded-2xl border border-black/[0.12] bg-[#0B1120] p-6 shadow-2xl">
             <h3 className="text-lg font-bold text-white">Your report is ready</h3>
-            <p className="mt-2 text-sm text-[#94A3B8]">
+            <p className="mt-2 text-sm text-[#6B7280]">
               CSV is downloaded automatically. You can also save this report as PDF and optionally get the CSV by email.
             </p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               <button
                 type="button"
                 onClick={() => void downloadCsv()}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-[#CBD5E1] hover:text-white"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900"
               >
                 <ArrowDownToLine className="h-4 w-4" />
                 Download CSV
@@ -557,14 +557,14 @@ export default function SiteAuditTab() {
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-[#CBD5E1] hover:text-white"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900"
               >
                 <Printer className="h-4 w-4" />
                 Save as PDF
               </button>
             </div>
             <div className="mt-4">
-              <label htmlFor="audit-email" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#94A3B8]">
+              <label htmlFor="audit-email" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#6B7280]">
                 Email address (optional)
               </label>
               <input
@@ -573,14 +573,14 @@ export default function SiteAuditTab() {
                 value={leadEmail}
                 onChange={(e) => setLeadEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-[#475569] outline-none focus:border-[#7C3AED]/60"
+                className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] px-4 py-3 text-sm text-gray-900 placeholder:text-gray-500 outline-none focus:border-[#7C3AED]/60"
               />
             </div>
             <div className="mt-5 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setShowEmailModal(false)}
-                className="rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-[#CBD5E1] hover:text-white"
+                className="rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900"
               >
                 Close
               </button>
@@ -602,7 +602,7 @@ export default function SiteAuditTab() {
 
       {/* Progress */}
       {loading && progress && (
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+        <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
           <div className="flex items-center gap-3">
             <Loader2 className="h-5 w-5 animate-spin text-[#7C3AED]" />
             <div>
@@ -612,7 +612,7 @@ export default function SiteAuditTab() {
               <p className="text-xs text-[#64748B] truncate max-w-md">{progress.currentUrl}</p>
             </div>
           </div>
-          <div className="mt-3 h-2 rounded-full bg-white/[0.06]">
+          <div className="mt-3 h-2 rounded-full bg-black/[0.05]">
             <div
               className="h-2 rounded-full bg-[#7C3AED] transition-all duration-300"
               style={{
@@ -625,13 +625,13 @@ export default function SiteAuditTab() {
 
       {/* Empty state */}
       {!loading && !result && (
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 text-center">
-          <Globe className="mx-auto h-10 w-10 text-[#475569]" />
+        <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-8 text-center">
+          <Globe className="mx-auto h-10 w-10 text-gray-500" />
           <p className="mt-4 text-base font-semibold text-white">Enterprise-grade site audit. Completely free.</p>
-          <p className="mt-2 text-sm text-[#94A3B8] max-w-lg mx-auto">
-            Other tools charge $100+/mo and cap you at a handful of pages. We crawl your <strong className="text-white">entire</strong> site —
-            100, 500, even 1,000+ pages — and run <strong className="text-white">50+ SEO checks</strong> on every single one.
-            Plus real <strong className="text-white">Core Web Vitals</strong> from Google PageSpeed Insights.
+          <p className="mt-2 text-sm text-[#6B7280] max-w-lg mx-auto">
+            Other tools charge $100+/mo and cap you at a handful of pages. We crawl your <strong className="text-gray-900">entire</strong> site —
+            100, 500, even 1,000+ pages — and run <strong className="text-gray-900">50+ SEO checks</strong> on every single one.
+            Plus real <strong className="text-gray-900">Core Web Vitals</strong> from Google PageSpeed Insights.
             Crawlability, content, links, performance, schema, and social tags. Then export the full report as CSV.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4 text-xs text-[#64748B]">
@@ -651,14 +651,14 @@ export default function SiteAuditTab() {
           {/* ── Top cards ── */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {/* Health score donut */}
-            <div className="sm:col-span-2 lg:col-span-1 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+            <div className="sm:col-span-2 lg:col-span-1 rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
               <ScoreDonut score={result.healthScore} />
               <p className="mt-2 text-center text-xs text-[#64748B]">Site Health</p>
             </div>
 
             {/* Stats */}
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 text-center flex flex-col items-center justify-center">
-              <p className="text-3xl font-bold text-white">{result.pagesScanned}</p>
+            <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5 text-center flex flex-col items-center justify-center">
+              <p className="text-3xl font-bold text-gray-900">{result.pagesScanned}</p>
               <p className="text-xs text-[#64748B]">Pages Scanned</p>
             </div>
             <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-5 text-center flex flex-col items-center justify-center">
@@ -676,7 +676,7 @@ export default function SiteAuditTab() {
           </div>
 
           {/* ── Core Web Vitals (Google PageSpeed Insights) ── */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 space-y-5">
+          <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5 space-y-5">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-2">
                 <Zap className="h-4 w-4 text-[#7C3AED]" />
@@ -686,13 +686,13 @@ export default function SiteAuditTab() {
                 </div>
               </div>
               {cwvResults.length > 0 && (
-                <div className="flex rounded-lg border border-white/[0.12] overflow-hidden text-xs">
+                <div className="flex rounded-lg border border-black/[0.12] overflow-hidden text-xs">
                   <button
                     type="button"
                     onClick={() => setCwvStrategy('mobile')}
                     className={cn(
                       'flex items-center gap-1.5 px-3 py-1.5 transition',
-                      cwvStrategy === 'mobile' ? 'bg-[#7C3AED] text-white' : 'text-[#64748B] hover:text-white',
+                      cwvStrategy === 'mobile' ? 'bg-[#7C3AED] text-white' : 'text-[#64748B] hover:text-gray-900',
                     )}
                   >
                     <Smartphone className="h-3.5 w-3.5" />
@@ -703,7 +703,7 @@ export default function SiteAuditTab() {
                     onClick={() => setCwvStrategy('desktop')}
                     className={cn(
                       'flex items-center gap-1.5 px-3 py-1.5 transition',
-                      cwvStrategy === 'desktop' ? 'bg-[#7C3AED] text-white' : 'text-[#64748B] hover:text-white',
+                      cwvStrategy === 'desktop' ? 'bg-[#7C3AED] text-white' : 'text-[#64748B] hover:text-gray-900',
                     )}
                   >
                     <Monitor className="h-3.5 w-3.5" />
@@ -768,8 +768,8 @@ export default function SiteAuditTab() {
 
                   {/* Chrome UX Report field data */}
                   {field.hasData && (
-                    <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-                      <p className="text-xs font-semibold text-white mb-2">Real User Data (Chrome UX Report — 28-day p75)</p>
+                    <div className="rounded-xl border border-black/[0.06] bg-black/[0.04] p-4">
+                      <p className="text-xs font-semibold text-gray-900 mb-2">Real User Data (Chrome UX Report — 28-day p75)</p>
                       <div className="flex flex-wrap gap-x-6 gap-y-2">
                         <FieldDataRow label="LCP" metric={field.lcp} />
                         <FieldDataRow label="FCP" metric={field.fcp} />
@@ -781,7 +781,7 @@ export default function SiteAuditTab() {
                   )}
 
                   {!field.hasData && (
-                    <p className="text-[11px] text-[#475569]">
+                    <p className="text-[11px] text-gray-500">
                       No Chrome UX Report data available — site may not have enough traffic for field metrics.
                     </p>
                   )}
@@ -798,8 +798,8 @@ export default function SiteAuditTab() {
           </div>
 
           {/* ── Category breakdown ── */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
-            <p className="text-sm font-semibold text-white mb-4">Category Scores</p>
+          <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
+            <p className="text-sm font-semibold text-gray-900 mb-4">Category Scores</p>
             <div className="space-y-3">
               {(Object.keys(CATEGORY_INFO) as IssueCategory[]).map((cat) => (
                 <CategoryBar key={cat} category={cat} score={result.categoryScores[cat] ?? 100} />
@@ -812,7 +812,7 @@ export default function SiteAuditTab() {
             <select
               value={filterSev}
               onChange={(e) => setFilterSev(e.target.value as IssueSeverity | 'all')}
-              className="rounded-lg border border-white/[0.12] bg-white/[0.03] px-3 py-2 text-xs text-[#CBD5E1] outline-none"
+              className="rounded-lg border border-black/[0.12] bg-black/[0.04] px-3 py-2 text-xs text-gray-600 outline-none"
             >
               <option value="all">All severities</option>
               <option value="error">Errors only</option>
@@ -823,7 +823,7 @@ export default function SiteAuditTab() {
             <select
               value={filterCat}
               onChange={(e) => setFilterCat(e.target.value as IssueCategory | 'all')}
-              className="rounded-lg border border-white/[0.12] bg-white/[0.03] px-3 py-2 text-xs text-[#CBD5E1] outline-none"
+              className="rounded-lg border border-black/[0.12] bg-black/[0.04] px-3 py-2 text-xs text-gray-600 outline-none"
             >
               <option value="all">All categories</option>
               {(Object.keys(CATEGORY_INFO) as IssueCategory[]).map((cat) => (
@@ -835,7 +835,7 @@ export default function SiteAuditTab() {
               <button
                 type="button"
                 onClick={downloadCsv}
-                className="inline-flex items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.03] px-3 py-2 text-xs font-semibold text-[#CBD5E1] hover:text-white"
+                className="inline-flex items-center gap-2 rounded-lg border border-black/[0.12] bg-black/[0.04] px-3 py-2 text-xs font-semibold text-gray-600 hover:text-gray-900"
               >
                 <ArrowDownToLine className="h-3.5 w-3.5" />
                 Export CSV
@@ -843,7 +843,7 @@ export default function SiteAuditTab() {
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="inline-flex items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.03] px-3 py-2 text-xs font-semibold text-[#CBD5E1] hover:text-white"
+                className="inline-flex items-center gap-2 rounded-lg border border-black/[0.12] bg-black/[0.04] px-3 py-2 text-xs font-semibold text-gray-600 hover:text-gray-900"
               >
                 <Printer className="h-3.5 w-3.5" />
                 Print
@@ -880,12 +880,12 @@ export default function SiteAuditTab() {
           </div>
 
           {/* ── Pages table ── */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
-            <p className="text-sm font-semibold text-white mb-4">All Crawled Pages</p>
+          <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-5">
+            <p className="text-sm font-semibold text-gray-900 mb-4">All Crawled Pages</p>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[800px] text-left text-xs">
                 <thead>
-                  <tr className="border-b border-white/[0.08] text-[#64748B]">
+                  <tr className="border-b border-black/[0.08] text-[#64748B]">
                     <th className="py-2 pr-3 font-medium">URL</th>
                     <th className="py-2 pr-3 font-medium">Status</th>
                     <th className="py-2 pr-3 font-medium">Title</th>
@@ -898,7 +898,7 @@ export default function SiteAuditTab() {
                 </thead>
                 <tbody>
                   {result.pages.map((page) => (
-                    <tr key={page.url} className="border-b border-white/[0.05] text-[#CBD5E1]">
+                    <tr key={page.url} className="border-b border-white/[0.05] text-gray-600">
                       <td className="py-2 pr-3 max-w-[240px] truncate">
                         <a href={page.url} target="_blank" rel="noopener noreferrer" className="text-[#7C3AED] hover:underline">
                           {new URL(page.url).pathname || '/'}
@@ -928,8 +928,8 @@ export default function SiteAuditTab() {
           {/* ── Audit CTA ── */}
           <div className="rounded-2xl border border-[#7C3AED]/30 bg-[#7C3AED]/[0.06] p-6">
             <p className="text-sm font-semibold text-white">Want these issues fixed for you?</p>
-            <p className="mt-2 text-sm text-[#94A3B8]">
-              This free audit found <strong className="text-white">{result.totalIssues} issues</strong> across <strong className="text-white">{result.pagesScanned} pages</strong>.
+            <p className="mt-2 text-sm text-[#6B7280]">
+              This free audit found <strong className="text-gray-900">{result.totalIssues} issues</strong> across <strong className="text-gray-900">{result.pagesScanned} pages</strong>.
               Other agencies charge $500+ just for the report. Book a free call and I&apos;ll walk you through the highest-impact fixes.
             </p>
             <div className="mt-4 flex gap-3">
@@ -941,7 +941,7 @@ export default function SiteAuditTab() {
               </a>
               <a
                 href="/working-together"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/[0.12] px-5 py-2.5 text-sm font-semibold text-[#E2E8F0] hover:border-white/[0.2] transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl border border-black/[0.12] px-5 py-2.5 text-sm font-semibold text-gray-700 hover:border-white/[0.2] transition-colors"
               >
                 See how I work
               </a>

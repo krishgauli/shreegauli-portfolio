@@ -31,14 +31,14 @@ export function WhoThisIsForSection() {
           {/* Good fit */}
           <ScrollReveal direction="left">
             <div className="module-panel p-6 md:p-8 h-full">
-              <h3 className="text-lg font-semibold text-[#F8FAFC] mb-6">
+              <h3 className="text-lg font-semibold text-[#1A1A1A] mb-6">
                 You&apos;re a good fit if&hellip;
               </h3>
               <ul className="space-y-4">
                 {goodFit.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-emerald-400 mt-0.5 shrink-0" />
-                    <span className="text-sm text-[#94A3B8] leading-relaxed">
+                    <span className="text-sm text-[#6B7280] leading-relaxed">
                       {item}
                     </span>
                   </li>
@@ -50,14 +50,14 @@ export function WhoThisIsForSection() {
           {/* Not fit */}
           <ScrollReveal direction="right">
             <div className="module-panel p-6 md:p-8 h-full">
-              <h3 className="text-lg font-semibold text-[#F8FAFC] mb-6">
+              <h3 className="text-lg font-semibold text-[#1A1A1A] mb-6">
                 This isn&apos;t the right fit if&hellip;
               </h3>
               <ul className="space-y-4">
                 {notFit.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <XCircle className="h-5 w-5 text-rose-400/70 mt-0.5 shrink-0" />
-                    <span className="text-sm text-[#94A3B8] leading-relaxed">
+                    <span className="text-sm text-[#6B7280] leading-relaxed">
                       {item}
                     </span>
                   </li>

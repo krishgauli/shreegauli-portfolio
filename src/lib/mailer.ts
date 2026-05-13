@@ -74,7 +74,7 @@ function emailShell(bodyHtml: string) {
 <body style="margin:0;padding:0;background:#f1f5f9;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;">
 
 <!-- Header -->
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F0E8;">
   <tr>
     <td align="center" style="padding:28px 24px;">
       <table role="presentation" cellpadding="0" cellspacing="0">
@@ -118,7 +118,7 @@ function emailShell(bodyHtml: string) {
         </tr>
         <tr>
           <td align="center" style="padding:0 0 24px;">
-            <a href="mailto:${esc(BRAND.email)}" style="font-size:14px;color:#0f172a;text-decoration:underline;">✉ ${esc(BRAND.email)}</a>
+            <a href="mailto:${esc(BRAND.email)}" style="font-size:14px;color:#F5F0E8;text-decoration:underline;">✉ ${esc(BRAND.email)}</a>
           </td>
         </tr>
       </table>
@@ -134,8 +134,8 @@ function emailShell(bodyHtml: string) {
         <tr>
           <td align="center" style="padding:24px 0 8px;">
             <!-- Social icons -->
-            <a href="${esc(BRAND.facebook)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#0f172a;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">f</a>
-            <a href="${esc(BRAND.linkedin)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#0f172a;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">in</a>
+            <a href="${esc(BRAND.facebook)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#F5F0E8;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">f</a>
+            <a href="${esc(BRAND.linkedin)}" style="display:inline-block;margin:0 6px;width:40px;height:40px;border-radius:50%;background:#F5F0E8;text-align:center;line-height:40px;color:#ffffff;font-size:16px;font-weight:bold;text-decoration:none;">in</a>
           </td>
         </tr>
         <tr>
@@ -147,7 +147,7 @@ function emailShell(bodyHtml: string) {
         </tr>
         <tr>
           <td align="center" style="padding:16px 0 32px;">
-            <p style="margin:0;font-size:12px;color:#94a3b8;">© ${new Date().getFullYear()} ${esc(BRAND.name)} · ${esc(BRAND.address)}</p>
+            <p style="margin:0;font-size:12px;color:#6B7280;">© ${new Date().getFullYear()} ${esc(BRAND.name)} · ${esc(BRAND.address)}</p>
           </td>
         </tr>
       </table>
@@ -192,7 +192,7 @@ function detailRow(label: string, value?: string | null) {
   return `
     <tr>
       <td style="padding:10px 12px;color:#64748b;font-weight:600;font-size:14px;vertical-align:top;width:140px;border-bottom:1px solid #f1f5f9;">${esc(label)}</td>
-      <td style="padding:10px 12px;color:#0f172a;font-size:14px;border-bottom:1px solid #f1f5f9;">${esc(value)}</td>
+      <td style="padding:10px 12px;color:#F5F0E8;font-size:14px;border-bottom:1px solid #f1f5f9;">${esc(value)}</td>
     </tr>`;
 }
 
@@ -203,17 +203,17 @@ function userConfirmationHtml(lead: LeadData) {
   const isBooking = lead.source === 'booking-page';
 
   return emailShell(`
-    <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#0f172a;">Thanks for Reaching Out</h1>
+    <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#F5F0E8;">Thanks for Reaching Out</h1>
     <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Contact Form submission received</p>
 
-    <p style="margin:0 0 16px;font-size:15px;color:#0f172a;line-height:1.6;">Hi ${esc(lead.name)},</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#F5F0E8;line-height:1.6;">Hi ${esc(lead.name)},</p>
     <p style="margin:0 0 24px;font-size:15px;color:#334155;line-height:1.7;">
       Thank you for contacting ${esc(BRAND.name)}. Our team will review your message and reply shortly.
     </p>
 
     <p style="margin:0 0 12px;font-size:14px;color:#64748b;">We have received the details below:</p>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1A1A1A;border-radius:12px;overflow:hidden;margin:0 0 28px;">
       ${detailRow('Name', lead.name)}
       ${detailRow('Email', lead.email)}
       ${detailRow('Phone', lead.phone)}
@@ -247,10 +247,10 @@ function adminNotificationHtml(lead: LeadData) {
 
   return emailShell(`
     <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:${tagColor};font-weight:700;">${tagText}</p>
-    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#0f172a;">${heading}</h1>
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#F5F0E8;">${heading}</h1>
     <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Submitted ${formatDate(lead.createdAt || new Date())}</p>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1A1A1A;border-radius:12px;overflow:hidden;margin:0 0 28px;">
       ${detailRow('Name', lead.name)}
       ${detailRow('Email', lead.email)}
       ${detailRow('Phone', lead.phone)}
@@ -276,10 +276,10 @@ function adminNotificationHtml(lead: LeadData) {
  */
 function subscriberWelcomeHtml(email: string) {
   return emailShell(`
-    <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#0f172a;">Welcome Aboard 🎉</h1>
+    <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#F5F0E8;">Welcome Aboard 🎉</h1>
     <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Newsletter subscription confirmed</p>
 
-    <p style="margin:0 0 16px;font-size:15px;color:#0f172a;line-height:1.6;">Hey there,</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#F5F0E8;line-height:1.6;">Hey there,</p>
     <p style="margin:0 0 24px;font-size:15px;color:#334155;line-height:1.7;">
       Thanks for subscribing to the <strong>${esc(BRAND.name)}</strong> newsletter. You'll receive practical notes on SEO, paid media, automation, and conversion strategies that are actually worth acting on.
     </p>
@@ -318,10 +318,10 @@ function subscriberWelcomeHtml(email: string) {
 function adminNewSubscriberHtml(email: string, source: string) {
   return emailShell(`
     <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7c3aed;font-weight:700;">NEW SUBSCRIBER</p>
-    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#0f172a;">New Newsletter Signup</h1>
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#F5F0E8;">New Newsletter Signup</h1>
     <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Received ${formatDate(new Date())}</p>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1A1A1A;border-radius:12px;overflow:hidden;margin:0 0 28px;">
       ${detailRow('Email', email)}
       ${detailRow('Source', source)}
       ${detailRow('Time', formatDate(new Date()))}
@@ -346,7 +346,7 @@ function userSiteAuditReportHtml(data: SiteAuditEmailData) {
         .map(
           (issue) => `
       <tr>
-        <td style="padding:10px 12px;color:#0f172a;font-size:14px;border-bottom:1px solid #f1f5f9;">${esc(issue.title)}</td>
+        <td style="padding:10px 12px;color:#F5F0E8;font-size:14px;border-bottom:1px solid #f1f5f9;">${esc(issue.title)}</td>
         <td style="padding:10px 12px;color:#64748b;font-size:12px;text-transform:uppercase;border-bottom:1px solid #f1f5f9;">${esc(issue.severity)}</td>
         <td style="padding:10px 12px;color:#334155;font-size:14px;text-align:right;border-bottom:1px solid #f1f5f9;">${issue.affectedPages}</td>
       </tr>`,
@@ -356,10 +356,10 @@ function userSiteAuditReportHtml(data: SiteAuditEmailData) {
 
   return emailShell(`
     <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7c3aed;font-weight:700;">SITE AUDIT REPORT</p>
-    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#0f172a;">Your SEO Audit for ${esc(data.domain)}</h1>
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#F5F0E8;">Your SEO Audit for ${esc(data.domain)}</h1>
     <p style="margin:0 0 24px;font-size:14px;color:#64748b;">Generated ${formatDate(new Date())}</p>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1A1A1A;border-radius:12px;overflow:hidden;margin:0 0 28px;">
       ${detailRow('Domain', data.domain)}
       ${detailRow('Health Score', `${data.healthScore}/100`)}
       ${detailRow('Pages Scanned', String(data.pagesScanned))}
@@ -369,7 +369,7 @@ function userSiteAuditReportHtml(data: SiteAuditEmailData) {
     </table>
 
     <p style="margin:0 0 12px;font-size:14px;color:#64748b;">Top issues by impact:</p>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1A1A1A;border-radius:12px;overflow:hidden;margin:0 0 28px;">
       <tr>
         <th align="left" style="padding:10px 12px;font-size:12px;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;">Issue</th>
         <th align="left" style="padding:10px 12px;font-size:12px;color:#64748b;text-transform:uppercase;border-bottom:1px solid #e2e8f0;">Severity</th>
@@ -389,10 +389,10 @@ function adminSiteAuditNotificationHtml(data: SiteAuditEmailData) {
 
   return emailShell(`
     <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7c3aed;font-weight:700;">NEW SITE AUDIT LEAD</p>
-    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#0f172a;">${esc(data.email)} ran a site audit</h1>
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#F5F0E8;">${esc(data.email)} ran a site audit</h1>
     <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Received ${formatDate(new Date())}</p>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px;overflow:hidden;margin:0 0 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1A1A1A;border-radius:12px;overflow:hidden;margin:0 0 28px;">
       ${detailRow('Email', data.email)}
       ${detailRow('Domain', data.domain)}
       ${detailRow('Health Score', `${data.healthScore}/100`)}

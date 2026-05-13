@@ -272,11 +272,11 @@ function SectionInput({ label, name, type = 'number', value, onChange, step = 'a
         placeholder="0"
         className={`w-full px-4 py-3 border-2 rounded-xl transition-all font-medium ${
           readOnly
-            ? 'bg-white/10 border-slate-200 dark:border-slate-700 text-[#94a3b8] cursor-not-allowed'
-            : 'bg-white/10 border-slate-200 dark:border-slate-700 text-[#f8fafc] focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:focus:ring-emerald-500/30 hover:border-slate-300 dark:hover:border-slate-600'
+            ? 'bg-white/10 border-slate-200 dark:border-slate-700 text-[#6B7280] cursor-not-allowed'
+            : 'bg-white/10 border-slate-200 dark:border-slate-700 text-[#1A1A1A] focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:focus:ring-emerald-500/30 hover:border-slate-300 dark:hover:border-slate-600'
         }`}
       />
-      {helperText && <p className="text-xs text-[#94a3b8] mt-1.5">{helperText}</p>}
+      {helperText && <p className="text-xs text-[#6B7280] mt-1.5">{helperText}</p>}
     </div>
   );
 }
@@ -319,7 +319,7 @@ function MetricsInputGrid({ metrics, onChange }: { metrics: FormMetrics; onChang
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <SectionInput label="Blogs Published" name="blogsPublished" value={metrics.blogsPublished} onChange={onChange} />
         </div>
-        <p className="text-xs text-[#94a3b8] mt-3 p-3 bg-white/5 rounded-lg border border-white/10">
+        <p className="text-xs text-[#6B7280] mt-3 p-3 bg-white/5 rounded-lg border border-black/10">
           ℹ️ Avg Ranking & Total Traffic are now pulled automatically from Google Search Console and shown on the dashboard.
         </p>
       </div>
@@ -340,7 +340,7 @@ function MetricsInputGrid({ metrics, onChange }: { metrics: FormMetrics; onChang
         
         {/* Meta Manual Inputs */}
         <div className="mb-5 pb-5 border-b border-slate-200 dark:border-slate-700">
-          <p className="text-xs font-semibold text-[#94a3b8] mb-4 uppercase tracking-wide">📝 Manual Inputs</p>
+          <p className="text-xs font-semibold text-[#6B7280] mb-4 uppercase tracking-wide">📝 Manual Inputs</p>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <SectionInput label="Impressions" name="metaImpressions" value={metrics.metaImpressions} onChange={onChange} />
             <SectionInput label="Clicks" name="metaClicks" value={metrics.metaClicks} onChange={onChange} />
@@ -350,7 +350,7 @@ function MetricsInputGrid({ metrics, onChange }: { metrics: FormMetrics; onChang
         </div>
 
         {/* Meta Auto-Calculated */}
-        <p className="text-xs font-semibold text-[#94a3b8] mb-4 uppercase tracking-wide">⚙️ Auto-Calculated</p>
+        <p className="text-xs font-semibold text-[#6B7280] mb-4 uppercase tracking-wide">⚙️ Auto-Calculated</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <SectionInput label="CTR (%)" name="metaCTR" value={metaCTR.toString()} onChange={onChange} readOnly={true} helperText="(Clicks ÷ Impressions) × 100" />
           <SectionInput label="CPC ($)" name="metaCPC" value={metaCPC.toString()} onChange={onChange} readOnly={true} helperText="Auto: Spend ÷ Clicks" />
@@ -364,7 +364,7 @@ function MetricsInputGrid({ metrics, onChange }: { metrics: FormMetrics; onChang
         
         {/* Google Manual Inputs */}
         <div className="mb-5 pb-5 border-b border-slate-200 dark:border-slate-700">
-          <p className="text-xs font-semibold text-[#94a3b8] mb-4 uppercase tracking-wide">📝 Manual Inputs</p>
+          <p className="text-xs font-semibold text-[#6B7280] mb-4 uppercase tracking-wide">📝 Manual Inputs</p>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <SectionInput label="Impressions" name="googleImpressions" value={metrics.googleImpressions} onChange={onChange} />
             <SectionInput label="Clicks" name="googleClicks" value={metrics.googleClicks} onChange={onChange} />
@@ -374,7 +374,7 @@ function MetricsInputGrid({ metrics, onChange }: { metrics: FormMetrics; onChang
         </div>
 
         {/* Google Auto-Calculated */}
-        <p className="text-xs font-semibold text-[#94a3b8] mb-4 uppercase tracking-wide">⚙️ Auto-Calculated</p>
+        <p className="text-xs font-semibold text-[#6B7280] mb-4 uppercase tracking-wide">⚙️ Auto-Calculated</p>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <SectionInput label="CTR (%)" name="googleCTR" value={googleCTR.toString()} onChange={onChange} readOnly={true} helperText="(Clicks ÷ Impressions) × 100" />
           <SectionInput label="CPC ($)" name="googleCPC" value={googleCPC.toString()} onChange={onChange} readOnly={true} helperText="Total Cost ÷ Clicks" />
@@ -398,7 +398,7 @@ function MetricsInputGrid({ metrics, onChange }: { metrics: FormMetrics; onChang
         
         {/* Manual Inputs */}
         <div className="mb-5 pb-5 border-b border-slate-200 dark:border-slate-700">
-          <p className="text-xs font-semibold text-[#94a3b8] mb-4 uppercase tracking-wide">📝 Manual Inputs</p>
+          <p className="text-xs font-semibold text-[#6B7280] mb-4 uppercase tracking-wide">📝 Manual Inputs</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <SectionInput label="Patient Count" name="patientCount" value={metrics.patientCount} onChange={onChange} helperText="Total patients for the week" />
             <SectionInput label="Digital Conversion" name="digitalConversion" value={metrics.digitalConversion} onChange={onChange} helperText="Supports decimals (e.g., 45.5)" />
@@ -406,12 +406,12 @@ function MetricsInputGrid({ metrics, onChange }: { metrics: FormMetrics; onChang
         </div>
 
         {/* Auto-Calculated */}
-        <p className="text-xs font-semibold text-[#94a3b8] mb-4 uppercase tracking-wide">⚙️ Auto-Calculated</p>
+        <p className="text-xs font-semibold text-[#6B7280] mb-4 uppercase tracking-wide">⚙️ Auto-Calculated</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <SectionInput label="Daily Patient Avg" name="dailyPatientAvg" value={dailyPatientAvg} onChange={onChange} readOnly={true} helperText="Patient Count ÷ 7" />
           <SectionInput label="Conversion Rate (%)" name="conversionRate" value={conversionRate.toString()} onChange={onChange} readOnly={true} helperText="(Digital Conversion ÷ Patient Count) × 100" />
         </div>
-        <p className="text-xs text-[#94a3b8] mt-3 p-3 bg-white/5 rounded-lg border border-white/10">
+        <p className="text-xs text-[#6B7280] mt-3 p-3 bg-white/5 rounded-lg border border-black/10">
           ℹ️ All calculated fields update automatically when you change the manual inputs above.
         </p>
       </div>
@@ -729,8 +729,8 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
     >
       {/* Clean Single Heading */}
       <div className="mb-8">
-        <h1 className="text-4xl font-black mb-3 text-[#f8fafc]">Weekly Analytics Entry</h1>
-        <p className="text-[#94a3b8] text-lg">
+        <h1 className="text-4xl font-black mb-3 text-[#1A1A1A]">Weekly Analytics Entry</h1>
+        <p className="text-[#6B7280] text-lg">
           Select an account and a week (Monday to Sunday). The form will load saved data. You can save partial updates. Click Edit on any saved week to modify it.
         </p>
       </div>
@@ -851,10 +851,10 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
         )}
 
         <div className="rounded-2xl p-6 border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/50 dark:to-teal-950/50">
-          <h3 className="text-lg font-bold mb-2 flex items-center gap-2 text-[#f8fafc]">
+          <h3 className="text-lg font-bold mb-2 flex items-center gap-2 text-[#1A1A1A]">
             <span>📍 Account & Week Selection</span>
           </h3>
-          <p className="text-sm text-[#94a3b8] mb-4">Select an account and week to view or enter analytics data</p>
+          <p className="text-sm text-[#6B7280] mb-4">Select an account and week to view or enter analytics data</p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Account Dropdown */}
@@ -867,7 +867,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                 <select
                   value={selectedClinicId}
                   onChange={(e) => setSelectedClinicId(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#f8fafc] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
+                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#1A1A1A] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
                   required
                 >
                   <option value="">Select an account...</option>
@@ -877,14 +877,14 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                     </option>
                   ))}
                 </select>
-                <div className="pointer-events-none absolute right-3 top-3.5 text-[#94a3b8]">
+                <div className="pointer-events-none absolute right-3 top-3.5 text-[#6B7280]">
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 </div>
               </div>
               {!selectedClinicId && (
-                <p className="text-xs text-[#94a3b8] mt-1.5">Required to proceed</p>
+                <p className="text-xs text-[#6B7280] mt-1.5">Required to proceed</p>
               )}
             </div>
 
@@ -901,13 +901,13 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                     setSelectedYear(Number(e.target.value));
                     setSelectedWeekKey('');
                   }}
-                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#f8fafc] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
+                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#1A1A1A] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
                 >
                   {yearOptions.map((year) => (
                     <option key={year} value={year}>{year}</option>
                   ))}
                 </select>
-                <div className="pointer-events-none absolute right-3 top-3.5 text-[#94a3b8]">
+                <div className="pointer-events-none absolute right-3 top-3.5 text-[#6B7280]">
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
@@ -925,13 +925,13 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
                 <select
                   value={selectedWeekKey}
                   onChange={(e) => setSelectedWeekKey(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#f8fafc] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
+                  className="w-full px-4 py-3 border-2 border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 text-[#1A1A1A] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all appearance-none cursor-pointer font-medium"
                 >
                   {weeks.map((week) => (
                     <option key={week.key} value={week.key}>{week.weekLabel}</option>
                   ))}
                 </select>
-                <div className="pointer-events-none absolute right-3 top-3.5 text-[#94a3b8]">
+                <div className="pointer-events-none absolute right-3 top-3.5 text-[#6B7280]">
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
@@ -940,8 +940,8 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
             </div>
           </div>
 
-          <div className="mt-4 p-3 bg-white/5 border border-white/10 rounded-lg">
-            <p className="text-xs font-semibold text-[#94a3b8] flex items-center gap-2">
+          <div className="mt-4 p-3 bg-white/5 border border-black/10 rounded-lg">
+            <p className="text-xs font-semibold text-[#6B7280] flex items-center gap-2">
               <span>💡</span>
               On Mondays, this defaults to last week so you can enter last week&apos;s data quickly.
             </p>
@@ -955,7 +955,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
         )}
 
         <div className="rounded-2xl p-6 border border-slate-200 dark:border-slate-700 bg-white/5">
-          <h3 className="text-lg font-bold text-[#f8fafc] mb-4">📝 Metrics</h3>
+          <h3 className="text-lg font-bold text-[#1A1A1A] mb-4">📝 Metrics</h3>
           <MetricsInputGrid metrics={metrics} onChange={handleMetricChange} />
         </div>
 
@@ -983,8 +983,8 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
           animate={{ opacity: 1, y: 0 }}
           className="mt-8 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/5 p-6"
         >
-          <h2 className="text-2xl font-bold mb-4 text-[#f8fafc]">📅 Week History</h2>
-          <p className="text-sm text-[#94a3b8] mb-4">Click "Edit" to update any week. Changes sync instantly to client dashboards.</p>
+          <h2 className="text-2xl font-bold mb-4 text-[#1A1A1A]">📅 Week History</h2>
+          <p className="text-sm text-[#6B7280] mb-4">Click "Edit" to update any week. Changes sync instantly to client dashboards.</p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -999,7 +999,7 @@ export default function AnalyticsForm({ onSaved }: { onSaved?: () => void } = {}
               <tbody>
                 {existingData.map((item: any) => (
                   <tr key={item.id} className="border-b border-slate-100 dark:border-slate-800 hover:bg-white/10 transition-colors bg-white/5">
-                    <td className="py-3 px-3 font-semibold text-[#f8fafc]">{item.weekLabel}</td>
+                    <td className="py-3 px-3 font-semibold text-[#1A1A1A]">{item.weekLabel}</td>
                     <td className="py-3 px-3 text-[#e2e8f0]">{item.totalTraffic || '–'}</td>
                     <td className="py-3 px-3 text-[#e2e8f0]">{item.blogsPublished || '–'}</td>
                     <td className="py-3 px-3 text-[#e2e8f0]">{item.callsRequested || '–'}</td>

@@ -144,17 +144,17 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-5">
-                  <p className="text-base font-bold text-[#F8FAFC]">Shree Krishna Gauli, BBA</p>
-                  <p className="text-sm text-[#94A3B8] mt-0.5">Full-Stack Web Developer &amp; SEO Consultant</p>
-                  <p className="text-xs text-[#94A3B8]/70 mt-0.5">Diploma in Information Technology</p>
-                  <p className="text-xs text-[#94A3B8]/80 mt-1">14+ Websites Shipped</p>
-                  <p className="text-xs text-[#94A3B8]/60 mt-1">Dallas, TX · Working globally</p>
+                  <p className="text-base font-bold text-[#1A1A1A]">Shree Krishna Gauli, BBA</p>
+                  <p className="text-sm text-[#6B7280] mt-0.5">Full-Stack Web Developer &amp; SEO Consultant</p>
+                  <p className="text-xs text-[#6B7280]/70 mt-0.5">Diploma in Information Technology</p>
+                  <p className="text-xs text-[#6B7280]/80 mt-1">14+ Websites Shipped</p>
+                  <p className="text-xs text-[#6B7280]/60 mt-1">Dallas, TX · Working globally</p>
                   <div className="flex gap-3 mt-4">
                     <Link
                       href="https://www.linkedin.com/in/gauli/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#94A3B8] hover:text-[#22D3EE] transition-colors"
+                      className="text-[#6B7280] hover:text-[#22D3EE] transition-colors"
                       aria-label="LinkedIn"
                     >
                       <Linkedin className="h-4 w-4" />
@@ -174,7 +174,7 @@ export default function AboutPage() {
                   align="left"
                   className="mb-6"
                 />
-                <div className="space-y-4 text-[#94A3B8] leading-relaxed">
+                <div className="space-y-4 text-[#6B7280] leading-relaxed">
                   <p>
                     I&apos;m a full-stack web developer and SEO consultant who builds
                     custom websites, web apps, and e-commerce stores with Next.js,
@@ -204,8 +204,8 @@ export default function AboutPage() {
       {/* How I work */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-2">How I work</h2>
-          <p className="text-sm text-[#94A3B8] mb-8 max-w-2xl">
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-2">How I work</h2>
+          <p className="text-sm text-[#6B7280] mb-8 max-w-2xl">
             Every project follows the same core methodology, adapted to what the business actually needs.
           </p>
           <div className="grid sm:grid-cols-3 gap-5">
@@ -232,8 +232,8 @@ export default function AboutPage() {
                     className="w-2 h-2 rounded-full mb-3"
                     style={{ backgroundColor: item.color }}
                   />
-                  <h3 className="text-base font-bold text-[#F8FAFC]">{item.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.body}</p>
+                  <h3 className="text-base font-bold text-[#1A1A1A]">{item.title}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{item.body}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -244,14 +244,14 @@ export default function AboutPage() {
       {/* Experience Timeline */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Experience</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">Experience</h2>
           <div className="grid gap-4">
             {timeline.map((item) => (
               <ScrollReveal key={item.period}>
                 <ModuleShell className="p-6">
                   <span className="text-xs font-bold text-[#7C3AED]">{item.period}</span>
-                  <h3 className="text-base font-bold text-[#F8FAFC] mt-1">{item.role}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
+                  <h3 className="text-base font-bold text-[#1A1A1A] mt-1">{item.role}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{item.description}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -262,13 +262,13 @@ export default function AboutPage() {
       {/* Education */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Education</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">Education</h2>
           <div className="grid gap-4">
             {education.map((item) => (
               <ScrollReveal key={item.school}>
                 <ModuleShell className="p-6">
-                  <h3 className="text-base font-bold text-[#F8FAFC]">{item.school}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.degree}</p>
+                  <h3 className="text-base font-bold text-[#1A1A1A]">{item.school}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{item.degree}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -279,13 +279,13 @@ export default function AboutPage() {
       {/* Tools */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-4">Tools</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-4">Tools</h2>
           <ModuleShell className="p-6">
             <div className="flex flex-wrap gap-2">
               {tools.map((tool) => (
                 <span
                   key={tool.name}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium border border-white/[0.08] bg-white/[0.03] text-[#94A3B8]"
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium border border-black/[0.08] bg-black/[0.04] text-[#6B7280]"
                 >
                   {tool.name}
                 </span>
@@ -301,9 +301,9 @@ export default function AboutPage() {
       {/* Personal */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-4">Outside of work</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-4">Outside of work</h2>
           <ModuleShell className="p-6">
-            <p className="text-sm text-[#94A3B8] leading-relaxed">
+            <p className="text-sm text-[#6B7280] leading-relaxed">
               When I&apos;m not shipping websites or building automation workflows,
               you&apos;ll find me hiking, contributing to open-source projects, or
               learning whatever the next useful thing is — currently deep into

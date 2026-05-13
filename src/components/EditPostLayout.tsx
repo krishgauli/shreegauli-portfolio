@@ -17,10 +17,10 @@ import { Footer } from '@/components/layout/Footer';
 
 /* ── Shared input class names ────────────────────────────── */
 export const inputCls =
-  'w-full border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2.5 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 dark:focus:border-emerald-500 transition-colors';
+  'w-full border border-slate-200 dark:border-stone-300 rounded-lg px-3 py-2.5 bg-white dark:bg-slate-950 text-slate-900 dark:text-gray-800 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 dark:focus:border-emerald-500 transition-colors';
 
 export const labelCls =
-  'block text-sm font-semibold mb-1.5 text-slate-700 dark:text-slate-300';
+  'block text-sm font-semibold mb-1.5 text-slate-700 dark:text-gray-600';
 
 /* ── Card wrapper ────────────────────────────────────────── */
 export function Card({
@@ -34,9 +34,9 @@ export function Card({
 }) {
   return (
     <section
-      className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 ${className}`}
+      className={`bg-white dark:bg-[#F5F0E8] border border-slate-200 dark:border-stone-300 rounded-2xl p-6 ${className}`}
     >
-      <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-5">
+      <h2 className="text-lg font-bold text-slate-900 dark:text-gray-800 mb-5">
         {title}
       </h2>
       {children}
@@ -52,7 +52,7 @@ function CharCounter({ value, max }: { value: string; max: number }) {
       ? 'text-red-500'
       : len > max * 0.85
         ? 'text-amber-500 dark:text-amber-400'
-        : 'text-slate-400 dark:text-slate-500';
+        : 'text-gray-500 dark:text-gray-500';
   return (
     <span className={`text-xs tabular-nums ${color}`}>
       {len}/{max}
@@ -106,7 +106,7 @@ export function CoverImageCard({
               type="button"
               onClick={copyUrl}
               title="Copy URL"
-              className="shrink-0 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors"
+              className="shrink-0 p-2.5 rounded-lg border border-slate-200 dark:border-stone-300 hover:bg-slate-100 dark:hover:bg-[#EDE8DF] text-slate-600 dark:text-gray-500 transition-colors"
             >
               {copied ? (
                 <Check className="h-4 w-4 text-emerald-500" />
@@ -150,7 +150,7 @@ export function CoverImageCard({
 
         {/* Preview */}
         {url && (
-          <div className="relative group rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+          <div className="relative group rounded-xl overflow-hidden border border-slate-200 dark:border-stone-300">
             <img
               src={url}
               alt={alt}
@@ -172,7 +172,7 @@ export function CoverImageCard({
               <p className="text-xs text-white/90 font-mono truncate">
                 {truncatedUrl}
               </p>
-              <p className="text-xs text-white/70 mt-0.5 truncate">
+              <p className="text-xs text-gray-600 mt-0.5 truncate">
                 ALT: {alt}
               </p>
             </div>
@@ -305,12 +305,12 @@ export function PublishDateCard({
             onChange={(e) => onDateChange(e.target.value)}
             className={inputCls}
           />
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
             {isPublished ? `Published on ${formattedDate}` : formattedDate}
           </p>
         </div>
         {isPublished && (
-          <div className="pt-2 border-t border-slate-200 dark:border-slate-700">
+          <div className="pt-2 border-t border-slate-200 dark:border-stone-300">
             <div className="inline-flex items-center gap-1.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 rounded-lg font-medium text-sm">
               <span className="w-2 h-2 bg-emerald-500 rounded-full" />
               Published
@@ -345,21 +345,21 @@ export function PageHeader({
   onCancel: () => void;
 }) {
   return (
-    <div className="sticky top-20 z-40 bg-slate-50 dark:bg-slate-950 py-4 mb-6 border-b border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+    <div className="sticky top-20 z-40 bg-[#FDFAF5] dark:bg-slate-950 py-4 mb-6 border-b border-slate-200 dark:border-stone-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
       {/* Left: back + title */}
       <div className="flex items-center gap-3">
         <Link
           href={backHref}
-          className="inline-flex items-center gap-2 px-3.5 py-2 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-emerald-500 dark:hover:border-emerald-500 transition-all text-sm font-medium"
+          className="inline-flex items-center gap-2 px-3.5 py-2 text-slate-700 dark:text-gray-600 hover:text-slate-900 dark:hover:text-gray-900 bg-white dark:bg-[#F5F0E8] border border-slate-200 dark:border-stone-300 rounded-xl hover:border-emerald-500 dark:hover:border-emerald-500 transition-all text-sm font-medium"
         >
           <ArrowLeft className="h-4 w-4" />
           {backLabel}
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-gray-800">
             {title}
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-gray-500 dark:text-gray-500">
             {subtitle}
           </p>
         </div>
@@ -396,7 +396,7 @@ export function PageHeader({
         <button
           type="button"
           onClick={onCancel}
-          className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl font-bold transition-all text-sm"
+          className="px-5 py-2.5 bg-slate-100 dark:bg-[#EDE8DF] text-slate-700 dark:text-gray-600 hover:bg-slate-200 dark:hover:bg-[#D8D0C5] rounded-xl font-bold transition-all text-sm"
         >
           Cancel
         </button>
@@ -417,8 +417,8 @@ export function EditPostShell({
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
-          <div className="text-slate-600 dark:text-slate-400">Loading…</div>
+        <div className="min-h-screen bg-[#FDFAF5] dark:bg-slate-950 flex items-center justify-center">
+          <div className="text-slate-600 dark:text-gray-500">Loading…</div>
         </div>
         <Footer />
       </>
@@ -428,7 +428,7 @@ export function EditPostShell({
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-8 pt-20">
+      <div className="min-h-screen bg-[#FDFAF5] dark:bg-slate-950 py-8 pt-20">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           {children}
         </div>

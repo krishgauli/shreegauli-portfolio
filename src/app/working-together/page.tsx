@@ -69,8 +69,8 @@ export default function WorkingTogetherPage() {
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#7C3AED]/30 bg-[#7C3AED]/10 text-[#C4B5FD]">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h2 className="mt-5 text-2xl font-semibold text-[#F8FAFC]">{step.title}</h2>
-                    <p className="mt-4 text-sm leading-7 text-[#94A3B8]">{step.body}</p>
+                    <h2 className="mt-5 text-2xl font-semibold text-[#1A1A1A]">{step.title}</h2>
+                    <p className="mt-4 text-sm leading-7 text-[#6B7280]">{step.body}</p>
                   </ModuleShell>
                 </ScrollReveal>
               );
@@ -79,8 +79,8 @@ export default function WorkingTogetherPage() {
 
           <div className="mt-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
             <ModuleShell className="p-6">
-              <h2 className="text-2xl font-semibold text-[#F8FAFC]">Who this tends to fit</h2>
-              <ul className="mt-5 space-y-3 text-sm text-[#CBD5E1]">
+              <h2 className="text-2xl font-semibold text-[#1A1A1A]">Who this tends to fit</h2>
+              <ul className="mt-5 space-y-3 text-sm text-gray-600">
                 {fits.map((item) => (
                   <li key={item}>- {item}</li>
                 ))}
@@ -88,14 +88,14 @@ export default function WorkingTogetherPage() {
             </ModuleShell>
 
             <ModuleShell className="p-6">
-              <h2 className="text-2xl font-semibold text-[#F8FAFC]">How communication works</h2>
-              <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+              <h2 className="text-2xl font-semibold text-[#1A1A1A]">How communication works</h2>
+              <p className="mt-4 text-sm leading-7 text-[#6B7280]">
                 Most projects run with one main async thread, one standing weekly
                 check-in, and focused reviews when decisions matter. That keeps the
                 work moving without turning a small engagement into a meeting-heavy
                 process.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+              <p className="mt-4 text-sm leading-7 text-[#6B7280]">
                 Response time is usually under one business day. If a project needs
                 more stakeholder coordination or a higher-volume sprint cadence, that
                 gets scoped up front instead of being discovered halfway through.
@@ -109,7 +109,7 @@ export default function WorkingTogetherPage() {
                 </Link>
                 <Link
                   href="/contact"
-                  className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20 hover:text-white"
+                  className="rounded-2xl border border-black/10 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-black/12 hover:text-gray-900"
                 >
                   Start the conversation
                 </Link>

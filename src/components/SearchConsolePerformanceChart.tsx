@@ -103,7 +103,7 @@ export default function SearchConsolePerformanceChart({
 
   const glassCard = `rounded-3xl p-6 border backdrop-blur-sm shadow-sm ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white/80 border-slate-200/60'}`;
   const tooltipStyle = {
-    backgroundColor: isDark ? '#0f172a' : '#ffffff',
+    backgroundColor: isDark ? '#F5F0E8' : '#ffffff',
     border: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`,
     borderRadius: '16px',
     boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
@@ -240,8 +240,8 @@ export default function SearchConsolePerformanceChart({
         <ResponsiveContainer width="100%" height={260}>
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1e293b' : '#f1f5f9'} />
-            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-            <YAxis yAxisId="left" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis yAxisId="left" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Legend wrapperStyle={{ fontSize: '12px', fontWeight: 600 }} />
             <Bar yAxisId="left" dataKey="clicks" name="Clicks" fill="#10b981" radius={[6, 6, 0, 0]} />
@@ -262,8 +262,8 @@ export default function SearchConsolePerformanceChart({
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1e293b' : '#f1f5f9'} />
-            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-            <YAxis reversed stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis reversed stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Line
               type="monotone"

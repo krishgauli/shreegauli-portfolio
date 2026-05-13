@@ -163,13 +163,13 @@ export default function AutomationServicePage() {
       {/* Automation Types */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">What I automate</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">What I automate</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {automationTypes.map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 0.06}>
                 <ModuleShell className="p-6 h-full">
-                  <h3 className="text-base font-bold text-[#F8FAFC]">{item.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
+                  <h3 className="text-base font-bold text-[#1A1A1A]">{item.title}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{item.description}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -180,14 +180,14 @@ export default function AutomationServicePage() {
       {/* Process */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">How it works</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">How it works</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {process.map((item, i) => (
               <ScrollReveal key={item.step} delay={i * 0.06}>
                 <ModuleShell className="p-6 h-full">
                   <span className="text-xs font-bold text-[#22D3EE]">{item.step}</span>
-                  <h3 className="text-base font-bold text-[#F8FAFC] mt-2">{item.title}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{item.description}</p>
+                  <h3 className="text-base font-bold text-[#1A1A1A] mt-2">{item.title}</h3>
+                  <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{item.description}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}
@@ -198,11 +198,11 @@ export default function AutomationServicePage() {
       {/* Deliverables */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">What you get</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">What you get</h2>
           <ModuleShell className="p-6">
             <ul className="grid sm:grid-cols-2 gap-3">
               {deliverables.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-[#94A3B8]">
+                <li key={item} className="flex items-start gap-3 text-sm text-[#6B7280]">
                   <CheckCircle2 className="h-4 w-4 text-[#22D3EE] mt-0.5 shrink-0" />
                   {item}
                 </li>
@@ -216,8 +216,8 @@ export default function AutomationServicePage() {
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           <ModuleShell className="p-8 text-center">
-            <h2 className="text-lg font-bold text-[#F8FAFC]">Pre-built n8n templates available</h2>
-            <p className="text-sm text-[#94A3B8] mt-2 max-w-xl mx-auto">
+            <h2 className="text-lg font-bold text-[#1A1A1A]">Pre-built n8n templates available</h2>
+            <p className="text-sm text-[#6B7280] mt-2 max-w-xl mx-auto">
               I maintain a library of battle-tested n8n workflow templates for common automations —
               chatbot lead capture, appointment reminders, review collection, insurance verification,
               and social media posting. These accelerate deployment and reduce cost.
@@ -229,12 +229,12 @@ export default function AutomationServicePage() {
       {/* FAQ */}
       <section className="relative z-10 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-8">Frequently asked questions</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-8">Frequently asked questions</h2>
           <div className="grid gap-4">
             {faqs.map((faq) => (
               <ModuleShell key={faq.q} className="p-6">
-                <h3 className="text-base font-bold text-[#F8FAFC]">{faq.q}</h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed mt-2">{faq.a}</p>
+                <h3 className="text-base font-bold text-[#1A1A1A]">{faq.q}</h3>
+                <p className="text-sm text-[#6B7280] leading-relaxed mt-2">{faq.a}</p>
               </ModuleShell>
             ))}
           </div>
@@ -244,7 +244,7 @@ export default function AutomationServicePage() {
       {/* Related Services */}
       <section className="relative z-10 pb-20 px-6">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-6">Related services</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-6">Related services</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               { title: "Web App Development", description: "Custom Next.js sites with built-in chatbot and form integrations.", href: "/services/web-development" },
@@ -254,8 +254,8 @@ export default function AutomationServicePage() {
             ].map((svc) => (
               <Link key={svc.title} href={svc.href}>
                 <ModuleShell className="p-5 h-full" enableHoverLift>
-                  <h3 className="text-sm font-semibold text-[#F8FAFC]">{svc.title}</h3>
-                  <p className="text-xs text-[#94A3B8] mt-1">{svc.description}</p>
+                  <h3 className="text-sm font-semibold text-[#1A1A1A]">{svc.title}</h3>
+                  <p className="text-xs text-[#6B7280] mt-1">{svc.description}</p>
                 </ModuleShell>
               </Link>
             ))}

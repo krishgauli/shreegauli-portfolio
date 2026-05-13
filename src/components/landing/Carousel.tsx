@@ -28,7 +28,7 @@ export default function Carousel() {
           </motion.div>
         ))}
       </div>
-      <p className="text-sm text-slate-500 mt-4">Use horizontal scroll or swipe to view more case studies.</p>
+      <p className="text-sm text-gray-500 mt-4">Use horizontal scroll or swipe to view more case studies.</p>
     </div>
   );
 }

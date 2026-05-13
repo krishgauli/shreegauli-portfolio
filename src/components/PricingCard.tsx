@@ -78,17 +78,17 @@ function PricingCardContent({
     switch (variant) {
       case 'basic':
         return {
-          background: isDark ? 'bg-slate-900/90' : 'bg-white',
-          border: isDark ? 'border-slate-700' : 'border-slate-200',
-          dividerBorder: isDark ? 'border-slate-700/80' : 'border-slate-200',
-          textPrimary: isDark ? 'text-slate-100' : 'text-slate-900',
-          textSecondary: isDark ? 'text-slate-300' : 'text-slate-600',
-          textMuted: isDark ? 'text-slate-400' : 'text-slate-500',
+          background: isDark ? 'bg-[#F5F0E8]/95' : 'bg-white',
+          border: isDark ? 'border-stone-300' : 'border-slate-200',
+          dividerBorder: isDark ? 'border-stone-300/80' : 'border-slate-200',
+          textPrimary: isDark ? 'text-gray-800' : 'text-slate-900',
+          textSecondary: isDark ? 'text-gray-600' : 'text-slate-600',
+          textMuted: isDark ? 'text-gray-500' : 'text-gray-500',
           checkColor: 'text-emerald-500',
-          buttonBg: isDark ? 'bg-slate-800' : 'bg-white',
-          buttonText: isDark ? 'text-slate-100' : 'text-slate-900',
-          buttonBorder: isDark ? 'border-slate-600' : 'border-slate-300',
-          buttonHover: isDark ? 'hover:bg-slate-700 hover:border-slate-500' : 'hover:bg-slate-50 hover:border-slate-400',
+          buttonBg: isDark ? 'bg-[#EDE8DF]' : 'bg-white',
+          buttonText: isDark ? 'text-gray-800' : 'text-slate-900',
+          buttonBorder: isDark ? 'border-stone-300' : 'border-slate-300',
+          buttonHover: isDark ? 'hover:bg-[#D8D0C5] hover:border-slate-500' : 'hover:bg-[#FDFAF5] hover:border-slate-400',
           spotlightWrap: isDark ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-emerald-50 border border-emerald-100',
           spotlightTitle: isDark ? 'text-emerald-300' : 'text-emerald-700',
           spotlightText: isDark ? 'text-emerald-100/90' : 'text-emerald-900/80',
@@ -106,7 +106,7 @@ function PricingCardContent({
           buttonText: 'text-amber-950 font-bold',
           buttonBorder: 'border-white',
           buttonHover: 'hover:bg-amber-50 hover:shadow-lg',
-          spotlightWrap: isDark ? 'bg-amber-100/10 border border-amber-200/20' : 'bg-white/15 border border-white/20',
+          spotlightWrap: isDark ? 'bg-amber-100/10 border border-amber-200/20' : 'bg-black/8 border border-black/12',
           spotlightTitle: 'text-amber-100',
           spotlightText: 'text-amber-50',
         };
@@ -129,17 +129,17 @@ function PricingCardContent({
         };
       default:
         return {
-          background: isDark ? 'bg-slate-900/90' : 'bg-white',
-          border: isDark ? 'border-slate-700' : 'border-slate-200',
-          dividerBorder: isDark ? 'border-slate-700/80' : 'border-slate-200',
-          textPrimary: isDark ? 'text-slate-100' : 'text-slate-900',
-          textSecondary: isDark ? 'text-slate-300' : 'text-slate-600',
-          textMuted: isDark ? 'text-slate-400' : 'text-slate-500',
+          background: isDark ? 'bg-[#F5F0E8]/95' : 'bg-white',
+          border: isDark ? 'border-stone-300' : 'border-slate-200',
+          dividerBorder: isDark ? 'border-stone-300/80' : 'border-slate-200',
+          textPrimary: isDark ? 'text-gray-800' : 'text-slate-900',
+          textSecondary: isDark ? 'text-gray-600' : 'text-slate-600',
+          textMuted: isDark ? 'text-gray-500' : 'text-gray-500',
           checkColor: 'text-emerald-500',
-          buttonBg: isDark ? 'bg-slate-800' : 'bg-white',
-          buttonText: isDark ? 'text-slate-100' : 'text-slate-900',
-          buttonBorder: isDark ? 'border-slate-600' : 'border-slate-300',
-          buttonHover: isDark ? 'hover:bg-slate-700 hover:border-slate-500' : 'hover:bg-slate-50 hover:border-slate-400',
+          buttonBg: isDark ? 'bg-[#EDE8DF]' : 'bg-white',
+          buttonText: isDark ? 'text-gray-800' : 'text-slate-900',
+          buttonBorder: isDark ? 'border-stone-300' : 'border-slate-300',
+          buttonHover: isDark ? 'hover:bg-[#D8D0C5] hover:border-slate-500' : 'hover:bg-[#FDFAF5] hover:border-slate-400',
           spotlightWrap: isDark ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-emerald-50 border border-emerald-100',
           spotlightTitle: isDark ? 'text-emerald-300' : 'text-emerald-700',
           spotlightText: isDark ? 'text-emerald-100/90' : 'text-emerald-900/80',
@@ -220,7 +220,7 @@ function PricingCardContent({
       >
         <motion.div
           {...ANIMATION_CONFIG.shimmer}
-          className="pointer-events-none absolute inset-y-0 w-20 bg-white/15 blur-md"
+          className="pointer-events-none absolute inset-y-0 w-20 bg-black/8 blur-md"
           style={{ willChange: 'transform' }}
         />
         <div className={`text-[11px] font-bold uppercase tracking-wider mb-1 ${styles.spotlightTitle}`}>{spotlight.title}</div>
@@ -262,7 +262,7 @@ function PricingCardContent({
                 w-full py-3.5 rounded-2xl font-semibold text-base
                 transition-all duration-200 border-2
                 ${isActive 
-                  ? 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 border-slate-300 dark:border-slate-600 cursor-not-allowed opacity-75' 
+                  ? 'bg-slate-200 dark:bg-[#D8D0C5] text-gray-500 dark:text-gray-500 border-slate-300 dark:border-stone-300 cursor-not-allowed opacity-75' 
                   : `${styles.buttonBg} ${styles.buttonText} ${styles.buttonBorder} ${disabled ? 'cursor-not-allowed opacity-50' : styles.buttonHover + ' hover:scale-[1.02] active:scale-[0.98]'}`
                 }
               `}

@@ -20,7 +20,7 @@ export default function InvoicesPage() {
         <div className="mb-6">
           <Link
             href="/dashboard/admin"
-            className="inline-flex items-center gap-2 text-[#e2e8f0] hover:text-[#f8fafc] mb-4"
+            className="inline-flex items-center gap-2 text-[#e2e8f0] hover:text-[#1A1A1A] mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Dashboard

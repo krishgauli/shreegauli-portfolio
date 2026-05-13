@@ -99,7 +99,7 @@ function renderMarkdown(content: string) {
 
     // Horizontal rule
     if (line.trim() === '---' || line.trim() === '___') {
-      return <hr key={i} className="my-3 border-slate-200 dark:border-slate-700" />;
+      return <hr key={i} className="my-3 border-slate-200 dark:border-stone-300" />;
     }
 
     // Bold + emoji prefix lines
@@ -181,7 +181,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+      className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-slate-100 dark:hover:bg-[#D8D0C5] text-gray-500 hover:text-slate-600 dark:hover:text-gray-600"
       title="Copy message"
     >
       {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
@@ -311,21 +311,21 @@ export default function PremiumAnalyticsChat({
   const firstName = userName?.split(' ')[0] || '';
 
   return (
-    <div className="flex flex-col h-[calc(100vh-180px)] min-h-[500px] rounded-3xl border border-slate-200/60 dark:border-slate-700/60 overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+    <div className="flex flex-col h-[calc(100vh-180px)] min-h-[500px] rounded-3xl border border-slate-200/60 dark:border-stone-300/60 overflow-hidden bg-white dark:bg-[#F5F0E8] shadow-sm">
       {/* ─── Header ─── */}
-      <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur shrink-0">
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-stone-200 bg-black/50 dark:bg-[#F5F0E8]/90 backdrop-blur shrink-0">
         <div className="flex items-center gap-3">
           <div className="relative">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
               <Sparkles className="h-4 w-4 text-white" />
             </div>
-            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-white dark:border-slate-900" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-white dark:border-stone-200" />
           </div>
           <div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
               Analytics AI
             </h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+            <p className="text-[11px] text-gray-500 dark:text-gray-500">
               Real-time insights · Powered by your data
             </p>
           </div>
@@ -335,7 +335,7 @@ export default function PremiumAnalyticsChat({
           <div className="flex items-center gap-1">
             <button
               onClick={clearChat}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
               title="New conversation"
             >
               <RotateCcw className="h-3.5 w-3.5" />
@@ -363,7 +363,7 @@ export default function PremiumAnalyticsChat({
                   <Sparkles className="h-8 w-8 text-white" />
                 </div>
                 <motion.div
-                  className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-400 border-2 border-white dark:border-slate-900 flex items-center justify-center"
+                  className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-400 border-2 border-white dark:border-stone-200 flex items-center justify-center"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -375,7 +375,7 @@ export default function PremiumAnalyticsChat({
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
                 {firstName ? `Hi ${firstName}, what can I analyze?` : 'What can I analyze for you?'}
               </h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md text-center mb-8">
+              <p className="text-sm text-gray-500 dark:text-gray-500 max-w-md text-center mb-8">
                 I have access to your real clinic data — patients, traffic, ad performance, and more.
                 Ask me anything about your analytics.
                 {clinicNames && clinicNames.length > 0 && (
@@ -396,7 +396,7 @@ export default function PremiumAnalyticsChat({
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.06 }}
-                      className="group flex items-start gap-3 p-4 rounded-2xl text-left border border-slate-200/80 dark:border-slate-700/60 bg-white dark:bg-slate-800/50 hover:border-violet-300 dark:hover:border-violet-600/50 hover:shadow-md hover:shadow-violet-500/5 transition-all"
+                      className="group flex items-start gap-3 p-4 rounded-2xl text-left border border-slate-200/80 dark:border-stone-300/60 bg-white dark:bg-[#EDE8DF]/50 hover:border-violet-300 dark:hover:border-violet-600/50 hover:shadow-md hover:shadow-violet-500/5 transition-all"
                     >
                       <div
                         className={`w-9 h-9 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center shrink-0 shadow-sm`}
@@ -407,7 +407,7 @@ export default function PremiumAnalyticsChat({
                         <span className="text-sm font-semibold text-slate-900 dark:text-white block leading-tight">
                           {s.title}
                         </span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-0.5">
+                        <span className="text-xs text-gray-500 dark:text-gray-500 line-clamp-2 mt-0.5">
                           {s.prompt}
                         </span>
                       </div>
@@ -429,8 +429,8 @@ export default function PremiumAnalyticsChat({
                   key={msg.id}
                   className={`group px-4 sm:px-6 py-5 ${
                     msg.role === 'assistant'
-                      ? 'bg-slate-50/50 dark:bg-slate-800/30'
-                      : 'bg-white dark:bg-slate-900'
+                      ? 'bg-[#FDFAF5]/50 dark:bg-[#EDE8DF]/30'
+                      : 'bg-white dark:bg-[#F5F0E8]'
                   }`}
                 >
                   <div className="max-w-3xl mx-auto flex gap-4">
@@ -441,7 +441,7 @@ export default function PremiumAnalyticsChat({
                           <Sparkles className="h-4 w-4 text-white" />
                         </div>
                       ) : (
-                        <div className="w-8 h-8 rounded-lg bg-slate-700 dark:bg-slate-600 flex items-center justify-center text-white text-xs font-bold">
+                        <div className="w-8 h-8 rounded-lg bg-[#D8D0C5] dark:bg-slate-600 flex items-center justify-center text-white text-xs font-bold">
                           {firstName ? firstName[0].toUpperCase() : <User className="h-4 w-4" />}
                         </div>
                       )}
@@ -453,7 +453,7 @@ export default function PremiumAnalyticsChat({
                         <span className="text-sm font-semibold text-slate-900 dark:text-white">
                           {msg.role === 'assistant' ? 'Analytics AI' : firstName || 'You'}
                         </span>
-                        <span className="text-[11px] text-slate-400 dark:text-slate-500">
+                        <span className="text-[11px] text-gray-500 dark:text-gray-500">
                           {msg.timestamp.toLocaleTimeString([], {
                             hour: '2-digit',
                             minute: '2-digit',
@@ -461,7 +461,7 @@ export default function PremiumAnalyticsChat({
                         </span>
                         {msg.role === 'assistant' && <CopyButton text={msg.content} />}
                       </div>
-                      <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed max-w-none">
+                      <div className="text-sm text-slate-700 dark:text-gray-600 leading-relaxed max-w-none">
                         {msg.role === 'assistant' ? renderMarkdown(msg.content) : (
                           <p className="whitespace-pre-wrap">{msg.content}</p>
                         )}
@@ -473,7 +473,7 @@ export default function PremiumAnalyticsChat({
 
               {/* Loading indicator */}
               {isLoading && (
-                <div className="px-4 sm:px-6 py-5 bg-slate-50/50 dark:bg-slate-800/30">
+                <div className="px-4 sm:px-6 py-5 bg-[#FDFAF5]/50 dark:bg-[#EDE8DF]/30">
                   <div className="max-w-3xl mx-auto flex gap-4">
                     <div className="shrink-0 mt-0.5">
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-sm">
@@ -498,12 +498,12 @@ export default function PremiumAnalyticsChat({
       </div>
 
       {/* ─── Input Area ─── */}
-      <div className="shrink-0 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 sm:px-6 py-4">
+      <div className="shrink-0 border-t border-slate-100 dark:border-stone-200 bg-white dark:bg-[#F5F0E8] px-4 sm:px-6 py-4">
         <form
           onSubmit={handleSubmit}
           className="max-w-3xl mx-auto"
         >
-          <div className="relative flex items-end gap-2 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus-within:border-violet-400 dark:focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-500/10 transition-all px-4 py-2.5">
+          <div className="relative flex items-end gap-2 rounded-2xl border border-slate-200 dark:border-stone-300 bg-[#FDFAF5] dark:bg-[#EDE8DF] focus-within:border-violet-400 dark:focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-500/10 transition-all px-4 py-2.5">
             <textarea
               ref={textareaRef}
               value={input}
@@ -512,7 +512,7 @@ export default function PremiumAnalyticsChat({
               placeholder="Ask about your analytics..."
               disabled={isLoading}
               rows={1}
-              className="flex-1 bg-transparent text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none resize-none max-h-40 leading-relaxed py-0.5"
+              className="flex-1 bg-transparent text-sm text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none resize-none max-h-40 leading-relaxed py-0.5"
             />
             <button
               type="submit"
@@ -520,13 +520,13 @@ export default function PremiumAnalyticsChat({
               className={`shrink-0 p-2 rounded-xl transition-all ${
                 input.trim() && !isLoading
                   ? 'bg-violet-500 text-white hover:bg-violet-600 shadow-lg shadow-violet-500/25 scale-100'
-                  : 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 scale-95'
+                  : 'bg-slate-200 dark:bg-[#D8D0C5] text-gray-500 dark:text-gray-500 scale-95'
               }`}
             >
               <Send className="h-4 w-4" />
             </button>
           </div>
-          <p className="text-[11px] text-center mt-2 text-slate-400 dark:text-slate-500">
+          <p className="text-[11px] text-center mt-2 text-gray-500 dark:text-gray-500">
             AI uses your real dashboard data. Responses may vary. Press Shift+Enter for a new line.
           </p>
         </form>

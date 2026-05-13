@@ -48,17 +48,17 @@ export async function POST(req: NextRequest) {
       to: email,
       subject: `${code} is your verification code`,
       html: `
-        <div style="font-family: Arial, sans-serif; background: #f8fafc; padding: 32px;">
+        <div style="font-family: Arial, sans-serif; background: #1A1A1A; padding: 32px;">
           <div style="max-width: 480px; margin: 0 auto; background: #ffffff; border-radius: 20px; padding: 32px; border: 1px solid #e2e8f0; text-align: center;">
             <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #7c3aed; font-weight: 700;">Email Verification</p>
-            <h1 style="margin: 0 0 8px; font-size: 28px; color: #0f172a;">Hi ${displayName.replace(/[<>"'&]/g, '')},</h1>
+            <h1 style="margin: 0 0 8px; font-size: 28px; color: #F5F0E8;">Hi ${displayName.replace(/[<>"'&]/g, '')},</h1>
             <p style="margin: 0 0 24px; color: #475569; line-height: 1.7;">
               Use this code to verify your email address. It expires in 5 minutes.
             </p>
             <div style="margin: 0 auto 24px; padding: 20px 32px; background: #f1f5f9; border-radius: 16px; display: inline-block;">
               <span style="font-size: 36px; font-weight: 800; letter-spacing: 8px; color: #7c3aed;">${code}</span>
             </div>
-            <p style="margin: 0; color: #94a3b8; font-size: 13px;">
+            <p style="margin: 0; color: #6B7280; font-size: 13px;">
               If you didn't request this code, you can safely ignore this email.
             </p>
           </div>

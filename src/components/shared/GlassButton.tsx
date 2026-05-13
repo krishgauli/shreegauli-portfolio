@@ -23,7 +23,7 @@ export const GlassButton = forwardRef<HTMLButtonElement, GlassButtonProps>(
       "glass-btn",
       "inline-flex items-center gap-2",
       "rounded-full px-6 py-3",
-      "text-sm font-semibold text-[#F8FAFC]",
+      "text-sm font-semibold text-[#1A1A1A]",
       "cursor-pointer select-none",
       className
     );

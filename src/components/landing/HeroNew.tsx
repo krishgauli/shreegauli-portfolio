@@ -39,7 +39,7 @@ export default function HeroNew() {
   const isDark = theme === 'dark';
 
   return (
-    <header className={`relative overflow-visible py-24 lg:py-32 ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
+    <header className={`relative overflow-visible py-24 lg:py-32 ${isDark ? 'bg-[#F5F0E8]' : 'bg-white'}`}>
       {/* Theme-aware gradient background */}
       <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-800' : 'bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50'}`} />
 
@@ -77,21 +77,21 @@ export default function HeroNew() {
               {t('We market healthcare.')}<br />
               <span className="text-emerald-400">{t('Relentlessly.')}</span>
             </h1>
-            <p className={`mt-6 text-xl max-w-lg ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+            <p className={`mt-6 text-xl max-w-lg ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>
               {t('Premium digital marketing for ERs, MedSpas, and urgent care centers.')}
             </p>
 
             {/* Trust Badges */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-white/10' : 'bg-slate-900/10'}`}>
+              <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-black/5' : 'bg-[#F5F0E8]/10'}`}>
                 <FaGoogle className="h-5 w-5 text-[#4285F4]" />
                 <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Google Partner')}</span>
               </div>
-              <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-white/10' : 'bg-slate-900/10'}`}>
+              <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-black/5' : 'bg-[#F5F0E8]/10'}`}>
                 <FaMeta className="h-5 w-5 text-[#0082FB]" />
                 <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Meta Certified')}</span>
               </div>
-              <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-white/10' : 'bg-slate-900/10'}`}>
+              <div className={`flex items-center gap-2 backdrop-blur px-4 py-2 rounded-full ${isDark ? 'bg-black/5' : 'bg-[#F5F0E8]/10'}`}>
                 <FaShieldHalved className="h-5 w-5 text-emerald-500" />
                 <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('HIPAA Aware')}</span>
               </div>
@@ -107,7 +107,7 @@ export default function HeroNew() {
               </Link>
               <Link 
                 href="/work" 
-                className={`inline-flex items-center px-8 py-4 font-bold rounded-full transition-all border ${isDark ? 'bg-white/10 text-white border-white/20 hover:bg-white/20' : 'bg-slate-200 text-slate-900 border-slate-300 hover:bg-slate-300'}`}
+                className={`inline-flex items-center px-8 py-4 font-bold rounded-full transition-all border ${isDark ? 'bg-black/5 text-white border-black/12 hover:bg-white/20' : 'bg-slate-200 text-slate-900 border-slate-300 hover:bg-slate-300'}`}
               >
                 {t('See our work')}
               </Link>
@@ -148,7 +148,7 @@ export default function HeroNew() {
             { value: '$10M+', label: t('Ad spend managed') },
             { value: '3×', label: t('Average ROI') },
           ].map((stat, idx) => (
-            <div key={idx} className={`backdrop-blur rounded-2xl p-6 text-center border ${isDark ? 'bg-white/10 border-white/10' : 'bg-slate-900/5 border-slate-900/20'}`}>
+            <div key={idx} className={`backdrop-blur rounded-2xl p-6 text-center border ${isDark ? 'bg-black/5 border-black/10' : 'bg-[#F5F0E8]/5 border-stone-200/20'}`}>
               <div className="text-4xl font-black text-emerald-400">{stat.value}</div>
               <div className={`mt-2 ${isDark ? 'text-white/80' : 'text-slate-700'}`}>{stat.label}</div>
             </div>

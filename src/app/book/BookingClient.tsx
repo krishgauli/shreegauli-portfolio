@@ -154,20 +154,20 @@ export function BookingClient() {
   /* ── Success state ── */
   if (submitted) {
     return (
-      <div className="mt-10 rounded-[28px] border border-white/10 bg-white/[0.04] p-8 md:p-12 text-center backdrop-blur-xl">
+      <div className="mt-10 rounded-[28px] border border-black/10 bg-black/[0.04] p-8 md:p-12 text-center backdrop-blur-xl">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 mb-6">
           <Check className="h-8 w-8 text-emerald-400" />
         </div>
-        <h3 className="text-2xl font-semibold text-[#F8FAFC] mb-3">You&apos;re booked!</h3>
-        <p className="text-[#94A3B8] max-w-md mx-auto">
-          I&apos;ll send you a calendar invite at <strong className="text-[#E2E8F0]">{email}</strong> within a few hours.
+        <h3 className="text-2xl font-semibold text-[#1A1A1A] mb-3">You&apos;re booked!</h3>
+        <p className="text-[#6B7280] max-w-md mx-auto">
+          I&apos;ll send you a calendar invite at <strong className="text-gray-700">{email}</strong> within a few hours.
           If you don&apos;t see it, check your spam folder or reach out via the{" "}
           <a href="/contact" className="text-[#7C3AED] hover:underline">
             contact page
           </a>
           .
         </p>
-        <p className="mt-4 text-sm text-[#94A3B8]/70">
+        <p className="mt-4 text-sm text-[#6B7280]/70">
           {selectedDate &&
             `${MONTH_LABELS[selectedDate.getMonth()]} ${selectedDate.getDate()}, ${selectedDate.getFullYear()}`}{" "}
           at {selectedSlot && formatSlot(selectedSlot)} CT
@@ -179,7 +179,7 @@ export function BookingClient() {
   return (
     <div className="mt-10 space-y-8">
       {/* Calendar + time selector */}
-      <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 md:p-8 backdrop-blur-xl">
+      <div className="rounded-[28px] border border-black/10 bg-black/[0.04] p-6 md:p-8 backdrop-blur-xl">
         <div className="grid gap-8 lg:grid-cols-[1fr_auto]">
           {/* Calendar */}
           <div>
@@ -187,18 +187,18 @@ export function BookingClient() {
               <button
                 type="button"
                 onClick={prevMonth}
-                className="rounded-lg p-2 text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/10 transition-colors"
+                className="rounded-lg p-2 text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/5 transition-colors"
                 aria-label="Previous month"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
-              <h3 className="text-lg font-semibold text-[#F8FAFC]">
+              <h3 className="text-lg font-semibold text-[#1A1A1A]">
                 {MONTH_LABELS[viewMonth]} {viewYear}
               </h3>
               <button
                 type="button"
                 onClick={nextMonth}
-                className="rounded-lg p-2 text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/10 transition-colors"
+                className="rounded-lg p-2 text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/5 transition-colors"
                 aria-label="Next month"
               >
                 <ChevronRight className="h-5 w-5" />
@@ -208,7 +208,7 @@ export function BookingClient() {
             {/* Day headers */}
             <div className="grid grid-cols-7 gap-1 mb-1 text-center">
               {DAY_LABELS.map((d) => (
-                <div key={d} className="py-2 text-xs font-medium uppercase tracking-wider text-[#94A3B8]/70">
+                <div key={d} className="py-2 text-xs font-medium uppercase tracking-wider text-[#6B7280]/70">
                   {d}
                 </div>
               ))}
@@ -237,8 +237,8 @@ export function BookingClient() {
                       selected
                         ? "bg-[#7C3AED] text-white shadow-lg shadow-[#7C3AED]/25"
                         : available
-                          ? "text-[#F8FAFC] hover:bg-white/10 cursor-pointer"
-                          : "text-[#475569] cursor-not-allowed"
+                          ? "text-[#1A1A1A] hover:bg-black/5 cursor-pointer"
+                          : "text-gray-500 cursor-not-allowed"
                     } ${today && !selected ? "ring-1 ring-[#7C3AED]/50" : ""}`}
                   >
                     {day.getDate()}
@@ -248,9 +248,9 @@ export function BookingClient() {
             </div>
 
             {/* Availability key */}
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[#94A3B8]">
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[#6B7280]">
               <span className="flex items-center gap-1.5">
-                <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#F8FAFC]" />
+                <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#1A1A1A]" />
                 Available
               </span>
               <span className="flex items-center gap-1.5">
@@ -265,8 +265,8 @@ export function BookingClient() {
           </div>
 
           {/* Time slots */}
-          <div className="lg:w-48 lg:border-l lg:border-white/10 lg:pl-8">
-            <h4 className="flex items-center gap-2 text-sm font-semibold text-[#F8FAFC] mb-4">
+          <div className="lg:w-48 lg:border-l lg:border-black/10 lg:pl-8">
+            <h4 className="flex items-center gap-2 text-sm font-semibold text-[#1A1A1A] mb-4">
               <Clock className="h-4 w-4 text-[#7C3AED]" />
               {selectedDate
                 ? `${MONTH_LABELS[selectedDate.getMonth()]} ${selectedDate.getDate()}`
@@ -283,7 +283,7 @@ export function BookingClient() {
                     className={`rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
                       selectedSlot === slot
                         ? "bg-[#7C3AED] text-white shadow-lg shadow-[#7C3AED]/25"
-                        : "border border-white/10 text-[#E2E8F0] hover:border-[#7C3AED]/50 hover:bg-white/[0.06]"
+                        : "border border-black/10 text-gray-700 hover:border-[#7C3AED]/50 hover:bg-black/[0.05]"
                     }`}
                   >
                     {formatSlot(slot)}
@@ -291,7 +291,7 @@ export function BookingClient() {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-[#94A3B8]/60">
+              <p className="text-sm text-[#6B7280]/60">
                 Pick a highlighted date to see open time slots.
               </p>
             )}
@@ -301,17 +301,17 @@ export function BookingClient() {
 
       {/* Booking form (shows after slot selected) */}
       {selectedDate && selectedSlot && (
-        <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 md:p-8 backdrop-blur-xl">
+        <div className="rounded-[28px] border border-black/10 bg-black/[0.04] p-6 md:p-8 backdrop-blur-xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#7C3AED] mb-2">
             Confirm your booking
           </p>
-          <p className="text-[#94A3B8] text-sm mb-6">
+          <p className="text-[#6B7280] text-sm mb-6">
             {MONTH_LABELS[selectedDate.getMonth()]} {selectedDate.getDate()},{" "}
             {selectedDate.getFullYear()} at {formatSlot(selectedSlot)} CT (Chicago)
           </p>
 
           <form onSubmit={handleSubmit} className="grid gap-4 max-w-md">
-            <label className="grid gap-2 text-sm text-[#E2E8F0]">
+            <label className="grid gap-2 text-sm text-gray-700">
               Name *
               <input
                 type="text"
@@ -319,12 +319,12 @@ export function BookingClient() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 autoComplete="name"
-                className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                 placeholder="Your name"
               />
             </label>
 
-            <label className="grid gap-2 text-sm text-[#E2E8F0]">
+            <label className="grid gap-2 text-sm text-gray-700">
               Email *
               <input
                 type="email"
@@ -332,18 +332,18 @@ export function BookingClient() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 autoComplete="email"
-                className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                 placeholder="you@company.com"
               />
             </label>
 
-            <label className="grid gap-2 text-sm text-[#E2E8F0]">
+            <label className="grid gap-2 text-sm text-gray-700">
               What should we discuss?
               <textarea
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 rows={3}
-                className="rounded-2xl border border-white/10 bg-[#020617]/70 px-4 py-3 text-sm text-[#F8FAFC] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
+                className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30"
                 placeholder="Quick summary of what you need help with (optional)"
               />
             </label>
@@ -366,7 +366,7 @@ export function BookingClient() {
       )}
 
       {/* Info note */}
-      <div className="text-center text-xs text-[#94A3B8]/60 space-y-1">
+      <div className="text-center text-xs text-[#6B7280]/60 space-y-1">
         <p>Available Monday, Thursday, Friday, Saturday &amp; Sunday mornings — 9 AM to 1 PM CT (Chicago).</p>
         <p>Tuesday and Wednesday are reserved for deep-focus client work.</p>
       </div>

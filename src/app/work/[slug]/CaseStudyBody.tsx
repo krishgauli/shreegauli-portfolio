@@ -98,10 +98,10 @@ function LIcon({ name, className }: { name: string; className?: string }) {
 /* ── Accent Color System ───────────────────────────────────────── */
 const accents = {
   violet: {
-    badge: "bg-[#7C3AED]/10 text-[#C4B5FD] border border-[#7C3AED]/25",
+    badge: "bg-[#7C3AED]/10 text-[#6D28D9] border border-[#7C3AED]/25",
     dot: "bg-[#7C3AED]",
     titleSpan: "text-[#7C3AED]",
-    metricColors: ["text-[#C4B5FD]", "text-[#22D3EE]", "text-[#F8FAFC]"],
+    metricColors: ["text-[#6D28D9]", "text-[#0E7490]", "text-[#1A1A1A]"],
     ctaBtn:
       "bg-[#7C3AED] text-white hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]",
     hex: "#7C3AED",
@@ -109,24 +109,24 @@ const accents = {
     glow2: "rgba(34,211,238,0.05)",
   },
   cyan: {
-    badge: "bg-[#22D3EE]/10 text-[#A5F3FC] border border-[#22D3EE]/25",
+    badge: "bg-[#22D3EE]/10 text-[#0E7490] border border-[#22D3EE]/25",
     dot: "bg-[#22D3EE]",
-    titleSpan: "text-[#22D3EE]",
-    metricColors: ["text-[#A5F3FC]", "text-[#C4B5FD]", "text-[#F8FAFC]"],
+    titleSpan: "text-[#0891B2]",
+    metricColors: ["text-[#0891B2]", "text-[#6D28D9]", "text-[#1A1A1A]"],
     ctaBtn:
-      "bg-[#22D3EE] text-[#070B14] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)]",
-    hex: "#22D3EE",
+      "bg-[#0891B2] text-white hover:shadow-[0_0_30px_rgba(34,211,238,0.5)]",
+    hex: "#0891B2",
     glow1: "rgba(34,211,238,0.08)",
     glow2: "rgba(124,58,237,0.05)",
   },
   amber: {
-    badge: "bg-[#F59E0B]/10 text-[#FDE68A] border border-[#F59E0B]/25",
+    badge: "bg-[#F59E0B]/10 text-[#B45309] border border-[#F59E0B]/25",
     dot: "bg-[#F59E0B]",
-    titleSpan: "text-[#F59E0B]",
-    metricColors: ["text-[#FDE68A]", "text-[#C4B5FD]", "text-[#F8FAFC]"],
+    titleSpan: "text-[#D97706]",
+    metricColors: ["text-[#D97706]", "text-[#6D28D9]", "text-[#1A1A1A]"],
     ctaBtn:
-      "bg-[#F59E0B] text-[#070B14] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)]",
-    hex: "#F59E0B",
+      "bg-[#D97706] text-white hover:shadow-[0_0_30px_rgba(245,158,11,0.5)]",
+    hex: "#D97706",
     glow1: "rgba(245,158,11,0.08)",
     glow2: "rgba(124,58,237,0.05)",
   },
@@ -134,9 +134,9 @@ const accents = {
 
 /* ── Strategy card color map ───────────────────────────────────── */
 const strategyColor: Record<string, string> = {
-  violet: "bg-[#7C3AED]/15 text-[#7C3AED]",
-  cyan: "bg-[#22D3EE]/15 text-[#22D3EE]",
-  amber: "bg-[#F59E0B]/15 text-[#F59E0B]",
+  violet: "bg-[#7C3AED]/15 text-[#6D28D9]",
+  cyan: "bg-[#22D3EE]/15 text-[#0E7490]",
+  amber: "bg-[#F59E0B]/15 text-[#B45309]",
 };
 
 /* ── Animation helpers ─────────────────────────────────────────── */
@@ -169,7 +169,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
         {/* Back link */}
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#F8FAFC] transition-colors mb-12 group"
+          className="inline-flex items-center gap-2 text-sm text-[#6B7280] hover:text-[#1A1A1A] transition-colors mb-12 group"
         >
           <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
           All Case Studies
@@ -192,12 +192,12 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.08] mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#1A1A1A] tracking-tight leading-[1.05] mb-6">
             {study.title}
           </h1>
 
           {study.subtitle && (
-            <p className="text-lg md:text-xl text-[#94A3B8] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-[#6B7280] max-w-3xl mx-auto leading-relaxed">
               {study.subtitle}
             </p>
           )}
@@ -206,7 +206,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
             {study.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-xs font-medium text-[#94A3B8]"
+                className="inline-flex items-center rounded-full bg-[#EDE8DF] border border-black/10 px-4 py-1.5 text-xs font-medium text-[#6B7280]"
               >
                 {tag}
               </span>
@@ -235,10 +235,10 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-rose-500/10 text-rose-400 border border-rose-500/20 text-xs font-bold uppercase tracking-[0.16em]">
                 The Challenge
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight leading-tight">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#1A1A1A] tracking-tight leading-tight">
                 {study.challengeHeading ?? study.problem}
               </h2>
-              <div className="space-y-4 text-lg text-[#94A3B8] leading-relaxed">
+              <div className="space-y-4 text-base md:text-lg text-[#6B7280] leading-relaxed">
                 {study.challengeDescription?.map((p, i) => (
                   <p key={i}>{p}</p>
                 )) ?? <p>{study.problem}</p>}
@@ -253,10 +253,10 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                     className="w-5 h-5 text-rose-400 shrink-0 mt-0.5"
                   />
                   <div>
-                    <h4 className="font-bold text-[#F8FAFC] mb-1">
+                    <h4 className="text-base font-bold text-[#1A1A1A] mb-1">
                       {item.title}
                     </h4>
-                    <p className="text-sm text-[#94A3B8]">
+                    <p className="text-sm text-[#6B7280]">
                       {item.description}
                     </p>
                   </div>
@@ -282,7 +282,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               >
                 The Strategy
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1A1A1A] tracking-tight">
                 {study.strategyHeading ?? "A precision approach to growth."}
               </h2>
             </div>
@@ -295,11 +295,11 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, ease, delay: 0.1 * i }}
-                  className="glass p-6 md:p-8 rounded-2xl hover:-translate-y-2 transition-all duration-500 group"
+                  className="p-6 md:p-8 rounded-2xl hover:-translate-y-2 transition-all duration-500 group border border-[#D4CFC8]"
                   style={{
-                    background: "rgba(15,23,42,0.75)",
+                    background: "rgba(245,240,232,0.9)",
                     backdropFilter: "blur(24px)",
-                    borderColor: "rgba(255,255,255,0.06)",
+                    borderColor: "rgba(0,0,0,0.08)",
                   }}
                 >
                   <div
@@ -307,10 +307,10 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                   >
                     <LIcon name={item.icon} className="w-5 h-5" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#F8FAFC] mb-3">
+                  <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-[#94A3B8] leading-relaxed">
+                  <p className="text-base text-[#6B7280] leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
@@ -338,7 +338,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                   </div>
                 )}
                 <div className="relative z-10">
-                  <p className="text-xl md:text-2xl font-medium text-[#F8FAFC] leading-relaxed italic max-w-3xl mx-auto text-center">
+                  <p className="text-xl md:text-2xl font-medium text-[#1A1A1A] leading-relaxed italic max-w-3xl mx-auto text-center">
                     &ldquo;{study.quote.text}&rdquo;
                   </p>
                   <p
@@ -368,7 +368,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               >
                 Real Proof
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1A1A1A] tracking-tight">
                 Don&apos;t take our word for it — see the data.
               </h2>
             </div>
@@ -383,7 +383,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               />
             </div>
             {study.proofImage.caption && (
-              <p className="text-center text-sm text-[#94A3B8] mt-4 font-medium">
+              <p className="text-center text-sm text-[#6B7280] mt-4 font-medium">
                 {study.proofImage.caption}
               </p>
             )}
@@ -404,21 +404,21 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-md ${a.badge} text-xs font-bold uppercase tracking-[0.16em] mb-6`}>
                 Starting Point
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">Baseline metrics before we started.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1A1A1A] tracking-tight">Baseline metrics before we started.</h2>
             </div>
             <div className="glass rounded-2xl overflow-hidden">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Metric</th>
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Before</th>
+                  <tr className="border-b border-black/10">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#6B7280]">Metric</th>
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#6B7280]">Before</th>
                   </tr>
                 </thead>
                 <tbody>
                   {study.baselineMetrics.map((row, i) => (
                     <tr key={i} className="border-b border-white/5 last:border-0">
-                      <td className="px-6 py-4 text-sm text-[#F8FAFC] font-medium">{row.metric}</td>
-                      <td className="px-6 py-4 text-sm text-[#94A3B8]">{row.before}</td>
+                      <td className="px-6 py-4 text-sm text-[#1A1A1A] font-medium">{row.metric}</td>
+                      <td className="px-6 py-4 text-sm text-[#6B7280]">{row.before}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -439,10 +439,10 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
           >
             {study.toolsUsed && study.toolsUsed.length > 0 && (
               <div className="glass p-6 md:p-8 rounded-2xl">
-                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8] mb-4">Tools Used</h3>
+                <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-[#6B7280] mb-4">Tools Used</h3>
                 <div className="flex flex-wrap gap-2">
                   {study.toolsUsed.map((tool) => (
-                    <span key={tool} className="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-3 py-1.5 text-xs font-medium text-[#F8FAFC]">
+                    <span key={tool} className="inline-flex items-center rounded-full bg-[#EDE8DF] border border-black/10 px-3 py-1.5 text-xs font-medium text-[#1A1A1A]">
                       {tool}
                     </span>
                   ))}
@@ -451,14 +451,14 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
             )}
             {study.timelinePhases && study.timelinePhases.length > 0 && (
               <div className="glass p-6 md:p-8 rounded-2xl">
-                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8] mb-4">Timeline</h3>
+                <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-[#6B7280] mb-4">Timeline</h3>
                 <div className="space-y-4">
                   {study.timelinePhases.map((phase, i) => (
                     <div key={i} className="flex gap-4">
                       <span className={`shrink-0 mt-1 w-2 h-2 rounded-full ${a.dot}`} />
                       <div>
-                        <p className="text-sm font-bold text-[#F8FAFC]">{phase.phase}</p>
-                        <p className="text-sm text-[#94A3B8]">{phase.description}</p>
+                        <p className="text-sm font-bold text-[#1A1A1A]">{phase.phase}</p>
+                        <p className="text-sm text-[#6B7280]">{phase.description}</p>
                       </div>
                     </div>
                   ))}
@@ -482,24 +482,24 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-[0.16em] mb-6">
                 Before &amp; After
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">The numbers tell the story.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1A1A1A] tracking-tight">The numbers tell the story.</h2>
             </div>
             <div className="glass rounded-2xl overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-left min-w-[500px]">
                   <thead>
-                    <tr className="border-b border-white/10">
-                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Metric</th>
-                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Before</th>
-                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">After</th>
-                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8]">Change</th>
+                    <tr className="border-b border-black/10">
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#6B7280]">Metric</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#6B7280]">Before</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#6B7280]">After</th>
+                      <th className="px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#6B7280]">Change</th>
                     </tr>
                   </thead>
                   <tbody>
                     {study.beforeAfter.map((row, i) => (
                       <tr key={i} className="border-b border-white/5 last:border-0">
-                        <td className="px-6 py-4 text-sm text-[#F8FAFC] font-medium">{row.metric}</td>
-                        <td className="px-6 py-4 text-sm text-[#94A3B8]">{row.before}</td>
+                        <td className="px-6 py-4 text-sm text-[#1A1A1A] font-medium">{row.metric}</td>
+                        <td className="px-6 py-4 text-sm text-[#6B7280]">{row.before}</td>
                         <td className="px-6 py-4 text-sm text-emerald-400 font-semibold">{row.after}</td>
                         <td className="px-6 py-4 text-sm text-[#C4B5FD] font-bold">{row.change}</td>
                       </tr>
@@ -522,8 +522,8 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
             className="mb-24 md:mb-40"
           >
             <div className="glass p-8 md:p-12 rounded-3xl relative overflow-hidden" style={{ borderLeftWidth: "4px", borderLeftColor: "rgba(16,185,129,0.6)" }}>
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-400 mb-4">Business Outcome</h3>
-              <p className="text-xl md:text-2xl font-medium text-[#F8FAFC] leading-relaxed">
+              <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-500 mb-4">Business Outcome</h3>
+              <p className="text-xl md:text-2xl font-semibold text-[#1A1A1A] leading-relaxed">
                 {study.businessOutcome}
               </p>
             </div>
@@ -543,7 +543,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-[0.16em] mb-6">
               The Impact
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1A1A1A] tracking-tight">
               Measurable results that speak for themselves.
             </h2>
           </div>
@@ -558,7 +558,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, ease, delay: 0.12 * i }}
-                  className="glass p-8 md:p-10 rounded-3xl relative overflow-hidden group hover:bg-white/[0.06] transition-all duration-500 shadow-xl"
+                  className="glass p-8 md:p-10 rounded-3xl relative overflow-hidden group hover:bg-[#D4CFC8] transition-all duration-500 shadow-xl"
                 >
                   {/* Watermark icon */}
                   {m.icon && (
@@ -567,7 +567,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                     </div>
                   )}
 
-                  <p className="text-[#94A3B8] text-sm font-medium uppercase tracking-[0.16em] mb-4">
+                  <p className="text-[#6B7280] text-xs font-semibold uppercase tracking-[0.18em] mb-4">
                     {m.label}
                   </p>
                   <h3
@@ -576,7 +576,7 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                     {m.value}
                   </h3>
                   {m.description && (
-                    <p className="text-slate-400 leading-relaxed text-sm">
+                    <p className="text-gray-500 leading-relaxed text-sm">
                       {m.description}
                     </p>
                   )}
@@ -608,10 +608,10 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                   <Lightbulb className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-[#94A3B8] mb-3">
+                  <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-[#6B7280] mb-3">
                     Key Takeaway
                   </h3>
-                  <p className="text-xl md:text-2xl font-medium text-[#F8FAFC] leading-relaxed">
+                  <p className="text-xl md:text-2xl font-semibold text-[#1A1A1A] leading-relaxed">
                     {study.takeaway}
                   </p>
                 </div>
@@ -627,9 +627,9 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
           viewport={{ once: true, margin: "-60px" }}
           variants={fadeUp}
           transition={{ duration: 0.7, ease, delay: 0.25 }}
-          className="relative py-16 md:py-24 px-6 md:px-8 rounded-[2rem] overflow-hidden border border-white/10 text-center"
+          className="relative py-16 md:py-24 px-6 md:px-8 rounded-[2rem] overflow-hidden border border-black/10 text-center"
           style={{
-            background: "linear-gradient(135deg, #111827 0%, #070B14 100%)",
+            background: "linear-gradient(135deg, #EDE8DF 0%, #FDFAF5 100%)",
           }}
         >
           {/* Dot pattern overlay */}
@@ -642,13 +642,13 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
           />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-6 tracking-tight text-[#F8FAFC] leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-5 tracking-tight text-[#1A1A1A] leading-tight">
               Ready to scale your{" "}
               <span className={`${a.titleSpan} italic`}>
                 organic visibility?
               </span>
             </h2>
-            <p className="text-[#94A3B8] text-lg md:text-xl mb-10 leading-relaxed">
+            <p className="text-[#6B7280] text-lg md:text-xl mb-10 leading-relaxed">
               See how a data-driven strategy can transform your digital
               presence. Let&apos;s build something measurable together.
             </p>
@@ -662,12 +662,12 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
               </Link>
               <Link
                 href="/work"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 glass rounded-2xl font-bold text-[#F8FAFC] hover:bg-white/[0.06] transition-all duration-300 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-[#D4CFC8] bg-[#EDE8DF] font-bold text-[#1A1A1A] hover:bg-[#D4CFC8] transition-all duration-300 active:scale-95"
               >
                 View all Case Studies
               </Link>
             </div>
-            <p className="mt-10 text-slate-500 text-sm font-medium tracking-wide">
+            <p className="mt-10 text-gray-500 text-sm font-medium tracking-wide">
               Trusted by 14+ brands across 5 industries
             </p>
           </div>

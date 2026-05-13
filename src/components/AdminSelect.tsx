@@ -42,7 +42,7 @@ export default function AdminSelect({
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={selectId} className="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">
+        <label htmlFor={selectId} className="block text-sm font-medium mb-2 text-slate-700 dark:text-gray-600">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
@@ -54,10 +54,10 @@ export default function AdminSelect({
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
         className={`
-          w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700
-          bg-white dark:bg-slate-800
-          text-slate-900 dark:text-slate-100
-          placeholder-slate-400 dark:placeholder-slate-500
+          w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-stone-300
+          bg-white dark:bg-[#EDE8DF]
+          text-slate-900 dark:text-gray-800
+          placeholder-gray-400 dark:placeholder-gray-500
           focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500
           dark:focus:ring-emerald-500 dark:focus:border-emerald-500
           disabled:opacity-50 disabled:cursor-not-allowed
@@ -71,7 +71,7 @@ export default function AdminSelect({
           </option>
         )}
         {options.map((option) => (
-          <option key={option.value} value={option.value} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+          <option key={option.value} value={option.value} className="bg-white dark:bg-[#F5F0E8] text-slate-900 dark:text-gray-800">
             {option.label}
           </option>
         ))}

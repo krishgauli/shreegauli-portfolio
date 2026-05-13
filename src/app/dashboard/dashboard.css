@@ -6,7 +6,7 @@
       radial-gradient(circle at 12% 10%, rgba(124, 58, 237, 0.22), transparent 28%),
       radial-gradient(circle at 88% 12%, rgba(34, 211, 238, 0.16), transparent 24%),
       radial-gradient(circle at 50% 110%, rgba(245, 158, 11, 0.08), transparent 28%),
-      linear-gradient(180deg, #070b14 0%, #0f172a 55%, #111827 100%);
+      linear-gradient(180deg, #FDFAF5 0%, #F5F0E8 55%, #EDE8DF 100%);
   }
   .dashboard-shell::before {
     content: "";
@@ -14,8 +14,8 @@
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
     opacity: 0.28;
@@ -43,21 +43,21 @@
   .dashboard-modal {
     backdrop-filter: blur(22px) saturate(160%);
     -webkit-backdrop-filter: blur(22px) saturate(160%);
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.68));
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(245, 240, 232, 0.92), rgba(237, 232, 223, 0.82));
+    border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow:
-      0 24px 80px -24px rgba(2, 6, 23, 0.85),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      0 24px 80px -24px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   .dashboard-input {
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    background: rgba(15, 23, 42, 0.68);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    color: #f8fafc;
+    background: rgba(237, 232, 223, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #1A1A1A;
     box-shadow:
-      0 12px 32px -18px rgba(2, 6, 23, 0.75),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      0 4px 16px -8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   }
   .dashboard-input::placeholder {
@@ -72,7 +72,7 @@
   }
   .dashboard-primary-button {
     background: var(--gradient-brand);
-    color: #f8fafc;
+    color: #1A1A1A;
     box-shadow: 0 16px 36px -18px rgba(124, 58, 237, 0.72);
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   }
@@ -84,15 +84,15 @@
   .dashboard-ghost-button {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    color: #e2e8f0;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #374151;
     transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
   .dashboard-ghost-button:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.08);
     border-color: rgba(34, 211, 238, 0.24);
-    color: #f8fafc;
+    color: #1A1A1A;
     transform: translateY(-1px);
   }
   .dashboard-danger-button {
@@ -101,12 +101,12 @@
     box-shadow: 0 14px 30px -16px rgba(239, 68, 68, 0.8);
   }
   .dashboard-soft-pill {
-    background: rgba(124, 58, 237, 0.14);
+    background: rgba(124, 58, 237, 0.1);
     border: 1px solid rgba(124, 58, 237, 0.2);
-    color: #c4b5fd;
+    color: #7C3AED;
   }
   .dashboard-kicker {
-    color: #94a3b8;
+    color: #6B7280;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.24em;
@@ -121,34 +121,34 @@
   }
 
   .dashboard-scope .glass {
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.64));
-    border-color: rgba(148, 163, 184, 0.16);
+    background: linear-gradient(180deg, rgba(245, 240, 232, 0.88), rgba(237, 232, 223, 0.72));
+    border-color: rgba(0, 0, 0, 0.08);
     box-shadow:
-      0 20px 54px -24px rgba(2, 6, 23, 0.88),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      0 20px 54px -24px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 }
 
 /* ─── Dashboard-scope bg overrides (OUTSIDE @layer to beat Tailwind utilities) ─── */
 .dashboard-scope .bg-white,
-.dashboard-scope .bg-slate-50,
+.dashboard-scope .bg-[#FDFAF5],
 .dashboard-scope .bg-slate-100 {
-  background-color: rgba(15, 23, 42, 0.76) !important;
+  background-color: rgba(245, 240, 232, 0.85) !important;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
-.dashboard-scope .hover\:bg-slate-50:hover,
+.dashboard-scope .hover\:bg-[#FDFAF5]:hover,
 .dashboard-scope .hover\:bg-slate-100:hover,
 .dashboard-scope .hover\:bg-white:hover,
-.dashboard-scope .dark\:hover\:bg-slate-800:hover,
-.dashboard-scope .dark\:hover\:bg-slate-700:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+.dashboard-scope .dark\:hover\:bg-[#EDE8DF]:hover,
+.dashboard-scope .dark\:hover\:bg-[#D8D0C5]:hover {
+  background-color: rgba(0, 0, 0, 0.06) !important;
 }
 .dashboard-scope .bg-gradient-to-br.from-emerald-50 {
   background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.12), rgba(20, 184, 166, 0.08));
 }
 .dashboard-scope .bg-gradient-to-r.from-slate-50 {
-  background: linear-gradient(to right, rgba(15, 23, 42, 0.76), rgba(76, 29, 149, 0.15));
+  background: linear-gradient(to right, rgba(237, 232, 223, 0.9), rgba(124, 58, 237, 0.08));
 }
 .dashboard-scope .bg-blue-50 {
   background-color: rgba(59, 130, 246, 0.08) !important;
@@ -177,10 +177,10 @@
 .dashboard-scope .bg-white\/80,
 .dashboard-scope .bg-white\/70,
 .dashboard-scope .bg-white\/50,
-.dashboard-scope .bg-slate-800\/80,
-.dashboard-scope .bg-slate-900\/50,
-.dashboard-scope .bg-slate-900\/40 {
-  background-color: rgba(15, 23, 42, 0.72) !important;
+.dashboard-scope .bg-[#EDE8DF]\/80,
+.dashboard-scope .bg-[#F5F0E8]\/50,
+.dashboard-scope .bg-[#F5F0E8]\/40 {
+  background-color: rgba(245, 240, 232, 0.75) !important;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -190,33 +190,33 @@
 .dashboard-scope .text-slate-800,
 .dashboard-scope .dark\:text-white,
 .dashboard-scope .text-black {
-  color: #f8fafc !important;
+  color: #1A1A1A !important;
 }
 .dashboard-scope .text-slate-700,
-.dashboard-scope .dark\:text-slate-200,
-.dashboard-scope .dark\:text-slate-100 {
-  color: #e2e8f0 !important;
+.dashboard-scope .dark\:text-gray-700,
+.dashboard-scope .dark\:text-gray-800 {
+  color: #374151 !important;
 }
 .dashboard-scope .text-slate-600,
-.dashboard-scope .text-slate-500,
-.dashboard-scope .text-slate-400,
-.dashboard-scope .dark\:text-slate-400,
-.dashboard-scope .dark\:text-slate-500 {
-  color: #94a3b8 !important;
+.dashboard-scope .text-gray-500,
+.dashboard-scope .text-gray-500,
+.dashboard-scope .dark\:text-gray-500,
+.dashboard-scope .dark\:text-gray-500 {
+  color: #6B7280 !important;
 }
 .dashboard-scope .border-slate-100,
 .dashboard-scope .border-slate-200,
 .dashboard-scope .border-slate-300,
-.dashboard-scope .border-slate-700,
-.dashboard-scope .border-slate-800 {
-  border-color: rgba(148, 163, 184, 0.16) !important;
+.dashboard-scope .border-stone-300,
+.dashboard-scope .border-stone-200 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
 }
 .dashboard-scope .bg-emerald-500,
 .dashboard-scope .hover\:bg-emerald-400:hover,
 .dashboard-scope .hover\:bg-emerald-500:hover,
 .dashboard-scope .hover\:bg-emerald-600:hover {
   background: var(--gradient-brand);
-  color: #f8fafc;
+  color: #1A1A1A;
 }
 .dashboard-scope .text-emerald-500,
 .dashboard-scope .text-emerald-600,
@@ -236,17 +236,17 @@
 .dashboard-scope input,
 .dashboard-scope select,
 .dashboard-scope textarea {
-  color: #f8fafc !important;
+  color: #1A1A1A !important;
 }
 .dashboard-scope input::placeholder,
 .dashboard-scope textarea::placeholder {
-  color: #94a3b8 !important;
+  color: #6B7280 !important;
   opacity: 1;
 }
 .dashboard-scope select option,
 .dashboard-scope select optgroup {
-  background-color: #0f172a;
-  color: #f8fafc;
+  background-color: #F5F0E8;
+  color: #1A1A1A;
 }
 .dashboard-scope label {
   color: #e2e8f0;
@@ -255,12 +255,12 @@
 .dashboard-scope h2,
 .dashboard-scope h3,
 .dashboard-scope h4 {
-  color: #f8fafc;
+  color: #1A1A1A;
 }
 
 /* Ensure dashboard-input always shows white text regardless of utility classes */
 .dashboard-input {
-  color: #f8fafc !important;
+  color: #1A1A1A !important;
 }
 .dashboard-input::placeholder {
   color: rgba(148, 163, 184, 0.78) !important;

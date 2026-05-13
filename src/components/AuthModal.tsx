@@ -216,7 +216,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', duration: 0.3 }}
-          className="relative z-10 w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-2xl"
+          className="relative z-10 w-full max-w-md rounded-2xl border border-slate-200 dark:border-stone-300 bg-white dark:bg-[#F5F0E8] p-6 shadow-2xl"
         >
           {/* Header */}
           <div className="flex items-start justify-between mb-6">
@@ -224,7 +224,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 {mode === 'signup' ? 'Create Account' : 'Welcome Back'}
               </h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+              <p className="text-sm text-slate-600 dark:text-gray-500 mt-1">
                 {mode === 'signup' 
                   ? 'Sign up to join the conversation' 
                   : 'Log in to continue commenting'}
@@ -232,7 +232,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
             </div>
             <button
               onClick={onClose}
-              className="rounded-lg p-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="rounded-lg p-2 text-gray-500 hover:text-slate-800 dark:text-gray-500 dark:hover:text-gray-800 hover:bg-slate-100 dark:hover:bg-[#EDE8DF] transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -253,7 +253,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
           <button
             onClick={handleGoogleAuth}
             disabled={isLoading || isGoogleLoading}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 rounded-xl text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white dark:bg-[#EDE8DF] border-2 border-slate-300 dark:border-stone-300 rounded-xl text-slate-700 dark:text-gray-700 font-semibold hover:bg-[#FDFAF5] dark:hover:bg-[#D8D0C5] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isGoogleLoading ? (
               <Loader2 className="h-5 w-5 animate-spin" />
@@ -273,10 +273,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
           {/* Divider */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-slate-300 dark:border-slate-700"></div>
+              <div className="w-full border-t border-slate-300 dark:border-stone-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-3 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400">
+              <span className="px-3 bg-white dark:bg-[#F5F0E8] text-gray-500 dark:text-gray-500">
                 Or continue with email
               </span>
             </div>
@@ -286,17 +286,17 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'signup' && (
               <div>
-                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                <label className="block text-sm font-semibold text-slate-700 dark:text-gray-600 mb-2">
                   Full Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+                  <User className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
                   <input
                     type="text"
                     placeholder="John Smith"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    className="w-full pl-10 pr-4 py-2.5 bg-[#FDFAF5] dark:bg-[#EDE8DF] border border-slate-300 dark:border-stone-300 rounded-xl text-slate-900 dark:text-gray-800 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                     disabled={isLoading || isGoogleLoading}
                     required
                   />
@@ -305,21 +305,21 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
             )}
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 dark:text-gray-600 mb-2">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+                <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
                 <input
                   type="email"
                   placeholder="you@example.com"
                   value={email}
                   onChange={handleEmailChange}
                   onBlur={handleEmailBlur}
-                  className={`w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 ${
+                  className={`w-full pl-10 pr-4 py-2.5 bg-[#FDFAF5] dark:bg-[#EDE8DF] border rounded-xl text-slate-900 dark:text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 ${
                     emailError 
                       ? 'border-red-500 focus:border-red-500' 
-                      : 'border-slate-300 dark:border-slate-600 focus:border-emerald-500'
+                      : 'border-slate-300 dark:border-stone-300 focus:border-emerald-500'
                   }`}
                   disabled={isLoading || isGoogleLoading}
                   required
@@ -331,17 +331,17 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 dark:text-gray-600 mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+                <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
                 <input
                   type="password"
                   placeholder={mode === 'signup' ? 'Create a password (min 6 characters)' : 'Enter your password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full pl-10 pr-4 py-2.5 bg-[#FDFAF5] dark:bg-[#EDE8DF] border border-slate-300 dark:border-stone-300 rounded-xl text-slate-900 dark:text-gray-800 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                   disabled={isLoading || isGoogleLoading}
                   required
                   minLength={mode === 'signup' ? 6 : undefined}
@@ -371,7 +371,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 's
           </form>
 
           {/* Toggle Mode */}
-          <p className="mt-6 text-center text-sm text-slate-600 dark:text-slate-400">
+          <p className="mt-6 text-center text-sm text-slate-600 dark:text-gray-500">
             {mode === 'signup' ? (
               <>
                 Already have an account?{' '}

@@ -18,7 +18,7 @@ export default function RelatedPosts({ posts }: Props) {
           <a
             key={p.slug}
             href={`/blogs/${p.slug}`}
-            className="group rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 hover:bg-white hover:shadow-sm transition-all"
+            className="group rounded-xl border border-slate-200 bg-[#FDFAF5] px-4 py-3 hover:bg-white hover:shadow-sm transition-all"
           >
             <span className="font-medium text-slate-800 group-hover:text-emerald-600 transition-colors line-clamp-2">
               {p.title}

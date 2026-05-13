@@ -38,7 +38,7 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
   };
 
   return (
-    <section className={`py-24 ${isDark ? 'bg-slate-900' : 'bg-slate-50'}`}>
+    <section className={`py-24 ${isDark ? 'bg-[#F5F0E8]' : 'bg-[#FDFAF5]'}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
             <span className="text-emerald-600 text-sm font-bold uppercase tracking-wide">{t('Blog')}</span>
           </div>
           <h2 className={`text-4xl font-black mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Healthcare Insights')}</h2>
-          <p className={`text-lg max-w-2xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-lg max-w-2xl ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
             {t('Stay updated with industry trends, marketing strategies, and healthcare innovations.')}
           </p>
         </motion.div>
@@ -66,7 +66,7 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 className={`group relative rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
-                  isDark ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-slate-100'
+                  isDark ? 'bg-[#EDE8DF] border border-stone-300' : 'bg-white border border-slate-100'
                 }`}
             >
               {/* Image Container */}
@@ -103,13 +103,13 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
 
                   {/* Excerpt */}
                   {p.excerpt && (
-                    <p className={`text-sm mb-4 line-clamp-2 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                    <p className={`text-sm mb-4 line-clamp-2 ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
                       {p.excerpt}
                     </p>
                   )}
 
                   {/* Date */}
-                  <div className={`flex items-center gap-2 mb-4 text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  <div className={`flex items-center gap-2 mb-4 text-sm ${isDark ? 'text-gray-500' : 'text-slate-600'}`}>
                     <Calendar className="h-4 w-4" />
                     {formatDate(p.publishedAt)}
                   </div>
@@ -127,8 +127,8 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
             ))}
           </div>
         ) : (
-          <div className={`text-center py-12 rounded-2xl ${isDark ? 'bg-slate-800' : 'bg-slate-100'}`}>
-            <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>{t('No blog posts available yet.')}</p>
+          <div className={`text-center py-12 rounded-2xl ${isDark ? 'bg-[#EDE8DF]' : 'bg-slate-100'}`}>
+            <p className={isDark ? 'text-gray-500' : 'text-slate-600'}>{t('No blog posts available yet.')}</p>
           </div>
         )}
 
@@ -144,8 +144,8 @@ export default function BlogInsights({ posts }: BlogInsightsProps) {
             href="/blogs"
             className={`inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold transition-all ${
               isDark
-                ? 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700'
-                : 'bg-slate-900 text-white hover:bg-slate-800'
+                ? 'bg-[#EDE8DF] text-white hover:bg-[#D8D0C5] border border-stone-300'
+                : 'bg-[#F5F0E8] text-white hover:bg-[#EDE8DF]'
             }`}
           >
             {t('View All Insights')}

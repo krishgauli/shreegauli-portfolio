@@ -32,21 +32,21 @@ export default function FreeSeoAuditLandingPage() {
           <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
             <ModuleShell className="p-6 md:p-8">
               <div className="grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <div className="rounded-2xl border border-black/10 bg-black/[0.04] p-5">
                   <Search className="h-5 w-5 text-[#22D3EE]" />
-                  <p className="mt-4 text-lg font-semibold text-[#F8FAFC]">Audit any URL</p>
+                  <p className="mt-4 text-lg font-semibold text-[#1A1A1A]">Audit any URL</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <div className="rounded-2xl border border-black/10 bg-black/[0.04] p-5">
                   <FileText className="h-5 w-5 text-[#C4B5FD]" />
-                  <p className="mt-4 text-lg font-semibold text-[#F8FAFC]">See what to fix</p>
+                  <p className="mt-4 text-lg font-semibold text-[#1A1A1A]">See what to fix</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <div className="rounded-2xl border border-black/10 bg-black/[0.04] p-5">
                   <BarChart3 className="h-5 w-5 text-emerald-400" />
-                  <p className="mt-4 text-lg font-semibold text-[#F8FAFC]">Request a review</p>
+                  <p className="mt-4 text-lg font-semibold text-[#1A1A1A]">Request a review</p>
                 </div>
               </div>
 
-              <ul className="mt-6 space-y-3 text-sm text-[#CBD5E1]">
+              <ul className="mt-6 space-y-3 text-sm text-gray-600">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
                   <span>Check titles, descriptions, H1s, canonical tags, internal links, and image alt signals.</span>
@@ -70,7 +70,7 @@ export default function FreeSeoAuditLandingPage() {
                 </Link>
                 <Link
                   href="/book"
-                  className="rounded-2xl border border-white/10 px-5 py-3 text-sm font-semibold text-[#E2E8F0] transition hover:border-white/20"
+                  className="rounded-2xl border border-black/10 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-black/12"
                 >
                   Book a review instead
                 </Link>
@@ -78,19 +78,19 @@ export default function FreeSeoAuditLandingPage() {
             </ModuleShell>
 
             <ModuleShell className="p-6 md:p-8">
-              <h2 className="text-2xl font-semibold text-[#F8FAFC]">When this is the right first step</h2>
-              <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+              <h2 className="text-2xl font-semibold text-[#1A1A1A]">When this is the right first step</h2>
+              <p className="mt-4 text-sm leading-7 text-[#6B7280]">
                 This page is ideal when you know something on the site is off but
                 do not want to jump straight into a full engagement. It gives you a
                 clear first pass before deciding whether the next step is a deeper
                 audit, a content fix, or a technical cleanup sprint.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+              <p className="mt-4 text-sm leading-7 text-[#6B7280]">
                 If the site already has traffic but not enough qualified leads, use
                 the audit first. If the bottleneck is broader than on-page SEO, book
                 a strategy call and we can scope the problem properly.
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#94A3B8]">
+              <p className="mt-4 text-sm leading-7 text-[#6B7280]">
                 The tool checks more than thirty on-page factors including title tags, heading hierarchy,
                 canonical configuration, structured data, image accessibility, internal link distribution,
                 and page speed indicators. Results are exportable so you can share them with your team

@@ -116,7 +116,7 @@ export default function AnalyticsDateFilter({
       ? 'bg-emerald-500 text-black border-emerald-500 shadow-lg shadow-emerald-500/20'
       : 'bg-blue-500 text-white border-blue-500 shadow-lg shadow-blue-500/20';
     const inactive = isDark
-      ? 'bg-slate-900 border-slate-700 text-slate-300 hover:border-emerald-500/60'
+      ? 'bg-[#F5F0E8] border-stone-300 text-gray-600 hover:border-emerald-500/60'
       : 'bg-white border-slate-200 text-slate-700 hover:border-emerald-500/60';
     return (
       <button
@@ -130,7 +130,7 @@ export default function AnalyticsDateFilter({
   };
 
   return (
-    <div className={`rounded-2xl p-4 border ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white/80 border-slate-200/60'} backdrop-blur-sm`}>
+    <div className={`rounded-2xl p-4 border ${isDark ? 'bg-[#EDE8DF]/80 border-stone-300/60' : 'bg-black/50 border-slate-200/60'} backdrop-blur-sm`}>
       {/* Presets */}
       <div className="flex flex-wrap items-center gap-2 mb-3">
         {presetBtn('last_week', 'Last Week')}
@@ -143,10 +143,10 @@ export default function AnalyticsDateFilter({
       {/* Custom Date Range */}
       <div className="flex flex-wrap items-end gap-3">
         <div className="flex items-center gap-2">
-          <Calendar className={`h-4 w-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`} />
+          <Calendar className={`h-4 w-4 ${isDark ? 'text-gray-500' : 'text-gray-500'}`} />
           <div className="flex items-center gap-2">
             <div>
-              <label className={`block text-[10px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <label className={`block text-[10px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
                 Start Date
               </label>
               <input
@@ -155,14 +155,14 @@ export default function AnalyticsDateFilter({
                 onChange={(e) => setCustomStart(e.target.value)}
                 className={`px-3 py-2 rounded-xl text-sm border focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all ${
                   isDark
-                    ? 'bg-slate-900 border-slate-700 text-white'
-                    : 'bg-slate-50 border-slate-200 text-slate-900'
+                    ? 'bg-[#F5F0E8] border-stone-300 text-white'
+                    : 'bg-[#FDFAF5] border-slate-200 text-slate-900'
                 }`}
               />
             </div>
-            <span className={`text-sm font-medium mt-5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>to</span>
+            <span className={`text-sm font-medium mt-5 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>to</span>
             <div>
-              <label className={`block text-[10px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <label className={`block text-[10px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
                 End Date
               </label>
               <input
@@ -171,8 +171,8 @@ export default function AnalyticsDateFilter({
                 onChange={(e) => setCustomEnd(e.target.value)}
                 className={`px-3 py-2 rounded-xl text-sm border focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all ${
                   isDark
-                    ? 'bg-slate-900 border-slate-700 text-white'
-                    : 'bg-slate-50 border-slate-200 text-slate-900'
+                    ? 'bg-[#F5F0E8] border-stone-300 text-white'
+                    : 'bg-[#FDFAF5] border-slate-200 text-slate-900'
                 }`}
               />
             </div>
@@ -187,8 +187,8 @@ export default function AnalyticsDateFilter({
             customStart && customEnd && customStart <= customEnd
               ? 'bg-emerald-500 text-black border-emerald-500 hover:bg-emerald-400 shadow-lg shadow-emerald-500/20 active:scale-95'
               : isDark
-                ? 'bg-slate-900 border-slate-700 text-slate-500 cursor-not-allowed'
-                : 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'
+                ? 'bg-[#F5F0E8] border-stone-300 text-gray-500 cursor-not-allowed'
+                : 'bg-slate-100 border-slate-200 text-gray-500 cursor-not-allowed'
           }`}
         >
           <Search className="h-4 w-4" />
@@ -200,7 +200,7 @@ export default function AnalyticsDateFilter({
           onClick={handleReset}
           className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border transition-all duration-200 active:scale-95 ${
             isDark
-              ? 'bg-slate-900 border-slate-700 text-slate-300 hover:border-red-500/60 hover:text-red-400'
+              ? 'bg-[#F5F0E8] border-stone-300 text-gray-600 hover:border-red-500/60 hover:text-red-400'
               : 'bg-white border-slate-200 text-slate-600 hover:border-red-400 hover:text-red-500'
           }`}
         >
@@ -210,7 +210,7 @@ export default function AnalyticsDateFilter({
       </div>
 
       {/* Active range indicator */}
-      <div className={`mt-3 text-xs font-medium ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+      <div className={`mt-3 text-xs font-medium ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
         Showing data from <span className={`font-bold ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>{activeRange.startDate}</span>
         {' '}to{' '}
         <span className={`font-bold ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>{activeRange.endDate}</span>

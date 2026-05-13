@@ -118,14 +118,14 @@ export default function ManageBillingModal({
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="relative bg-white dark:bg-[#F5F0E8] rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
           >
             {/* Header */}
-            <div className="sticky top-0 flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+            <div className="sticky top-0 flex items-center justify-between p-6 border-b border-slate-200 dark:border-stone-300 bg-white dark:bg-[#F5F0E8]">
               <h2 className="text-2xl font-bold">Manage Billing Details</h2>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                className="p-2 hover:bg-slate-100 dark:hover:bg-[#EDE8DF] rounded-lg transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -153,7 +153,7 @@ export default function ManageBillingModal({
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="billing@clinic.com"
-                  className="w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-4 py-3 border border-slate-200 dark:border-stone-300 rounded-xl bg-white dark:bg-[#EDE8DF] text-slate-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
 
@@ -170,7 +170,7 @@ export default function ManageBillingModal({
                     value={formData.address}
                     onChange={handleInputChange}
                     placeholder="Street Address"
-                    className="w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-slate-200 dark:border-stone-300 rounded-xl bg-white dark:bg-[#EDE8DF] text-slate-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
 
                   <div className="grid grid-cols-2 gap-3">
@@ -180,13 +180,13 @@ export default function ManageBillingModal({
                       value={formData.city}
                       onChange={handleInputChange}
                       placeholder="City"
-                      className="px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="px-4 py-3 border border-slate-200 dark:border-stone-300 rounded-xl bg-white dark:bg-[#EDE8DF] text-slate-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     />
                     <select
                       name="country"
                       value={formData.country}
                       onChange={handleInputChange}
-                      className="px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="px-4 py-3 border border-slate-200 dark:border-stone-300 rounded-xl bg-white dark:bg-[#EDE8DF] text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     >
                       {COUNTRIES.map(c => (
                         <option key={c.code} value={c.code}>{c.name}</option>
@@ -200,7 +200,7 @@ export default function ManageBillingModal({
                         name="state"
                         value={formData.state}
                         onChange={handleInputChange}
-                        className="px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="px-4 py-3 border border-slate-200 dark:border-stone-300 rounded-xl bg-white dark:bg-[#EDE8DF] text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       >
                         <option value="">Select State</option>
                         {US_STATES.map(state => (
@@ -214,26 +214,26 @@ export default function ManageBillingModal({
                       value={formData.zipCode}
                       onChange={handleInputChange}
                       placeholder="Postal Code"
-                      className="px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="px-4 py-3 border border-slate-200 dark:border-stone-300 rounded-xl bg-white dark:bg-[#EDE8DF] text-slate-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Info about card updates */}
-              <div className="flex gap-3 p-4 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm">
-                <CreditCard className="h-5 w-5 text-slate-600 dark:text-slate-400 flex-shrink-0 mt-0.5" />
-                <p className="text-slate-700 dark:text-slate-300">
+              <div className="flex gap-3 p-4 rounded-xl bg-slate-100 dark:bg-[#EDE8DF] border border-slate-200 dark:border-stone-300 text-sm">
+                <CreditCard className="h-5 w-5 text-slate-600 dark:text-gray-500 flex-shrink-0 mt-0.5" />
+                <p className="text-slate-700 dark:text-gray-600">
                   To update your payment card details, please complete a new payment transaction. Card changes are applied immediately upon successful processing.
                 </p>
               </div>
 
               {/* Actions */}
-              <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
+              <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-stone-300">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  className="flex-1 px-4 py-3 border border-slate-300 dark:border-stone-300 rounded-xl font-semibold hover:bg-[#FDFAF5] dark:hover:bg-[#EDE8DF] transition-colors"
                 >
                   Cancel
                 </button>

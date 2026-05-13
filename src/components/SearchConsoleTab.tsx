@@ -72,7 +72,7 @@ export default function SearchConsoleTab({ clinicId, isDark = false }: SearchCon
               <Globe className="h-9 w-9 text-purple-500" />
             </div>
           </div>
-          <p className="text-xl font-extrabold text-slate-900 dark:text-white mb-2">Search Console Not Connected</p>
+          <p className="text-xl font-extrabold text-slate-900 dark:text-gray-900 mb-2">Search Console Not Connected</p>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
             Your administrator hasn&apos;t connected a Search Console site for this clinic yet.
           </p>
@@ -110,7 +110,7 @@ export default function SearchConsoleTab({ clinicId, isDark = false }: SearchCon
         <PeriodSelector period={period} onChange={setPeriod} isDark={isDark} />
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-slate-200/60 dark:border-slate-700/60 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 p-14 text-center">
           <BarChart3 className="h-10 w-10 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-          <p className="text-lg font-bold text-slate-900 dark:text-white mb-2">No Search Console Data Yet</p>
+          <p className="text-lg font-bold text-slate-900 dark:text-gray-900 mb-2">No Search Console Data Yet</p>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
             No data synced for this period. Click <strong>Refresh</strong> or check back soon.
           </p>
@@ -142,7 +142,7 @@ export default function SearchConsoleTab({ clinicId, isDark = false }: SearchCon
 
   const glassCard = `rounded-3xl p-6 border backdrop-blur-sm shadow-sm ${isDark ? 'bg-slate-800/80 border-slate-700/60' : 'bg-white/80 border-slate-200/60'}`;
   const headingClass = `text-[15px] font-bold mb-5 flex items-center gap-2.5 ${isDark ? 'text-white' : 'text-slate-900'}`;
-  const tooltipStyle = { backgroundColor: isDark ? '#0f172a' : '#ffffff', border: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`, borderRadius: '16px', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', padding: '12px 16px' };
+  const tooltipStyle = { backgroundColor: isDark ? '#F5F0E8' : '#ffffff', border: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`, borderRadius: '16px', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', padding: '12px 16px' };
 
   const kpis = [
     { label: 'Total Clicks', value: totals.clicks.toLocaleString(), icon: <MousePointerClick className="h-5 w-5" />, color: 'emerald' },
@@ -213,9 +213,9 @@ export default function SearchConsoleTab({ clinicId, isDark = false }: SearchCon
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1e293b' : '#f1f5f9'} />
-            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-            <YAxis yAxisId="left" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-            <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis yAxisId="left" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Legend wrapperStyle={{ fontSize: '12px', fontWeight: 600 }} />
             <Bar yAxisId="left" dataKey="clicks" name="Clicks" fill="#10b981" radius={[8, 8, 0, 0]} />
@@ -230,8 +230,8 @@ export default function SearchConsoleTab({ clinicId, isDark = false }: SearchCon
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#1e293b' : '#f1f5f9'} />
-            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
-            <YAxis reversed stroke={isDark ? '#64748b' : '#94a3b8'} fontSize={11} tickLine={false} axisLine={false} />
+            <XAxis dataKey="label" stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis reversed stroke={isDark ? '#64748b' : '#6B7280'} fontSize={11} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Line type="monotone" dataKey="avgPosition" name="Avg Position" stroke="#f59e0b" strokeWidth={2.5} dot={false} activeDot={{ r: 5, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} />
           </LineChart>

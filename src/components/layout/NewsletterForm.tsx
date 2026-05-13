@@ -30,7 +30,7 @@ export function NewsletterForm() {
 
   return (
     <form onSubmit={handleNewsletter} className="mt-6">
-      <p className="text-xs font-semibold uppercase tracking-widest text-[#94A3B8] mb-2">
+      <p className="text-xs font-semibold uppercase tracking-widest text-[#6B7280] mb-2">
         Newsletter
       </p>
       <div className="flex gap-2">
@@ -40,7 +40,7 @@ export function NewsletterForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@company.com"
           required
-          className="flex-1 min-w-0 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-sm text-[#F8FAFC] placeholder:text-[#64748B] outline-none focus:border-[#7C3AED] transition"
+          className="flex-1 min-w-0 rounded-lg border border-black/[0.08] bg-black/[0.04] px-3 py-2 text-sm text-[#1A1A1A] placeholder:text-[#64748B] outline-none focus:border-[#7C3AED] transition"
         />
         <button
           type="submit"

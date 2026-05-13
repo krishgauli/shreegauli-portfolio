@@ -591,7 +591,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
                       className={`w-full px-4 py-2 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-700 text-slate-100' : 'bg-white border-slate-200 text-slate-900'} dark:[color-scheme:dark]`}
-                      style={isDark ? { backgroundColor: '#0f172a', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
+                      style={isDark ? { backgroundColor: '#F5F0E8', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
                     />
                   </div>
                   <div>
@@ -603,7 +603,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
                       value={endDate}
                       onChange={(e) => setEndDate(e.target.value)}
                       className={`w-full px-4 py-2 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-700 text-slate-100' : 'bg-white border-slate-200 text-slate-900'} dark:[color-scheme:dark]`}
-                      style={isDark ? { backgroundColor: '#0f172a', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
+                      style={isDark ? { backgroundColor: '#F5F0E8', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
                     />
                   </div>
                 </div>
@@ -715,7 +715,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
               className={`absolute top-full mt-2 w-full rounded-xl border shadow-xl z-50 ${
                 isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
               }`}
-              style={isDark ? { backgroundColor: '#0f172a', color: '#f1f5f9' } : {}}
+              style={isDark ? { backgroundColor: '#F5F0E8', color: '#f1f5f9' } : {}}
             >
               <button
                 onClick={() => {
@@ -879,7 +879,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
                       className={`w-full px-4 py-2 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-700 text-slate-100' : 'bg-white border-slate-200 text-slate-900'} dark:[color-scheme:dark]`}
-                      style={isDark ? { backgroundColor: '#0f172a', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
+                      style={isDark ? { backgroundColor: '#F5F0E8', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
                     />
                   </div>
                   <div>
@@ -891,7 +891,7 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
                       value={endDate}
                       onChange={(e) => setEndDate(e.target.value)}
                       className={`w-full px-4 py-2 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-700 text-slate-100' : 'bg-white border-slate-200 text-slate-900'} dark:[color-scheme:dark]`}
-                      style={isDark ? { backgroundColor: '#0f172a', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
+                      style={isDark ? { backgroundColor: '#F5F0E8', color: '#f1f5f9', borderColor: '#334155', colorScheme: 'dark' } : {}}
                     />
                   </div>
                 </div>
@@ -1022,8 +1022,8 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={gmbData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-            <XAxis dataKey="week" stroke={isDark ? '#94a3b8' : '#64748b'} />
-            <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+            <XAxis dataKey="week" stroke={isDark ? '#6B7280' : '#64748b'} />
+            <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
             <Tooltip
               contentStyle={{
                 backgroundColor: isDark ? '#1e293b' : '#ffffff',
@@ -1054,12 +1054,12 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={adsData}>
               <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-              <XAxis dataKey="week" stroke={isDark ? '#94a3b8' : '#64748b'} />
-              <YAxis yAxisId="left" stroke={isDark ? '#94a3b8' : '#64748b'} />
-              <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#94a3b8' : '#64748b'} />
+              <XAxis dataKey="week" stroke={isDark ? '#6B7280' : '#64748b'} />
+              <YAxis yAxisId="left" stroke={isDark ? '#6B7280' : '#64748b'} />
+              <YAxis yAxisId="right" orientation="right" stroke={isDark ? '#6B7280' : '#64748b'} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: isDark ? '#0f172a' : '#ffffff',
+                  backgroundColor: isDark ? '#F5F0E8' : '#ffffff',
                   border: `1px solid ${isDark ? '#475569' : '#e2e8f0'}`,
                   borderRadius: '12px',
                 }}
@@ -1127,8 +1127,8 @@ export default function ClientAnalyticsView({ refreshTrigger, isAdmin = false, o
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={socialData}>
             <CartesianGrid strokeDasharray="3 3" stroke={isDark ? '#334155' : '#e2e8f0'} />
-            <XAxis dataKey="week" stroke={isDark ? '#94a3b8' : '#64748b'} />
-            <YAxis stroke={isDark ? '#94a3b8' : '#64748b'} />
+            <XAxis dataKey="week" stroke={isDark ? '#6B7280' : '#64748b'} />
+            <YAxis stroke={isDark ? '#6B7280' : '#64748b'} />
             <Tooltip
               contentStyle={{
                 backgroundColor: isDark ? '#1e293b' : '#ffffff',

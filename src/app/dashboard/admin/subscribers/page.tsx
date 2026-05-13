@@ -40,21 +40,21 @@ export default function NewsletterSubscribersPage() {
         <div className="mb-8">
           <Link
             href="/dashboard/admin"
-            className="inline-flex items-center gap-2 text-[#e2e8f0] hover:text-[#f8fafc] mb-4"
+            className="inline-flex items-center gap-2 text-[#e2e8f0] hover:text-[#1A1A1A] mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Dashboard
           </Link>
-          <h1 className="text-4xl font-black text-[#f8fafc]">Newsletter Subscribers</h1>
-          <p className="text-[#94a3b8] mt-2">Manage your email subscribers</p>
+          <h1 className="text-4xl font-black text-[#1A1A1A]">Newsletter Subscribers</h1>
+          <p className="text-[#6B7280] mt-2">Manage your email subscribers</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-[#94a3b8]">Total Subscribers</p>
-                <p className="text-3xl font-black text-[#f8fafc] mt-1">{subscribers.length}</p>
+                <p className="text-sm font-medium text-[#6B7280]">Total Subscribers</p>
+                <p className="text-3xl font-black text-[#1A1A1A] mt-1">{subscribers.length}</p>
               </div>
               <Mail className="h-12 w-12 text-emerald-500" />
             </div>
@@ -62,7 +62,7 @@ export default function NewsletterSubscribersPage() {
           <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-[#94a3b8]">Active</p>
+                <p className="text-sm font-medium text-[#6B7280]">Active</p>
                 <p className="text-3xl font-black text-[#22d3ee] mt-1">
                   {subscribers.filter(s => s.active).length}
                 </p>
@@ -73,12 +73,12 @@ export default function NewsletterSubscribersPage() {
           <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-[#94a3b8]">Inactive</p>
-                <p className="text-3xl font-black text-[#94a3b8] mt-1">
+                <p className="text-sm font-medium text-[#6B7280]">Inactive</p>
+                <p className="text-3xl font-black text-[#6B7280] mt-1">
                   {subscribers.filter(s => !s.active).length}
                 </p>
               </div>
-              <XCircle className="h-12 w-12 text-[#94a3b8]" />
+              <XCircle className="h-12 w-12 text-[#6B7280]" />
             </div>
           </div>
         </div>

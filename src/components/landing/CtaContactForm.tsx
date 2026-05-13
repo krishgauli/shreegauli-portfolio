@@ -68,15 +68,15 @@ export default function CtaContactForm() {
     <section className={`py-24 relative overflow-hidden ${isDark ? 'bg-gradient-to-br from-emerald-900 via-slate-900 to-emerald-800' : 'bg-gradient-to-br from-emerald-50 via-white to-blue-50'}`}>
       {submitted && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-bg-panel p-0 text-center shadow-[0_40px_120px_rgba(2,6,23,0.8)]">
-            <div className="border-b border-white/10 bg-[#0B1533] px-8 py-6">
+          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-black/10 bg-bg-panel p-0 text-center shadow-[0_40px_120px_rgba(2,6,23,0.8)]">
+            <div className="border-b border-black/10 bg-[#0B1533] px-8 py-6">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-violet text-sm font-bold text-white">SG</div>
               <p className="text-xs uppercase tracking-[0.2em] text-[#C4B5FD]">Shree Gauli</p>
             </div>
             <div className="relative p-8">
               <button
                 onClick={() => setSubmitted(false)}
-                className="absolute right-4 top-4 text-content-muted hover:text-white transition-colors"
+                className="absolute right-4 top-4 text-content-muted hover:text-gray-900 transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -120,7 +120,7 @@ export default function CtaContactForm() {
             <h2 className={`text-3xl font-black mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>
               {t('Ready to dominate your market?')}
             </h2>
-            <p className={`text-xl mb-8 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+            <p className={`text-xl mb-8 ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>
               {t('We audit your marketing, identify gaps, and show you how to 5× your patient volume.')}
             </p>
 
@@ -148,31 +148,31 @@ export default function CtaContactForm() {
             viewport={{ once: true }}
           >
             {
-              <form onSubmit={handleSubmit} className={`rounded-3xl p-8 shadow-2xl ${isDark ? 'bg-slate-800' : 'bg-white'}`}>
+              <form onSubmit={handleSubmit} className={`rounded-3xl p-8 shadow-2xl ${isDark ? 'bg-[#EDE8DF]' : 'bg-white'}`}>
                 <h3 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('Start growing today')}</h3>
                 
                 <div className="space-y-4">
                   <div>
-                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{t('Name')}</label>
+                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>{t('Name')}</label>
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-400' : 'bg-white border-slate-200 text-slate-900 placeholder-slate-500'}`}
+                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-[#D8D0C5] border-stone-300 text-white placeholder-gray-400' : 'bg-white border-slate-200 text-slate-900 placeholder-gray-500'}`}
                       placeholder={t('Dr. Jane Smith')}
                     />
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{t('Business Type')}</label>
+                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>{t('Business Type')}</label>
                     <select
                       name="businessType"
                       value={formData.businessType}
                       onChange={handleChange}
                       required
-                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-slate-200 text-slate-900'}`}
+                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-[#D8D0C5] border-stone-300 text-white' : 'bg-white border-slate-200 text-slate-900'}`}
                     >
                       <option value="">{t('Select your practice type')}</option>
                       <option value="ER">{t('Emergency Room')}</option>
@@ -183,39 +183,39 @@ export default function CtaContactForm() {
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{t('Email Address')}</label>
+                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>{t('Email Address')}</label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-400' : 'bg-white border-slate-200 text-slate-900 placeholder-slate-500'}`}
+                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-[#D8D0C5] border-stone-300 text-white placeholder-gray-400' : 'bg-white border-slate-200 text-slate-900 placeholder-gray-500'}`}
                       placeholder={t('jane@yourpractice.com')}
                     />
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{t('Phone Number')}</label>
+                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>{t('Phone Number')}</label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-400' : 'bg-white border-slate-200 text-slate-900 placeholder-slate-500'}`}
+                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-[#D8D0C5] border-stone-300 text-white placeholder-gray-400' : 'bg-white border-slate-200 text-slate-900 placeholder-gray-500'}`}
                       placeholder={t('(555) 123-4567')}
                     />
                   </div>
 
                   <div>
-                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{t('Monthly Marketing Budget')}</label>
+                    <label className={`block text-sm font-medium mb-1 ${isDark ? 'text-gray-600' : 'text-slate-700'}`}>{t('Monthly Marketing Budget')}</label>
                     <select
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
                       required
-                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-slate-200 text-slate-900'}`}
+                      className={`w-full px-4 py-3 rounded-xl border focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all ${isDark ? 'bg-[#D8D0C5] border-stone-300 text-white' : 'bg-white border-slate-200 text-slate-900'}`}
                     >
                       <option value="">{t('Select your budget')}</option>
                       <option value="under-2500">{t('Under $2,500/month')}</option>

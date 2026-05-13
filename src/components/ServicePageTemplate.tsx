@@ -56,11 +56,11 @@ export default function ServicePageTemplate({
   const localizedFaqs = faqs.map((faq) => ({ q: t(faq.q), a: t(faq.a) }));
 
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white dark:bg-[#F5F0E8]">
       {/* Hero Section */}
       <div className="relative py-20 md:py-32 bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
         {/* Dark Overlay for Text Visibility */}
-        <div className="absolute inset-0 bg-slate-900/20 dark:bg-slate-900/40 z-0" />
+        <div className="absolute inset-0 bg-[#F5F0E8]/20 dark:bg-[#F5F0E8]/40 z-0" />
         
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -111,7 +111,7 @@ export default function ServicePageTemplate({
       </div>
 
       {/* Core Features */}
-      <div className="py-20 bg-gray-50 dark:bg-gray-800">
+      <div className="py-20 bg-gray-50 dark:bg-[#EDE8DF]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -136,7 +136,7 @@ export default function ServicePageTemplate({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white dark:bg-[#F5F0E8] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
@@ -218,7 +218,7 @@ export default function ServicePageTemplate({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20"
+                className="bg-black/5 backdrop-blur-sm p-6 rounded-xl border border-black/12"
               >
                 <p className="text-lg leading-relaxed">{benefit}</p>
               </motion.div>
@@ -228,7 +228,7 @@ export default function ServicePageTemplate({
       </div>
 
       {/* FAQ Section */}
-      <div className="py-20 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+      <div className="py-20 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#EDE8DF]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -251,7 +251,7 @@ export default function ServicePageTemplate({
       </div>
 
       {/* CTA Section */}
-      <div className="py-20 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+      <div className="py-20 bg-white dark:bg-[#F5F0E8] border-t border-gray-200 dark:border-gray-700">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

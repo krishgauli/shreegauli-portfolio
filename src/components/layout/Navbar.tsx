@@ -85,10 +85,10 @@ export function Navbar() {
         className={cn(
           "w-full max-w-6xl rounded-2xl px-5 py-2.5 transition-all duration-300",
           mobileOpen
-            ? "bg-[#070B14]/96 backdrop-blur-xl border border-white/[0.12] shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
+            ? "bg-[#FDFAF5]/96 backdrop-blur-xl border border-black/[0.12] shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
             : scrolled
-            ? "bg-[#070B14]/90 backdrop-blur-xl border border-white/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
-            : "bg-[#070B14]/55 backdrop-blur-sm border border-white/[0.06]"
+            ? "bg-[#FDFAF5]/90 backdrop-blur-xl border border-black/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+            : "bg-[#FDFAF5]/55 backdrop-blur-sm border border-black/[0.06]"
         )}
       >
         <div className="flex items-center justify-between gap-4">
@@ -124,8 +124,8 @@ export function Navbar() {
                         className={cn(
                           "px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-l-lg",
                           isActive
-                            ? "text-[#F8FAFC] bg-white/[0.08]"
-                            : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                            ? "text-[#1A1A1A] bg-black/[0.05]"
+                            : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04]"
                         )}
                       >
                         {link.label}
@@ -142,8 +142,8 @@ export function Navbar() {
                         className={cn(
                           "px-2 py-2 transition-colors duration-200 rounded-r-lg",
                           isActive
-                            ? "text-[#F8FAFC] bg-white/[0.08]"
-                            : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                            ? "text-[#1A1A1A] bg-black/[0.05]"
+                            : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04]"
                         )}
                       >
                         <ChevronDown
@@ -157,7 +157,7 @@ export function Navbar() {
 
                     {navDropdown === link.href && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50">
-                        <div className="w-56 rounded-xl border border-white/[0.12] bg-[#0F172A]/95 backdrop-blur-xl shadow-2xl p-2 space-y-0.5">
+                        <div className="w-56 rounded-xl border border-black/[0.12] bg-[#F5F0E8]/95 backdrop-blur-xl shadow-2xl p-2 space-y-0.5">
                           {link.children.map((child) => {
                             const childActive = pathname === child.href;
                             return (
@@ -168,8 +168,8 @@ export function Navbar() {
                                 className={cn(
                                   "block rounded-lg px-3 py-2.5 transition-colors",
                                   childActive
-                                    ? "bg-white/[0.08] text-[#F8FAFC]"
-                                    : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.06]"
+                                    ? "bg-black/[0.05] text-[#1A1A1A]"
+                                    : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.05]"
                                 )}
                               >
                                 <span className="text-sm font-medium">
@@ -198,8 +198,8 @@ export function Navbar() {
                     className={cn(
                       "px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg",
                       isActive
-                        ? "text-[#F8FAFC] bg-white/[0.08]"
-                        : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                        ? "text-[#1A1A1A] bg-black/[0.05]"
+                        : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04]"
                     )}
                   >
                     {link.label}
@@ -218,7 +218,7 @@ export function Navbar() {
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className={cn(
                     "inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold transition-all hover:scale-105",
-                    "border border-white/20 text-white/90 hover:text-white hover:border-white/40 bg-white/10 hover:bg-white/20"
+                    "border border-black/12 text-gray-700 hover:text-gray-900 hover:border-black/20 bg-black/5 hover:bg-black/8"
                   )}
                 >
                   <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] text-white ring-2 ring-white/20">
@@ -246,9 +246,9 @@ export function Navbar() {
                 </button>
 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-3 w-72 rounded-2xl bg-[#0F172A]/95 backdrop-blur-xl border border-white/[0.12] shadow-2xl z-50 overflow-hidden">
+                  <div className="absolute right-0 mt-3 w-72 rounded-2xl bg-[#F5F0E8]/95 backdrop-blur-xl border border-black/[0.12] shadow-2xl z-50 overflow-hidden">
                       {/* User info header */}
-                      <div className="px-4 py-4 border-b border-white/[0.08] bg-gradient-to-r from-[#7C3AED]/15 via-transparent to-transparent">
+                      <div className="px-4 py-4 border-b border-black/[0.08] bg-gradient-to-r from-[#7C3AED]/15 via-transparent to-transparent">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-br from-[#7C3AED] to-[#22D3EE] text-white shadow-lg flex-shrink-0">
                             {user.avatar ? (
@@ -264,10 +264,10 @@ export function Navbar() {
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-[#F8FAFC] truncate">
+                            <p className="text-sm font-bold text-[#1A1A1A] truncate">
                               {user.name}
                             </p>
-                            <p className="text-[11px] text-[#94A3B8] truncate">
+                            <p className="text-[11px] text-[#6B7280] truncate">
                               {user.email}
                             </p>
                           </div>
@@ -295,7 +295,7 @@ export function Navbar() {
                               : "/dashboard/client"
                           }
                           onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.06] transition-all"
+                          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.05] transition-all"
                         >
                           <LayoutDashboard className="h-4 w-4" />
                           Dashboard
@@ -307,12 +307,12 @@ export function Navbar() {
                               : "/dashboard/client?view=profile"
                           }
                           onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.06] transition-all"
+                          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.05] transition-all"
                         >
                           <User className="h-4 w-4" />
                           My Profile
                         </Link>
-                        <div className="border-t border-white/[0.06] my-1" />
+                        <div className="border-t border-black/[0.06] my-1" />
                         <button
                           onClick={handleLogout}
                           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all"
@@ -353,7 +353,7 @@ export function Navbar() {
               </div>
             )}
             <button
-              className="p-2 text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+              className="p-2 text-[#6B7280] hover:text-[#1A1A1A] transition-colors"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
@@ -369,7 +369,7 @@ export function Navbar() {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden absolute left-0 right-0 top-full z-[60] mt-3 px-1">
-              <div className="max-h-[calc(100vh-8.5rem)] overflow-y-auto rounded-2xl border border-white/[0.12] bg-[#0B1220]/98 px-4 py-4 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
+              <div className="max-h-[calc(100vh-8.5rem)] overflow-y-auto rounded-2xl border border-black/[0.12] bg-[#0B1220]/98 px-4 py-4 shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
               <div className="flex flex-col gap-1">
                 {navLinks.map((link) => {
                   const isActive =
@@ -388,8 +388,8 @@ export function Navbar() {
                             className={cn(
                               "flex-1 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
                               isActive
-                                ? "text-[#F8FAFC] bg-white/[0.08]"
-                                : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                                ? "text-[#1A1A1A] bg-black/[0.05]"
+                                : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04]"
                             )}
                           >
                             {link.label}
@@ -406,8 +406,8 @@ export function Navbar() {
                             className={cn(
                               "flex items-center justify-center px-3 py-2.5 rounded-lg transition-colors",
                               isActive
-                                ? "text-[#F8FAFC] bg-white/[0.08]"
-                                : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                                ? "text-[#1A1A1A] bg-black/[0.05]"
+                                : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04]"
                             )}
                           >
                             <ChevronDown
@@ -419,7 +419,7 @@ export function Navbar() {
                           </button>
                         </div>
                         {navDropdown === link.href && (
-                          <div className="ml-3 mt-0.5 flex flex-col gap-0.5 border-l border-white/[0.08] pl-3">
+                          <div className="ml-3 mt-0.5 flex flex-col gap-0.5 border-l border-black/[0.08] pl-3">
                             {link.children.map((child) => (
                               <Link
                                 key={child.href}
@@ -431,8 +431,8 @@ export function Navbar() {
                                 className={cn(
                                   "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
                                   pathname === child.href
-                                    ? "text-[#F8FAFC] bg-white/[0.08]"
-                                    : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                                    ? "text-[#1A1A1A] bg-black/[0.05]"
+                                    : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04]"
                                 )}
                               >
                                 {child.label}
@@ -457,8 +457,8 @@ export function Navbar() {
                       className={cn(
                         "px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
                         isActive
-                          ? "text-[#F8FAFC] bg-white/[0.08]"
-                          : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05]"
+                          ? "text-[#1A1A1A] bg-black/[0.05]"
+                          : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04]"
                       )}
                     >
                       {link.label}
@@ -467,7 +467,7 @@ export function Navbar() {
                 })}
 
                 {/* Auth section in mobile */}
-                <div className="border-t border-white/[0.06] mt-2 pt-3">
+                <div className="border-t border-black/[0.06] mt-2 pt-3">
                   {user ? (
                     <div className="space-y-1">
                       <div className="flex items-center gap-3 px-3 py-2 mb-2">
@@ -485,10 +485,10 @@ export function Navbar() {
                           )}
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-[#F8FAFC]">
+                          <p className="text-sm font-bold text-[#1A1A1A]">
                             {user.name}
                           </p>
-                          <p className="text-[11px] text-[#94A3B8]">
+                          <p className="text-[11px] text-[#6B7280]">
                             {user.email}
                           </p>
                         </div>
@@ -500,7 +500,7 @@ export function Navbar() {
                             : "/dashboard/client"
                         }
                         onClick={() => setMobileOpen(false)}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-white/[0.05] transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#6B7280] hover:text-[#1A1A1A] hover:bg-black/[0.04] transition-colors"
                       >
                         <LayoutDashboard className="h-4 w-4" />
                         Dashboard

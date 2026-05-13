@@ -57,11 +57,11 @@ function Modal({ open, onClose, title, children }: { open: boolean; onClose: () 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4" onClick={onClose}>
       <div
-        className="w-full max-w-lg bg-slate-900 border border-white/10 rounded-2xl shadow-2xl"
+        className="w-full max-w-lg bg-slate-900 border border-black/10 rounded-2xl shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
-          <h2 className="text-lg font-bold text-[#f8fafc]">{title}</h2>
+        <div className="flex items-center justify-between border-b border-black/10 px-6 py-4">
+          <h2 className="text-lg font-bold text-[#1A1A1A]">{title}</h2>
           <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
             <X className="h-5 w-5" />
           </button>
@@ -162,7 +162,7 @@ function LeadForm({
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
                 data.status === s
                   ? 'bg-emerald-600 text-white border-emerald-500'
-                  : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
+                  : 'bg-white/5 text-slate-300 border-black/10 hover:bg-white/10'
               }`}
             >
               {s.charAt(0).toUpperCase() + s.slice(1)}
@@ -201,11 +201,11 @@ function ConfirmDialog({
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4" onClick={onClose}>
-      <div className="w-full max-w-sm bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-6" onClick={e => e.stopPropagation()}>
-        <h3 className="text-lg font-bold text-[#f8fafc] mb-2">{title}</h3>
+      <div className="w-full max-w-sm bg-slate-900 border border-black/10 rounded-2xl shadow-2xl p-6" onClick={e => e.stopPropagation()}>
+        <h3 className="text-lg font-bold text-[#1A1A1A] mb-2">{title}</h3>
         <p className="text-sm text-slate-400 mb-6">{message}</p>
         <div className="flex justify-end gap-3">
-          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 bg-white/5 border border-black/10 hover:bg-white/10 transition-colors">
             Cancel
           </button>
           <button
@@ -413,14 +413,14 @@ export default function ContactLeadsPage() {
 
         {/* ─── Header ─── */}
         <div className="mb-8">
-          <Link href="/dashboard/admin" className="inline-flex items-center gap-2 text-[#e2e8f0] hover:text-[#f8fafc] mb-4 text-sm">
+          <Link href="/dashboard/admin" className="inline-flex items-center gap-2 text-[#e2e8f0] hover:text-[#1A1A1A] mb-4 text-sm">
             <ArrowLeft className="h-4 w-4" />
             Back to Dashboard
           </Link>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-black text-[#f8fafc]">Contact Leads</h1>
-              <p className="text-[#94a3b8] mt-1 text-sm">Manage, track, and follow up on your incoming leads</p>
+              <h1 className="text-3xl sm:text-4xl font-black text-[#1A1A1A]">Contact Leads</h1>
+              <p className="text-[#6B7280] mt-1 text-sm">Manage, track, and follow up on your incoming leads</p>
             </div>
             <button
               onClick={openAdd}
@@ -440,11 +440,11 @@ export default function ContactLeadsPage() {
             { label: 'Qualified', value: qualifiedLeads, icon: Target, color: 'text-emerald-400' },
             { label: 'Today', value: todayLeads, icon: Calendar, color: 'text-slate-400' },
           ].map(s => (
-            <div key={s.label} className="bg-slate-900/80 border border-white/10 rounded-2xl p-5">
+            <div key={s.label} className="bg-slate-900/80 border border-black/10 rounded-2xl p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-[#94a3b8]">{s.label}</p>
-                  <p className="text-2xl font-black text-[#f8fafc] mt-1">{s.value}</p>
+                  <p className="text-xs font-medium text-[#6B7280]">{s.label}</p>
+                  <p className="text-2xl font-black text-[#1A1A1A] mt-1">{s.value}</p>
                 </div>
                 <s.icon className={`h-10 w-10 ${s.color} opacity-60`} />
               </div>
@@ -491,11 +491,11 @@ export default function ContactLeadsPage() {
 
         {/* ─── Leads List ─── */}
         {loading ? (
-          <div className="bg-slate-900/80 border border-white/10 rounded-2xl p-12 text-center">
+          <div className="bg-slate-900/80 border border-black/10 rounded-2xl p-12 text-center">
             <p className="text-slate-400">Loading leads...</p>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="bg-slate-900/80 border border-white/10 rounded-2xl p-12 text-center">
+          <div className="bg-slate-900/80 border border-black/10 rounded-2xl p-12 text-center">
             <Users className="h-16 w-16 text-slate-600 mx-auto mb-4" />
             <p className="text-slate-400">{search || statusFilter !== 'all' ? 'No leads match your filters' : 'No leads yet'}</p>
             {!search && statusFilter === 'all' && (
@@ -532,7 +532,7 @@ export default function ContactLeadsPage() {
                 <div
                   key={lead.id}
                   className={`bg-slate-900/80 border rounded-2xl overflow-hidden transition-colors ${
-                    isSelected ? 'border-emerald-600/50' : 'border-white/10'
+                    isSelected ? 'border-emerald-600/50' : 'border-black/10'
                   }`}
                 >
                   {/* ─── Row ─── */}
@@ -555,7 +555,7 @@ export default function ContactLeadsPage() {
                       onClick={() => setExpandedId(isExpanded ? null : lead.id)}
                     >
                       <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <h3 className="text-base font-bold text-[#f8fafc] truncate">{lead.name}</h3>
+                        <h3 className="text-base font-bold text-[#1A1A1A] truncate">{lead.name}</h3>
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide border ${getStatusColor(lead.status)}`}>
                           {lead.status}
                         </span>
@@ -602,14 +602,14 @@ export default function ContactLeadsPage() {
 
                   {/* ─── Expanded details ─── */}
                   {isExpanded && (
-                    <div className="border-t border-white/10 p-5 bg-white/[0.02]">
+                    <div className="border-t border-black/10 p-5 bg-white/[0.02]">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                         {lead.businessType && (
                           <div>
                             <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 mb-1">
                               <Building2 className="h-3.5 w-3.5" /> Business Type
                             </div>
-                            <p className="text-sm text-[#f8fafc] font-medium">{lead.businessType}</p>
+                            <p className="text-sm text-[#1A1A1A] font-medium">{lead.businessType}</p>
                           </div>
                         )}
                         {lead.budget && (
@@ -617,7 +617,7 @@ export default function ContactLeadsPage() {
                             <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 mb-1">
                               <DollarSign className="h-3.5 w-3.5" /> Budget
                             </div>
-                            <p className="text-sm text-[#f8fafc] font-medium">{lead.budget}</p>
+                            <p className="text-sm text-[#1A1A1A] font-medium">{lead.budget}</p>
                           </div>
                         )}
                       </div>
@@ -625,7 +625,7 @@ export default function ContactLeadsPage() {
                       {lead.message && (
                         <div className="mb-5">
                           <div className="text-xs font-medium text-slate-500 mb-1.5">Message / Notes</div>
-                          <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+                          <div className="bg-white/5 rounded-lg p-3 border border-black/10">
                             <p className="text-sm text-[#e2e8f0] whitespace-pre-wrap">{lead.message}</p>
                           </div>
                         </div>
@@ -641,7 +641,7 @@ export default function ContactLeadsPage() {
                               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
                                 lead.status === s
                                   ? 'bg-emerald-600 text-white border-emerald-500'
-                                  : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
+                                  : 'bg-white/5 text-slate-300 border-black/10 hover:bg-white/10'
                               }`}
                             >
                               {s.charAt(0).toUpperCase() + s.slice(1)}

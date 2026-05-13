@@ -89,7 +89,7 @@ export function CertificationsCarousel() {
       <section className="relative z-10 pb-20" aria-label="Certifications">
         <div className="max-w-6xl mx-auto px-6">
           {/* Header */}
-          <h2 className="text-xl font-bold text-[#F8FAFC] mb-3">
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-3">
             Verified Certifications
           </h2>
 
@@ -103,7 +103,7 @@ export function CertificationsCarousel() {
               <ShieldCheck className="w-3.5 h-3.5" />
               Blockchain Verified
             </span>
-            <span className="text-xs text-[#94A3B8]">
+            <span className="text-xs text-[#6B7280]">
               15 months of mentored, hands-on client work
             </span>
           </div>
@@ -116,8 +116,8 @@ export function CertificationsCarousel() {
           onMouseLeave={() => setPaused(false)}
         >
           {/* Fade masks */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-[#070B14] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-[#070B14] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-[#FDFAF5] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-[#FDFAF5] to-transparent" />
 
           <div
             className="flex gap-4 w-max certification-marquee-track"
@@ -149,11 +149,11 @@ export function CertificationsCarousel() {
                       <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
                     </div>
                   </div>
-                  <div className="px-4 py-3 border-t border-white/[0.06]">
-                    <p className="text-xs font-medium text-[#F8FAFC] group-hover/cert:text-[#C4B5FD] transition-colors">
+                  <div className="px-4 py-3 border-t border-black/[0.06]">
+                    <p className="text-xs font-medium text-[#1A1A1A] group-hover/cert:text-[#C4B5FD] transition-colors">
                       {cert.focus}
                     </p>
-                    <p className="text-[10px] text-[#94A3B8] mt-0.5">
+                    <p className="text-[10px] text-[#6B7280] mt-0.5">
                       Click to zoom &amp; read
                     </p>
                   </div>
@@ -165,7 +165,7 @@ export function CertificationsCarousel() {
 
         {/* Other certifications */}
         <div className="max-w-6xl mx-auto px-6 mt-10">
-          <h3 className="text-sm font-bold text-[#F8FAFC] mb-3">
+          <h3 className="text-sm font-bold text-[#1A1A1A] mb-3">
             Other Certifications
           </h3>
           <ModuleShell className="p-5">
@@ -178,7 +178,7 @@ export function CertificationsCarousel() {
               ].map((c) => (
                 <span
                   key={c}
-                  className="flex items-center gap-2 text-xs text-[#94A3B8]"
+                  className="flex items-center gap-2 text-xs text-[#6B7280]"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED] shrink-0" />
                   {c}
@@ -204,14 +204,14 @@ export function CertificationsCarousel() {
           >
             <button
               onClick={() => setLightbox(null)}
-              className="absolute -top-12 right-0 flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors"
+              className="absolute -top-12 right-0 flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors"
               aria-label="Close"
             >
               <span className="hidden sm:inline">ESC</span>
               <X className="w-5 h-5" />
             </button>
 
-            <div className="rounded-2xl overflow-hidden border border-white/10 bg-[#0F172A] shadow-2xl shadow-[#7C3AED]/10">
+            <div className="rounded-2xl overflow-hidden border border-black/10 bg-[#F5F0E8] shadow-2xl shadow-[#7C3AED]/10">
               <Image
                 src={lightboxCert.imageUrl}
                 alt={`Certificate — ${lightboxCert.focus}`}
@@ -220,12 +220,12 @@ export function CertificationsCarousel() {
                 className="w-full h-auto"
                 priority
               />
-              <div className="px-6 py-4 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div className="px-6 py-4 border-t border-black/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
-                  <p className="text-sm font-semibold text-[#F8FAFC]">
+                  <p className="text-sm font-semibold text-[#1A1A1A]">
                     {lightboxCert.focus}
                   </p>
-                  <p className="text-xs text-[#94A3B8] mt-0.5">
+                  <p className="text-xs text-[#6B7280] mt-0.5">
                     Acadium Apprenticeship Completion
                   </p>
                 </div>

@@ -52,8 +52,8 @@ export default function GoogleDataProgressLoader({ isLoading, isDark = false }: 
       transition={{ duration: 0.3 }}
       className={`rounded-2xl p-5 border backdrop-blur-sm shadow-sm ${
         isDark
-          ? 'bg-slate-800/80 border-slate-700/60'
-          : 'bg-white/80 border-slate-200/60'
+          ? 'bg-[#EDE8DF]/80 border-stone-300/60'
+          : 'bg-black/50 border-slate-200/60'
       }`}
     >
       <div className="flex items-center gap-3 mb-3">
@@ -70,7 +70,7 @@ export default function GoogleDataProgressLoader({ isLoading, isDark = false }: 
               ? 'We are fetching real-time data from Google. Please wait.'
               : 'Data loaded successfully!'}
           </p>
-          <p className={`text-[11px] mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+          <p className={`text-[11px] mt-0.5 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
             {isLoading ? 'Connecting to Google Analytics & Search Console APIs...' : 'All data is up to date.'}
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function GoogleDataProgressLoader({ isLoading, isDark = false }: 
       </div>
 
       {/* Progress bar */}
-      <div className={`h-2 w-full rounded-full overflow-hidden ${isDark ? 'bg-slate-700' : 'bg-slate-100'}`}>
+      <div className={`h-2 w-full rounded-full overflow-hidden ${isDark ? 'bg-[#D8D0C5]' : 'bg-slate-100'}`}>
         <motion.div
           className={`h-full rounded-full bg-gradient-to-r ${barColor}`}
           initial={{ width: 0 }}

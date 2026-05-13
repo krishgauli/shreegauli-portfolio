@@ -352,7 +352,7 @@ export default function AnimatedShaderHero({
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 20% 20%, rgba(124,58,237,0.24) 0%, transparent 62%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(34,211,238,0.2) 0%, transparent 65%), #070B14",
+              "radial-gradient(ellipse 80% 60% at 20% 20%, rgba(124,58,237,0.24) 0%, transparent 62%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(34,211,238,0.2) 0%, transparent 65%), #FDFAF5",
           }}
         />
       )}

@@ -31,7 +31,7 @@ export function BackgroundSystem() {
             background: `
               radial-gradient(ellipse 80% 60% at 0% 0%, rgba(124, 58, 237, 0.14) 0%, transparent 60%),
               radial-gradient(ellipse 60% 50% at 100% 100%, rgba(34, 211, 238, 0.12) 0%, transparent 60%),
-              #070B14
+              #FDFAF5
             `,
           }}
         />
@@ -56,7 +56,7 @@ export function BackgroundSystem() {
         className="absolute inset-0 opacity-35"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0)",
+            "radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 0)",
           backgroundSize: "44px 44px",
         }}
       />

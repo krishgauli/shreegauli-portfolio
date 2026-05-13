@@ -30,24 +30,24 @@ export default function BookCallLandingPage() {
 
           <div className="mb-8 grid gap-6 md:grid-cols-3">
             <ModuleShell className="p-5">
-              <p className="text-lg font-semibold text-[#F8FAFC]">30 minutes</p>
-              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">Enough time to diagnose the constraint without turning the call into a vague intro chat.</p>
+              <p className="text-lg font-semibold text-[#1A1A1A]">30 minutes</p>
+              <p className="mt-2 text-sm leading-7 text-[#6B7280]">Enough time to diagnose the constraint without turning the call into a vague intro chat.</p>
             </ModuleShell>
             <ModuleShell className="p-5">
-              <p className="text-lg font-semibold text-[#F8FAFC]">No pitch deck</p>
-              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">We focus on your current website, SEO performance, and tech requirements instead of a generic presentation.</p>
+              <p className="text-lg font-semibold text-[#1A1A1A]">No pitch deck</p>
+              <p className="mt-2 text-sm leading-7 text-[#6B7280]">We focus on your current website, SEO performance, and tech requirements instead of a generic presentation.</p>
             </ModuleShell>
             <ModuleShell className="p-5">
-              <p className="text-lg font-semibold text-[#F8FAFC]">Clear next step</p>
-              <p className="mt-2 text-sm leading-7 text-[#94A3B8]">You leave knowing whether the right move is a new build, an SEO sprint, automation setup, or no project at all yet.</p>
+              <p className="text-lg font-semibold text-[#1A1A1A]">Clear next step</p>
+              <p className="mt-2 text-sm leading-7 text-[#6B7280]">You leave knowing whether the right move is a new build, an SEO sprint, automation setup, or no project at all yet.</p>
             </ModuleShell>
           </div>
 
           <BookingClient />
 
-          <div className="mt-10 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
-            <h2 className="text-base font-semibold text-[#F8FAFC]">Common topics on strategy calls</h2>
-            <p className="mt-2 text-sm leading-7 text-[#94A3B8]">
+          <div className="mt-10 rounded-2xl border border-black/[0.08] bg-black/[0.04] p-6">
+            <h2 className="text-base font-semibold text-[#1A1A1A]">Common topics on strategy calls</h2>
+            <p className="mt-2 text-sm leading-7 text-[#6B7280]">
               Most calls focus on one of three areas: launching or redesigning a website built for organic traffic,
               improving search rankings on an existing site through technical SEO and content strategy, or
               automating repetitive business processes like lead follow-up, review requests, and reporting.

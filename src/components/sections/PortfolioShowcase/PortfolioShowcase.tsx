@@ -126,14 +126,14 @@ export function PortfolioShowcase() {
                           style={{ color: project.color }}
                         />
                       </div>
-                      <ExternalLink className="h-3.5 w-3.5 text-[#64748B] group-hover:text-[#F8FAFC] transition-colors" />
+                      <ExternalLink className="h-3.5 w-3.5 text-[#64748B] group-hover:text-[#1A1A1A] transition-colors" />
                     </div>
 
                     <div>
-                      <h3 className="text-sm font-bold text-[#F8FAFC] group-hover:text-white transition-colors">
+                      <h3 className="text-sm font-bold text-[#1A1A1A] group-hover:text-gray-900 transition-colors">
                         {project.name}
                       </h3>
-                      <p className="text-xs text-[#94A3B8] mt-0.5">
+                      <p className="text-xs text-[#6B7280] mt-0.5">
                         {project.type}
                       </p>
                     </div>

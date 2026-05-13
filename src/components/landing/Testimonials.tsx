@@ -16,7 +16,7 @@ export default function Testimonials() {
   const next = () => setIndex((i) => (i + 1) % items.length);
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-20 bg-[#FDFAF5]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl font-bold text-slate-900 mb-8">Testimonials</h2>
         <div className="relative">
@@ -33,7 +33,7 @@ export default function Testimonials() {
               <img src={items[index].photo} alt={items[index].name} className="h-12 w-12 rounded-full object-cover" />
               <div className="text-left">
                 <div className="font-semibold text-slate-900">{items[index].name}</div>
-                <div className="text-sm text-slate-500">{items[index].role}</div>
+                <div className="text-sm text-gray-500">{items[index].role}</div>
               </div>
             </div>
           </motion.div>
