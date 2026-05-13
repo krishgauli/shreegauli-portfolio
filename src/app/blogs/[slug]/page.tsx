@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { marked } from "marked";
 import prisma from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { createPageMetadata } from "@/lib/seo";
@@ -183,7 +184,7 @@ export default async function BlogPostPage({
       pagePost = {
         slug: dbPost.slug,
         title: dbPost.title,
-        content: dbPost.content,
+        content: await marked.parse(dbPost.content),
         excerpt: dbPost.excerpt,
         coverImage: resolveBlogImage(dbPost.coverImage, dbPost.slug),
         coverImageAlt: resolveBlogImageAlt(dbPost.coverImageAlt, dbPost.title),
