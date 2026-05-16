@@ -58,13 +58,24 @@ function BlogPostingSchema({
     ...(tags?.length && { keywords: tags.map((t) => t.name).join(", ") }),
     author: {
       "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
       name: post.author?.name || SITE_NAME,
-      url: SITE_URL,
+      url: `${SITE_URL}/about`,
+      image: `${SITE_URL}/shree-gauli.png`,
+      sameAs: [
+        "https://www.linkedin.com/in/gauli/",
+        "https://x.com/ShreeGauli",
+      ],
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: BUSINESS_NAME,
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon.svg`,
+      },
     },
   };
 
@@ -106,12 +117,21 @@ export async function generateMetadata({
     ? `${blogTitle}${suffix}`
     : blogTitle;
 
-  return createPageMetadata({
+  const metadata = createPageMetadata({
     title: fullTitle,
     description: post.metaDesc || post.excerpt || "",
     path: `/blogs/${post.slug}`,
     keywords: [],
   });
+
+  /* Override OG type to article for blog posts — better E-E-A-T signal */
+  return {
+    ...metadata,
+    openGraph: {
+      ...metadata.openGraph,
+      type: "article",
+    },
+  };
 }
 
 /* ISR: cache rendered page for 1 hour, revalidate in background */

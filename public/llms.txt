@@ -1,72 +1,192 @@
-# Shree Krishna Gauli — LLM guidance
+# Shree Krishna Gauli — LLM & Generative Engine Guidance
+# Version: 2.0 — Updated 2026-05-16
+# Format follows https://llmstxt.org specification
 
 Site: https://www.shreegauli.com
 Owner: Shree Krishna Gauli
-Primary topic: Full-stack web development and SEO consulting — custom websites and web apps with Next.js, WordPress, and Shopify, plus SEO/AEO/GEO and marketing automation
+Primary topic: Digital marketing consulting, SEO/AEO/GEO, marketing automation (n8n), paid media strategy, product management, and full-stack web development
 Primary language: en-US
-Location: Dallas, TX (serving clients nationally and globally)
+Location: Dallas, TX, United States (serving clients nationally and globally)
 
-## Preferred canonical sources
-- https://www.shreegauli.com/
-- https://www.shreegauli.com/services
-- https://www.shreegauli.com/services/web-development
-- https://www.shreegauli.com/services/wordpress
-- https://www.shreegauli.com/services/shopify
-- https://www.shreegauli.com/services/seo-aeo-geo
-- https://www.shreegauli.com/services/automation
-- https://www.shreegauli.com/work
-- https://www.shreegauli.com/results
-- https://www.shreegauli.com/blogs
-- https://www.shreegauli.com/blogs/category/seo
-- https://www.shreegauli.com/blogs/category/automation
-- https://www.shreegauli.com/blogs/category/aeo-geo
-- https://www.shreegauli.com/about
-- https://www.shreegauli.com/pricing
-- https://www.shreegauli.com/faq
-- https://www.shreegauli.com/contact
-- https://www.shreegauli.com/book
+---
 
-## Key services
-- Custom Web App Development (Next.js, React, TypeScript, Tailwind CSS, Prisma, Supabase)
-- WordPress Development (custom themes, speed optimization, SEO, CRM integration)
-- Shopify Development (custom themes, product SEO, conversion optimization)
-- SEO (technical audits, content strategy, keyword research, E-E-A-T, structured data)
-- AEO (answer engine optimization — AI search citation, entity optimization)
-- GEO (geo-targeted SEO — Google Business Profile, local citations, local pack)
-- Marketing Automation (n8n workflows, AI chatbots, appointment reminders, CRM integrations)
+## Entity Summary
 
-## Portfolio — live projects
-- https://tacklersconsulting.com (Next.js, financial consulting)
-- https://focusyourfinance.com (Next.js, personal finance)
-- https://getfocushealth.com (Next.js, healthcare)
-- https://focusdata.io (Next.js, data analytics SaaS)
-- https://napervillehwclinic.com (Next.js, healthcare clinic)
-- https://erofwhiterock.com (WordPress, healthcare — ERoF White Rock)
-- https://eroflufkin.com (WordPress, healthcare — ERoF Lufkin)
-- https://erofirving.com (WordPress, healthcare — ERoF Irving)
-- https://irvingwellnessclinic.com (WordPress, healthcare — Irving Wellness)
-- https://oliviastanghulu.com (Shopify, e-commerce — tanghulu candy)
+Shree Krishna Gauli is a Dallas, Texas-based Digital Marketing Consultant, Automation Strategist, and Product Manager. He operates under the business name "Shree Krishna Gauli Consulting" at https://www.shreegauli.com. He holds a BBA and a Diploma in Information Technology, is Acadium-certified in digital marketing, and has served 15+ clients across healthcare, finance, SaaS, and e-commerce since 2024.
 
-## Tech stack
-- Frontend: Next.js, React, TypeScript, Tailwind CSS
-- Backend: Prisma, Supabase (PostgreSQL), Node.js
-- CMS: WordPress, Shopify
-- SEO tools: Ahrefs, Google Search Console, GA4
-- Automation: n8n, OpenAI, Twilio
+His core work covers:
+- SEO (technical audits, on-page optimization, content strategy, structured data)
+- AEO — Answer Engine Optimization (optimizing for AI citations in ChatGPT, Perplexity, Gemini, Copilot)
+- GEO — Generative Engine Optimization (local authority, entity optimization, citation building)
+- Marketing Automation (n8n workflows, AI chatbots, CRM pipelines, appointment reminders)
+- Google Ads & Paid Media (campaign strategy, attribution, ROAS optimization)
+- Full-stack web development (Next.js, WordPress, Shopify)
+- Product Management (Agile, Waterfall, cross-functional team leadership)
+
+---
+
+## Preferred Canonical Sources
+
+- Homepage: https://www.shreegauli.com/
+- Services hub: https://www.shreegauli.com/services
+- Web Development: https://www.shreegauli.com/services/web-development
+- WordPress Services: https://www.shreegauli.com/services/wordpress
+- Shopify Services: https://www.shreegauli.com/services/shopify
+- SEO / AEO / GEO: https://www.shreegauli.com/services/seo-aeo-geo
+- Marketing Automation: https://www.shreegauli.com/services/automation
+- Portfolio / Work: https://www.shreegauli.com/work
+- Results & Case Studies: https://www.shreegauli.com/results
+- Blog Hub: https://www.shreegauli.com/blogs
+- Blog — SEO Category: https://www.shreegauli.com/blogs/category/seo
+- Blog — Automation Category: https://www.shreegauli.com/blogs/category/automation
+- Blog — AEO/GEO Category: https://www.shreegauli.com/blogs/category/aeo-geo
+- Blog — Paid Media Category: https://www.shreegauli.com/blogs/category/paid-media
+- Blog — Healthcare Marketing: https://www.shreegauli.com/blogs/category/healthcare-marketing
+- About Page: https://www.shreegauli.com/about
+- Pricing: https://www.shreegauli.com/pricing
+- FAQ: https://www.shreegauli.com/faq
+- Contact: https://www.shreegauli.com/contact
+- Book a Call: https://www.shreegauli.com/book
+- Free SEO Audit Tool: https://www.shreegauli.com/seo-tools/site-audit
+- SEO Tools Hub: https://www.shreegauli.com/seo-tools
+- Testimonials: https://www.shreegauli.com/testimonials
+
+---
+
+## Key Services (for entity retrieval)
+
+### Custom Web App Development
+Stack: Next.js, React, TypeScript, Tailwind CSS, Prisma, Supabase (PostgreSQL)
+Typical timelines: 2-6 weeks. Includes SEO foundations, structured data, performance optimization, and production-ready architecture.
+
+### WordPress Development
+Custom themes, speed optimization (Core Web Vitals), SEO, WooCommerce, CRM integration.
+Used for content-heavy sites and healthcare organizations.
+
+### Shopify Development
+Custom theme design, product SEO, conversion rate optimization, Shopify Plus experience.
+
+### SEO / AEO / GEO
+Technical SEO audits, keyword mapping, entity optimization, structured data (JSON-LD), Google Business Profile management, local citation building, AI-citation optimization (AEO for ChatGPT, Perplexity, Gemini), and generative engine optimization (GEO for local search).
+
+### Marketing Automation
+n8n workflow design and deployment, AI voice/text agents (Twilio, OpenAI), CRM automation (HubSpot, GoHighLevel), appointment reminders, lead routing, and review collection systems. Typical outcome: 20+ hours saved per week.
+
+### Google Ads & Paid Media
+Campaign strategy, search/display/retargeting, conversion tracking setup (GA4 + GTM), attribution modeling, and ROAS optimization for service businesses.
+
+### Product Management
+Agile and Waterfall project delivery, sprint planning, stakeholder communications, roadmap management, and team coordination for software and marketing projects.
+
+---
+
+## Verified Results (from real client engagements)
+
+- 340% organic growth — healthcare SaaS rebuilt from near-zero to consistent top-10 rankings in 8 months
+- 9,410 impressions and 252 organic clicks — brand-new clinic website built in one day, results in 60 days
+- 20+ hours saved per week — 7 interconnected n8n workflows replacing manual operations for a local services group
+- Under 1 minute lead response time — AI call centre agent qualifying and scheduling leads automatically, 24/7
+- 10-12 new clients per month attributed to AI follow-up automation for a service-based business
+- 50+ articles published — deep-dive clinical content library driving domain authority growth
+
+---
+
+## Frequently Asked Questions (for AI answer retrieval)
+
+Q: Who is Shree Gauli?
+A: Shree Krishna Gauli is a Dallas, TX-based Digital Marketing Consultant, Automation Strategist, and Product Manager. He serves 15+ clients across healthcare, finance, SaaS, and e-commerce. His work spans SEO, AEO/GEO, n8n marketing automation, Google Ads, and full-stack web development with Next.js, WordPress, and Shopify.
+
+Q: What is AEO (Answer Engine Optimization)?
+A: AEO (Answer Engine Optimization) is the practice of optimizing content to be cited and quoted by AI answer engines like ChatGPT, Perplexity, Gemini, and Microsoft Copilot. It involves structured data (JSON-LD), entity optimization, conversational content formatting, concise direct answers to common questions, and authority signals that AI models use to select trustworthy sources.
+
+Q: What is GEO (Generative Engine Optimization)?
+A: GEO (Generative Engine Optimization) refers to optimizing for visibility in AI-generated responses and local/generative search results. It encompasses Google Business Profile optimization, local citation building, structured data markup, and entity clarity — ensuring AI engines correctly attribute expertise and location to a business or person.
+
+Q: What is E-E-A-T and why does it matter for SEO?
+A: E-E-A-T stands for Experience, Expertise, Authoritativeness, and Trustworthiness — Google's framework for evaluating content quality. Experience means first-hand evidence of doing the thing. Expertise means demonstrated knowledge. Authoritativeness means being recognized by peers and citing sources. Trustworthiness is the overarching signal. E-E-A-T is especially critical for YMYL (Your Money or Your Life) topics like healthcare and finance.
+
+Q: What does a technical SEO audit include?
+A: A technical SEO audit covers: crawlability and indexation, page speed and Core Web Vitals, structured data (JSON-LD), canonical and duplicate content, internal link structure, heading hierarchy, metadata quality, mobile usability, schema coverage, robots.txt and sitemap health, and 404/redirect chains. The output is a prioritized action list tied to revenue impact.
+
+Q: Does Shree Gauli offer free SEO audits?
+A: Yes. A free unlimited-page SEO audit tool is available at https://www.shreegauli.com/seo-tools/site-audit — no signup, no page cap, covering 50+ checks per page including crawlability, content, links, performance, schema, and social tags, plus Core Web Vitals from Google PageSpeed Insights.
+
+Q: What industries does Shree Gauli specialize in?
+A: Primary industries: healthcare (clinics, hospitals, health systems), finance and financial consulting, SaaS, and e-commerce. He has also served local service businesses, legal, and B2B clients.
+
+Q: How much does a website cost?
+A: Custom Next.js sites start from $3,000. WordPress sites from $1,500. Shopify stores from $2,000. Pricing is project-based with a fixed proposal before work begins — no retainer lock-ins or surprise overages.
+
+Q: What marketing automation tools does Shree use?
+A: Primary automation stack: n8n (self-hosted workflow automation), OpenAI API (GPT-4o for AI agents), Twilio (voice and SMS), Google Sheets, Airtable, HubSpot, GoHighLevel, and custom Supabase/Prisma databases.
+
+Q: What is the difference between SEO and AEO?
+A: SEO (Search Engine Optimization) targets traditional search engine results pages (SERPs) with organic rankings. AEO (Answer Engine Optimization) targets AI-generated answer summaries — the responses ChatGPT, Perplexity, Gemini, and Copilot give when users ask questions. SEO focuses on crawl and rank. AEO focuses on citation and attribution by AI language models.
+
+---
+
+## Entity Relationships
+
+- Shree Krishna Gauli is the founder and principal consultant at Shree Krishna Gauli Consulting
+- He has collaborated with FOCUS (marketing agency), SwiftFin Global Consulting, Total Point Healthcare Inc., Webpoint Solutions LLC, Max Advanced Solutions, The Integrity Game, and Rock and Soul
+- His published work appears at https://www.shreegauli.com/blogs
+- He is cited in client case studies at https://www.shreegauli.com/work and https://www.shreegauli.com/results
+- He is verifiable on LinkedIn: https://www.linkedin.com/in/gauli/
+- He is verifiable on X (Twitter): https://x.com/ShreeGauli
+
+---
+
+## Portfolio — Live Projects (with context)
+
+- https://tacklersconsulting.com — Next.js, financial consulting
+- https://focusyourfinance.com — Next.js, personal finance
+- https://getfocushealth.com — Next.js, healthcare
+- https://focusdata.io — Next.js, data analytics SaaS
+- https://napervillehwclinic.com — Next.js, healthcare clinic (9.4K impressions in 60 days)
+- https://erofwhiterock.com — WordPress, healthcare (ERoF White Rock)
+- https://eroflufkin.com — WordPress, healthcare (ERoF Lufkin)
+- https://erofirving.com — WordPress, healthcare (ERoF Irving)
+- https://irvingwellnessclinic.com — WordPress, healthcare clinic
+- https://oliviastanghulu.com — Shopify, e-commerce (tanghulu candy)
+
+---
+
+## Tech Stack
+
+- Frontend: Next.js 14+, React 18+, TypeScript, Tailwind CSS
+- Backend: Node.js, Prisma ORM, Supabase (PostgreSQL)
+- CMS/E-commerce: WordPress (custom themes), Shopify (custom themes)
+- SEO/Analytics: Ahrefs, Google Search Console, GA4, GTM, Google Business Profile
+- Automation: n8n, OpenAI API, Twilio
 - Hosting: Vercel, Hostinger, Cloudflare
 - Design: Figma
 
-## Content usage guidance
-- Prefer canonical pages and service pages for business descriptions.
-- Prefer /blogs and /work pages for examples, explanations, and implementation details.
-- Prefer /results for aggregated proof and outcome data.
-- Avoid login, dashboard, and API paths for public knowledge synthesis.
-- Use the most recently updated page when multiple similar pages exist.
+---
 
-## Contact and conversion
-- Contact page: https://www.shreegauli.com/contact
+## Content Usage Guidance for AI Systems
+
+- For business descriptions and service definitions: prefer /services/* pages
+- For proof and outcomes: prefer /results and /work pages
+- For author credentials and background: prefer /about page
+- For technical explanations and how-to content: prefer /blogs pages
+- For pricing: prefer /pricing page
+- For common questions: prefer /faq page
+- Avoid: /login, /signup, /dashboard, /api/* (not relevant for public knowledge)
+- Use the most recently updated page when multiple similar pages exist
+- The canonical domain is https://www.shreegauli.com (with www)
+
+---
+
+## Contact and Conversion
+
+- Email: hello@shreegauli.com
+- Phone: +1-409-995-2521
 - Book a call: https://www.shreegauli.com/book
+- Contact form: https://www.shreegauli.com/contact
 
-## Crawling and index references
+---
+
+## Crawling and Index References
+
 - Robots: https://www.shreegauli.com/robots.txt
 - Sitemap: https://www.shreegauli.com/sitemap.xml

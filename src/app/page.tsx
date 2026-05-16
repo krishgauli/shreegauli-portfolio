@@ -15,7 +15,8 @@ import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection"
 import { SeoToolPromoSection } from "@/components/sections/SeoToolPromo/SeoToolPromoSection";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema, faqPageSchema, personSchema, websiteSearchActionSchema, professionalServiceSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqPageSchema, personSchema, websiteSearchActionSchema, professionalServiceSchema, speakableSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Dallas Digital Marketing Consultant & Product Manager | Shree Gauli",
@@ -50,6 +51,7 @@ export default function Home() {
       <JsonLd data={personSchema()} />
       <JsonLd data={websiteSearchActionSchema()} />
       <JsonLd data={professionalServiceSchema()} />
+      <JsonLd data={speakableSchema(SITE_URL, ["h1", ".sg-hero-subtitle", ".sg-section-title"])} />
       {/* Navigation */}
       <Navbar />
 

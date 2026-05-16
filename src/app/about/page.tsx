@@ -8,7 +8,7 @@ import { CertificationsCarousel } from "@/components/sections/Certifications/Cer
 import { apprenticeships } from "@/lib/credentials";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema, credentialListSchema, personSchema } from "@/lib/schema";
+import { breadcrumbSchema, credentialListSchema, personSchema, profilePageSchema } from "@/lib/schema";
 import { Linkedin, Facebook, Twitter } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -116,6 +116,7 @@ export default function AboutPage() {
     <PageShell>
       <JsonLd data={breadcrumbSchema([{ name: "About", path: "/about" }])} />
       <JsonLd data={personSchema()} />
+      <JsonLd data={profilePageSchema()} />
       {credentialListSchema(
         apprenticeships.map((c) => ({
           name: c.title,

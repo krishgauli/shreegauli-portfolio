@@ -8,6 +8,10 @@ type SeoOptions = {
   description: string;
   path: string;
   keywords?: string[];
+  /** Override OG image (default: /og-image.jpg) */
+  ogImage?: string;
+  /** Mark noindex (e.g. landing page variants) */
+  noindex?: boolean;
 };
 
 export function createPageMetadata({
@@ -15,6 +19,8 @@ export function createPageMetadata({
   description,
   path,
   keywords = [],
+  ogImage = defaultImage,
+  noindex = false,
 }: SeoOptions): Metadata {
   const absolutePageUrl = `${SITE_URL}${path}`;
 
@@ -22,6 +28,10 @@ export function createPageMetadata({
     title,
     description,
     keywords,
+    /* E-E-A-T: attaches a named author to every page */
+    authors: [{ name: SITE_NAME, url: `${SITE_URL}/about` }],
+    creator: SITE_NAME,
+    publisher: SITE_NAME,
     alternates: {
       canonical: path,
     },
@@ -34,7 +44,7 @@ export function createPageMetadata({
       description,
       images: [
         {
-          url: defaultImage,
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: title,
@@ -45,18 +55,22 @@ export function createPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [defaultImage],
+      images: [ogImage],
+      creator: "@ShreeGauli",
+      site: "@ShreeGauli",
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-snippet': -1,
-        'max-image-preview': 'large',
-        'max-video-preview': -1,
-      },
-    },
+    robots: noindex
+      ? { index: false, follow: false }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-snippet": -1,
+            "max-image-preview": "large",
+            "max-video-preview": -1,
+          },
+        },
   };
 }

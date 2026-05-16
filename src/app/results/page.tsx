@@ -7,7 +7,8 @@ import { ModuleShell } from "@/components/shared/ModuleShell";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, itemListSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 import { ArrowRight, TrendingUp, Zap, Clock, Globe, Code2, BarChart3 } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
@@ -124,9 +125,15 @@ const technologies = [
 
 /* ── Component ────────────────────────────────────────────────── */
 export default function ResultsPage() {
+  const caseStudyList = itemListSchema(
+    "SEO & Digital Marketing Results — Shree Gauli",
+    caseStudies.map((cs) => ({ name: cs.title, url: `${SITE_URL}${cs.href}` }))
+  );
+
   return (
     <PageShell>
       <JsonLd data={breadcrumbSchema([{ name: "Results", path: "/results" }])} />
+      <JsonLd data={caseStudyList} />
 
       {/* Hero */}
       <section className="relative z-10 section-pad px-6">

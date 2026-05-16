@@ -134,35 +134,85 @@ export function personSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${SITE_URL}/#person`,
     name: SITE_NAME,
+    givenName: "Shree Krishna",
+    familyName: "Gauli",
     url: SITE_URL,
-    image: `${SITE_URL}/shree-gauli.png`,
+    image: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/shree-gauli.png`,
+      width: 400,
+      height: 400,
+      caption: "Shree Krishna Gauli — Digital Marketing Consultant & Product Manager, Dallas TX",
+    },
+    description:
+      "Digital Marketing Consultant, Automation Strategist, and Product Manager based in Dallas, TX. Specializes in SEO, AEO/GEO, n8n automation, paid media, and full-stack web development with Next.js, WordPress, and Shopify. Trusted by 15+ clients across healthcare, finance, SaaS, and e-commerce.",
     jobTitle: "Digital Marketing Consultant | Automation Strategist | Product Manager",
+    email: `mailto:${SITE_EMAIL}`,
+    telephone: SITE_PHONE_E164,
     worksFor: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: BUSINESS_NAME,
       url: SITE_URL,
     },
+    hasOccupation: [
+      {
+        "@type": "Occupation",
+        name: "Digital Marketing Consultant",
+        description: "Delivers SEO, AEO/GEO, paid media, and content strategies that drive measurable revenue outcomes for healthcare, finance, SaaS, and e-commerce businesses.",
+        occupationalCategory: "15-1199",
+        estimatedSalary: { "@type": "MonetaryAmountDistribution", currency: "USD", duration: "P1Y", median: 95000 },
+      },
+      {
+        "@type": "Occupation",
+        name: "Product Manager",
+        description: "Leads Agile and Waterfall software delivery, coordinates cross-functional engineering and marketing teams, and manages roadmaps for digital products.",
+      },
+      {
+        "@type": "Occupation",
+        name: "Marketing Automation Engineer",
+        description: "Designs and deploys n8n workflows, AI chatbots, CRM automations, and appointment-reminder systems that save 20+ hours per week for client teams.",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE_LOCATION.city,
       addressRegion: SITE_LOCATION.region,
       addressCountry: SITE_LOCATION.country,
     },
-    sameAs: ["https://www.linkedin.com/in/gauli/", "https://www.facebook.com/profile.php?id=61582408185149", "https://x.com/ShreeGauli"],
-    knowsAbout: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "WordPress",
-      "Shopify",
-      "SEO",
-      "AEO/GEO",
-      "n8n Automation",
-      "Tailwind CSS",
-      "Prisma",
-      "Supabase",
+    areaServed: [
+      { "@type": "City", name: "Dallas" },
+      { "@type": "State", name: "Texas" },
+      { "@type": "Country", name: "United States" },
     ],
+    sameAs: [
+      "https://www.linkedin.com/in/gauli/",
+      "https://www.facebook.com/profile.php?id=61582408185149",
+      "https://x.com/ShreeGauli",
+      `${SITE_URL}/about`,
+    ],
+    knowsAbout: [
+      "Search Engine Optimization (SEO)",
+      "Answer Engine Optimization (AEO)",
+      "Generative Engine Optimization (GEO)",
+      "Technical SEO Audits",
+      "Local SEO & Google Business Profile",
+      "Marketing Automation with n8n",
+      "AI Chatbots and CRM Integration",
+      "Google Ads & Paid Media",
+      "Next.js & React Development",
+      "WordPress Development",
+      "Shopify Development",
+      "TypeScript & Tailwind CSS",
+      "Prisma ORM & Supabase",
+      "Product Management & Agile",
+      "Healthcare Digital Marketing",
+      "E-commerce SEO",
+    ],
+    knowsLanguage: [{ "@type": "Language", name: "English" }],
+    nationality: { "@type": "Country", name: "United States" },
   };
 }
 
@@ -172,10 +222,23 @@ export function websiteSearchActionSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: "Shree Gauli — Digital Marketing Consultant & Product Manager",
     url: SITE_URL,
     description:
       "Digital Marketing Consultant, Automation Strategist, and Product Manager specializing in SEO, AEO/GEO, paid media, and team leadership. Trusted by 15+ clients across the US.",
+    inLanguage: "en-US",
+    publisher: {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    author: {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: SITE_NAME,
+    },
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -216,15 +279,22 @@ export function articleSchema(input: ArticleSchemaInput) {
     ...(input.keywords?.length && { keywords: input.keywords.join(", ") }),
     author: {
       "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
       name: SITE_NAME,
       url: SITE_URL,
+      image: `${SITE_URL}/shree-gauli.png`,
       jobTitle: "Digital Marketing Consultant | Automation Strategist | Product Manager",
       sameAs: ["https://www.linkedin.com/in/gauli/", "https://www.facebook.com/profile.php?id=61582408185149", "https://x.com/ShreeGauli"],
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: BUSINESS_NAME,
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon.svg`,
+      },
     },
   };
 }
@@ -326,11 +396,21 @@ export function professionalServiceSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": `${SITE_URL}/#local-business`,
     name: "Shree Gauli — Digital Marketing Consultant & Product Manager",
     url: SITE_URL,
     image: `${SITE_URL}/shree-gauli.png`,
+    logo: `${SITE_URL}/favicon.svg`,
     description:
       "Digital Marketing Consultant, Automation Strategist, and Product Manager specializing in SEO, AEO/GEO, paid media, and team leadership. Trusted by 15+ clients across the US.",
+    telephone: SITE_PHONE_E164,
+    email: SITE_EMAIL,
+    founder: {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: SITE_NAME,
+      url: `${SITE_URL}/about`,
+    },
     address: {
       "@type": "PostalAddress",
       addressLocality: "Dallas",
@@ -342,6 +422,11 @@ export function professionalServiceSchema() {
       latitude: 32.7767,
       longitude: -96.797,
     },
+    sameAs: [
+      "https://www.linkedin.com/in/gauli/",
+      "https://www.facebook.com/profile.php?id=61582408185149",
+      "https://x.com/ShreeGauli",
+    ],
     areaServed: [
       { "@type": "City", name: "Dallas" },
       { "@type": "State", name: "Texas" },
@@ -350,7 +435,7 @@ export function professionalServiceSchema() {
     priceRange: "$$",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Web Development & SEO Services",
+      name: "Web Development & Digital Marketing Services",
       itemListElement: [
         {
           "@type": "Offer",
@@ -397,7 +482,61 @@ export function professionalServiceSchema() {
               "n8n workflows, AI chatbots, appointment reminders, and CRM integrations.",
           },
         },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Paid Media & Google Ads",
+            description:
+              "Google Ads strategy, campaign setup, attribution tracking, and ROI optimization for service businesses.",
+          },
+        },
       ],
+    },
+  };
+}
+
+/* ---------- ProfilePage (for About page E-E-A-T) ---------- */
+
+export function profilePageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    name: `About ${SITE_NAME} — Digital Marketing Consultant & Product Manager`,
+    url: `${SITE_URL}/about`,
+    inLanguage: "en-US",
+    dateModified: "2025-05-16",
+    description:
+      "Professional profile and career history of Shree Krishna Gauli — Digital Marketing Consultant, Automation Strategist, and Product Manager based in Dallas, TX.",
+    mainEntity: {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: SITE_NAME,
+      givenName: "Shree Krishna",
+      familyName: "Gauli",
+      jobTitle: "Digital Marketing Consultant | Automation Strategist | Product Manager",
+      description:
+        "Digital Marketing Consultant, Automation Strategist, and Product Manager based in Dallas, TX. 15+ clients served across healthcare, finance, SaaS, and e-commerce. Specialist in SEO, AEO/GEO, n8n automation, paid media, and full-stack web development.",
+      url: SITE_URL,
+      image: `${SITE_URL}/shree-gauli.png`,
+      email: `mailto:${SITE_EMAIL}`,
+      telephone: SITE_PHONE_E164,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: SITE_LOCATION.city,
+        addressRegion: SITE_LOCATION.region,
+        addressCountry: SITE_LOCATION.country,
+      },
+      sameAs: [
+        "https://www.linkedin.com/in/gauli/",
+        "https://www.facebook.com/profile.php?id=61582408185149",
+        "https://x.com/ShreeGauli",
+      ],
+      worksFor: {
+        "@type": "Organization",
+        name: BUSINESS_NAME,
+        url: SITE_URL,
+      },
     },
   };
 }

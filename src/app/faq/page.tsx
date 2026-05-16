@@ -6,14 +6,15 @@ import { ModuleShell } from "@/components/shared/ModuleShell";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqPageSchema, speakableSchema } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "FAQ | Web Development & SEO Questions Answered",
+  title: "FAQ | Web Development, SEO & Automation Questions Answered",
   description:
-    "Answers to common questions about web development, SEO services, timelines, pricing, tech stack, and how projects work.",
+    "Answers to common questions about web development, SEO services, AEO/GEO, marketing automation, timelines, pricing, tech stack, and how projects work.",
   path: "/faq",
-  keywords: ["web development FAQ", "SEO consultant questions", "Next.js developer FAQ", "website development questions"],
+  keywords: ["web development FAQ", "SEO consultant questions", "AEO optimization FAQ", "Next.js developer FAQ", "marketing automation FAQ", "website development questions"],
 });
 
 const faqs = [
@@ -69,27 +70,12 @@ const faqs = [
   },
 ];
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
-
 export default function FaqPage() {
   return (
     <PageShell>
       <JsonLd data={breadcrumbSchema([{ name: "FAQ", path: "/faq" }])} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={faqPageSchema(faqs)} />
+      <JsonLd data={speakableSchema(`${SITE_URL}/faq`, ["h1", "h2", ".sg-faq-answer"])} />
       <section className="relative z-10 section-pad px-6">
         <div className="mx-auto max-w-5xl">
           <SectionHeader
@@ -104,7 +90,7 @@ export default function FaqPage() {
               <ScrollReveal key={faq.question} delay={index * 0.04}>
                 <ModuleShell className="p-6">
                   <h2 className="text-xl font-semibold text-[#1A1A1A]">{faq.question}</h2>
-                  <p className="mt-4 text-sm leading-7 text-[#6B7280]">{faq.answer}</p>
+                  <p className="sg-faq-answer mt-4 text-sm leading-7 text-[#6B7280]">{faq.answer}</p>
                 </ModuleShell>
               </ScrollReveal>
             ))}

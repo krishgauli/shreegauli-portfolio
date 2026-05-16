@@ -83,7 +83,7 @@ function ScoreDonut({ score, small }: { score: number; small?: boolean }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className={cn('font-bold text-white', small ? 'text-lg' : 'text-3xl')}>{score}</span>
+        <span className={cn('font-bold text-gray-900', small ? 'text-lg' : 'text-3xl')}>{score}</span>
         {!small && <span className="text-xs text-[#64748B]">/ 100</span>}
       </div>
     </div>
@@ -126,7 +126,7 @@ function IssueRow({ issue }: { issue: SiteAuditIssue }) {
         className="flex w-full items-center gap-3 px-4 py-3 text-left"
       >
         <Icon className="h-4 w-4 shrink-0" />
-        <span className="flex-1 text-sm font-semibold text-white">{issue.title}</span>
+        <span className="flex-1 text-sm font-semibold text-gray-900">{issue.title}</span>
         <span className={cn('rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase', SEV_CLASSES[issue.severity])}>
           {SEV_LABEL[issue.severity]}
         </span>
@@ -490,7 +490,7 @@ export default function SiteAuditTab() {
             type="submit"
             disabled={!domain.trim() && !loading}
             className={cn(
-              'inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-gray-900 transition',
+              'inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition',
               loading
                 ? 'bg-red-500/80 hover:bg-red-500'
                 : 'bg-[#7C3AED] hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-60',
@@ -606,7 +606,7 @@ export default function SiteAuditTab() {
           <div className="flex items-center gap-3">
             <Loader2 className="h-5 w-5 animate-spin text-[#7C3AED]" />
             <div>
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-gray-900">
                 Crawling… {progress.pagesScanned}/{progress.totalDiscovered} pages
               </p>
               <p className="text-xs text-[#64748B] truncate max-w-md">{progress.currentUrl}</p>
@@ -627,7 +627,7 @@ export default function SiteAuditTab() {
       {!loading && !result && (
         <div className="rounded-2xl border border-black/[0.08] bg-black/[0.04] p-8 text-center">
           <Globe className="mx-auto h-10 w-10 text-gray-500" />
-          <p className="mt-4 text-base font-semibold text-white">Enterprise-grade site audit. Completely free.</p>
+          <p className="mt-4 text-base font-semibold text-gray-900">Enterprise-grade site audit. Completely free.</p>
           <p className="mt-2 text-sm text-[#6B7280] max-w-lg mx-auto">
             Other tools charge $100+/mo and cap you at a handful of pages. We crawl your <strong className="text-gray-900">entire</strong> site —
             100, 500, even 1,000+ pages — and run <strong className="text-gray-900">50+ SEO checks</strong> on every single one.
@@ -681,7 +681,7 @@ export default function SiteAuditTab() {
               <div className="flex items-center gap-2">
                 <Zap className="h-4 w-4 text-[#7C3AED]" />
                 <div>
-                  <p className="text-sm font-semibold text-white">Core Web Vitals</p>
+                  <p className="text-sm font-semibold text-gray-900">Core Web Vitals</p>
                   <p className="text-[11px] text-[#64748B]">Powered by Google PageSpeed Insights</p>
                 </div>
               </div>
@@ -717,7 +717,7 @@ export default function SiteAuditTab() {
               <div className="flex items-center gap-3 py-4">
                 <Loader2 className="h-5 w-5 animate-spin text-[#7C3AED]" />
                 <div>
-                  <p className="text-sm text-white">Running Lighthouse analysis…</p>
+                  <p className="text-sm text-gray-700">Running Lighthouse analysis…</p>
                   <p className="text-xs text-[#64748B]">This takes 15–30 seconds</p>
                 </div>
               </div>
@@ -854,7 +854,7 @@ export default function SiteAuditTab() {
           {/* ── Issues list ── */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-gray-900">
                 Issues ({filteredIssues.length}/{result.issues.length})
               </p>
             </div>
@@ -927,7 +927,7 @@ export default function SiteAuditTab() {
 
           {/* ── Audit CTA ── */}
           <div className="rounded-2xl border border-[#7C3AED]/30 bg-[#7C3AED]/[0.06] p-6">
-            <p className="text-sm font-semibold text-white">Want these issues fixed for you?</p>
+            <p className="text-sm font-semibold text-gray-900">Want these issues fixed for you?</p>
             <p className="mt-2 text-sm text-[#6B7280]">
               This free audit found <strong className="text-gray-900">{result.totalIssues} issues</strong> across <strong className="text-gray-900">{result.pagesScanned} pages</strong>.
               Other agencies charge $500+ just for the report. Book a free call and I&apos;ll walk you through the highest-impact fixes.

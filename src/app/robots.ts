@@ -20,30 +20,24 @@ export default function robots(): MetadataRoute.Robots {
           "/.next/",
         ],
       },
-      {
-        userAgent: "GPTBot",
-        allow: "/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        allow: "/",
-      },
-      {
-        userAgent: "Google-Extended",
-        allow: "/",
-      },
-      {
-        userAgent: "PerplexityBot",
-        allow: "/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        allow: "/",
-      },
-      {
-        userAgent: "Applebot-Extended",
-        allow: "/",
-      },
+      /* ── Generative AI crawlers — fully allowed ─────────────── */
+      { userAgent: "GPTBot",               allow: "/" },
+      { userAgent: "ChatGPT-User",         allow: "/" },
+      { userAgent: "OAI-SearchBot",        allow: "/" },
+      { userAgent: "Google-Extended",      allow: "/" },
+      { userAgent: "PerplexityBot",        allow: "/" },
+      { userAgent: "ClaudeBot",            allow: "/" },
+      { userAgent: "Anthropic-AI",         allow: "/" },
+      { userAgent: "Applebot-Extended",    allow: "/" },
+      { userAgent: "Applebot",             allow: "/" },
+      { userAgent: "YouBot",               allow: "/" },
+      { userAgent: "cohere-ai",            allow: "/" },
+      { userAgent: "Meta-ExternalAgent",   allow: "/" },
+      { userAgent: "FacebookBot",          allow: "/" },
+      { userAgent: "Diffbot",              allow: "/" },
+      { userAgent: "Bytespider",           allow: "/" },
+      { userAgent: "CCBot",                allow: "/" },
+      { userAgent: "ia_archiver",          allow: "/" },  // Alexa / Internet Archive
     ],
     sitemap: absoluteUrl("/sitemap.xml"),
   };
