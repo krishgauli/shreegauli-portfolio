@@ -15,6 +15,9 @@ import {
 import prisma from "@/lib/prisma";
 import type { Article } from "@/types";
 
+// Re-generate blog listing at most every 60 seconds so new posts appear without a full redeploy
+export const revalidate = 60;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Digital Marketing Blog | SEO, Ads, Automation Insights",
   description:
