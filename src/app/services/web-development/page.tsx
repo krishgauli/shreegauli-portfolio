@@ -10,6 +10,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Dallas Web Developer | Next.js Websites & Web Apps",
   description:
@@ -200,6 +202,35 @@ export default function WebDevelopmentPage() {
               ))}
             </div>
           </ModuleShell>
+        </div>
+      </section>
+
+      {/* Proof strip */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-2">Real results from real engagements</h2>
+          <p className="text-sm text-[#6B7280] mb-8 max-w-2xl">
+            Documented outcomes from web development and full-stack engagements.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { value: "5+", label: "Next.js web apps", detail: "Custom full-stack apps with auth, dashboards, Prisma, and Supabase deployed to production." },
+              { value: "95+", label: "Lighthouse score", detail: "Performance, accessibility, and SEO scores on core pages — built-in, not patched in later." },
+              { value: "10+", label: "WordPress sites", detail: "Custom-theme WordPress builds for healthcare and service businesses." },
+              { value: "15+", label: "Clients served", detail: "Healthcare, SaaS, e-commerce, and local service businesses across the US." },
+            ].map((stat, i) => (
+              <ScrollReveal key={stat.label} delay={i * 0.06}>
+                <ModuleShell className="p-6 h-full">
+                  <p className="text-3xl font-bold text-[#7C3AED]">{stat.value}</p>
+                  <p className="text-sm font-semibold text-[#1A1A1A] mt-1">{stat.label}</p>
+                  <p className="text-xs text-[#6B7280] leading-relaxed mt-2">{stat.detail}</p>
+                </ModuleShell>
+              </ScrollReveal>
+            ))}
+          </div>
+          <p className="mt-5 text-xs text-[#6B7280]">
+            Full breakdowns available on the <Link href="/results" className="text-[#7C3AED] hover:underline">results page</Link>.
+          </p>
         </div>
       </section>
 

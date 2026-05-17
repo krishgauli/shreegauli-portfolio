@@ -10,6 +10,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Dallas Marketing Automation Consultant | n8n & AI",
   description:
@@ -223,6 +225,35 @@ export default function AutomationServicePage() {
               and social media posting. These accelerate deployment and reduce cost.
             </p>
           </ModuleShell>
+        </div>
+      </section>
+
+      {/* Proof strip */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-2">Real results from real engagements</h2>
+          <p className="text-sm text-[#6B7280] mb-8 max-w-2xl">
+            Documented outcomes from marketing automation and n8n workflow builds.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { value: "20+", label: "Hours saved / week", detail: "Documented time savings per week from n8n automation systems across client engagements." },
+              { value: "10+", label: "n8n workflows built", detail: "Patient intake, appointment reminders, AI follow-up, CRM sync, and lead capture automations." },
+              { value: "15+", label: "Clients served", detail: "Healthcare, SaaS, e-commerce, and local service businesses across the US." },
+              { value: "3×", label: "Avg ROI", detail: "Average return across automation and digital marketing engagements from documented client outcomes." },
+            ].map((stat, i) => (
+              <ScrollReveal key={stat.label} delay={i * 0.06}>
+                <ModuleShell className="p-6 h-full">
+                  <p className="text-3xl font-bold text-[#7C3AED]">{stat.value}</p>
+                  <p className="text-sm font-semibold text-[#1A1A1A] mt-1">{stat.label}</p>
+                  <p className="text-xs text-[#6B7280] leading-relaxed mt-2">{stat.detail}</p>
+                </ModuleShell>
+              </ScrollReveal>
+            ))}
+          </div>
+          <p className="mt-5 text-xs text-[#6B7280]">
+            Full breakdowns available on the <Link href="/results" className="text-[#7C3AED] hover:underline">results page</Link>.
+          </p>
         </div>
       </section>
 

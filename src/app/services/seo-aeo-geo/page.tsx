@@ -10,6 +10,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Dallas SEO Consultant | SEO, AEO & GEO Services",
   description:
@@ -187,6 +189,35 @@ export default function SeoAeoGeoServicePage() {
               ))}
             </ul>
           </ModuleShell>
+        </div>
+      </section>
+
+      {/* Proof strip */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-2">Real results from real engagements</h2>
+          <p className="text-sm text-[#6B7280] mb-8 max-w-2xl">
+            Every number below came from a documented client engagement. No hypothetical projections.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { value: "340%", label: "Organic growth", detail: "From near-zero to consistent top-10 rankings in 8 months — healthcare client, technical SEO + content." },
+              { value: "15+", label: "Clients served", detail: "Healthcare, SaaS, e-commerce, and local service businesses across the US." },
+              { value: "Top 10", label: "Rankings achieved", detail: "Competitive keywords in healthcare and local service niches within 6–8 months of engagement." },
+              { value: "AI cited", label: "Pages cited by AI", detail: "Client pages cited by ChatGPT, Perplexity, and Google AI Overviews after AEO/GEO optimisation." },
+            ].map((stat, i) => (
+              <ScrollReveal key={stat.label} delay={i * 0.06}>
+                <ModuleShell className="p-6 h-full">
+                  <p className="text-3xl font-bold text-[#7C3AED]">{stat.value}</p>
+                  <p className="text-sm font-semibold text-[#1A1A1A] mt-1">{stat.label}</p>
+                  <p className="text-xs text-[#6B7280] leading-relaxed mt-2">{stat.detail}</p>
+                </ModuleShell>
+              </ScrollReveal>
+            ))}
+          </div>
+          <p className="mt-5 text-xs text-[#6B7280]">
+            Full breakdowns available on the <Link href="/results" className="text-[#7C3AED] hover:underline">results page</Link>.
+          </p>
         </div>
       </section>
 

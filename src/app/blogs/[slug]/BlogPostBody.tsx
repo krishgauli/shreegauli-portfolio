@@ -12,6 +12,7 @@ import {
   Link2,
   Linkedin,
   ArrowUpRight,
+  RefreshCw,
   Share2,
   Tag,
   User,
@@ -324,6 +325,18 @@ export function BlogPostBody({
                 </time>
               ) : null}
 
+              {post.updatedAt && (!post.publishedAt || new Date(post.updatedAt).getTime() - new Date(post.publishedAt).getTime() > 86400000) && (
+                <span className="inline-flex items-center gap-2 text-gray-400">
+                  <RefreshCw className="h-4 w-4 text-gray-400" />
+                  Updated:{" "}
+                  {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </span>
+              )}
+
               <span className="inline-flex items-center gap-2">
                 <Clock3 className="h-4 w-4 text-[#7C3AED]" />
                 {readTime}
@@ -387,6 +400,16 @@ export function BlogPostBody({
                       })}
                     </p>
                   ) : null}
+                  {post.updatedAt && (
+                    <p>
+                      <span className="font-semibold text-slate-900">Last updated:</span>{" "}
+                      {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </p>
+                  )}
                   <p>
                     <span className="font-semibold text-slate-900">Read time:</span> {readTime}
                   </p>
@@ -489,6 +512,16 @@ export function BlogPostBody({
                         })}
                       </p>
                     ) : null}
+                    {post.updatedAt && (
+                      <p>
+                        <span className="font-semibold text-slate-900">Last updated:</span>{" "}
+                        {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
+                      </p>
+                    )}
                     <p>
                       <span className="font-semibold text-slate-900">Read time:</span> {readTime}
                     </p>
@@ -561,9 +594,21 @@ export function BlogPostBody({
                       <p className="text-sm font-semibold text-slate-900">
                         Written by {post.author?.name || "Shree Krishna Gauli"}
                       </p>
-                      <p className="mt-1 text-sm leading-6 text-gray-500">
-                        Dallas-based digital marketing consultant specializing in SEO, paid media, and marketing automation for healthcare and service businesses.
+                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#7C3AED]">
+                        Digital Marketing Consultant · SEO &amp; AI Visibility
                       </p>
+                      <p className="mt-2 text-sm leading-6 text-gray-500">
+                        Shree is a Dallas-based marketing consultant with 7+ years of hands-on experience in SEO, paid media, and marketing automation. He works with healthcare and service businesses, helping them build measurable visibility in both traditional and AI-driven search.
+                      </p>
+                      <a
+                        href="https://www.linkedin.com/in/shreegauli"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#7C3AED] hover:underline"
+                      >
+                        <Linkedin className="h-3.5 w-3.5" />
+                        Connect on LinkedIn
+                      </a>
                     </div>
                   </div>
 

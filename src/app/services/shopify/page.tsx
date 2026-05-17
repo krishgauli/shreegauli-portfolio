@@ -10,6 +10,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from "@/lib/schema";
 import { CheckCircle2 } from "lucide-react";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Dallas Shopify Developer | Custom Stores & SEO",
   description:
@@ -173,6 +175,35 @@ export default function ShopifyServicePage() {
               ))}
             </ul>
           </ModuleShell>
+        </div>
+      </section>
+
+      {/* Proof strip */}
+      <section className="relative z-10 pb-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-[#1A1A1A] mb-2">Real results from real engagements</h2>
+          <p className="text-sm text-[#6B7280] mb-8 max-w-2xl">
+            Documented outcomes from Shopify store builds and e-commerce work.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { value: "Fast", label: "Store launch", detail: "Custom Shopify stores configured, themed, and launched — apps, payment, shipping, and SEO included." },
+              { value: "95+", label: "Lighthouse score", detail: "Performance and SEO scores at launch — fast load times reduce cart abandonment and improve conversions." },
+              { value: "SEO-ready", label: "Product pages", detail: "Structured data, canonical tags, and meta fields configured on every product and collection page at build." },
+              { value: "15+", label: "Clients served", detail: "E-commerce, healthcare, and service businesses across the US." },
+            ].map((stat, i) => (
+              <ScrollReveal key={stat.label} delay={i * 0.06}>
+                <ModuleShell className="p-6 h-full">
+                  <p className="text-3xl font-bold text-[#7C3AED]">{stat.value}</p>
+                  <p className="text-sm font-semibold text-[#1A1A1A] mt-1">{stat.label}</p>
+                  <p className="text-xs text-[#6B7280] leading-relaxed mt-2">{stat.detail}</p>
+                </ModuleShell>
+              </ScrollReveal>
+            ))}
+          </div>
+          <p className="mt-5 text-xs text-[#6B7280]">
+            Full breakdowns available on the <Link href="/results" className="text-[#7C3AED] hover:underline">results page</Link>.
+          </p>
         </div>
       </section>
 
