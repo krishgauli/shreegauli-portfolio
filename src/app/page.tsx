@@ -13,6 +13,7 @@ import { TestimonialsSection } from "@/components/sections/Testimonials/Testimon
 import { CertificationsCarousel } from "@/components/sections/Certifications/CertificationsCarousel";
 import { FinalCTASection } from "@/components/sections/FinalCTA/FinalCTASection";
 import { SeoToolPromoSection } from "@/components/sections/SeoToolPromo/SeoToolPromoSection";
+import { OrbitalShowcaseSection } from "@/components/sections/OrbitalShowcase/OrbitalShowcaseSection";
 import { createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, faqPageSchema, personSchema, websiteSearchActionSchema, professionalServiceSchema, speakableSchema } from "@/lib/schema";
@@ -59,6 +60,9 @@ export default function Home() {
       <main id="main-content">
         {/* 1. Hero */}
         <HeroSection />
+
+        {/* 1b. Orbital Services Showcase */}
+        <OrbitalShowcaseSection />
 
         {/* 2. Trust bar */}
         <TrustBar />
