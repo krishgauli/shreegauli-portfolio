@@ -549,7 +549,7 @@ export default function SiteAuditTab() {
               <button
                 type="button"
                 onClick={() => void downloadCsv()}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.25] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-gray-200 transition hover:bg-white/[0.12] hover:text-white"
               >
                 <ArrowDownToLine className="h-4 w-4" />
                 Download CSV
@@ -557,14 +557,14 @@ export default function SiteAuditTab() {
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.25] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-gray-200 transition hover:bg-white/[0.12] hover:text-white"
               >
                 <Printer className="h-4 w-4" />
                 Save as PDF
               </button>
             </div>
             <div className="mt-4">
-              <label htmlFor="audit-email" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-[#6B7280]">
+              <label htmlFor="audit-email" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-gray-400">
                 Email address (optional)
               </label>
               <input
@@ -573,14 +573,14 @@ export default function SiteAuditTab() {
                 value={leadEmail}
                 onChange={(e) => setLeadEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full rounded-xl border border-black/[0.10] bg-black/[0.04] px-4 py-3 text-sm text-gray-900 placeholder:text-gray-500 outline-none focus:border-[#7C3AED]/60"
+                className="w-full rounded-xl border border-white/[0.15] bg-white/[0.08] px-4 py-3 text-sm text-white placeholder:text-gray-500 outline-none focus:border-[#7C3AED]/80 focus:bg-white/[0.10]"
               />
             </div>
             <div className="mt-5 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setShowEmailModal(false)}
-                className="rounded-lg border border-white/[0.14] px-4 py-2 text-sm font-semibold text-gray-600 hover:text-gray-900"
+                className="rounded-lg border border-white/[0.25] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-gray-200 transition hover:bg-white/[0.12] hover:text-white"
               >
                 Close
               </button>
